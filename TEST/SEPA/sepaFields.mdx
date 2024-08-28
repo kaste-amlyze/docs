@@ -8,11 +8,11 @@ In any type of operation between two or more parties, one of the parties is alwa
 <table>
     <thead>
         <tr>
-            <td><b>Field</b></td>
-            <td><b>Type</b></td>
-            <td><b>Mandatory</b></td>
-            <td><b>Example</b></td>
-            <td><b>Description</b></td>
+            <th><b>Field</b></th>
+            <th><b>Type</b></th>
+            <th><b>Mandatory</b></th>
+            <th><b>Example</b></th>
+            <th><b>Description</b></th>
         </tr>
     </thead>
     <tbody>
@@ -33,32 +33,28 @@ In any type of operation between two or more parties, one of the parties is alwa
         <tr>
             <td><b>sourceOfRiskLevel</b></td>
             <td>
-                String<br/><b>ENUM</b><br/>[EVALUATE,<br/>IMPORT]
+                String<br/>
+                <b>ENUM</b><br/>[EVALUATE,<br/>IMPORT]
             </td>
             <td>true</td>
             <td>EVALUATE</td>
-            <td>
-                Source of risk level<br/> 
-                The value <b>"EVALUATE"</b> should be used for normal business processes - risk assessment will be performed.<br/> 
-                The value <b>"IMPORT"</b> should be used for migration purposes only – the customer and its questionnaire will be imported without risk assessment
-            </td>
+            <td>Source of risk level<br/> The value <b>"EVALUATE"</b> should be used for normal business processes - risk assessment will be performed.<br/> The value <b>"IMPORT"</b> should be used for migration purposes only – the customer and it's questionnaire will be imported without risk assessment</td>
         </tr>
         <tr>
             <td><b>operationStatus</b></td>
             <td>
-                String<br/><b>ENUM</b><br/>[EXECUTED,<br/>REJECTED]
+                String<br/>
+                <b>ENUM</b><br/>[EXECUTED,<br/>REJECTED]
             </td>
             <td>true/false</td>
             <td>EXECUTED</td>
-            <td>
-                Either operation was successfully executed, or the operation was rejected<br/> 
-                <b>Mandatory</b> when sourceOfRiskLevel = IMPORT
-            </td>
+            <td>Either operation was successfully executed, or the operation was rejected<br/> <b> Mandatory</b> when sourceOfRiskLevel = IMPORT</td>
         </tr>
         <tr>
             <td><b>riskLevel</b></td>
             <td>
-                String<br/><b>ENUM</b><br/>[NONE,<br/>LOW,<br/>MEDIUM,<br/>HIGH,<br/>EXTREME]
+                String<br/>
+                <b>ENUM</b><br/>[NONE,<br/>LOW,<br/>MEDIUM,<br/>HIGH,<br/>EXTREME]
             </td>
             <td>false</td>
             <td>LOW</td>
@@ -68,7 +64,7 @@ In any type of operation between two or more parties, one of the parties is alwa
             <td><b>riskManagementCategory</b></td>
             <td>
                 String <br/>
-                <a href="../../../Classifiers/classifiers.md">(Risk management category classifier)</a>
+                <a href="../../../Classifiers/classifiers.mdx">(Risk management category classifier)</a>
             </td>
             <td>true</td>
             <td>OP_TRANSFER</td>
@@ -78,7 +74,7 @@ In any type of operation between two or more parties, one of the parties is alwa
             <td><b>operationType</b></td>
             <td>
                 String <br/>
-                <a href="../../../Classifiers/classifiers.md">(Operation type classifier)</a>
+                <a href="../../../Classifiers/classifiers.mdx">(Operation type classifier)</a>
             </td>
             <td>true</td>
             <td>SEPA</td>
@@ -88,16 +84,12 @@ In any type of operation between two or more parties, one of the parties is alwa
             <td><b>businessUnit</b></td>
             <td>
                 String <br/>
-                <a href="../../../Classifiers/classifiers.md">(Business unit classifier)</a>
+                <a href="../../../Classifiers/classifiers.mdx">(Business unit classifier)</a>
             </td>
             <td>true/false</td>
             <td>BUSINESS_UNIT_NAME</td>
-            <td>
-                This parameter is mandatory only for clients utilizing a multi-organizational solution. 
-                ❗<b>Omit this parameter unless instructed about it.</b>❗<br/> 
-                It serves to specify the unique identifier for the business unit. Business units are logical groupings of users and data. Each business unit can have its own set of users, permissions, and data access rules. <br/>
-                <i>(Upcoming feature)</i>
-            </td>
+            <td>This parameter is mandatory only for clients utilizing a multi-organizational solution. 
+            ❗<b>Omit this parameter unless instructed about it.</b>❗<br/> It serves to specify the unique identifier for the business unit. Business units are logical groupings of users and data. Each business unit can have its own set of users, permissions, and data access rules. <br/><i>(Upcoming feature)</i></td>
         </tr>
         <tr>
             <td><b>operationExtId</b></td>
@@ -109,13 +101,13 @@ In any type of operation between two or more parties, one of the parties is alwa
         <tr>
             <td><b>financialFlowDirection</b></td>
             <td>
-                String<br/><b>ENUM</b><br/>[INCOMING,<br/>OUTGOING]
+                String<br/>
+                <b>ENUM</b><br/>[INCOMING,<br/>OUTGOING]
             </td>
             <td>true</td>
             <td>INCOMING</td>
             <td>
-                Refers to the movement of money between entities or accounts<br/>  
-                direction = <b>INCOMING</b> your customer = <b>CREDITOR</b> 
+                Refers to the movement of money between entities or accounts<br/>  direction = <b>INCOMING</b> your customer = <b>CREDITOR</b> 
                 <br/>  direction = <b>OUTGOING</b> your customer = <b>DEBTOR</b>
             </td>
         </tr>
@@ -137,7 +129,7 @@ In any type of operation between two or more parties, one of the parties is alwa
             <td><b>currency</b></td>
             <td>
                 String <br/>
-                <a href="../../../Classifiers/classifiers.md">(Currency classifier)</a>
+                <a href="../../../Classifiers/classifiers.mdx">(Currency classifier)</a>
             </td>
             <td>true</td>
             <td>EUR</td>
@@ -155,34 +147,28 @@ In any type of operation between two or more parties, one of the parties is alwa
             <td>BigDecimal</td>
             <td>true/false</td>
             <td>0.93</td>
-            <td>
-                Euro exchange rate for other than Euro currency<br/> 
-                <b>Mandatory</b> when currency != <b>eur</b><br/> 
-                <b>Not Used</b> when currency = <b>eur</b>
-            </td>
+            <td>Euro exchange rate for other than Euro currency<br/> 
+            <b>Mandatory</b> when currency != <b>EUR</b><br/> <b>Not Used</b> when currency = <b>EUR</b></td>
         </tr>
         <tr>
             <td><b>amountInEuro</b></td>
             <td>BigDecimal</td>
             <td>true/ false</td>
             <td>1399</td>
-            <td>Amount of money in euro currency</td>
+            <td>amount of money in euro currency</td>
         </tr>
         <tr>
             <td><b>description</b></td>
             <td>String</td>
             <td>true</td>
             <td>Invoice '02'</td>
-            <td>
-                The purpose of payment is saved under description.<br/> 
-                It is necessary for the operation to be proceeded
-            </td>
+            <td>The purpose of payment is saved under description.<br/> It is necessary for the operation to be proceeded</td>
         </tr>
         <tr>
             <td><b>sourceCountry</b></td>
             <td>
                 String <br/>
-                <a href="../../../Classifiers/classifiers.md">(Country classifier)</a>
+                <a href="../../../Classifiers/classifiers.mdx">(Country classifier)</a>
             </td>
             <td>false</td>
             <td>LT</td>
@@ -192,7 +178,7 @@ In any type of operation between two or more parties, one of the parties is alwa
             <td><b>destinationCountry</b></td>
             <td>
                 String <br/>
-                <a href="../../../Classifiers/classifiers.md">(Country classifier)</a>
+                <a href="../../../Classifiers/classifiers.mdx">(Country classifier)</a>
             </td>
             <td>false</td>
             <td>LT</td>
@@ -209,10 +195,90 @@ In any type of operation between two or more parties, one of the parties is alwa
             <td><b>ipAddressCountry</b></td>
             <td>
                 String <br/>
-                <a href="../../../Classifiers/classifiers.md">(Country classifier)</a>
+                <a href="../../../Classifiers/classifiers.mdx">(Country classifier)</a>
             </td>
             <td>false</td>
             <td>LT</td>
             <td>Country of an IP address of the operation</td>
         </tr>
-       
+        <tr>
+            <td><b>ListOperationParty</b></td>
+            <td>List<br/>Counterparty</td>
+            <td>true</td>
+            <td>List of all counterparties of the operation</td>
+        </tr>
+        <tr>
+            <td><b>counterparties[].firstName</b></td>
+            <td>String</td>
+            <td>false</td>
+            <td>John</td>
+            <td>First name of a counterparty. Should not be passed for companies</td>
+        </tr>
+        <tr>
+            <td><b>counterparties[].lastName</b></td>
+            <td>String</td>
+            <td>false</td>
+            <td>Smith</td>
+            <td>Last name of a counterparty. Should not be passed for companies</td>
+        </tr>
+        <tr>
+            <td><b>counterparties[].companyName</b></td>
+            <td>String</td>
+            <td>false</td>
+            <td>Rhetoric Investments Ltd</td>
+            <td>Company name of a counterparty. Should not be passed for natural persons</td>
+        </tr>
+        <tr>
+            <td><b>counterparties[].identificationNumber</b></td>
+            <td>String</td>
+            <td>true</td>
+            <td>1010101010101</td>
+            <td>Identification number (like a personal code, VAT code, company code)</td>
+        </tr>
+        <tr>
+            <td><b>counterparties[].dateOfBirth</b></td>
+            <td>Date</td>
+            <td>false</td>
+            <td>1989-10-14</td>
+            <td>Date of birth of a counterparty. Should not be passed for companies</td>
+        </tr>
+        <tr>
+            <td><b>counterparties[].customerType</b></td>
+            <td>
+                String<br/>
+                <b>ENUM</b><br/>[CREDITOR,<br/>DEBTOR]
+            </td>
+            <td>true</td>
+            <td>DEBTOR</td>
+            <td>
+                Defines if a counterparty is a creditor (lending money) or a debtor (borrowing money)<br/> 
+                CREDITOR – gives money<br/> 
+                DEBTOR – receives money
+            </td>
+        </tr>
+        <tr>
+            <td><b>counterparties[].country</b></td>
+            <td>
+                String <br/>
+                <a href="../../../Classifiers/classifiers.mdx">(Country classifier)</a>
+            </td>
+            <td>true</td>
+            <td>LT</td>
+            <td>Country of registration or residence of a counterparty</td>
+        </tr>
+        <tr>
+            <td><b>counterparties[].iban</b></td>
+            <td>String</td>
+            <td>true</td>
+            <td>LT457044012324875126</td>
+            <td>International bank account number</td>
+        </tr>
+        <tr>
+            <td><b>counterparties[].accountNumber</b></td>
+            <td>String</td>
+            <td>false</td>
+            <td>0010101001</td>
+            <td>Domestic account number (mandatory for non-IBAN countries)</td>
+        </tr>
+    </tbody>
+</table>
