@@ -79,7 +79,7 @@
       "pages": [
         "api-reference/TEST-SEPA/sepaFields",
         "api-reference/TEST-SEPA/sepaImportNoEvaluation",
-        "api-reference/TEST-SEPA/sepaImportWithEcaluation"
+        "api-reference/TEST-SEPA/sepaImportWithEvaluation"
       ]
     },
     {
