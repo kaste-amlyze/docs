@@ -74,6 +74,14 @@
         "api-reference/introduction"
       ]
     },
+     {
+      "group": "TEST",
+      "pages": [
+        "api-reference/TEST/sepaFields",
+        "api-reference/TEST/sepaImportNoEvaluation",
+        "api-reference/TEST/sepaImportWithEcaluation"
+      ]
+    },
     {
       "group": "Endpoint Examples",
       "pages": [
