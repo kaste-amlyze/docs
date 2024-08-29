@@ -1,20 +1,72 @@
 ---
 title: 'SEPA operation import - no evaluation'
-description: 'Mintlify gives you complete control over the look and feel of your documentation using the mint.json file'
 icon: 'arrow-right'
 ---
 
 
-Every Mintlify site needs a `mint.json` file with the core configuration settings. Learn more about the [properties](#properties) below.
+In any type of operation between two or more parties, one of the parties is always the customer. The other party(ies) are called counterparty(ies).
 
-## Properties
+Below are examples of API requests with only mandatory fields and all fields in JSON format and a list of all available fields.
 
-<ResponseField name="name" type="string" required>
-Name of your project. Used for the global title.
 
-Example: `mintlify`
 
+// partyRole
+Only one operation can be imported per API request which means only one `CREDITOR` and one `DEBTOR` could be provided.
+At least one operation party account must exist in Amlyze (identified by accountNumber, BIC, Currency)
+//
+
+## API requests examples
+Type: POST
+
+<Expandable title="Mandatory fields example">
+<ResponseField>
+  ```json
+  {
+    "x": "https://x.com/mintlify",
+    "website": "https://mintlify.com"
+  }
+  ```
 </ResponseField>
+</Expandable>
+<Expandable title="All fields example">
+<ResponseField>
+  ```json
+  {
+    "x": "https://x.com/mintlify",
+    "website": "https://mintlify.com"
+  }
+  ```
+</ResponseField>
+</Expandable>
+
+## Fields
+
+<ResponseField name="communicationNumber" type="string" required>
+Unique number of communication. This field can store up to 256 characters.
+
+Example: `ComNr_01_TEST`
+</ResponseField>
+
+<ResponseField name="requester" type="string" required>
+Name of the system requesting web service.
+
+Example: `Amlyze` (name of the company)
+</ResponseField>
+
+<ResponseField name="sourceOfRiskLevel" type="ENUM" required>
+Unique number of communication. This field can store up to 256 characters.
+
+Example: `ComNr_01_TEST`
+</ResponseField>
+
+<ResponseField name="communicationNumber" type="string" required>
+Unique number of communication. This field can store up to 256 characters.
+
+Example: `ComNr_01_TEST`
+</ResponseField>
+---
+---
+---
 
 <ResponseField name="navigation" type="Navigation[]" required>
   An array of groups with all the pages within that group
