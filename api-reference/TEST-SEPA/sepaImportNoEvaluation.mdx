@@ -23,20 +23,127 @@ Below are examples of API requests for SEPA operation import without evaluation 
 <Expandable title="Mandatory fields example | SEPA operation import - no evaluation">
 <ResponseField>
   ```json
-  {
-    "x": "https://x.com/mintlify",
-    "website": "https://mintlify.com"
-  }
+{
+    "communicationNumber": "Test_ComNr_SEPA_05",
+    "requester": "Company Name Amlyze",
+
+    "sourceOfRiskLevel": "IMPORT",
+    "operationStatus":"EXECUTED",
+    "riskLevel": "LOW",
+
+    "riskManagementCategory": "OP_TRANSFER",
+    "operationType": "SEPA",
+
+    "operationExtId": "Op_05_SEPA_TEST",
+    "financialFlowDirection": "OUTGOING",
+  
+    "operationDateTime": "2023-09-22T15:09:33+02:00",
+    "currency": "EUR",
+    "amount": 200,
+    "description": "invoice '05'",
+    "listOperationParty": [
+         {
+            "partyRole": "DEBTOR",
+            "accountNumber": "LT9208800274335945522",
+            "bic": "AmlyzeXX22",
+            "entityType": "INDIVIDUAL",
+           	"firstName" : "Tomas",
+	        "lastName" : "Garcia"
+        },
+        {
+            "partyRole": "CREDITOR",
+            "accountNumber": "LT5630800200000745112",
+            "entityType": "ORGANIZATION",
+            "title": "Komele"
+        }
+    ]
+}
   ```
 </ResponseField>
 </Expandable>
 <Expandable title="All fields example | SEPA operation import - no evaluation">
 <ResponseField>
   ```json
-  {
-    "x": "https://x.com/mintlify",
-    "website": "https://mintlify.com"
-  }
+{
+    "communicationNumber": "Test_ComNr_SEPA_06",
+    "requester": "Company Name Amlyze",
+
+    "sourceOfRiskLevel": "IMPORT",
+    "operationStatus":"EXECUTED",
+    "riskLevel": "LOW",
+
+    "riskManagementCategory": "OP_TRANSFER",
+    "operationType": "SEPA",
+
+    "operationExtId": "Op_06_SEPA_TEST",
+    "financialFlowDirection": "INCOMING",
+
+    "initializeScreeningProcesses": [
+        "SANCTIONS",
+        "PEP",
+        "ADVERSE_MEDIA",
+        "INTERNAL_LIST"
+    ],
+
+    "operationDateTime": "2023-09-22T15:09:33+02:00",
+    "currency": "GBP",
+    "amount": 123,
+    "euroExchangeRate": 1.16,
+    "amountInEuro": 143,
+
+    "description": "invoice '06'",
+    "sourceCountry": "LT",
+    "destinationCountry": "LV",
+    "ipAddress": "555.222.4545.144",
+    "ipAddressCountry": "LT",
+    "listOperationParty": [
+        {
+            "partyRole": "ULTIMATE_DEBTOR",
+            "accountNumber": "LT20240226T133450",
+            "currency": "EUR",
+            "bic": "BIC",
+            "bankTitle": "TBC",
+            "entityType": "INDIVIDUAL",
+            "firstName": "Hakaka",
+            "lastName": "Luka",
+            "identifier": "50007102289",
+            "address": "Verkių g. 7-8, Vilnius",
+            "country": "LT"
+        },
+        {
+            "partyRole": "DEBTOR",
+            "accountNumber": "LV11245541148212335",
+            "currency": "EUR",
+            "bic": "BIC22XX",
+            "bankTitle": "TBC",
+            "entityType": "INDIVIDUAL",
+            "firstName": "Antonio",
+            "lastName": "Murara"
+        },
+        {
+            "partyRole": "CREDITOR",
+            "accountNumber": "LT9208800274335945522",
+            "currency": "EUR",
+            "bic": "AmlyzeXX22",
+            "bankTitle": "TBC bank",
+            "entityType": "INDIVIDUAL",
+           	"firstName" : "Tomas",
+	        "lastName" : "Garcia"
+        },
+        {
+            "partyRole": "ULTIMATE_CREDITOR",
+            "accountNumber": "LT20240226T133633",
+            "currency": "EUR",
+            "bic": "BIC",
+            "bankTitle": "TBC",
+            "entityType": "INDIVIDUAL",
+            "title": "Dona Murara",
+            "identifier": "60007102289",
+            "address": "Kauno g. 9, Vilnius",
+            "country": "LT"
+        }
+    ]
+}
   ```
 </ResponseField>
 </Expandable>
@@ -302,7 +409,7 @@ Party's nformation including street address, city, and possibly other relevant d
 _Example:_ `Verkių g. 7-8, Vilnius`
 </ResponseField>
 
-<ResponseField name="country" type="string from classifier list" required>
+<ResponseField name="country" type="string from classifier list">
 Two-letter country code specifying the participant's country.
 
 <Expandable title="Path to extract classifier values">
