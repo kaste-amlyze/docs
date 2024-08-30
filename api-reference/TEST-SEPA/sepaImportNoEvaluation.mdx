@@ -86,10 +86,8 @@ Below are examples of API requests for SEPA operation import without evaluation 
     ],
 
     "operationDateTime": "2023-09-22T15:09:33+02:00",
-    "currency": "GBP",
+    "currency": "EUR",
     "amount": 123,
-    "euroExchangeRate": 1.16,
-    "amountInEuro": 143,
 
     "description": "invoice '06'",
     "sourceCountry": "LT",
@@ -176,7 +174,7 @@ Enum class values: `EXECUTED`,  `REJECTED`
 _Example:_ `EXECUTED`
 </ResponseField>
 
-<ResponseField name="riskLevel" type="string from enum">
+<ResponseField name="riskLevel" type="string from enum" required>
 The risk level of imported operation.
 
 Enum class values: `NONE`,  `LOW`, `MEDIUM`, `HIGH`, `EXTREME`
