@@ -8,7 +8,13 @@ In any type of operation between two or more parties, one of the parties is alwa
 
 Below are examples of API requests with only mandatory fields and all fields in JSON format and a list of all available fields.
 
+**HTTP Method:**  `POST`
 
+**Path:** `{{client_test_environment}}`/amlyze-ws-rest/operation
+
+**ContentType:** `application/json`
+
+**Authorization:** `Bearer Token`
 
 // partyRole
 Only one operation can be imported per API request which means only one `CREDITOR` and one `DEBTOR` could be provided.
@@ -16,7 +22,6 @@ At least one operation party account must exist in Amlyze (identified by account
 //
 
 ## API requests examples
-Type: POST
 
 <Expandable title="Mandatory fields example">
 <ResponseField>
