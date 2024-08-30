@@ -6,7 +6,15 @@ icon: 'arrow-right'
 
 In any type of operation between two or more parties, one of the parties is always the customer. The other party(ies) are called counterparty(ies).
 
-Below are examples of API requests with only mandatory fields and all fields in JSON format and a list of all available fields.
+Below are examples of API requests for SEPA operation import without evaluation initiation with only mandatory fields and all fields in JSON format, as well as a list of all available fields.
+
+// partyRole
+Only one operation can be imported per API request which means only one `CREDITOR` and one `DEBTOR` could be provided.
+At least one operation party account must exist in Amlyze (identified by accountNumber, BIC, Currency)
+//
+
+## API requests examples
+
 
 **HTTP Method:**  `POST`
 
@@ -16,14 +24,7 @@ Below are examples of API requests with only mandatory fields and all fields in 
 
 **Authorization:** `Bearer Token`
 
-// partyRole
-Only one operation can be imported per API request which means only one `CREDITOR` and one `DEBTOR` could be provided.
-At least one operation party account must exist in Amlyze (identified by accountNumber, BIC, Currency)
-//
-
-## API requests examples
-
-<Expandable title="Mandatory fields example">
+<Expandable title="Mandatory fields example | SEPA operation import - no evaluation">
 <ResponseField>
   ```json
   {
@@ -33,7 +34,7 @@ At least one operation party account must exist in Amlyze (identified by account
   ```
 </ResponseField>
 </Expandable>
-<Expandable title="All fields example">
+<Expandable title="All fields example | SEPA operation import - no evaluation">
 <ResponseField>
   ```json
   {
@@ -55,10 +56,30 @@ Example: `ComNr_01_TEST`
 <ResponseField name="requester" type="string" required>
 Name of the system requesting web service.
 
-Example: `Amlyze` (name of the company)
+Example: `Amlyze` (name of your company)
 </ResponseField>
 
-<ResponseField name="sourceOfRiskLevel" type="ENUM" required>
+<ResponseField name="sourceOfRiskLevel" type="string" required>
+The value `IMPORT` is to be used for migration purposes only – the customer and it's questionnaire will be imported without risk assessment.
+
+Value: `IMPORT`
+</ResponseField>
+
+<ResponseField name="operationStatus" type="string from enum" required>
+Operation result either it was successfully executed, or the operation was rejected.
+
+Enum class values: `EXECUTED`,  `REJECTED`
+
+Example: `EXECUTED`
+</ResponseField>
+
+<ResponseField name="communicationNumber" type="string" required>
+Unique number of communication. This field can store up to 256 characters.
+
+Example: `ComNr_01_TEST`
+</ResponseField>
+
+<ResponseField name="communicationNumber" type="string" required>
 Unique number of communication. This field can store up to 256 characters.
 
 Example: `ComNr_01_TEST`
