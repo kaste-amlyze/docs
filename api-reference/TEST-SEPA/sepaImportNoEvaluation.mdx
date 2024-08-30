@@ -3,22 +3,18 @@ title: 'SEPA operation import - no evaluation'
 icon: 'arrow-right'
 ---
 
+! Further examples and descriptions applies only for SEPA operation import without evaluation.
 
 In any type of operation between two or more parties, one of the parties is always the customer. The other party(ies) are called counterparty(ies).
 
-Below are examples of API requests for SEPA operation import without evaluation initiation with only mandatory fields and all fields in JSON format, as well as a list of all available fields.
-
-// partyRole
-Only one operation can be imported per API request which means only one `CREDITOR` and one `DEBTOR` could be provided.
-At least one operation party account must exist in Amlyze (identified by accountNumber, BIC, Currency)
-//
+Below are examples of API requests for SEPA operation import without evaluation initiation with only mandatory fields and all fields in JSON format, as well as a list of all available fields. 
 
 ## API requests examples
 
 
 **HTTP Method:**  `POST`
 
-**Path:** `{{client_test_environment}}`/amlyze-ws-rest/operation
+**Path:** `{{baseUrl}}`/amlyze-ws-rest/operation
 
 **ContentType:** `application/json`
 
@@ -50,19 +46,19 @@ At least one operation party account must exist in Amlyze (identified by account
 <ResponseField name="communicationNumber" type="string" required>
 Unique number of communication. This field can store up to 256 characters.
 
-Example: `ComNr_01_TEST`
+_Example:_ `ComNr_01_TEST`
 </ResponseField>
 
 <ResponseField name="requester" type="string" required>
 Name of the system requesting web service.
 
-Example: `Amlyze` (name of your company)
+_Example:_ `Amlyze` _(name of your company)_
 </ResponseField>
 
 <ResponseField name="sourceOfRiskLevel" type="string" required>
 The value `IMPORT` is to be used for migration purposes only – the customer and it's questionnaire will be imported without risk assessment.
 
-Value: `IMPORT`
+_Value:_ `IMPORT`
 </ResponseField>
 
 <ResponseField name="operationStatus" type="string from enum" required>
@@ -70,328 +66,250 @@ Operation result either it was successfully executed, or the operation was rejec
 
 Enum class values: `EXECUTED`,  `REJECTED`
 
-Example: `EXECUTED`
+_Example:_ `EXECUTED`
 </ResponseField>
 
-<ResponseField name="communicationNumber" type="string" required>
-Unique number of communication. This field can store up to 256 characters.
+<ResponseField name="riskLevel" type="string from enum">
+The risk level of imported operation.
 
-Example: `ComNr_01_TEST`
+Enum class values: `NONE`,  `LOW`, `MEDIUM`, `HIGH`, `EXTREME`
+
+_Example:_ `LOW`
 </ResponseField>
 
-<ResponseField name="communicationNumber" type="string" required>
-Unique number of communication. This field can store up to 256 characters.
+<ResponseField name="riskManagementCategory" type="string from classifier list" required>
+Code of risk management category of the object. Value must be from a classifier list personalized to your company.
 
-Example: `ComNr_01_TEST`
-</ResponseField>
+_Example:_ `OP_TRANSFER`
 
-<ResponseField name="communicationNumber" type="string" required>
-Unique number of communication. This field can store up to 256 characters.
+<Expandable title="Path to extract classifier values">
+**HTTP Method:**  `GET`
 
-Example: `ComNr_01_TEST`
-</ResponseField>
----
----
----
-
-<ResponseField name="navigation" type="Navigation[]" required>
-  An array of groups with all the pages within that group
-  <Expandable title="Navigation">
-    <ResponseField name="group" type="string">
-    The name of the group.
-
-    Example: `Settings`
-
-    </ResponseField>
-    <ResponseField name="pages" type="string[]">
-    The relative paths to the markdown files that will serve as pages.
-
-    Example: `["customization", "page"]`
-
-    </ResponseField>
-
-  </Expandable>
-</ResponseField>
-
-<ResponseField name="logo" type="string or object">
-  Path to logo image or object with path to "light" and "dark" mode logo images
-  <Expandable title="Logo">
-    <ResponseField name="light" type="string">
-      Path to the logo in light mode
-    </ResponseField>
-    <ResponseField name="dark" type="string">
-      Path to the logo in dark mode
-    </ResponseField>
-    <ResponseField name="href" type="string" default="/">
-      Where clicking on the logo links you to
-    </ResponseField>
-  </Expandable>
-</ResponseField>
-
-<ResponseField name="favicon" type="string">
-  Path to the favicon image
-</ResponseField>
-
-<ResponseField name="colors" type="Colors">
-  Hex color codes for your global theme
-  <Expandable title="Colors">
-    <ResponseField name="primary" type="string" required>
-      The primary color. Used for most often for highlighted content, section
-      headers, accents, in light mode
-    </ResponseField>
-    <ResponseField name="light" type="string">
-      The primary color for dark mode. Used for most often for highlighted
-      content, section headers, accents, in dark mode
-    </ResponseField>
-    <ResponseField name="dark" type="string">
-      The primary color for important buttons
-    </ResponseField>
-    <ResponseField name="background" type="object">
-      The color of the background in both light and dark mode
-      <Expandable title="Object">
-        <ResponseField name="light" type="string" required>
-          The hex color code of the background in light mode
-        </ResponseField>
-        <ResponseField name="dark" type="string" required>
-          The hex color code of the background in dark mode
-        </ResponseField>
-      </Expandable>
-    </ResponseField>
-  </Expandable>
-</ResponseField>
-
-<ResponseField name="topbarLinks" type="TopbarLink[]">
-  Array of `name`s and `url`s of links you want to include in the topbar
-  <Expandable title="TopbarLink">
-    <ResponseField name="name" type="string">
-    The name of the button.
-
-    Example: `Contact us`
-    </ResponseField>
-    <ResponseField name="url" type="string">
-    The url once you click on the button. Example: `https://mintlify.com/contact`
-    </ResponseField>
-
-  </Expandable>
-</ResponseField>
-
-<ResponseField name="topbarCtaButton" type="Call to Action">
-  <Expandable title="Topbar Call to Action">
-    <ResponseField name="type" type={'"link" or "github"'} default="link">
-    Link shows a button. GitHub shows the repo information at the url provided including the number of GitHub stars.
-    </ResponseField>
-    <ResponseField name="url" type="string">
-    If `link`: What the button links to.
-    
-    If `github`: Link to the repository to load GitHub information from.
-    </ResponseField>
-    <ResponseField name="name" type="string">
-    Text inside the button. Only required if `type` is a `link`.
-    </ResponseField>
-
-  </Expandable>
-</ResponseField>
-
-<ResponseField name="versions" type="string[]">
-  Array of version names. Only use this if you want to show different versions
-  of docs with a dropdown in the navigation bar.
-</ResponseField>
-
-<ResponseField name="anchors" type="Anchor[]">
-  An array of the anchors, includes the `icon`, `color`, and `url`.
-  <Expandable title="Anchor">
-    <ResponseField name="icon" type="string">
-    The [Font Awesome](https://fontawesome.com/search?s=brands%2Cduotone) icon used to feature the anchor.
-
-    Example: `comments`
-    </ResponseField>
-    <ResponseField name="name" type="string">
-    The name of the anchor label.
-
-    Example: `Community`
-    </ResponseField>
-    <ResponseField name="url" type="string">
-      The start of the URL that marks what pages go in the anchor. Generally, this is the name of the folder you put your pages in.
-    </ResponseField>
-    <ResponseField name="color" type="string">
-      The hex color of the anchor icon background. Can also be a gradient if you pass an object with the properties `from` and `to` that are each a hex color.
-    </ResponseField>
-    <ResponseField name="version" type="string">
-      Used if you want to hide an anchor until the correct docs version is selected.
-    </ResponseField>
-    <ResponseField name="isDefaultHidden" type="boolean" default="false">
-      Pass `true` if you want to hide the anchor until you directly link someone to docs inside it.
-    </ResponseField>
-    <ResponseField name="iconType" default="duotone" type="string">
-      One of: "brands", "duotone", "light", "sharp-solid", "solid", or "thin"
-    </ResponseField>
-
-  </Expandable>
-</ResponseField>
-
-<ResponseField name="topAnchor" type="Object">
-  Override the default configurations for the top-most anchor.
-  <Expandable title="Object">
-    <ResponseField name="name" default="Documentation" type="string">
-      The name of the top-most anchor
-    </ResponseField>
-    <ResponseField name="icon" default="book-open" type="string">
-      Font Awesome icon.
-    </ResponseField>
-    <ResponseField name="iconType" default="duotone" type="string">
-      One of: "brands", "duotone", "light", "sharp-solid", "solid", or "thin"
-    </ResponseField>
-  </Expandable>
-</ResponseField>
-
-<ResponseField name="tabs" type="Tabs[]">
-  An array of navigational tabs.
-  <Expandable title="Tabs">
-    <ResponseField name="name" type="string">
-      The name of the tab label.
-    </ResponseField>
-    <ResponseField name="url" type="string">
-      The start of the URL that marks what pages go in the tab. Generally, this
-      is the name of the folder you put your pages in.
-    </ResponseField>
-  </Expandable>
-</ResponseField>
-
-<ResponseField name="api" type="API">
-  Configuration for API settings. Learn more about API pages at [API Components](/api-playground/demo).
-  <Expandable title="API">
-    <ResponseField name="baseUrl" type="string">
-      The base url for all API endpoints. If `baseUrl` is an array, it will enable for multiple base url
-      options that the user can toggle.
-    </ResponseField>
-
-    <ResponseField name="auth" type="Auth">
-      <Expandable title="Auth">
-        <ResponseField name="method" type='"bearer" | "basic" | "key"'>
-          The authentication strategy used for all API endpoints.
-        </ResponseField>
-        <ResponseField name="name" type="string">
-        The name of the authentication parameter used in the API playground.
-
-        If method is `basic`, the format should be `[usernameName]:[passwordName]`
-        </ResponseField>
-        <ResponseField name="inputPrefix" type="string">
-        The default value that's designed to be a prefix for the authentication input field.
-
-        E.g. If an `inputPrefix` of `AuthKey` would inherit the default input result of the authentication field as `AuthKey`.
-        </ResponseField>
-      </Expandable>
-    </ResponseField>
-
-    <ResponseField name="playground" type="Playground">
-      Configurations for the API playground
-
-      <Expandable title="Playground">
-        <ResponseField name="mode" default="show" type='"show" | "simple" | "hide"'>
-          Whether the playground is showing, hidden, or only displaying the endpoint with no added user interactivity `simple`
-
-          Learn more at the [playground guides](/api-playground/demo)
-        </ResponseField>
-      </Expandable>
-    </ResponseField>
-
-    <ResponseField name="maintainOrder" type="boolean">
-      Enabling this flag ensures that key ordering in OpenAPI pages matches the key ordering defined in the OpenAPI file.
-
-      <Warning>This behavior will soon be enabled by default, at which point this field will be deprecated.</Warning>
-    </ResponseField>
-
-  </Expandable>
-</ResponseField>
-
-<ResponseField name="openapi" type="string | string[]">
-  A string or an array of strings of URL(s) or relative path(s) pointing to your
-  OpenAPI file.
-  
-  Examples:
-  <CodeGroup>
-    ```json Absolute
-    "openapi": "https://example.com/openapi.json"
-    ```
-    ```json Relative
-    "openapi": "/openapi.json"
-    ```
-    ```json Multiple
-    "openapi": ["https://example.com/openapi1.json", "/openapi2.json", "/openapi3.json"]
-    ```
-  </CodeGroup>
+**Path:** `{{baseUrl}}`/classifier/riskManagementCategory
+</Expandable>
 
 </ResponseField>
 
-<ResponseField name="footerSocials" type="FooterSocials">
-  An object of social media accounts where the key:property pair represents the social media platform and the account url.
-  
-  Example: 
+<ResponseField name="operationType" type="string" required>
+Notifies about which kind of operation type was performed
+
+_Value:_ `SEPA`
+</ResponseField>
+
+<ResponseField name="businessUnit" type="string from classifier list">
+❗Mandatory field for clients utilizing a multi-organizational solution. Omit this parameter unless instructed about it.
+
+It serves to specify the unique identifier for the business unit. Business units are logical groupings of users and data. Each business unit can have its own set of users, permissions, and data access rules.
+
+_Example:_ `BUSINESS_UNIT_NAME`
+
+<Expandable title="Path to extract classifier values">
+**HTTP Method:**  `GET`
+
+**Path:** `{{baseUrl}}`/classifier/businessUnit
+</Expandable>
+
+</ResponseField>
+
+<ResponseField name="operationExtId" type="string" required>
+External identifier of operation.
+
+_Example:_ `Op_01_SEPA_TEST`
+</ResponseField>
+
+<ResponseField name="financialFlowDirection" type="string from enum" required>
+Refers to the movement of money between entities or accounts.
+
+Enum class values: `INCOMING`,  `OUTGOING`
+
+_Example:_ `INCOMING`
+</ResponseField>
+
+<ResponseField name="initializeScreeningProcesses" type="string[]">
+Defines which lists to check during screening process.
+
+<Expandable title="string[]">
   ```json
-  {
-    "x": "https://x.com/mintlify",
-    "website": "https://mintlify.com"
-  }
+     "initializeScreeningProcesses": [
+         "SANCTIONS",
+         "PEP",
+         "ADVERSE_MEDIA",
+         "INTERNAL_LIST"
+     ]
   ```
-  <Expandable title="FooterSocials">
-    <ResponseField name="[key]" type="string">
-    One of the following values `website`, `facebook`, `x`, `discord`, `slack`, `github`, `linkedin`, `instagram`, `hacker-news`
-    
-    Example: `x`
-    </ResponseField>
-    <ResponseField name="property" type="string">
-    The URL to the social platform.
-    
-    Example: `https://x.com/mintlify`
-    </ResponseField>
-  </Expandable>
+</Expandable>
+
+_Example:_ `PEP, ADVERSE_MEDIA`
 </ResponseField>
 
-<ResponseField name="feedback" type="Feedback">
-  Configurations to enable feedback buttons
+<ResponseField name="operationDateTime" type="date" required>
+The operation date and time show when the operation proceeded.
 
-  <Expandable title="Feedback">
-    <ResponseField name="suggestEdit" type="boolean" default="false">
-    Enables a button to allow users to suggest edits via pull requests
-    </ResponseField>
-    <ResponseField name="raiseIssue" type="boolean" default="false">
-    Enables a button to allow users to raise an issue about the documentation
-    </ResponseField>
-  </Expandable>
+_Example:_ `2024-08-16T13:00:00Z`
 </ResponseField>
 
-<ResponseField name="modeToggle" type="ModeToggle">
-  Customize the dark mode toggle.
-  <Expandable title="ModeToggle">
-    <ResponseField name="default" type={'"light" or "dark"'}>
-      Set if you always want to show light or dark mode for new users. When not
-      set, we default to the same mode as the user's operating system.
-    </ResponseField>
-    <ResponseField name="isHidden" type="boolean" default="false">
-      Set to true to hide the dark/light mode toggle. You can combine `isHidden` with `default` to force your docs to only use light or dark mode. For example:
-      
-      <CodeGroup>
-      ```json Only Dark Mode
-      "modeToggle": {
-        "default": "dark",
-        "isHidden": true
-      }
-      ```
+<ResponseField name="currency" type="string" required>
+Currency code.
 
-      ```json Only Light Mode
-      "modeToggle": {
-        "default": "light",
-        "isHidden": true
-      }
-      ```
-      </CodeGroup>
-
-    </ResponseField>
-
-  </Expandable>
+_Value:_ `EUR`
 </ResponseField>
 
-<ResponseField name="backgroundImage" type="string">
-  A background image to be displayed behind every page. See example with
-  [Infisical](https://infisical.com/docs) and [FRPC](https://frpc.io).
+<ResponseField name="amount" type="BigDecimal" required>
+Amount of money sent in an operation.
+
+_Example:_ `1499`
+</ResponseField>
+
+
+<ResponseField name="description" type="string" required>
+The purpose of payment is saved under description.
+
+_Example:_ `Invoice '02'`
+</ResponseField>
+
+<ResponseField name="sourceCountry" type="string from classifier list">
+Country rom where the operation was initiated.
+
+<Expandable title="Path to extract classifier values">
+**HTTP Method:**  `GET`
+
+**Path:** `{{baseUrl}}`/classifier/country
+</Expandable>
+
+_Example:_ `LT`
+</ResponseField>
+
+<ResponseField name="destinationCountry" type="string from classifier list">
+Country of operation's destination.
+
+<Expandable title="Path to extract classifier values">
+**HTTP Method:**  `GET`
+
+**Path:** `{{baseUrl}}`/classifier/country
+</Expandable>
+
+_Example:_ `LT`
+</ResponseField>
+
+<ResponseField name="ipAddress" type="string">
+The IP address of the operation.
+
+_Example:_ `xxx.zzz.yyyy.www`
+</ResponseField>
+
+<ResponseField name="ipAddressCountry" type="string from classifier list">
+Country of an IP address of the operation.
+
+<Expandable title="Path to extract classifier values">
+**HTTP Method:**  `GET`
+
+**Path:** `{{baseUrl}}`/classifier/country
+</Expandable>
+
+_Example:_ `LT`
+</ResponseField>
+
+<ResponseField name="listOperationParty" type="list[]" required>
+List of entities that belong to one operation. Fields of the list are described below. 
+
+</ResponseField>
+
+### Fields of "listOperationParty" list
+
+<ResponseField name="partyRole" type="string from enum" required>
+The role of the party in ongoing operation. At least one operation party account must already exist in Amlyze.
+
+Only one operation can be imported per API request which means only one `CREDITOR` and one `DEBTOR` could be provided.
+
+**Enum class values:** `DEBTOR`,  `CREDITOR`, `ULTIMATE_DEBTOR`, `ULTIMATE_CREDITOR`
+
+If `financialFlowDirection` is `INCOMING` your customer is `CREDITOR`.
+If `financialFlowDirection` is `OUTGOING` your customer is `DEBTOR`.
+
+_Example:_ `CREDITOR`
+</ResponseField>
+
+<ResponseField name="accountNumber" type="string" required>
+❗Not mandatory if  `partyRole` is `ULTIMATE_DEBTOR` or `ULTIMATE_CREDITOR`.
+
+Unique account identification number used in performing operations.
+
+_Example:_ `LT038625979279192518`
+</ResponseField>
+
+<ResponseField name="currency" type="string">
+Currency code of operation.
+
+_Value:_ `EUR`
+</ResponseField>
+
+<ResponseField name="bic" type="string" required>
+❗Mandatory only for your customer. Not mandatory for counterparties. 
+
+Bank identifier code for account number.
+
+_Example:_ `BICXX22`
+</ResponseField>
+
+<ResponseField name="bankTitle" type="string">
+Title of bank at which the operation is happening.
+
+_Example:_ `TBC bank`
+</ResponseField>
+
+<ResponseField name="entityType" type="string from enum" required>
+Describes client status.
+
+Enum class values: `INDIVIDUAL`,  `ORGANIZATION`, `UNKNOWN`
+
+`UNKNOWN` is valid only for counterparties.
+
+_Example:_ `INDIVIDUAL`
+</ResponseField>
+
+<ResponseField name="firstName" type="string">
+Individual entity's first name, used only together with `lastName` and never alone.
+
+_Example:_ `Eduardo`
+</ResponseField>
+
+<ResponseField name="lastName" type="string">
+Individual entity's last name, used only together with `firstName` and never alone.
+
+_Example:_ `Rodriguez`
+</ResponseField>
+
+<ResponseField name="title" type="string" required>
+❗Not mandatory if entity is `INDIVIDUAL` and both `firstName` and 
+`lastName` are provided.
+
+Identifies a party (`INDIVIDUAL`, `ORGANIZATION` or `UNKNOWN`) without requiring `firstName` or `lastName`.
+
+_Example:_ `Moller`
+</ResponseField>
+
+<ResponseField name="identifier" type="string">
+❗Mandatory only when "partyRole" = "ULTIMATE_" and no more elements are provided for that party.
+
+Unique identification number (e.g., personal ID, company VAT code) to distinguish the payer and the transaction. Can be used for customer, counterparty and ultimateparty.
+
+_Example:_ `50007153359`
+</ResponseField>
+
+<ResponseField name="address" type="string">
+Party's nformation including street address, city, and possibly other relevant details.
+
+_Example:_ `Verkių g. 7-8, Vilnius`
+</ResponseField>
+
+<ResponseField name="country" type="string from classifier list" required>
+Two-letter country code specifying the participant's country.
+
+<Expandable title="Path to extract classifier values">
+**HTTP Method:**  `GET`
+
+**Path:** `{{baseUrl}}`/classifier/country
+</Expandable>
+
+_Example:_ `DE`
 </ResponseField>
