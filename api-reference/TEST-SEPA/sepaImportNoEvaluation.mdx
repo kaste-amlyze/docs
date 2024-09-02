@@ -70,7 +70,6 @@ Below are examples of API requests for SEPA operation import without evaluation 
 
     "sourceOfRiskLevel": "IMPORT",
     "operationStatus":"EXECUTED",
-    "riskLevel": "LOW",
 
     "riskManagementCategory": "OP_TRANSFER",
     "operationType": "SEPA",
@@ -174,7 +173,7 @@ Enum class values: `EXECUTED`,  `REJECTED`
 _Example:_ `EXECUTED`
 </ResponseField>
 
-<ResponseField name="riskLevel" type="string from enum" required>
+<ResponseField name="riskLevel" type="string from enum">
 The risk level of imported operation.
 
 Enum class values: `NONE`,  `LOW`, `MEDIUM`, `HIGH`, `EXTREME`
