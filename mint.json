@@ -77,9 +77,8 @@
      {
       "group": "TEST-SEPA",
       "pages": [
-        "api-reference/TEST-SEPA/sepaFields",
-        "api-reference/TEST-SEPA/sepaImportNoEvaluation",
-        "api-reference/TEST-SEPA/sepaImportWithEvaluation"
+        "api-reference/TEST-SEPA/sepaImportNoTransactionMonitoring",
+        "api-reference/TEST-SEPA/sepaImportWithTransactionMonitoring"
       ]
     },
     {
