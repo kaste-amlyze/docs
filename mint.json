@@ -77,8 +77,8 @@
      {
       "group": "TEST-SEPA",
       "pages": [
-        "api-reference/TEST-SEPA/sepaImportNoTransactionMonitoring",
-        "api-reference/TEST-SEPA/sepaImportWithTransactionMonitoring"
+        "api-reference/SEPA/sepaImportNoTransactionMonitoring",
+        "api-reference/SEPA/sepaImportWithTransactionMonitoring"
       ]
     },
     {
