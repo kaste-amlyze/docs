@@ -75,7 +75,7 @@
       ]
     },
      {
-      "group": "TEST-SEPA",
+      "group": "SEPA",
       "pages": [
         "api-reference/SEPA/sepaImportNoTransactionMonitoring",
         "api-reference/SEPA/sepaImportWithTransactionMonitoring"
@@ -92,8 +92,8 @@
     }
   ],
   "footerSocials": {
-    "x": "https://x.com/mintlify",
-    "github": "https://github.com/mintlify",
-    "linkedin": "https://www.linkedin.com/company/mintsearch"
+    "x": "https://x.com/AMLYZE",
+    "youtube": "https://www.youtube.com/@AMLYZE",
+    "linkedin": "https://lt.linkedin.com/company/amlyze"
   }
 }
