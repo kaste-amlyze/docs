@@ -77,9 +77,9 @@
      {
       "group": "TEST-SEPA",
       "pages": [
-        "api-reference/TEST-SEPA/TEST",
         "api-reference/TEST-SEPA/sepaImportNoEvaluation",
-        "api-reference/TEST-SEPA/sepaImportWithEvaluation"
+        "api-reference/TEST-SEPA/sepaImportWithEvaluation",
+        "api-reference/TEST-SEPA/TEST"
       ]
     },
     {
