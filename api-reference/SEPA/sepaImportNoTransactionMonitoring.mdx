@@ -4,15 +4,13 @@ icon: 'arrow-right'
 ---
 
 <Note>
-Further examples and descriptions applies only for SEPA operation import without transaction monitoring.
+Just so you know, further examples and descriptions apply only to SEPA operation imports without transaction monitoring.
 </Note>
 
-In any type of operation between two or more parties, one of the parties is always the customer. The other party(ies) are called counterparty(ies).
+This section provides information how to submit operation (transaction) details to our database and is focused to those operations which don't require to perform transaction monitoring.
+It includes examples of API requests with mandatory and optional fields, a comprehensive list of all available fields, and common error descriptions.
 
-Below are examples of API requests for SEPA operation import without transaction monitoring initiation with only mandatory fields and all fields in JSON format, as well as a list of all available fields. 
-
-## API requests examples
-
+SEPA (Single Euro Payments Area) operations involve transactions between two or more parties, one of the parties is always the customer. The other party(ies) are called counterparty(ies). Transaction monitoring ensures compliance and helps detect fraudulent activities or anomalies that your risk team is interested in.
 
 **HTTP Method:**  `POST`
 
@@ -21,6 +19,8 @@ Below are examples of API requests for SEPA operation import without transaction
 **ContentType:** `application/json`
 
 **Authorization:** `Bearer Token`
+
+## API requests examples
 
 <Expandable title="Mandatory fields example | SEPA operation import - no transaction monitoring">
 <ResponseField>
@@ -63,6 +63,54 @@ Below are examples of API requests for SEPA operation import without transaction
   ```
 </ResponseField>
 </Expandable>
+
+<Expandable title="Mandatory fields example | SEPA operation import - no transaction monitoring with screening">
+<ResponseField>
+  ```json
+{
+    "communicationNumber": "Test_ComNr_SEPA_05",
+    "requester": "Company Name Amlyze",
+
+    "sourceOfRiskLevel": "IMPORT",
+    "operationStatus":"EXECUTED",
+    "riskLevel": "LOW",
+
+    "riskManagementCategory": "OP_TRANSFER",
+    "operationType": "SEPA",
+
+    "operationExtId": "Op_05_SEPA_TEST",
+    "financialFlowDirection": "OUTGOING",
+
+    
+    "initializeScreeningProcesses": [
+        "SANCTIONS"
+    ],
+  
+    "operationDateTime": "2023-09-22T15:09:33+02:00",
+    "currency": "EUR",
+    "amount": 200,
+    "description": "invoice '05'",
+    "listOperationParty": [
+         {
+            "partyRole": "DEBTOR",
+            "accountNumber": "LT9208800274335945522",
+            "bic": "AmlyzeXX22",
+            "entityType": "INDIVIDUAL",
+           	"firstName" : "Tomas",
+	        "lastName" : "Garcia"
+        },
+        {
+            "partyRole": "CREDITOR",
+            "accountNumber": "LT5630800200000745112",
+            "entityType": "ORGANIZATION",
+            "title": "Komele"
+        }
+    ]
+}
+  ```
+</ResponseField>
+</Expandable>
+
 <Expandable title="All fields example | SEPA operation import - no transaction monitoring">
 <ResponseField>
   ```json
@@ -420,3 +468,60 @@ Two-letter country code specifying the participant's country.
 
 _Example:_ `DE`
 </ResponseField>
+
+## List of possible errors
+
+This section lists the possible errors that can occur when making a bad request to the API. A bad request is a request that somehow does not follow the API specifications.
+
+| **Category**                | **Error Message**                                                               |
+|-----------------------------|---------------------------------------------------------------------------------|
+| Action Not Supported        | Action is not supported.                                                        |
+| OperationExtId Issues       | OperationExtId is mandatory.                                                     |
+|                             | Operation with given OperationExtId already exists in Amlyze.                     |
+|                             | Operation with given OperationExtId does not exist in Amlyze.                     |
+| Requester Issues            | Requester is mandatory.                                                           |
+| OperationDateTime Issues    | OperationDateTime is mandatory.                                                   |
+| Description Issues          | Description is mandatory.                                                         |
+| CommunicationNumber Issues  | CommunicationNumber is mandatory.                                                 |
+|                             | CommunicationNumber was already used in Amlyze.                                   |
+| SourceOfRiskLevel Issues    | SourceOfRiskLevel is mandatory; allowed values: IMPORT / EVALUATE.                |
+|                             | Problem with SourceOfRiskLevel.                                                   |
+| Country Issues              | SourceCountry is mandatory; check country classifier codes for allowed values.   |
+|                             | DestinationCountry is mandatory; check country classifier codes for allowed values.|
+|                             | Invalid MerchantCountryCode.                                                      |
+| Amount Issues               | Amount is mandatory and must be greater than 0.                                  |
+|                             | Despite currency = EUR, AmountInEur differs from Amount.                          |
+|                             | AmountInEur is mandatory and must be greater than 0.                             |
+|                             | EuroExchangeRate is mandatory and must be greater than 0 (when currency != EUR). |
+| OperationType Issues        | OperationType is mandatory.                                                       |
+|                             | Problem with OperationType.                                                        |
+|                             | OperationType is not defined in Amlyze. Check Operation type classifier for available values. |
+| OperationStatus Issues      | OperationStatus is mandatory for IMPORT operation. Possible values: REJECTED / EXECUTED. |
+|                             | OperationStatus must be empty for EVALUATE operation.                             |
+| FinancialFlowDirection Issues| For not INTERNAL operation financialFlowDirection value can't be 'NULL'.         |
+|                             | Invalid FinancialFlowDirection. Your institution DEBTOR found for INCOMING operation. |
+|                             | Invalid FinancialFlowDirection. Your institution CREDITOR found for OUTGOING operation. |
+| General Issues              | ListOperationParty is mandatory and can't be empty.                              |
+|                             | Problem with OperationParties.                                                   |
+|                             | Invalid operation party count. Range: min 1 max 4.                                |
+|                             | No operation party account related to your institution BIC, or Customer.          |
+|                             | OperationParties must contain CREDITOR.                                           |
+|                             | OperationParties must contain DEBTOR.                                             |
+|                             | Invalid count of your institution operation parties for [operationType].           |
+| Specific Roles and Types    | entityType mismatch in operationParty[i]. Amlyze customer has a different entity type to operation one. |
+|                             | For INCOMING operation your's customer party role must be CREDITOR.              |
+|                             | For OUTGOING operation your's customer party role must be DEBTOR.                |
+|                             | For card_refund subtype, creditor must be your customer.                         |
+|                             | For 'PIS' operation only creditor can be provided.                               |
+|                             | Operation party title or firstName or lastName or cardHolderName is mandatory.  |
+|                             | AccountNumber or CardNumber is mandatory for card operation.                     |
+| RiskManagementCategory Issues| RiskManagementCategory is mandatory.                                            |
+|                             | RiskManagementCategory does not exist in Amlyze.                                 |
+|                             | RiskManagementCategory does not support Operation.                               |
+| Account Issues              | Account registered to your institution, Account found in Amlyze, but customer not found in Amlyze. |
+| EntityType Issues           | EntityType is mandatory, values: INDIVIDUAL, ORGANIZATION, UNKNOWN.             |
+| PartyRole Issues            | PartyRole is mandatory, possible values: DEBTOR, CREDITOR, ULTIMATE_DEBTOR, ULTIMATE_CREDITOR. |
+| Country Values              | The value for the country in the party is not within the allowed values specified by the country classifier. |
+| Tenant and Business Unit Issues | Tenant header [tenant code] is mandatory.                                    |
+|                             | Business unit is mandatory.                                                      |
+|                             | Tenant [tenantCode] business unit [businessUnitCode] does not exist.             |
