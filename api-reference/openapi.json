@@ -1,0 +1,1798 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Api Documentation",
+    "description": "Api Documentation",
+    "termsOfService": "urn:tos",
+    "contact": {},
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0"
+    },
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "//sandbox.amlyze.app:8878/"
+    }
+  ],
+  "tags": [
+    {
+      "name": "account-controller",
+      "description": "Account Controller"
+    },
+    {
+      "name": "customer-controller",
+      "description": "Customer Controller"
+    },
+    {
+      "name": "operation-controller",
+      "description": "Operation Controller"
+    },
+    {
+      "name": "simplified-customer-controller",
+      "description": "Simplified Customer Controller"
+    }
+  ],
+  "paths": {
+    "/amlyze-ws-rest/account": {
+      "post": {
+        "tags": [
+          "account-controller"
+        ],
+        "summary": "postAccount",
+        "operationId": "postAccountUsingPOST",
+        "requestBody": {
+          "description": "req",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AmlyzeAccountApi"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountResultApi"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {}
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "req"
+      }
+    },
+    "/amlyze-ws-rest/customer": {
+      "post": {
+        "tags": [
+          "customer-controller"
+        ],
+        "summary": "postCustomer",
+        "operationId": "postCustomerUsingPOST",
+        "requestBody": {
+          "description": "req",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AmlyzeCustomerApi"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/CustomerResultApi"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {}
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "req"
+      }
+    },
+    "/amlyze-ws-rest/operation": {
+      "post": {
+        "tags": [
+          "operation-controller"
+        ],
+        "summary": "postOperation",
+        "operationId": "postOperationUsingPOST",
+        "requestBody": {
+          "description": "req",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AmlyzeOperationApi"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationResultApi"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {}
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "req"
+      }
+    },
+    "/amlyze-ws-rest/simplifiedCustomer": {
+      "post": {
+        "tags": [
+          "simplified-customer-controller"
+        ],
+        "summary": "postCustomer",
+        "operationId": "postCustomerUsingPOST_1",
+        "requestBody": {
+          "description": "req",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SimplifiedCustomerApi"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultApi"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {}
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "req"
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AccountResultApi": {
+        "title": "AccountResultApi",
+        "type": "object",
+        "properties": {
+          "errorCode": {
+            "type": "string"
+          },
+          "errorDescription": {
+            "type": "string"
+          },
+          "resultType": {
+            "type": "string",
+            "enum": [
+              "ERROR",
+              "OK"
+            ]
+          }
+        }
+      },
+      "ActivityApi": {
+        "title": "ActivityApi",
+        "required": [
+          "activityType"
+        ],
+        "type": "object",
+        "properties": {
+          "activityType": {
+            "type": "string"
+          },
+          "incomePercentage": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "AdditionalValueApi": {
+        "title": "AdditionalValueApi",
+        "required": [
+          "code",
+          "datatype",
+          "description",
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "datatype": {
+            "type": "string",
+            "enum": [
+              "BOOLEAN",
+              "DATE",
+              "DECIMAL",
+              "INTEGER",
+              "STRING",
+              "TIMESTAMP"
+            ]
+          },
+          "description": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
+      "AddressApi": {
+        "title": "AddressApi",
+        "required": [
+          "addressType"
+        ],
+        "type": "object",
+        "properties": {
+          "addressDetails": {
+            "type": "string"
+          },
+          "addressType": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          },
+          "region": {
+            "type": "string"
+          },
+          "streetAddress": {
+            "type": "string"
+          },
+          "useForCorrespondence": {
+            "type": "boolean"
+          },
+          "zipCode": {
+            "type": "string"
+          }
+        }
+      },
+      "AmlyzeAccountApi": {
+        "title": "AmlyzeAccountApi",
+        "required": [
+          "accountExtId",
+          "accountNumber",
+          "accountStatus",
+          "businessEntityExtId",
+          "communicationNumber",
+          "currencyCode",
+          "openingDate",
+          "requester"
+        ],
+        "type": "object",
+        "properties": {
+          "accountExtId": {
+            "type": "string"
+          },
+          "accountNumber": {
+            "type": "string"
+          },
+          "accountPurpose": {
+            "type": "string"
+          },
+          "accountStatus": {
+            "type": "string",
+            "enum": [
+              "ACTIVE",
+              "CLOSED",
+              "SUSPENDED"
+            ]
+          },
+          "accountType": {
+            "type": "string"
+          },
+          "bankTitle": {
+            "type": "string"
+          },
+          "bic": {
+            "type": "string"
+          },
+          "businessEntityExtId": {
+            "type": "string"
+          },
+          "businessUnit": {
+            "type": "string"
+          },
+          "closingDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "communicationNumber": {
+            "type": "string"
+          },
+          "currencyCode": {
+            "type": "string"
+          },
+          "isOtherFinInstAccount": {
+            "type": "boolean"
+          },
+          "openingDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "requester": {
+            "type": "string"
+          },
+          "suspensionReasons": {
+            "type": "string"
+          }
+        }
+      },
+      "AmlyzeCustomerApi": {
+        "title": "AmlyzeCustomerApi",
+        "required": [
+          "applicationDate",
+          "communicationNumber",
+          "customerExtId",
+          "entityType",
+          "requester",
+          "riskManagementCategory",
+          "sourceOfRiskLevel"
+        ],
+        "type": "object",
+        "properties": {
+          "action": {
+            "type": "string"
+          },
+          "activityDescription": {
+            "type": "string"
+          },
+          "activityInRestrictedRegionDescription": {
+            "type": "string"
+          },
+          "amlOfficer": {
+            "type": "boolean"
+          },
+          "applicationDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "approvalDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "birthCountry": {
+            "type": "string"
+          },
+          "birthDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "businessUnit": {
+            "type": "string"
+          },
+          "citizenshipCountry": {
+            "type": "string"
+          },
+          "closingDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "communicationNumber": {
+            "type": "string"
+          },
+          "companyAssetValue": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "customerExtId": {
+            "type": "string"
+          },
+          "customerStatus": {
+            "type": "string",
+            "enum": [
+              "ACTIVE",
+              "CLOSED",
+              "PENDING",
+              "REJECTED",
+              "SUSPENDED"
+            ]
+          },
+          "doesCashDominate": {
+            "type": "boolean"
+          },
+          "entityType": {
+            "type": "string",
+            "enum": [
+              "INDIVIDUAL",
+              "ORGANIZATION"
+            ]
+          },
+          "establishmentDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "fieldOfActivity": {
+            "$ref": "#/components/schemas/FieldOfActivityApi"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "giin": {
+            "type": "string"
+          },
+          "hasMultiLayerStructure": {
+            "type": "boolean"
+          },
+          "incomeSourceDescription": {
+            "type": "string"
+          },
+          "incomingPaymentDescription": {
+            "type": "string"
+          },
+          "initialDepositAccount": {
+            "type": "string"
+          },
+          "initialDepositAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "initialDepositBank": {
+            "type": "string"
+          },
+          "initialDepositCurrency": {
+            "type": "string"
+          },
+          "initialDepositSource": {
+            "type": "string"
+          },
+          "initializeScreeningProcesses": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "isActualAddressDeclared": {
+            "type": "boolean"
+          },
+          "isAudited": {
+            "type": "boolean"
+          },
+          "isCorrespondenceAddressDeclared": {
+            "type": "boolean"
+          },
+          "isDirectlyManaged": {
+            "type": "boolean"
+          },
+          "isFamilyPEP": {
+            "type": "boolean"
+          },
+          "isFinancialInstitution": {
+            "type": "boolean"
+          },
+          "isFined": {
+            "type": "boolean"
+          },
+          "isInAdverseMedia": {
+            "type": "boolean"
+          },
+          "isInInternalList": {
+            "type": "boolean"
+          },
+          "isLegalResident": {
+            "type": "boolean"
+          },
+          "isLicenseRequired": {
+            "type": "boolean"
+          },
+          "isListed": {
+            "type": "boolean"
+          },
+          "isLitigated": {
+            "type": "boolean"
+          },
+          "isPEP": {
+            "type": "boolean"
+          },
+          "isRegulated": {
+            "type": "boolean"
+          },
+          "isSanctioned": {
+            "type": "boolean"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "legalForm": {
+            "type": "string"
+          },
+          "lei": {
+            "type": "string"
+          },
+          "licenseDescription": {
+            "type": "string"
+          },
+          "listActivity": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ActivityApi"
+            }
+          },
+          "listAdditionalValues": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AdditionalValueApi"
+            }
+          },
+          "listAddress": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AddressApi"
+            }
+          },
+          "listAppealReason": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AppealReasonApi"
+            }
+          },
+          "listBusinessEntityDocument": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BusinessEntityDocumentApi"
+            }
+          },
+          "listContact": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ContactApi"
+            }
+          },
+          "listCountryOfActivity": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CountryOfActivityApi"
+            }
+          },
+          "listCountryOfTaxPayment": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CountryOfTaxPaymentApi"
+            }
+          },
+          "listDeclaredTurnover": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DeclaredTurnoverApi"
+            }
+          },
+          "listIncomeSource": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IncomeSourceApi"
+            }
+          },
+          "listIntroductionSource": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IntroductionSourceApi"
+            }
+          },
+          "listOrderedService": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OrderedServiceApi"
+            }
+          },
+          "listPaymentCountry": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PaymentCountryApi"
+            }
+          },
+          "listPaymentPurpose": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PaymentPurposeApi"
+            }
+          },
+          "listPurpose": {
+            "type": "string",
+            "enum": [
+              "BLACK",
+              "WHITE"
+            ]
+          },
+          "listRegionOfActivity": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RegionOfActivityApi"
+            }
+          },
+          "listRelatedEntity": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RelatedEntityApi"
+            }
+          },
+          "listSourceOfWealth": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SourceOfWealthApi"
+            }
+          },
+          "nationalCode": {
+            "type": "string"
+          },
+          "noMajorShareHolders": {
+            "type": "boolean"
+          },
+          "numberOfAudits": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "numberOfEmployees": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "organizationalStructureDescription": {
+            "type": "string"
+          },
+          "outgoingPaymentDescription": {
+            "type": "string"
+          },
+          "periodsOfAuditsInYears": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "periodsOfFiningInYears": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "permanentResidenceCountry": {
+            "type": "string"
+          },
+          "regionOfActivityDescription": {
+            "type": "string"
+          },
+          "registrationCountry": {
+            "type": "string"
+          },
+          "requester": {
+            "type": "string"
+          },
+          "riskLevel": {
+            "type": "string",
+            "enum": [
+              "EXTREME",
+              "HIGH",
+              "LOW",
+              "MEDIUM",
+              "NONE"
+            ]
+          },
+          "riskManagementCategory": {
+            "type": "string"
+          },
+          "secondCitizenshipCountry": {
+            "type": "string"
+          },
+          "sourceOfRiskLevel": {
+            "type": "string",
+            "enum": [
+              "EVALUATE",
+              "IMPORT"
+            ]
+          },
+          "thirdPartyServicesUsed": {
+            "type": "boolean"
+          },
+          "thirdPartyServicesUsedDescription": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "tradingName": {
+            "type": "string"
+          }
+        }
+      },
+      "AmlyzeOperationApi": {
+        "title": "AmlyzeOperationApi",
+        "required": [
+          "amount",
+          "communicationNumber",
+          "currency",
+          "description",
+          "financialFlowDirection",
+          "operationDateTime",
+          "operationExtId",
+          "operationType",
+          "requester",
+          "riskManagementCategory",
+          "sourceOfRiskLevel"
+        ],
+        "type": "object",
+        "properties": {
+          "action": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "number"
+          },
+          "amountInEuro": {
+            "type": "number"
+          },
+          "businessUnit": {
+            "type": "string"
+          },
+          "cardOperationSubType": {
+            "type": "string"
+          },
+          "communicationNumber": {
+            "type": "string"
+          },
+          "currency": {
+            "type": "string"
+          },
+          "dateAuthorized": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "dateSettled": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "description": {
+            "type": "string"
+          },
+          "destinationCountry": {
+            "type": "string"
+          },
+          "euroExchangeRate": {
+            "type": "number"
+          },
+          "fastPayment": {
+            "type": "boolean"
+          },
+          "financialFlowDirection": {
+            "type": "string",
+            "enum": [
+              "INCOMING",
+              "NULL",
+              "OUTGOING"
+            ]
+          },
+          "initializeScreeningProcesses": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "ipAddress": {
+            "type": "string"
+          },
+          "ipAddressCountry": {
+            "type": "string"
+          },
+          "listOperationParty": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OperationPartyApi"
+            }
+          },
+          "merchantCode": {
+            "type": "string"
+          },
+          "merchantCountryCode": {
+            "type": "string"
+          },
+          "merchantDescription": {
+            "type": "string"
+          },
+          "merchantExtId": {
+            "type": "string"
+          },
+          "merchantName": {
+            "type": "string"
+          },
+          "operationDateTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "operationExtId": {
+            "type": "string"
+          },
+          "operationStatus": {
+            "type": "string",
+            "enum": [
+              "EXECUTED",
+              "REJECTED"
+            ]
+          },
+          "operationType": {
+            "type": "string"
+          },
+          "requester": {
+            "type": "string"
+          },
+          "riskLevel": {
+            "type": "string",
+            "enum": [
+              "EXTREME",
+              "HIGH",
+              "LOW",
+              "MEDIUM",
+              "NONE"
+            ]
+          },
+          "riskManagementCategory": {
+            "type": "string"
+          },
+          "salesPointCode": {
+            "type": "string"
+          },
+          "salesPointExtId": {
+            "type": "string"
+          },
+          "sourceCountry": {
+            "type": "string"
+          },
+          "sourceOfRiskLevel": {
+            "type": "string",
+            "enum": [
+              "EVALUATE",
+              "IMPORT"
+            ]
+          },
+          "terminalCode": {
+            "type": "string"
+          },
+          "terminalExtId": {
+            "type": "string"
+          }
+        }
+      },
+      "AppealReasonApi": {
+        "title": "AppealReasonApi",
+        "required": [
+          "appealReasonType"
+        ],
+        "type": "object",
+        "properties": {
+          "appealReasonType": {
+            "type": "string"
+          }
+        }
+      },
+      "BusinessEntityDocumentApi": {
+        "title": "BusinessEntityDocumentApi",
+        "required": [
+          "description",
+          "documentIssueAuthority",
+          "documentIssueCountry",
+          "documentIssueDate",
+          "documentNumber",
+          "entityType",
+          "identityDocumentType"
+        ],
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "documentExpiryDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "documentIssueAuthority": {
+            "type": "string"
+          },
+          "documentIssueCountry": {
+            "type": "string"
+          },
+          "documentIssueDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "documentNumber": {
+            "type": "string"
+          },
+          "entityType": {
+            "type": "string",
+            "enum": [
+              "INDIVIDUAL",
+              "ORGANIZATION",
+              "UNKNOWN"
+            ]
+          },
+          "identityDocumentType": {
+            "type": "string",
+            "enum": [
+              "DRIVINGLICENSE",
+              "IDENTITYCARD",
+              "OTHER",
+              "PASSPORT",
+              "REGISTRATIONCERTIFICATE",
+              "RESIDENCEPERMIT"
+            ]
+          }
+        }
+      },
+      "ContactApi": {
+        "title": "ContactApi",
+        "required": [
+          "contactDetails",
+          "contactType"
+        ],
+        "type": "object",
+        "properties": {
+          "contactDetails": {
+            "type": "string"
+          },
+          "contactType": {
+            "type": "string",
+            "enum": [
+              "EMAIL",
+              "FIXEDPHONE",
+              "MOBILEPHONE",
+              "WEBSITE"
+            ]
+          },
+          "useForCommunication": {
+            "type": "boolean"
+          }
+        }
+      },
+      "CountryOfActivityApi": {
+        "title": "CountryOfActivityApi",
+        "required": [
+          "country"
+        ],
+        "type": "object",
+        "properties": {
+          "country": {
+            "type": "string"
+          }
+        }
+      },
+      "CountryOfTaxPaymentApi": {
+        "title": "CountryOfTaxPaymentApi",
+        "required": [
+          "country"
+        ],
+        "type": "object",
+        "properties": {
+          "country": {
+            "type": "string"
+          },
+          "taxpayerNumber": {
+            "type": "string"
+          }
+        }
+      },
+      "CustomerResultApi": {
+        "title": "CustomerResultApi",
+        "type": "object",
+        "properties": {
+          "errorCode": {
+            "type": "string"
+          },
+          "errorDescription": {
+            "type": "string"
+          },
+          "resultType": {
+            "type": "string",
+            "enum": [
+              "REQUEST_ACCEPTED",
+              "REQUEST_REJECTED"
+            ]
+          }
+        }
+      },
+      "DeclaredTurnoverApi": {
+        "title": "DeclaredTurnoverApi",
+        "required": [
+          "turnoverRange",
+          "turnoverType"
+        ],
+        "type": "object",
+        "properties": {
+          "from": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "to": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "turnoverRange": {
+            "type": "string",
+            "enum": [
+              "ANNUAL",
+              "DAILY",
+              "MONTHLY",
+              "SINGLE"
+            ]
+          },
+          "turnoverType": {
+            "type": "string"
+          }
+        }
+      },
+      "FieldEmploymentApi": {
+        "title": "FieldEmploymentApi",
+        "type": "object",
+        "properties": {
+          "employerTitle": {
+            "type": "string"
+          },
+          "employmentPositionDescription": {
+            "type": "string"
+          },
+          "isEmployee": {
+            "type": "boolean"
+          },
+          "isSelfEmployed": {
+            "type": "boolean"
+          },
+          "isUnemployed": {
+            "type": "boolean"
+          }
+        }
+      },
+      "FieldOfActivityApi": {
+        "title": "FieldOfActivityApi",
+        "type": "object",
+        "properties": {
+          "employment": {
+            "$ref": "#/components/schemas/FieldEmploymentApi"
+          },
+          "other": {
+            "$ref": "#/components/schemas/FieldOtherApi"
+          },
+          "pension": {
+            "$ref": "#/components/schemas/FieldPensionApi"
+          },
+          "student": {
+            "$ref": "#/components/schemas/FieldStudentApi"
+          }
+        }
+      },
+      "FieldOtherApi": {
+        "title": "FieldOtherApi",
+        "type": "object",
+        "properties": {
+          "isOtherStatus": {
+            "type": "boolean"
+          },
+          "otherStatusDescription": {
+            "type": "string"
+          }
+        }
+      },
+      "FieldPensionApi": {
+        "title": "FieldPensionApi",
+        "type": "object",
+        "properties": {
+          "isPensioner": {
+            "type": "boolean"
+          },
+          "pensionCountry": {
+            "type": "string"
+          }
+        }
+      },
+      "FieldStudentApi": {
+        "title": "FieldStudentApi",
+        "type": "object",
+        "properties": {
+          "higherSchoolCountry": {
+            "type": "string"
+          },
+          "higherSchoolTitle": {
+            "type": "string"
+          },
+          "isStudent": {
+            "type": "boolean"
+          }
+        }
+      },
+      "IncomeSourceApi": {
+        "title": "IncomeSourceApi",
+        "required": [
+          "incomeSourceType"
+        ],
+        "type": "object",
+        "properties": {
+          "from": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "incomePercentage": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "incomeSourceType": {
+            "type": "string"
+          },
+          "to": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "IntroductionSourceApi": {
+        "title": "IntroductionSourceApi",
+        "required": [
+          "introductionSource"
+        ],
+        "type": "object",
+        "properties": {
+          "introductionSource": {
+            "type": "string"
+          }
+        }
+      },
+      "OperationPartyApi": {
+        "title": "OperationPartyApi",
+        "required": [
+          "accountNumber",
+          "entityType",
+          "partyRole"
+        ],
+        "type": "object",
+        "properties": {
+          "accountNumber": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          },
+          "bankTitle": {
+            "type": "string"
+          },
+          "bic": {
+            "type": "string"
+          },
+          "cardHolderName": {
+            "type": "string"
+          },
+          "cardNumber": {
+            "type": "string"
+          },
+          "cardValidTill": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          },
+          "currency": {
+            "type": "string"
+          },
+          "entityType": {
+            "type": "string",
+            "enum": [
+              "INDIVIDUAL",
+              "ORGANIZATION",
+              "UNKNOWN"
+            ]
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "identifier": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "partyRole": {
+            "type": "string",
+            "enum": [
+              "CREDITOR",
+              "DEBTOR",
+              "ULTIMATE_CREDITOR",
+              "ULTIMATE_DEBTOR"
+            ]
+          },
+          "title": {
+            "type": "string"
+          }
+        }
+      },
+      "OperationResultApi": {
+        "title": "OperationResultApi",
+        "type": "object",
+        "properties": {
+          "errorCode": {
+            "type": "string"
+          },
+          "errorDescription": {
+            "type": "string"
+          },
+          "resultType": {
+            "type": "string",
+            "enum": [
+              "REQUEST_ACCEPTED",
+              "REQUEST_REJECTED"
+            ]
+          }
+        }
+      },
+      "OrderedServiceApi": {
+        "title": "OrderedServiceApi",
+        "required": [
+          "serviceType"
+        ],
+        "type": "object",
+        "properties": {
+          "serviceType": {
+            "type": "string"
+          }
+        }
+      },
+      "PaymentCountryApi": {
+        "title": "PaymentCountryApi",
+        "required": [
+          "country",
+          "turnoverDirection"
+        ],
+        "type": "object",
+        "properties": {
+          "country": {
+            "type": "string"
+          },
+          "turnoverDirection": {
+            "type": "string",
+            "enum": [
+              "IN",
+              "OUT"
+            ]
+          }
+        }
+      },
+      "PaymentPurposeApi": {
+        "title": "PaymentPurposeApi",
+        "required": [
+          "paymentPurposeType",
+          "turnoverDirection"
+        ],
+        "type": "object",
+        "properties": {
+          "paymentPurposeType": {
+            "type": "string"
+          },
+          "turnoverDirection": {
+            "type": "string",
+            "enum": [
+              "IN",
+              "OUT"
+            ]
+          }
+        }
+      },
+      "RegionOfActivityApi": {
+        "title": "RegionOfActivityApi",
+        "required": [
+          "region"
+        ],
+        "type": "object",
+        "properties": {
+          "region": {
+            "type": "string"
+          }
+        }
+      },
+      "RelatedEntityApi": {
+        "title": "RelatedEntityApi",
+        "required": [
+          "entityType",
+          "relationType"
+        ],
+        "type": "object",
+        "properties": {
+          "activityDescription": {
+            "type": "string"
+          },
+          "birthCountry": {
+            "type": "string"
+          },
+          "birthDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "country": {
+            "type": "string"
+          },
+          "countryOfBusinessOperations": {
+            "type": "string"
+          },
+          "entityType": {
+            "type": "string",
+            "enum": [
+              "INDIVIDUAL",
+              "ORGANIZATION",
+              "UNKNOWN"
+            ]
+          },
+          "establishmentDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "extId": {
+            "type": "string"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "isInAdverseMedia": {
+            "type": "boolean"
+          },
+          "isInInternalList": {
+            "type": "boolean"
+          },
+          "isPEP": {
+            "type": "boolean"
+          },
+          "isSanctioned": {
+            "type": "boolean"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "legalForm": {
+            "type": "string"
+          },
+          "listActivity": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ActivityApi"
+            }
+          },
+          "listAdditionalValues": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AdditionalValueApi"
+            }
+          },
+          "listAddress": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AddressApi"
+            }
+          },
+          "listBusinessEntityDocument": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BusinessEntityDocumentApi"
+            }
+          },
+          "listContact": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ContactApi"
+            }
+          },
+          "listCountryOfActivity": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CountryOfActivityApi"
+            }
+          },
+          "listIncomeSource": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IncomeSourceApi"
+            }
+          },
+          "listRegionOfActivity": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RegionOfActivityApi"
+            }
+          },
+          "nationalCode": {
+            "type": "string"
+          },
+          "regionOfActivityDescription": {
+            "type": "string"
+          },
+          "registrationCountry": {
+            "type": "string"
+          },
+          "relationDescription": {
+            "type": "string"
+          },
+          "relationType": {
+            "type": "string"
+          },
+          "share": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "title": {
+            "type": "string"
+          },
+          "votePercentage": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "ResultApi": {
+        "title": "ResultApi",
+        "type": "object",
+        "properties": {
+          "errorCode": {
+            "type": "string"
+          },
+          "errorDescription": {
+            "type": "string"
+          },
+          "resultType": {
+            "type": "string",
+            "enum": [
+              "REQUEST_ACCEPTED",
+              "REQUEST_REJECTED"
+            ]
+          }
+        }
+      },
+      "SimplifiedCustomerApi": {
+        "title": "SimplifiedCustomerApi",
+        "required": [
+          "communicationNumber",
+          "customerExtId",
+          "customerStatus",
+          "entityType",
+          "requester",
+          "riskManagementCategory"
+        ],
+        "type": "object",
+        "properties": {
+          "activityDescription": {
+            "type": "string"
+          },
+          "activityInRestrictedRegionDescription": {
+            "type": "string"
+          },
+          "amlOfficer": {
+            "type": "boolean"
+          },
+          "applicationDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "approvalDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "birthCountry": {
+            "type": "string"
+          },
+          "birthDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "businessUnit": {
+            "type": "string"
+          },
+          "citizenshipCountry": {
+            "type": "string"
+          },
+          "closingDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "communicationNumber": {
+            "type": "string"
+          },
+          "companyAssetValue": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "customerExtId": {
+            "type": "string"
+          },
+          "customerStatus": {
+            "type": "string",
+            "enum": [
+              "ACTIVE",
+              "CLOSED",
+              "PENDING",
+              "REJECTED",
+              "SUSPENDED"
+            ]
+          },
+          "doesCashDominate": {
+            "type": "boolean"
+          },
+          "entityType": {
+            "type": "string",
+            "enum": [
+              "INDIVIDUAL",
+              "ORGANIZATION"
+            ]
+          },
+          "establishmentDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "giin": {
+            "type": "string"
+          },
+          "hasMultiLayerStructure": {
+            "type": "boolean"
+          },
+          "incomeSourceDescription": {
+            "type": "string"
+          },
+          "incomingPaymentDescription": {
+            "type": "string"
+          },
+          "initialDepositAccount": {
+            "type": "string"
+          },
+          "initialDepositAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "initialDepositBank": {
+            "type": "string"
+          },
+          "initialDepositCurrency": {
+            "type": "string"
+          },
+          "initialDepositSource": {
+            "type": "string"
+          },
+          "initializeScreeningProcesses": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "isActualAddressDeclared": {
+            "type": "boolean"
+          },
+          "isAudited": {
+            "type": "boolean"
+          },
+          "isCorrespondenceAddressDeclared": {
+            "type": "boolean"
+          },
+          "isDirectlyManaged": {
+            "type": "boolean"
+          },
+          "isFamilyPEP": {
+            "type": "boolean"
+          },
+          "isFinancialInstitution": {
+            "type": "boolean"
+          },
+          "isFined": {
+            "type": "boolean"
+          },
+          "isInAdverseMedia": {
+            "type": "boolean"
+          },
+          "isInInternalList": {
+            "type": "boolean"
+          },
+          "isLegalResident": {
+            "type": "boolean"
+          },
+          "isLicenseRequired": {
+            "type": "boolean"
+          },
+          "isListed": {
+            "type": "boolean"
+          },
+          "isLitigated": {
+            "type": "boolean"
+          },
+          "isPEP": {
+            "type": "boolean"
+          },
+          "isRegulated": {
+            "type": "boolean"
+          },
+          "isSanctioned": {
+            "type": "boolean"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "legalForm": {
+            "type": "string"
+          },
+          "lei": {
+            "type": "string"
+          },
+          "licenseDescription": {
+            "type": "string"
+          },
+          "listAddress": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AddressApi"
+            }
+          },
+          "listBusinessEntityDocument": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BusinessEntityDocumentApi"
+            }
+          },
+          "listContact": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ContactApi"
+            }
+          },
+          "listPurpose": {
+            "type": "string",
+            "enum": [
+              "BLACK",
+              "WHITE"
+            ]
+          },
+          "nationalCode": {
+            "type": "string"
+          },
+          "noMajorShareHolders": {
+            "type": "boolean"
+          },
+          "numberOfAudits": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "numberOfEmployees": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "organizationalStructureDescription": {
+            "type": "string"
+          },
+          "periodsOfAuditsInYears": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "periodsOfFiningInYears": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "regionOfActivityDescription": {
+            "type": "string"
+          },
+          "registrationCountry": {
+            "type": "string"
+          },
+          "requester": {
+            "type": "string"
+          },
+          "riskLevel": {
+            "type": "string",
+            "enum": [
+              "EXTREME",
+              "HIGH",
+              "LOW",
+              "MEDIUM",
+              "NONE"
+            ]
+          },
+          "riskManagementCategory": {
+            "type": "string"
+          },
+          "thirdPartyServicesUsed": {
+            "type": "boolean"
+          },
+          "thirdPartyServicesUsedDescription": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          }
+        }
+      },
+      "SourceOfWealthApi": {
+        "title": "SourceOfWealthApi",
+        "type": "object",
+        "properties": {
+          "amount": {
+            "type": "number"
+          },
+          "code": {
+            "type": "string"
+          },
+          "comment": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "x-original-swagger-version": "2.0"
+}
