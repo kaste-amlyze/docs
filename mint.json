@@ -39,8 +39,8 @@
             {
               "group": "SWIFT",
               "pages": [
-                "api-reference/OPERATION/SWIFT/sepaImportNoTransactionMonitoring",
-                "api-reference/OPERATION/SWIFT/sepaImportWithTransactionMonitoring"
+                "api-reference/OPERATION/SWIFT/swiftImportNoTransactionMonitoring",
+                "api-reference/OPERATION/SWIFT/swiftImportWithTransactionMonitoring"
               ]
             }
           ]
