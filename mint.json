@@ -31,8 +31,8 @@
     {
       "group": "SEPA",
       "pages": [
-        "api-reference/SEPA/sepaImportNoTransactionMonitoring",
-        "api-reference/SEPA/sepaImportWithTransactionMonitoring"
+        "api-reference/OPERATION/SEPA/sepaImportNoTransactionMonitoring",
+        "api-reference/OPERATION/SEPA/sepaImportWithTransactionMonitoring"
       ]
     },
     {
