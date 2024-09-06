@@ -25,19 +25,14 @@
     {
       "group": "API Documentation",
       "pages": [
-        "api-reference/introduction",
-        {
-          "group": "OPERATION",
-          "pages": [
-            {
-              "group": "SEPA",
-              "pages": [
-                "api-reference/SEPA/sepaImportNoTransactionMonitoring",
-                "api-reference/SEPA/sepaImportWithTransactionMonitoring"
-              ]
-            }
-          ]
-        }
+        "api-reference/introduction"
+      ]
+    },
+     {
+      "group": "SEPA",
+      "pages": [
+        "api-reference/SEPA/sepaImportNoTransactionMonitoring",
+        "api-reference/SEPA/sepaImportWithTransactionMonitoring"
       ]
     },
     {
