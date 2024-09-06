@@ -35,6 +35,12 @@
                 "api-reference/OPERATION/SEPA/sepaImportNoTransactionMonitoring",
                 "api-reference/OPERATION/SEPA/sepaImportWithTransactionMonitoring"
               ]
+            },
+            {
+              "group": "SWIFT",
+              "pages": [
+                "api-reference/OPERATION/SWIFT/sepaImportNoTransactionMonitoring"
+              ]
             }
           ]
         }
