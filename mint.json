@@ -25,22 +25,19 @@
     {
       "group": "API Documentation",
       "pages": [
-        "api-reference/introduction"
-      ]
-    },
-    {
-      "group": "SEPA",
-      "pages": [
-        "api-reference/OPERATION/SEPA/sepaImportNoTransactionMonitoring",
-        "api-reference/OPERATION/SEPA/sepaImportWithTransactionMonitoring"
-      ]
-    },
-    {
-      "group": "Endpoint Examples",
-      "pages": [
-        "api-reference/endpoint/get",
-        "api-reference/endpoint/create",
-        "api-reference/endpoint/delete"
+        "api-reference/introduction",
+        {
+          "group": "OPERATION",
+          "pages": [
+            {
+              "group": "SEPA",
+              "pages": [
+                "api-reference/OPERATION/SEPA/sepaImportNoTransactionMonitoring",
+                "api-reference/OPERATION/SEPA/sepaImportWithTransactionMonitoring"
+              ]
+            }
+          ]
+        }
       ]
     }
   ],
