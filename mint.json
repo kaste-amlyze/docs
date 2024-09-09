@@ -29,7 +29,7 @@
         {
           "group": "CUSTOMER",
           "pages": [
-            "api-reference/CUSTOMER/Introduction",
+            "api-reference/CUSTOMER/introduction",
             {
               "group": "INDIVIDUAL",
               "pages": [
