@@ -55,6 +55,7 @@
         {
           "group": "OPERATION",
           "pages": [
+            "api-reference/OPERATION/introduction",
             {
               "group": "SEPA",
               "pages": [
@@ -67,6 +68,20 @@
               "pages": [
                 "api-reference/OPERATION/SWIFT/swiftImportNoTransactionMonitoring",
                 "api-reference/OPERATION/SWIFT/swiftImportWithTransactionMonitoring"
+              ]
+            },
+            {
+              "group": "PIS",
+              "pages": [
+                "api-reference/OPERATION/PIS/pisImportNoTransactionMonitoring",
+                "api-reference/OPERATION/PIS/pisImportWithTransactionMonitoring"
+              ]
+            },
+            {
+              "group": "INTERNAL",
+              "pages": [
+                "api-reference/OPERATION/INTERNAL/internalImportNoTransactionMonitoring",
+                "api-reference/OPERATION/INTERNAL/internalImportWithTransactionMonitoring"
               ]
             }
           ]
