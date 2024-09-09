@@ -26,6 +26,25 @@
       "group": "API Documentation",
       "pages": [
         "api-reference/introduction",
+                {
+          "group": "CUSTOMER",
+          "pages": [
+            {
+              "group": "INDIVIDUAL",
+              "pages": [
+                "api-reference/CUSTOMER/INDIVIDUAL/customerIndividual",
+                "api-reference/CUSTOMER/INDIVIDUAL/simplifiedCustomerIndividual"
+              ]
+            },
+            {
+              "group": "ORGANIZATION",
+              "pages": [
+                "api-reference/CUSTOMER/ORGANIZATION/customerOrganization",
+                "api-reference/CUSTOMER/ORGANIZATION/simplifiedCustomerOrganization"
+              ]
+            }
+          ]
+        },
         {
           "group": "OPERATION",
           "pages": [
