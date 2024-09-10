@@ -79,6 +79,13 @@
                     "api-reference/OPERATION/CARD/CARD_CASH/cardCashNoTransactionMonitoring",
                     "api-reference/OPERATION/CARD/CARD_CASH/cardCashWithTransactionMonitoring"
                   ]
+                },
+                {
+                  "group": "CARD PAYMENT",
+                  "pages": [
+                    "api-reference/OPERATION/CARD/CARD_PAYMENT/cardPaymentNoTransactionMonitoring",
+                    "api-reference/OPERATION/CARD/CARD_PAYMENT/cardPaymentWithTransactionMonitoring"
+                  ]
                 }
               ]
             },
