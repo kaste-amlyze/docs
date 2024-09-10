@@ -121,7 +121,7 @@
                             "api-reference/OPERATION/CASH/CASH_TRANSFER/OUTGOING/cashTransferOutgoingWithTransactionMonitoring"
                         ]
                     }
-                    ]
+                  ]
                 }
               ]
             },
@@ -137,6 +137,25 @@
               "pages": [
                 "api-reference/OPERATION/INTERNAL/internalImportNoTransactionMonitoring",
                 "api-reference/OPERATION/INTERNAL/internalImportWithTransactionMonitoring"
+              ]
+            },
+            {
+              "group": "CRYPTO",
+              "pages": [
+                {
+                  "group": "CRYPTO PAYMENT",
+                  "pages": [
+                            "api-reference/OPERATION/CRYPTO/CRYPTO_PAYMENT/cryptoPaymentNoTransactionMonitoring",
+                            "api-reference/OPERATION/CRYPTO/CRYPTO_PAYMENT/cryptoPaymentWithTransactionMonitoring"
+                  ]
+                },
+                {
+                  "group": "CRYPTO EXCHANGE",
+                  "pages": [
+                            "api-reference/OPERATION/CRYPTO/CRYPTO_EXCHANGE/cryptoExchangeNoTransactionMonitoring",
+                            "api-reference/OPERATION/CRYPTO/CRYPTO_EXCHANGE/cryptoExchangeWithTransactionMonitoring"
+                  ]
+                }
               ]
             }
           ]
