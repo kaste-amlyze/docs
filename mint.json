@@ -71,6 +71,18 @@
               ]
             },
             {
+              "group": "CARD",
+              "pages": [
+                {
+                  "group": "CARD CASH",
+                  "pages": [
+                    "api-reference/OPERATION/CARD/CARD_CASH/cardCashNoTransactionMonitoring",
+                    "api-reference/OPERATION/CARD/CARD_CASH/cardCashWithTransactionMonitoring"
+                  ]
+                }
+              ]
+            },
+            {
               "group": "PIS",
               "pages": [
                 "api-reference/OPERATION/PIS/pisImportNoTransactionMonitoring",
@@ -84,6 +96,26 @@
                 "api-reference/OPERATION/INTERNAL/internalImportWithTransactionMonitoring"
               ]
             }
+          ]
+        },
+        {
+          "group": "EXTRAS",
+          "pages": [
+            "api-reference/EXTRAS/classifiers",
+            {
+              "group": "COMMUNICATION EVENTS",
+              "pages": [
+                "api-reference/EXTRAS/COMMUNICATION_EVENTS/test"
+              ]
+            },
+            {
+              "group": "WEBHOOKS",
+              "pages": [
+                "api-reference/EXTRAS/WEBHOOKS/test"
+              ]
+            },
+            "api-reference/EXTRAS/discardOperation",
+            "api-reference/EXTRAS/operationReconciliation"
           ]
         }
       ]
