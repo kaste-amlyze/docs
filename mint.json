@@ -145,8 +145,8 @@
                 {
                   "group": "CRYPTO PAYMENT",
                   "pages": [
-                            "api-reference/OPERATION/CRYPTO/CRYPTO_PAYMENT/cryptoPaymentNoTransactionMonitoring",
-                            "api-reference/OPERATION/CRYPTO/CRYPTO_PAYMENT/cryptoPaymentWithTransactionMonitoring"
+                            "api-reference/OPERATION/CRYPTO/CRYPTO_PAYMENT/cryptoNoTransactionMonitoring",
+                            "api-reference/OPERATION/CRYPTO/CRYPTO_PAYMENT/cryptoWithTransactionMonitoring"
                   ]
                 },
                 {
