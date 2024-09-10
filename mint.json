@@ -157,6 +157,13 @@
                   ]
                 }
               ]
+            },
+            {
+              "group": "FASTER PAYMENTS",
+              "pages": [
+                "api-reference/OPERATION/FASTER_PAYMENTS/fasterPaymentsNoTransactionMonitoring",
+                "api-reference/OPERATION/FASTER_PAYMENTS/fasterPaymentsWithTransactionMonitoring"
+              ]
             }
           ]
         },
