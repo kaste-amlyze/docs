@@ -90,6 +90,42 @@
               ]
             },
             {
+              "group": "CASH",
+              "pages": [
+                {
+                  "group": "CASH DEPOSIT",
+                  "pages": [
+                    {
+                        "group": "INCOMING",
+                        "pages": [
+                            "api-reference/OPERATION/CASH/CASH_DEPOSIT/INCOMING/cashDepositIncomingNoTransactionMonitoring",
+                            "api-reference/OPERATION/CASH/CASH_DEPOSIT/INCOMING/cashDepositIncomingWithTransactionMonitoring"
+                        ]
+                    },
+                    {
+                        "group": "OUTGOING",
+                        "pages": [
+                            "api-reference/OPERATION/CASH/CASH_DEPOSIT/OUTGOING/cashDepositOutgoingNoTransactionMonitoring",
+                            "api-reference/OPERATION/CASH/CASH_DEPOSIT/OUTGOING/cashDepositOutgoingWithTransactionMonitoring"
+                        ]
+                    }
+                  ]
+                },
+                {
+                  "group": "CASH TRANSFER",
+                  "pages": [
+                    {
+                        "group": "OUTGOING",
+                        "pages": [
+                            "api-reference/OPERATION/CASH/CASH_TRANSFER/OUTGOING/cashTransferOutgoingNoTransactionMonitoring",
+                            "api-reference/OPERATION/CASH/CASH_TRANSFER/OUTGOING/cashTransferOutgoingWithTransactionMonitoring"
+                        ]
+                    }
+                    ]
+                }
+              ]
+            },
+            {
               "group": "PIS",
               "pages": [
                 "api-reference/OPERATION/PIS/pisImportNoTransactionMonitoring",
