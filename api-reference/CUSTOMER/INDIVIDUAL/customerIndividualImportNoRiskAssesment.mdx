@@ -4,7 +4,7 @@ icon: 'arrow-right'
 ---
 
 This section provides information how to submit customer details to our database and is focused to individuals.
-It includes examples of API requests with mandatory and optional fields, a comprehensive list of all available fields, and common error descriptions.
+It includes examples of API requests with mandatory and optional fields, a comprehensive list of all available fields, common responses and error descriptions.
 
 **HTTP Method:**  `POST`
 
@@ -39,15 +39,25 @@ It includes examples of API requests with mandatory and optional fields, a compr
 ## Fields
 
 <ResponseField name="communicationNumber" type="string" required>
-Unique number of communication. This field can store up to 256 characters.
+Unique number of communication. It is used for risk assessment callback. This field can store up to 256 characters.
 
-_Example:_ `ComNr_01_TEST`
+_Example:_ `Test_ComNr_002mHzZZ`
 </ResponseField>
 
 <ResponseField name="requester" type="string" required>
 Name of the system requesting web service.
 
 _Example:_ `Amlyze` _(name of your company)_
+</ResponseField>
+
+<ResponseField name="action" type="string from enum">
+Element is used to indicate whether a client needs to be created or the existing customer's data to be updated. As this field is not mandatory and if not provided, `CREATE` values is set as default.
+
+❗ By `UPDATE`ing, all data will be replaced with newly received one
+
+Enum class values: `CREATE`,  `UPDATE`
+
+_Example:_ `UPDATE`
 </ResponseField>
 
 <ResponseField name="sourceOfRiskLevel" type="string" required>
