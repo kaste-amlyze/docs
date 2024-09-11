@@ -61,31 +61,75 @@ _Example:_ `UPDATE`
 </ResponseField>
 
 <ResponseField name="sourceOfRiskLevel" type="string" required>
-The value `IMPORT` is to be used for migration purposes only – the customer and it's questionnaire will be imported without risk assessment.
+The value `IMPORT` is to be used for migration only – the customer and it's questionnaire will be imported without risk assessment.
 
 _Value:_ `IMPORT`
 </ResponseField>
 
-<ResponseField name="operationStatus" type="string from enum" required>
-Operation result either it was successfully executed, or the operation was rejected.
-
-Enum class values: `EXECUTED`,  `REJECTED`
-
-_Example:_ `EXECUTED`
-</ResponseField>
-
 <ResponseField name="riskLevel" type="string from enum" required>
-The risk level of imported operation.
+Predefined risk level of imported customer.
 
 Enum class values: `NONE`,  `LOW`, `MEDIUM`, `HIGH`, `EXTREME`
 
 _Example:_ `LOW`
 </ResponseField>
 
+<ResponseField name="customerStatus" type="string from enum" required>
+Customer's predefined status represents the current standing or state of a customer's relationship with a business or organization
+
+Enum class values: `PENDING`,  `ACTIVE`, `REJECTED`, `SUSPENDED`, `CLOSED`
+
+`PENDING` - Customer application is received but not yet prepared for upcoming workflow
+
+`ACTIVE` - Customer is onboarded and ready for workflow
+
+`REJECTED`- the customer for some reasons was rejected before opening an account for him
+
+`SUSPENDED` - Customer's activities for some reasons are restricted
+
+`CLOSED` - Customer's profile is disabled
+
+_Example:_ `ACTIVE`
+</ResponseField>
+
+<ResponseField name="initializeScreeningProcesses" type="string[]">
+Defines which lists to check during screening process.
+
+<Expandable title="string[]">
+  ```json
+     "initializeScreeningProcesses": [
+         "SANCTIONS",
+         "PEP",
+         "ADVERSE_MEDIA",
+         "INTERNAL_LIST"
+     ]
+  ```
+</Expandable>
+
+_Example:_ `PEP, ADVERSE_MEDIA`
+</ResponseField>
+
+<ResponseField name="businessUnit" type="string from classifier list">
+❗Mandatory field for clients utilizing a multi-organizational solution. Omit this parameter unless instructed about it.
+
+It serves to specify the unique identifier for the business unit. Business units are logical groupings of users and data. Each business unit can have its own set of users, permissions, and data access rules.
+
+_Example:_ `BUSINESS_UNIT_NAME`
+
+<Expandable title="Path to extract classifier values">
+**HTTP Method:**  `GET`
+
+**Path:** `{{baseUrl}}`/classifier/businessUnit
+</Expandable>
+
+</ResponseField>
+
 <ResponseField name="riskManagementCategory" type="string from classifier list" required>
 Code of risk management category of the object. Value must be from a classifier list personalized to your company.
 
 _Example:_ `OP_TRANSFER`
+
+----------
 
 <Expandable title="Path to extract classifier values">
 **HTTP Method:**  `GET`
