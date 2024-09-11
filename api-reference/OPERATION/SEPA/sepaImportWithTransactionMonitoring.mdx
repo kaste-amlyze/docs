@@ -8,7 +8,7 @@ Just so you know, further examples and descriptions apply only to SEPA operation
 </Note>
 
 This section provides information how to submit operation (transaction) details to our database and is focused to those operations which require to perform transaction monitoring.
-It includes examples of API requests with mandatory and optional fields, a comprehensive list of all available fields, and common error descriptions.
+It includes examples of API requests with mandatory and optional fields, a comprehensive list of all available fields, common responses and error descriptions.
 
 SEPA (Single Euro Payments Area) operations involve transactions between two or more parties, one of the parties is always the customer. The other party(ies) are called counterparty(ies). Transaction monitoring ensures compliance and helps detect fraudulent activities or anomalies that your risk team is interested in.
 
@@ -464,6 +464,34 @@ Two-letter country code specifying the participant's country.
 
 _Example:_ `DE`
 </ResponseField>
+
+## List of possible responses
+
+This part lists common responses after the submission of the request.
+
+```json
+200 OK
+  "resultType": "REQUEST_ACCEPTED"
+
+
+400 Bad Request
+    "resultType": "REQUEST_REJECTED",
+    "errorCode": "O001",
+    "errorDescription": "CommunicationNumber already used in amlyze"
+
+
+404 Not Found
+    "timestamp": "2024-05-26T16:49:50.237+00:00",
+    "status": 404,
+    "error": "Not Found",
+    "path": "/amlyze-ws-rest/customerr" --> mistake inside the endpoint
+
+
+500 Internal Server Error
+  "resultType": "REQUEST_REJECTED"
+  "status": 500,
+  "error": "Internal Server Error"
+```
 
 ## List of possible errors
 
