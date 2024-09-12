@@ -1,5 +1,5 @@
 ---
-title: 'Customer import - Individual'
+title: 'Customer import - Individual no risk assessment'
 icon: 'arrow-right'
 ---
 
@@ -16,7 +16,7 @@ It includes examples of API requests with mandatory and optional fields, a compr
 
 ## API requests examples
 
-<Expandable title="Mandatory fields example | CUSTOMER import - individual">
+<Expandable title="Mandatory fields example | CUSTOMER import - individual no risk assessment">
 <ResponseField>
   ```json
 {
@@ -26,7 +26,7 @@ It includes examples of API requests with mandatory and optional fields, a compr
 </ResponseField>
 </Expandable>
 
-<Expandable title="All fields example | CUSTOMER import - individual">
+<Expandable title="All fields example | CUSTOMER import - individual no risk assessment">
 <ResponseField>
   ```json
 {
@@ -129,8 +129,6 @@ Code of risk management category of the object. Value must be from a classifier 
 
 _Example:_ `OP_TRANSFER`
 
-----------
-
 <Expandable title="Path to extract classifier values">
 **HTTP Method:**  `GET`
 
@@ -139,76 +137,219 @@ _Example:_ `OP_TRANSFER`
 
 </ResponseField>
 
-<ResponseField name="operationType" type="string" required>
-Notifies about which kind of operation type was performed
+<ResponseField name="entityType" type="string" required>
+Notifies about customer type.
 
-_Value:_ `SEPA`
+_Value:_ `INDIVIDUAL`
 </ResponseField>
 
-<ResponseField name="businessUnit" type="string from classifier list">
-❗Mandatory field for clients utilizing a multi-organizational solution. Omit this parameter unless instructed about it.
+<ResponseField name="customerExtId" type="string" required>
+Unique external customer identifier. This identifier corresponds to the client's identifier in the financial institution.
 
-It serves to specify the unique identifier for the business unit. Business units are logical groupings of users and data. Each business unit can have its own set of users, permissions, and data access rules.
+_Example:_ `cust_1232`
+</ResponseField>
 
-_Example:_ `BUSINESS_UNIT_NAME`
+<ResponseField name="applicationDate" type="date" required>
+Date when customer first applied.
+
+_Example:_ `2020-01-03`
+</ResponseField>
+
+<ResponseField name="firstName" type="string" required>
+First name of individual entity.
+
+_Example:_ `Jose`
+</ResponseField>
+
+<ResponseField name="lastName" type="string" required>
+Last name of individual entity.
+
+_Example:_ `Rodriguez`
+</ResponseField>
+
+<ResponseField name="citizenshipCountry" type="string from classifier list" required>
+Country of citizenship of individual entity.
 
 <Expandable title="Path to extract classifier values">
 **HTTP Method:**  `GET`
 
-**Path:** `{{baseUrl}}`/classifier/businessUnit
+**Path:** `{{baseUrl}}`/classifier/country
+</Expandable>
+
+_Example:_ `LT`
+</ResponseField>
+
+<ResponseField name="birthDate" type="date">
+Date of birth of individual entity
+
+_Example:_ `2000-01-01`
+</ResponseField>
+
+<ResponseField name="approvalTime" type="date">
+Date of application approval.
+
+_Example:_ `2023-10-01T09:45:00.000+02:00`
+</ResponseField>
+
+<ResponseField name="closingDate" type="date">
+❗Mandatory only when `customerStatus` = `CLOSED`. Not used when `customerStatus` is `PENDING`,  `ACTIVE`, `REJECTED` or `SUSPENDED`.
+
+_Example:_ `1995-05-24`
+</ResponseField>
+
+<ResponseField name="birthCountry" type="string from classifier list">
+Country of birth of individual entity.
+
+<Expandable title="Path to extract classifier values">
+**HTTP Method:**  `GET`
+
+**Path:** `{{baseUrl}}`/classifier/country
+</Expandable>
+
+_Example:_ `LT`
+</ResponseField>
+
+<ResponseField name="nationalCode" type="string">
+National code or national identification number of individual. If a country does not issue national code, any other unique identifier can be used:
+* Passport number
+* Social security number of person
+* A number of taxpayer or registration certificate of the company, etc
+* A number of taxpayer or registration certificate of the company
+
+_Example:_ `50001010022`
+</ResponseField>
+
+<ResponseField name="secondCitizenshipCountry" type="string from classifier list">
+Country of second citizenship of individual entity.
+
+<Expandable title="Path to extract classifier values">
+**HTTP Method:**  `GET`
+
+**Path:** `{{baseUrl}}`/classifier/country
+</Expandable>
+
+_Value:_ `LV`
+</ResponseField>
+
+<ResponseField name="permanentResidenceCountry" type="string from classifier list">
+Country of permanent residency of an individual entity.
+
+<Expandable title="Path to extract classifier values">
+**HTTP Method:**  `GET`
+
+**Path:** `{{baseUrl}}`/classifier/country
+</Expandable>
+
+_Value:_ `LT`
+</ResponseField>
+
+<ResponseField name="isLegalResident" type="boolean">
+Indicator for whether individual entity is a legal resident.
+
+_Example:_ `true`
+</ResponseField>
+
+<ResponseField name="isPEP" type="boolean">
+Identification for whether a person is politically exposed.
+
+_Example:_ `true`
+</ResponseField>
+
+<ResponseField name="isSanctioned" type="boolean">
+Identification for whether a person is sanctioned.
+
+_Example:_ `false`
+</ResponseField>
+
+<ResponseField name="isInAdverseMedia" type="boolean">
+An indication of the existence of information on adverse media about the entity.
+
+_Example:_ `true`
+</ResponseField>
+
+<ResponseField name="isInInternalList" type="boolean">
+An indication of the existence of information on internal list about the entity.
+
+_Example:_ `true`
+</ResponseField>
+
+<ResponseField name="isFamilyPEP" type="boolean">
+Identification of whether a family member of an individual entity is politically exposed.
+
+_Example:_ `false`
+</ResponseField>
+
+<ResponseField name="isLitigated" type="boolean">
+Indicator if the customer is being litigated.
+
+_Example:_ `false`
+</ResponseField>
+
+<ResponseField name="amlOfficer" type="boolean">
+Indicator for the person being AML officer.
+
+_Example:_ `false`
+</ResponseField>
+
+<ResponseField name="listPurpose" type="string from enum">
+Indicator whether entity is white/black listed.
+
+Enum class values: `WHITE`,  `BLACK`
+
+_Example:_ `WHITE`
+</ResponseField>
+
+<ResponseField name="fieldOfActivity" type="list[]">
+Information about the activities. Fields of the list are described in the dropdown below.
+
+<Expandable title="fieldOfActivity list[] fields">
+
+<ResponseField name="student" type="list[]">
+
+<Expandable title="student list[] fields">
+
+<ResponseField name="isStudent" type="boolean">
+Indicator of whether the customer is a student.
+
+_Example:_ `true`
+</ResponseField>
+
+<ResponseField name="higherSchoolTitle" type="string">
+Name of the higher school where customer is studying.
+
+_Example:_ `Uni University`
+</ResponseField>
+
+<ResponseField name="higherSchoolCountry" type="string from classifier list">
+Country of higher school of the student.
+
+<Expandable title="Path to extract classifier values">
+**HTTP Method:**  `GET`
+
+**Path:** `{{baseUrl}}`/classifier/country
+</Expandable>
+
+_Value:_ `US`
+</ResponseField>
+
 </Expandable>
 
 </ResponseField>
 
-<ResponseField name="operationExtId" type="string" required>
-External identifier of operation.
+<ResponseField name="pension" type="list[]">
 
-_Example:_ `Op_01_SEPA_TEST`
 </ResponseField>
 
-<ResponseField name="financialFlowDirection" type="string from enum" required>
-Refers to the movement of money between entities or accounts.
+<ResponseField name="employment" type="list[]">
 
-Enum class values: `INCOMING`,  `OUTGOING`
-
-_Example:_ `INCOMING`
 </ResponseField>
 
-<ResponseField name="initializeScreeningProcesses" type="string[]">
-Defines which lists to check during screening process.
+<ResponseField name="other" type="list[]">
 
-<Expandable title="string[]">
-  ```json
-     "initializeScreeningProcesses": [
-         "SANCTIONS",
-         "PEP",
-         "ADVERSE_MEDIA",
-         "INTERNAL_LIST"
-     ]
-  ```
+</ResponseField>
+
 </Expandable>
-
-_Example:_ `PEP, ADVERSE_MEDIA`
 </ResponseField>
-
-<ResponseField name="operationDateTime" type="date" required>
-The operation date and time show when the operation proceeded.
-
-_Example:_ `2024-08-16T13:00:00Z`
-</ResponseField>
-
-<ResponseField name="currency" type="string" required>
-Currency code.
-
-_Value:_ `EUR`
-</ResponseField>
-
-<ResponseField name="amount" type="BigDecimal" required>
-Amount of money sent in an operation.
-
-_Example:_ `1499`
-</ResponseField>
-
 
 <ResponseField name="description" type="string" required>
 The purpose of payment is saved under description.
