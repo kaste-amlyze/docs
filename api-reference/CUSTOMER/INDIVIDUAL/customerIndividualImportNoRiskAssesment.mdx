@@ -329,7 +329,7 @@ Country of higher school of the student.
 **Path:** `{{baseUrl}}`/classifier/country
 </Expandable>
 
-_Value:_ `US`
+_Example:_ `US`
 </ResponseField>
 
 </Expandable>
@@ -338,13 +338,85 @@ _Value:_ `US`
 
 <ResponseField name="pension" type="list[]">
 
+<Expandable title="pension list[] fields">
+
+<ResponseField name="isPensioner" type="boolean">
+Indicator of whether the customer is a pensioner.
+
+_Example:_ `false`
+</ResponseField>
+
+<ResponseField name="pensionCountry" type="string from classifier list">
+The country responsible for paying an individual's pension.
+
+<Expandable title="Path to extract classifier values">
+**HTTP Method:**  `GET`
+
+**Path:** `{{baseUrl}}`/classifier/country
+</Expandable>
+
+_Example:_ `DE`
+</ResponseField>
+
+</Expandable>
+
 </ResponseField>
 
 <ResponseField name="employment" type="list[]">
 
+<Expandable title="employment list[] fields">
+
+<ResponseField name="isUnemployed" type="boolean">
+Indicator for the individual entity being unemployed.
+
+_Example:_ `true`
+</ResponseField>
+
+<ResponseField name="isSelfEmployed" type="boolean">
+Indicator for the individual entity being self-employed.
+
+_Example:_ `true`
+</ResponseField>
+
+<ResponseField name="isEmployee" type="boolean">
+Indicator for the individual entity being an employee.
+
+_Example:_ `false`
+</ResponseField>
+
+<ResponseField name="employerTitle" type="string">
+Title of the individual employer.
+
+_Example:_ `CompanyB`
+</ResponseField>
+
+<ResponseField name="employmentPositionDescription" type="string">
+Description of the individual employment position.
+
+_Example:_ `Software tester`
+</ResponseField>
+
+</Expandable>
+
 </ResponseField>
 
 <ResponseField name="other" type="list[]">
+
+<Expandable title="other list[] fields">
+
+<ResponseField name="isOtherStatus" type="boolean">
+Indicator for individual other status.
+
+_Example:_ `true`
+</ResponseField>
+
+<ResponseField name="otherStatusDescription" type="string">
+Description of other status.
+
+_Example:_ `Specific description about the  other status`
+</ResponseField>
+
+</Expandable>
 
 </ResponseField>
 
