@@ -689,6 +689,680 @@ _Example:_ `true`
     </Expandable>
 </ResponseField>
 
+<ResponseField name="listDeclaredTurnover" type="list[]">
+    <Expandable title="listDeclaredTurnover list[] fields">
+    
+        <ResponseField name="from" type="integer" required>
+            Amount range from. This field is not mandatory if `listDeclaredTurnover` field is not provided at all or `to` field is provided.
+            
+            _Example:_ `1000`
+        </ResponseField>
+    
+        <ResponseField name="to" type="integer" required>
+            Amount range to. At least one value (`from` or `to`) must be specified. This field is not mandatory if `listDeclaredTurnover` field is not provided at all or `to` field is provided.
+            
+            _Example:_ `5000`
+        </ResponseField>
+    
+        <ResponseField name="turnoverRange" type="string from enum" required>
+            Range of declared turnover.
+            
+            Enum class values: `SINGLE`, `DAILY`, `MONTHLY`, `ANNUAL`
+            
+            _Example:_ `MONTHLY`
+        </ResponseField>
+    
+        <ResponseField name="turnoverType" type="string from classifier list" required>
+            Type of declared turnover.
+            
+            <Expandable title="Path to extract classifier values">
+                **HTTP Method:**  `GET`  
+                **Path:** `{{baseUrl}}/classifier/turnoverType`
+            </Expandable>
+
+            _Example:_ `TURNOVER_PER_MONTH`
+        </ResponseField>
+
+    </Expandable>
+</ResponseField>
+
+<ResponseField name="listIncomeSource" type="list[]">
+    <Expandable title="listIncomeSource list[] fields">
+    
+        <ResponseField name="from" type="integer">
+            Amount from.
+            
+            _Example:_ `100`
+        </ResponseField>
+    
+        <ResponseField name="to" type="integer">
+            Amount to.
+            
+            _Example:_ `1000`
+        </ResponseField>
+    
+        <ResponseField name="incomePercentage" type="integer" required>
+            Percentage of income from the source.
+            
+            _Example:_ `5`
+        </ResponseField>
+    
+        <ResponseField name="incomeSourceType" type="string from classifier list" required>
+            Type of income source.
+            
+            <Expandable title="Path to extract classifier values">
+                **HTTP Method:**  `GET`  
+                **Path:** `{{baseUrl}}/classifier/incomeSourceType`
+            </Expandable>
+            
+            _Example:_ `SALARY`
+        </ResponseField>
+    
+    </Expandable>
+</ResponseField>
+
+<ResponseField name="listPaymentPurpose" type="list[]">
+    <Expandable title="listPaymentPurpose list[] fields">
+    
+        <ResponseField name="paymentPurposeType" type="string from classifier list" required>
+            Type of payment purpose. This field is not mandatory if `paymentPurposeType` field is not provided at all.
+            
+            <Expandable title="Path to extract classifier values">
+                **HTTP Method:**  `GET`  
+                **Path:** `{{baseUrl}}/classifier/paymentPurposeType`
+            </Expandable>
+            
+            _Example:_ `TAXES`
+        </ResponseField>
+    
+        <ResponseField name="turnoverDirection" type="string from enum" required>
+            Direction of payment turnover. This field is not mandatory if `paymentPurposeType` field is not provided at all.
+            
+            Enum class values: `IN`, `OUT`
+            
+            _Example:_ `OUT`
+        </ResponseField>
+    
+    </Expandable>
+</ResponseField>
+
+<ResponseField name="listSourceOfWealth" type="list[]">
+    <Expandable title="listSourceOfWealth list[] fields">
+    
+        <ResponseField name="amount" type="decimal">
+            Collected monetary amount.
+            
+            _Example:_ `100000`
+        </ResponseField>
+    
+        <ResponseField name="code" type="string from classifier list" required>
+            Source of wealth code. This field is not mandatory if `listSourceOfWealth` field is not provided at all.
+            
+            <Expandable title="Path to extract classifier values">
+                **HTTP Method:**  `GET`  
+                **Path:** `{{baseUrl}}/classifier/sourceOfWealth`
+            </Expandable>
+            
+            _Example:_ `INHERITANCE`
+        </ResponseField>
+    
+        <ResponseField name="comment" type="string">
+            Additional details about the source of wealth.
+            
+            _Example:_ `text`
+        </ResponseField>
+    
+    </Expandable>
+</ResponseField>
+
+<ResponseField name="listPaymentCountry" type="list[]">
+    <Expandable title="listPaymentCountry list[] fields">
+    
+        <ResponseField name="country" type="string from classifier list" required>
+            Country code. This field is not mandatory if `listPaymentCountry` field is not provided at all.
+            
+            <Expandable title="Path to extract classifier values">
+                **HTTP Method:**  `GET`  
+                **Path:** `{{baseUrl}}/classifier/country`
+            </Expandable>
+            
+            _Example:_ `US`
+        </ResponseField>
+    
+        <ResponseField name="turnoverDirection" type="string from enum" required>
+            Direction of payment turnover. This field is not mandatory if `listPaymentCountry` field is not provided at all.
+            
+            Enum class values: `IN`, `OUT`
+            
+            _Example:_ `OUT`
+        </ResponseField>
+    
+    </Expandable>
+</ResponseField>
+
+<ResponseField name="listActivity" type="list[]">
+    <Expandable title="listActivity list[] fields">
+    
+        <ResponseField name="activityType" type="string from classifier list" required>
+            Type of business activity. This field is not mandatory if `listActivity` field is not provided at all.
+            
+            <Expandable title="Path to extract classifier values">
+                **HTTP Method:**  `GET`  
+                **Path:** `{{baseUrl}}/classifier/activityType`
+            </Expandable>
+            
+            _Example:_ `ACTIVITY_OTHER`
+        </ResponseField>
+    
+        <ResponseField name="incomePercentage" type="integer">
+            Percentage of income from this activity. 
+            
+            _Example:_ `15`
+        </ResponseField>
+    
+    </Expandable>
+</ResponseField>
+
+<ResponseField name="listRegionOfActivity" type="list[]">
+    <Expandable title="listRegionOfActivity list[] fields">
+    
+        <ResponseField name="region" type="string from classifier list" required>
+            Region where the activity takes place. This field is not mandatory if `region` field is not provided at all.
+            
+            <Expandable title="Path to extract classifier values">
+                **HTTP Method:**  `GET`  
+                **Path:** `{{baseUrl}}/classifier/country`
+            </Expandable>
+            
+            _Examples:_ `AU`, `EU`
+        </ResponseField>
+    
+    </Expandable>
+</ResponseField>
+
+<ResponseField name="listCountryOfActivity" type="list[]">
+    <Expandable title="listCountryOfActivity list[] fields">
+    
+        <ResponseField name="country" type="string from classifier list" required>
+            Country where the activity takes place. This field is mandatory.
+            
+            <Expandable title="Path to extract classifier values">
+                **HTTP Method:**  `GET`  
+                **Path:** `{{baseUrl}}/classifier/country`
+            </Expandable>
+            
+            _Example:_ `US`, `LT`
+        </ResponseField>
+    
+    </Expandable>
+</ResponseField>
+
+<ResponseField name="listCountryOfTaxPayment" type="list[]">
+    <Expandable title="listCountryOfTaxPayment list[] fields">
+    
+        <ResponseField name="country" type="string from classifier list" required>
+            Country where the tax payment is made. This field is not mandatory if `listCountryOfTaxPayment` field is not provided at all.
+            
+            <Expandable title="Path to extract classifier values">
+                **HTTP Method:**  `GET`  
+                **Path:** `{{baseUrl}}/classifier/country`
+            </Expandable>
+            
+            _Example:_ `LT`
+        </ResponseField>
+    
+        <ResponseField name="taxpayerNumber" type="string">
+            The tax identification number of the taxpayer.
+            
+            _Example:_ `5541245574`
+        </ResponseField>
+    
+    </Expandable>
+</ResponseField>
+
+<ResponseField name="listAdditionalValue" type="list[]">
+    <Expandable title="listAdditionalValue list[] fields">
+    
+        <ResponseField name="code" type="string" required>
+            Identifier for the additional field. This field is not mandatory if `listAdditionalValue` field is not provided at all.
+            
+            _Example:_ `related_to_usa`
+        </ResponseField>
+    
+        <ResponseField name="datatype" type="string from enum" required>
+            Type of provided value. This field is not mandatory if `listAdditionalValue` field is not provided at all.
+            
+            Enum class values: `STRING`, `INTEGER`, `DECIMAL`, `DATE`, `TIMESTAMP`, `BOOLEAN`
+            
+            _Example:_ `STRING`
+        </ResponseField>
+    
+        <ResponseField name="description" type="string" required>
+            Human readable description of the field. This field is not mandatory if `listAdditionalValue` field is not provided at all.
+            
+            _Example:_ `Entity has relation to USA`
+        </ResponseField>
+    
+        <ResponseField name="value" type="string" required>
+            Value of the field. This field is not mandatory if `listAdditionalValue` field is not provided at all.
+            
+            _Example:_ `true`
+        </ResponseField>
+    
+    </Expandable>
+</ResponseField>
+
+<ResponseField name="listRelatedEntity" type="list[]">
+    <Expandable title="listRelatedEntity list[] fields">
+    
+        <ResponseField name="entityType" type="string from enum" required>
+            Type of entity describing client status. This field is not mandatory if `listRelatedEntity` field is not provided at all.
+            
+            Enum class values: `INDIVIDUAL`, `ORGANIZATION`
+            
+            _Example:_ `INDIVIDUAL`
+        </ResponseField>
+    
+        <ResponseField name="relationType" type="string from classifier list" required>
+            Type of relationship between entities. This field is not mandatory if `listRelatedEntity` field is not provided at all.
+            
+            <Expandable title="Path to extract classifier values">
+                **HTTP Method:**  `GET`  
+                **Path:** `{{baseUrl}}/classifier/relationType`
+            </Expandable>
+            
+            _Example:_ `OWNER`
+        </ResponseField>
+    
+        <ResponseField name="relationDescription" type="string">
+            Description of the relationship between entities.
+            
+            _Example:_ `Founder`
+        </ResponseField>
+    
+        <ResponseField name="extId" type="string">
+            Identifier used for screening callbacks to identify the entity.
+            
+            _Example:_ `Related_extID_000`
+        </ResponseField>
+    
+        <ResponseField name="share" type="integer">
+            Shares owned by shareholders in the organization of the business entity.
+            
+            _Example:_ `75`
+        </ResponseField>
+    
+        <ResponseField name="votePercentage" type="integer">
+            Vote percentage of shareholders in the organization of the business entity.
+            
+            _Example:_ `99`
+        </ResponseField>
+    
+        <ResponseField name="nationalCode" type="string">
+            National code or national identification number of the individual or organization.
+            
+            _Example:_ `123456789`
+        </ResponseField>
+    
+        <ResponseField name="activityDescription" type="string">
+            Activity description of the related entity.
+            
+            _Example:_ `Financial activity`
+        </ResponseField>
+    
+        <ResponseField name="country" type="string from classifier list">
+            Citizenship country of the related entity.
+            
+            <Expandable title="Path to extract classifier values">
+                **HTTP Method:**  `GET`  
+                **Path:** `{{baseUrl}}/classifier/country`
+            </Expandable>
+            
+            _Example:_ `LT`
+        </ResponseField>
+    
+        <ResponseField name="birthCountry" type="string from classifier list">
+            Birth country of the related entity.
+            
+            <Expandable title="Path to extract classifier values">
+                **HTTP Method:**  `GET`  
+                **Path:** `{{baseUrl}}/classifier/country`
+            </Expandable>
+            
+            _Example:_ `LT`
+        </ResponseField>
+    
+        <ResponseField name="firstName" type="string">
+          ❗This field is mandatory when `entityType` is `INDIVIDUAL`.
+            
+            First name of the related entity.
+            
+            _Example:_ `John`
+        </ResponseField>
+    
+        <ResponseField name="lastName" type="string">
+          ❗This field is mandatory when `entityType` is `INDIVIDUAL`.
+
+            Last name of the related entity.
+            
+            _Example:_ `Rodriguez`
+        </ResponseField>
+    
+        <ResponseField name="birthDate" type="date">
+            Birth date of the related individual entity.
+            
+            _Example:_ `2000-05-28`
+        </ResponseField>
+    
+        <ResponseField name="isPEP" type="boolean">
+            Indicator if the related individual entity is a politically exposed person.
+            
+            _Example:_ `false`
+        </ResponseField>
+    
+        <ResponseField name="isSanctioned" type="boolean">
+            Indicator if sanctions are applied to the entity.
+            
+            _Example:_ `false`
+        </ResponseField>
+    
+        <ResponseField name="isInAdverseMedia" type="boolean">
+            Indicator if there is information for an adverse media entity.
+            
+            _Example:_ `false`
+        </ResponseField>
+    
+        <ResponseField name="isInInternalList" type="boolean">
+            Indicator if there is information for an internal list entity.
+            
+            _Example:_ `false`
+        </ResponseField>
+    
+        <ResponseField name="regionOfActivityDescription" type="string">
+            Description of the activity region of the related entity.
+            
+            _Example:_ `EU`
+        </ResponseField>
+    
+        <ResponseField name="listContact" type="list of ContactApi">
+  
+<ResponseField name="listContact" type="list[]">
+
+<Expandable title="listContact list[] fields">
+
+<ResponseField name="contactType" type="string from enum" required>
+Way of contacting entity. This field is not mandatory if `listContact` field is not provided at all.
+
+Enum class values: `MOBILEPHONE`, `FIXEDPHONE`, `EMAIL`, `WEBSITE`
+
+_Example:_ `MOBILEPHONE`
+</ResponseField>
+
+<ResponseField name="contactDetails" type="string" required>
+Details of contact. This field is not mandatory if `listContact` field is not provided at all.
+
+_Examples:_ `868758585`, `hello@gmail.com`, `www.website.com`
+</ResponseField>
+
+<ResponseField name="useForCommunication" type="boolean">
+Indicator for the usage of communication way.
+
+_Example:_ `true`
+</ResponseField>
+
+</Expandable>
+</ResponseField>
+
+<ResponseField name="listAddress" type="list[]">
+    <Expandable title="listAddress list[] fields">
+    
+        <ResponseField name="addressDetails" type="string">
+            Full address description.
+            
+            _Example:_ `Building B`
+        </ResponseField>
+    
+        <ResponseField name="addressType" type="string from classifier list">
+            Type of entity address.
+            
+            <Expandable title="Path to extract classifier values">
+            **HTTP Method:**  `GET`
+
+            **Path:** `{{baseUrl}}`/classifier/addressType
+            </Expandable>
+
+            _Example:_ `RESIDENCE`
+        </ResponseField>
+    
+        <ResponseField name="city" type="string">
+            City of the given address.
+            
+            _Example:_ `Vilnius`
+        </ResponseField>
+    
+        <ResponseField name="country" type="string from classifier list" required>
+            Country of the given address. This field is not mandatory if `listAddress` field is not provided at all.
+            
+            <Expandable title="Path to extract classifier values">
+            **HTTP Method:**  `GET`
+
+            **Path:** `{{baseUrl}}`/classifier/country
+            </Expandable>
+
+            _Example:_ `LT`
+        </ResponseField>
+    
+        <ResponseField name="region" type="string">
+            Region of the given address.
+            
+            _Example:_ `EU`
+        </ResponseField>
+    
+        <ResponseField name="streetAddress" type="string">
+            Street, house, and flat number of the given address.
+            
+            _Example:_ `Verkių g. 1-9`
+        </ResponseField>
+    
+        <ResponseField name="useForCorrespondence" type="boolean">
+            Indicator for using the address in correspondence.
+            
+            _Example:_ `true`
+        </ResponseField>
+    
+        <ResponseField name="zipCode" type="string">
+            Zip code of the address.
+            
+            _Example:_ `12345`
+        </ResponseField>
+
+    </Expandable>
+</ResponseField>
+
+<ResponseField name="listBusinessEntityDocument" type="list[]">
+    <Expandable title="listBusinessEntityDocument list[] fields">
+    
+        <ResponseField name="description" type="string">
+            Document description.
+            
+            _Example:_ `passport`
+        </ResponseField>
+    
+        <ResponseField name="documentExpiryDate" type="date">
+            The expiry date of the document in question.
+            
+            _Example:_ `2032-01-15`
+        </ResponseField>
+    
+        <ResponseField name="documentIssueAuthority" type="string" required>
+            An authority that issued the document. This field is not mandatory if `listBusinessEntityDocument` field is not provided at all.
+            
+            _Example:_ `Migration office`
+        </ResponseField>
+    
+        <ResponseField name="documentIssueCountry" type="string" required>
+            The country that issued the document. This field is not mandatory if `listBusinessEntityDocument` field is not provided at all.
+            
+            _Example:_ `LT`
+        </ResponseField>
+    
+        <ResponseField name="documentIssueDate" type="date" required>
+            The issue date of the document in question. This field is not mandatory if `listBusinessEntityDocument` field is not provided at all.
+            
+            _Example:_ `2022-01-15`
+        </ResponseField>
+    
+        <ResponseField name="documentNumber" type="string" required>
+            The number of the document in question. This field is not mandatory if `listBusinessEntityDocument` field is not provided at all.
+            
+            _Example:_ `0123456789`
+        </ResponseField>
+    
+        <ResponseField name="entityType" type="string" required>
+            Entity type describes the client status. This field is not mandatory if `listBusinessEntityDocument` field is not provided at all.
+            
+            _Value:_ `INDIVIDUAL`
+        </ResponseField>
+    
+        <ResponseField name="identityDocumentType" type="string from enum" required>
+            Identification document type. This field is not mandatory if `listBusinessEntityDocument` field is not provided at all.
+            
+            Enum class values: `PASSPORT`, `IDENTITYCARD`, `RESIDENCEPERMIT`, `DRIVINGLICENSE`, `REGISTRATIONCERTIFICATE`, `OTHER`
+            
+            _Example:_ `PASSPORT`
+        </ResponseField>
+
+    </Expandable>
+</ResponseField>
+
+        </ResponseField>
+    
+<ResponseField name="listIncomeSource" type="list[]">
+    <Expandable title="listIncomeSource list[] fields">
+    
+        <ResponseField name="from" type="integer">
+            Amount from.
+            
+            _Example:_ `100`
+        </ResponseField>
+    
+        <ResponseField name="to" type="integer">
+            Amount to.
+            
+            _Example:_ `1000`
+        </ResponseField>
+    
+        <ResponseField name="incomePercentage" type="integer" required>
+            Percentage of income from the source.
+            
+            _Example:_ `5`
+        </ResponseField>
+    
+        <ResponseField name="incomeSourceType" type="string from classifier list" required>
+            Type of income source.
+            
+            <Expandable title="Path to extract classifier values">
+                **HTTP Method:**  `GET`  
+                **Path:** `{{baseUrl}}/classifier/incomeSourceType`
+            </Expandable>
+            
+            _Example:_ `SALARY`
+        </ResponseField>
+    
+    </Expandable>
+</ResponseField>
+    
+<ResponseField name="listActivity" type="list[]">
+    <Expandable title="listActivity list[] fields">
+    
+        <ResponseField name="activityType" type="string from classifier list" required>
+            Type of business activity. This field is not mandatory if `listActivity` field is not provided at all.
+            
+            <Expandable title="Path to extract classifier values">
+                **HTTP Method:**  `GET`  
+                **Path:** `{{baseUrl}}/classifier/activityType`
+            </Expandable>
+            
+            _Example:_ `ACTIVITY_OTHER`
+        </ResponseField>
+    
+        <ResponseField name="incomePercentage" type="integer">
+            Percentage of income from this activity. 
+            
+            _Example:_ `15`
+        </ResponseField>
+    
+    </Expandable>
+</ResponseField>
+
+<ResponseField name="listRegionOfActivity" type="list[]">
+    <Expandable title="listRegionOfActivity list[] fields">
+    
+        <ResponseField name="region" type="string from classifier list" required>
+            Region where the activity takes place. This field is not mandatory if `region` field is not provided at all.
+            
+            <Expandable title="Path to extract classifier values">
+                **HTTP Method:**  `GET`  
+                **Path:** `{{baseUrl}}/classifier/country`
+            </Expandable>
+            
+            _Examples:_ `AU`, `EU`
+        </ResponseField>
+    
+    </Expandable>
+</ResponseField>
+
+<ResponseField name="listCountryOfActivity" type="list[]">
+    <Expandable title="listCountryOfActivity list[] fields">
+    
+        <ResponseField name="country" type="string from classifier list" required>
+            Country where the activity takes place. This field is mandatory.
+            
+            <Expandable title="Path to extract classifier values">
+                **HTTP Method:**  `GET`  
+                **Path:** `{{baseUrl}}/classifier/country`
+            </Expandable>
+            
+            _Example:_ `US`, `LT`
+        </ResponseField>
+    
+    </Expandable>
+</ResponseField>
+    
+<ResponseField name="listAdditionalValue" type="list[]">
+    <Expandable title="listAdditionalValue list[] fields">
+    
+        <ResponseField name="code" type="string" required>
+            Identifier for the additional field. This field is not mandatory if `listAdditionalValue` field is not provided at all.
+            
+            _Example:_ `related_to_usa`
+        </ResponseField>
+    
+        <ResponseField name="datatype" type="string from enum" required>
+            Type of provided value. This field is not mandatory if `listAdditionalValue` field is not provided at all.
+            
+            Enum class values: `STRING`, `INTEGER`, `DECIMAL`, `DATE`, `TIMESTAMP`, `BOOLEAN`
+            
+            _Example:_ `STRING`
+        </ResponseField>
+    
+        <ResponseField name="description" type="string" required>
+            Human readable description of the field. This field is not mandatory if `listAdditionalValue` field is not provided at all.
+            
+            _Example:_ `Entity has relation to USA`
+        </ResponseField>
+    
+        <ResponseField name="value" type="string" required>
+            Value of the field. This field is not mandatory if `listAdditionalValue` field is not provided at all.
+            
+            _Example:_ `true`
+        </ResponseField>
+    
+    </Expandable>
+</ResponseField>
+    
+    </Expandable>
+</ResponseField>
 
 
 
