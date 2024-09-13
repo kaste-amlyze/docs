@@ -33,7 +33,7 @@
             {
               "group": "INDIVIDUAL",
               "pages": [
-                "api-reference/CUSTOMER/INDIVIDUAL/customerIndividualImportNoRiskAssessment",
+                "api-reference/CUSTOMER/INDIVIDUAL/customerIndividualImportNoRiskAssesment",
                 "api-reference/CUSTOMER/INDIVIDUAL/customerIndividualImportWithRiskAssessment",
                 "api-reference/CUSTOMER/INDIVIDUAL/simplifiedCustomerIndividual"
               ]
