@@ -20,12 +20,40 @@ It includes examples of API requests with mandatory and optional fields, a compr
 <ResponseField>
   ```json
 {
-    "communicationNumber" : "Test_ComNr_002mHzZZ",
+  "communicationNumber" : "Test_ComNr_002mHzZZ",
 	"requester" : "Company Name Amlyze",
 	
 	"sourceOfRiskLevel" : "IMPORT",
-    "riskLevel" : "HIGH",
-    "customerStatus" : "ACTIVE",
+  "riskLevel" : "HIGH",
+  "customerStatus" : "ACTIVE",
+
+	"riskManagementCategory": "IND",
+	"entityType" : "INDIVIDUAL",
+	"customerExtId" : "IND_IMPORT_B1_TEST",
+	"applicationDate": "2023-10-01",
+	"firstName" : "Lukas",
+	"lastName" : "Garcia",
+	"citizenshipCountry" : "LV"
+}
+  ```
+</ResponseField>
+</Expandable>
+
+<Expandable title="Mandatory fields example | CUSTOMER import - individual no risk assessment with screening">
+<ResponseField>
+  ```json
+{
+  "communicationNumber" : "Test_ComNr_002mHzZZ",
+	"requester" : "Company Name Amlyze",
+	
+	"sourceOfRiskLevel" : "IMPORT",
+  "riskLevel" : "HIGH",
+  "customerStatus" : "ACTIVE",
+
+  "initializeScreeningProcesses": [
+      "SANCTIONS",
+      "INTERNAL_LIST"
+  ],
 
 	"riskManagementCategory": "IND",
 	"entityType" : "INDIVIDUAL",
@@ -85,20 +113,20 @@ It includes examples of API requests with mandatory and optional fields, a compr
     "amlOfficer" : false,
     "listPurpose" : "WHITE",
 
-  "fieldOfActivity": {
-      "student": {
-        "isStudent": true,
-        "higherSchoolTitle": "Uni",
-        "higherSchoolCountry": "LT"
+    "fieldOfActivity": {
+        "student": {
+          "isStudent": true,
+          "higherSchoolTitle": "Uni",
+          "higherSchoolCountry": "LT"
+        },
+        "employment": {
+          "isUnemployed": false,
+          "isSelfEmployed": false,
+          "isEmployee": false,
+          "employerTitle": "company A",
+          "employmentPositionDescription": "Sales intern"
+        }
       },
-      "employment": {
-        "isUnemployed": false,
-        "isSelfEmployed": false,
-        "isEmployee": false,
-        "employerTitle": "company A",
-        "employmentPositionDescription": "Sales intern"
-      }
-    },
 
 	"listRelatedEntity": [
         {
