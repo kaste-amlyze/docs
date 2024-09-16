@@ -62,7 +62,7 @@ It includes examples of API requests with mandatory and optional fields, a compr
     ],
 
 	"riskManagementCategory": "IND",
-    "entityType" : "INDIVIDUAL",24
+    "entityType" : "INDIVIDUAL",
 	"customerExtId" : "IND_EVALUATE_A3_TEST",
 	"applicationDate": "2023-10-01",
 	"firstName" : "Mikas",
@@ -85,28 +85,20 @@ It includes examples of API requests with mandatory and optional fields, a compr
     "amlOfficer" : false,
     "listPurpose" : "WHITE",
 
-    "fieldOfActivity" : [
-    {
-        "student" : [
-        {
-            "isStudent": true,
-            "higherSchoolTitle" : "Uni",
-            "higherSchoolCountry" : "LT"
-        }
-        ],
-        "employment" : [
-        {
-            "isUnemployed": false,
-            "isSelfEmployed" : false,
-            "isEmployee" : false,
-            "employerTitle" : "company A",
-            "employmentPositionDescription" : "Sales intern"
-        }
-        ]
-    }
-    ],
-
-    
+  "fieldOfActivity": {
+      "student": {
+        "isStudent": true,
+        "higherSchoolTitle": "Uni",
+        "higherSchoolCountry": "LT"
+      },
+      "employment": {
+        "isUnemployed": false,
+        "isSelfEmployed": false,
+        "isEmployee": false,
+        "employerTitle": "company A",
+        "employmentPositionDescription": "Sales intern"
+      }
+    },
 
 	"listRelatedEntity": [
         {
@@ -545,14 +537,14 @@ Enum class values: `WHITE`,  `BLACK`
 _Example:_ `WHITE`
 </ResponseField>
 
-<ResponseField name="fieldOfActivity" type="list[]">
-Information about the activities. Fields of the list are described in the dropdown below.
+<ResponseField name="fieldOfActivity" type="object{}">
+Information about the activities. Fields of the object properties are described in the dropdown below.
 
-<Expandable title="fieldOfActivity list[] fields">
+<Expandable title="fieldOfActivity object{} fields">
 
-<ResponseField name="student" type="list[]">
+<ResponseField name="student" type="object{}">
 
-<Expandable title="student list[] fields">
+<Expandable title="student object{} fields">
 
 <ResponseField name="isStudent" type="boolean">
 Indicator of whether the customer is a student.
@@ -582,9 +574,9 @@ _Example:_ `US`
 
 </ResponseField>
 
-<ResponseField name="pension" type="list[]">
+<ResponseField name="pension" type="object{}">
 
-<Expandable title="pension list[] fields">
+<Expandable title="pension object{} fields">
 
 <ResponseField name="isPensioner" type="boolean">
 Indicator of whether the customer is a pensioner.
@@ -608,9 +600,9 @@ _Example:_ `DE`
 
 </ResponseField>
 
-<ResponseField name="employment" type="list[]">
+<ResponseField name="employment" type="object{}">
 
-<Expandable title="employment list[] fields">
+<Expandable title="employment object{} fields">
 
 <ResponseField name="isUnemployed" type="boolean">
 Indicator for the individual entity being unemployed.
@@ -646,9 +638,9 @@ _Example:_ `Software tester`
 
 </ResponseField>
 
-<ResponseField name="other" type="list[]">
+<ResponseField name="other" type="object{}">
 
-<Expandable title="other list[] fields">
+<Expandable title="other object{} fields">
 
 <ResponseField name="isOtherStatus" type="boolean">
 Indicator for individual other status.
