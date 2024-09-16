@@ -92,10 +92,10 @@ Enum class values: `PENDING`,  `ACTIVE`, `REJECTED`, `SUSPENDED`, `CLOSED`
 _Example:_ `ACTIVE`
 </ResponseField>
 
-<ResponseField name="initializeScreeningProcesses" type="string[]">
-Defines which lists to check during screening process.
+<ResponseField name="initializeScreeningProcesses" type="list[]">
+Defines which lists to check during screening process. Strings of the list are noted in the dropdown below.
 
-<Expandable title="string[]">
+<Expandable title="list[]">
   ```json
      "initializeScreeningProcesses": [
          "SANCTIONS",
@@ -953,6 +953,8 @@ _Example:_ `true`
 </ResponseField>
 
 <ResponseField name="listRelatedEntity" type="list[]">
+List for related business entities. Fields of the list are described in the dropdown below.
+
     <Expandable title="listRelatedEntity list[] fields">
     
         <ResponseField name="entityType" type="string from enum" required>
@@ -1087,6 +1089,7 @@ _Example:_ `true`
         <ResponseField name="listContact" type="list of ContactApi">
   
 <ResponseField name="listContact" type="list[]">
+List for contacts. Fields of the list are described in the dropdown below.
 
 <Expandable title="listContact list[] fields">
 
@@ -1114,6 +1117,8 @@ _Example:_ `true`
 </ResponseField>
 
 <ResponseField name="listAddress" type="list[]">
+List of addresses. Fields of the list are described in the dropdown below.
+
     <Expandable title="listAddress list[] fields">
     
         <ResponseField name="addressDetails" type="string">
@@ -1180,6 +1185,8 @@ _Example:_ `true`
 </ResponseField>
 
 <ResponseField name="listBusinessEntityDocument" type="list[]">
+List of related entity documents. Fields of the list are described in the dropdown below.
+
     <Expandable title="listBusinessEntityDocument list[] fields">
     
         <ResponseField name="description" type="string">
@@ -1238,6 +1245,8 @@ _Example:_ `true`
         </ResponseField>
     
 <ResponseField name="listIncomeSource" type="list[]">
+List of income sources. Fields of the list are described in the dropdown below.
+
     <Expandable title="listIncomeSource list[] fields">
     
         <ResponseField name="from" type="integer">
@@ -1273,6 +1282,8 @@ _Example:_ `true`
 </ResponseField>
     
 <ResponseField name="listActivity" type="list[]">
+List of activities. Fields of the list are described in the dropdown below.
+
     <Expandable title="listActivity list[] fields">
     
         <ResponseField name="activityType" type="string from classifier list" required>
@@ -1296,6 +1307,8 @@ _Example:_ `true`
 </ResponseField>
 
 <ResponseField name="listRegionOfActivity" type="list[]">
+List of activity countries of related entity. Fields of the list are described in the dropdown below.
+
     <Expandable title="listRegionOfActivity list[] fields">
     
         <ResponseField name="region" type="string from classifier list" required>
@@ -1313,6 +1326,8 @@ _Example:_ `true`
 </ResponseField>
 
 <ResponseField name="listCountryOfActivity" type="list[]">
+List of activity regions. Fields of the list are described in the dropdown below.
+
     <Expandable title="listCountryOfActivity list[] fields">
     
         <ResponseField name="country" type="string from classifier list" required>
@@ -1330,6 +1345,8 @@ _Example:_ `true`
 </ResponseField>
     
 <ResponseField name="listAdditionalValue" type="list[]">
+Additional information about customer. Fields of the list are described in the dropdown below. This list can be used to provide data, e.g. relation to Lithuania. The provided classification codes must be unique for one client or related entity and apply to all clients in the same way.
+
     <Expandable title="listAdditionalValue list[] fields">
     
         <ResponseField name="code" type="string" required>

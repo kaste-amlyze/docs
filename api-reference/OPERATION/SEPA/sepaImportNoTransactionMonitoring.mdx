@@ -280,10 +280,10 @@ Enum class values: `INCOMING`,  `OUTGOING`
 _Example:_ `INCOMING`
 </ResponseField>
 
-<ResponseField name="initializeScreeningProcesses" type="string[]">
-Defines which lists to check during screening process.
+<ResponseField name="initializeScreeningProcesses" type="list[]">
+Defines which lists to check during screening process. Strings of the list are noted in the dropdown below.
 
-<Expandable title="string[]">
+<Expandable title="list[]">
   ```json
      "initializeScreeningProcesses": [
          "SANCTIONS",
@@ -365,7 +365,9 @@ _Example:_ `LT`
 </ResponseField>
 
 <ResponseField name="listOperationParty" type="list[]" required>
-List of entities that belong to one operation. Fields of the list are described below. 
+List of entities that belong to one operation. Fields of the list are described in the dropdown below.
+
+<Expandable title="listOperationParty list[] fields">
 
 </ResponseField>
 
@@ -468,6 +470,8 @@ Two-letter country code specifying the participant's country.
 
 _Example:_ `DE`
 </ResponseField>
+
+</Expandable>
 
 ## List of possible responses
 
