@@ -128,6 +128,132 @@ It includes examples of API requests with mandatory and optional fields, a compr
         }
       },
 
+    "isActualAddressDeclared" : true,
+    "isCorrespondenceAddressDeclared" : false,
+    "activityDescription" : "Financial activity",
+    "incomeSourceDescription" : "Job Salary",
+    "initialDepositSource": "Salary",
+    "initialDepositBank" : "ABC",
+    "initialDepositAccount" : "LT0089500500000070",
+    "initialDepositAmount" : 100000,
+    "initialDepositCurrency" : "EUR",
+    "doesCashDominate" : false,
+
+"listContact": [
+        {
+            "contactType": "MOBILEPHONE",
+            "contactDetails": "860123123",
+            "useForCommunication": true
+        },
+        {
+            "contactType": "EMAIL",
+            "contactDetails": "personal@gmail.com",
+            "useForCommunication": true
+        }
+    ],
+"listAddress": [
+        {
+            "addressDetails": "Pilies g. 19",
+            "addressType": "RESIDENCE",
+            "city": "Vilnius",
+            "country": "LT",
+            "region": "EU",
+            "streetAddress": "Pilies g.",
+            "useForCorrespondence": true,
+            "zipCode": "04457"
+        }
+    ],
+"listBusinessEntityDocument": [
+        {
+            "entityType": "INDIVIDUAL",
+            "identityDocumentType": "OTHER",
+            "documentNumber": "L548:15447651",
+            "documentIssueDate": "2020-01-01",
+            "documentExpiryDate": "2025-01-01",
+            "documentIssueCountry": "LT",
+            "documentIssueAuthority": "Migration office",
+            "description": "agreement"
+        }
+    ],
+"listAppealReason": [
+        {
+            "appealReasonType": "PURPOSE_GET_LOAN,PURPOSE_MAKE_PAYMENTS,PURPOSE_OTHER"
+        }
+    ],
+"listIntroductionSource": [
+        {
+            "introductionSource": "Internet"
+        }
+    ],
+        "listOrderedService": [
+        {
+        "serviceType": "LOANS"
+        }
+    ],
+"listDeclaredTurnover": [
+        {
+            "from": 5000,
+            "turnoverRange": "MONTHLY",
+            "turnoverType": "OPERATION_AMOUNT_MONTHLY"
+        }
+    ],
+"listIncomeSource": [
+        {
+            "incomeSourceType": "BUSINESS_REVENUE_OR_ASSET_SALE",
+            "incomePercentage": 10,
+            "from": 10,
+            "to": 100
+        }
+    ],
+"listPaymentPurpose": [
+        {
+            "paymentPurposeType": "TAXES",
+            "turnoverDirection": "OUT"
+        }
+    ],
+"listSourceOfWealth": [
+        {
+            "amount": 20000,
+            "code": "3",
+            "comment": "text"
+        }
+    ],
+"listPaymentCountry": [
+        {
+            "country": "LT",
+            "turnoverDirection": "OUT"
+        }
+    ],
+"listActivity": [
+        {
+            "activityType": "ACTIVITY_OTHER",
+            "incomePercentage": 50
+        }
+    ],
+"listRegionOfActivity": [
+        {
+            "region": "EU"
+        }
+    ],
+"listCountryOfActivity": [
+        {
+            "country": "LV"
+        }
+    ],
+"listCountryOfTaxPayment": [
+        {
+            "country": "LT"
+        }
+    ],
+"listAdditionalValues": [
+        {
+            "code": "relation_us",
+            "description": "Has a relation to USA.",
+            "datatype": "STRING",
+            "value" : "true"
+        }
+    ],
+
 	"listRelatedEntity": [
         {
             "entityType": "INDIVIDUAL",
@@ -243,12 +369,12 @@ It includes examples of API requests with mandatory and optional fields, a compr
                 {
                     "addressType": "HEADQUARTERS",
                     "addressDetails": "Panemunių g. 15-4",
+                    "city": "Vilnius",
                     "country": "LT",
                     "region": "EU",
-                    "city": "Vilnius",
                     "streetAddress": "Panemunių g.",
-                    "zipCode": "048715",
-                    "useForCorrespondence": true
+                    "useForCorrespondence": true,
+                    "zipCode": "048715"
                 }
             ],
             "listBusinessEntityDocument": [

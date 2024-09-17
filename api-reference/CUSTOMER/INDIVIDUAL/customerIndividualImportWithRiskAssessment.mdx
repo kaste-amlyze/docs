@@ -16,21 +16,408 @@ It includes examples of API requests with mandatory and optional fields, a compr
 
 ## API requests examples
 
-<Expandable title="Mandatory fields example | CUSTOMER import - individual no risk assessment">
+<Expandable title="Mandatory fields example | CUSTOMER import - individual with risk assessment">
 <ResponseField>
   ```json
 {
+  "communicationNumber" : "Test_ComNr_002mHzZZ",
+	"requester" : "Company Name Amlyze",
+	
+	"sourceOfRiskLevel" : "EVALUATE",
 
+	"riskManagementCategory": "IND",
+	"entityType" : "INDIVIDUAL",
+	"customerExtId" : "IND_IMPORT_B1_TEST",
+	"applicationDate": "2023-10-01",
+	"firstName" : "Lukas",
+	"lastName" : "Garcia",
+	"citizenshipCountry" : "LV"
 }
   ```
 </ResponseField>
 </Expandable>
 
-<Expandable title="All fields example | CUSTOMER import - individual no risk assessment">
+<Expandable title="Mandatory fields example | CUSTOMER import - individual with risk assessment with screening">
 <ResponseField>
   ```json
 {
-    
+  "communicationNumber" : "Test_ComNr_002mHzZZ",
+	"requester" : "Company Name Amlyze",
+	
+	"sourceOfRiskLevel" : "EVALUATE",
+
+  "initializeScreeningProcesses": [
+      "SANCTIONS",
+      "INTERNAL_LIST"
+  ],
+
+	"riskManagementCategory": "IND",
+	"entityType" : "INDIVIDUAL",
+	"customerExtId" : "IND_IMPORT_B1_TEST",
+	"applicationDate": "2023-10-01",
+	"firstName" : "Lukas",
+	"lastName" : "Garcia",
+	"citizenshipCountry" : "LV"
+}
+  ```
+</ResponseField>
+</Expandable>
+
+<Expandable title="All fields example | CUSTOMER import - individual with risk assessment">
+<ResponseField>
+  ```json
+{
+	"communicationNumber" : "Test_ComNr_002mHzZZZ",
+	"requester" : "Company Name Amlyze",
+
+	"action" : "CREATE",
+
+	"sourceOfRiskLevel" : "EVALUATE",
+    "customerStatus" : "CLOSED",
+
+    "businessUnit" : "business unit name"
+
+    "initializeScreeningProcesses": [
+        "SANCTIONS",
+        "ADVERSE_MEDIA",
+        "PEP",
+        "INTERNAL_LIST"
+    ],
+
+	"riskManagementCategory": "IND",
+    "entityType" : "INDIVIDUAL",
+	"customerExtId" : "IND_EVALUATE_A3_TEST",
+	"applicationDate": "2023-10-01",
+	"firstName" : "Mikas",
+	"lastName" : "Garcia",
+	"citizenshipCountry" : "LT",
+    "birthDate" : "2000-01-01",
+    "approvalDate" : "2023-10-01T09:45:00.000+02:00",
+    "closingDate" : "2023-10-02",
+    "birthCountry" : "ES",
+    "nationalCode" : "9000000485",
+    "secondCitizenshipCountry" : "ES",
+    "permanentResidenceCountry" : "LT",
+    "isLegalResident" : true,
+    "isPEP": false,
+    "isSanctioned": false,
+    "isInAdverseMedia": false,
+    "isInInternalList": false,
+    "isFamilyPEP" : false,
+    "isLitigated" : false,
+    "amlOfficer" : false,
+    "listPurpose" : "WHITE",
+
+    "fieldOfActivity": {
+        "student": {
+          "isStudent": true,
+          "higherSchoolTitle": "Uni",
+          "higherSchoolCountry": "LT"
+        },
+        "employment": {
+          "isUnemployed": false,
+          "isSelfEmployed": false,
+          "isEmployee": false,
+          "employerTitle": "company A",
+          "employmentPositionDescription": "Sales intern"
+        }
+      },
+
+    "isActualAddressDeclared" : true,
+    "isCorrespondenceAddressDeclared" : false,
+    "activityDescription" : "Financial activity",
+    "incomeSourceDescription" : "Job Salary",
+    "initialDepositSource": "Salary",
+    "initialDepositBank" : "ABC",
+    "initialDepositAccount" : "LT0089500500000070",
+    "initialDepositAmount" : 100000,
+    "initialDepositCurrency" : "EUR",
+    "doesCashDominate" : false,
+
+"listContact": [
+        {
+            "contactType": "MOBILEPHONE",
+            "contactDetails": "860123123",
+            "useForCommunication": true
+        },
+        {
+            "contactType": "EMAIL",
+            "contactDetails": "personal@gmail.com",
+            "useForCommunication": true
+        }
+    ],
+"listAddress": [
+        {
+            "addressDetails": "Pilies g. 19",
+            "addressType": "RESIDENCE",
+            "city": "Vilnius",
+            "country": "LT",
+            "region": "EU",
+            "streetAddress": "Pilies g.",
+            "useForCorrespondence": true,
+            "zipCode": "04457"
+        }
+    ],
+"listBusinessEntityDocument": [
+        {
+            "entityType": "INDIVIDUAL",
+            "identityDocumentType": "OTHER",
+            "documentNumber": "L548:15447651",
+            "documentIssueDate": "2020-01-01",
+            "documentExpiryDate": "2025-01-01",
+            "documentIssueCountry": "LT",
+            "documentIssueAuthority": "Migration office",
+            "description": "agreement"
+        }
+    ],
+"listAppealReason": [
+        {
+            "appealReasonType": "PURPOSE_GET_LOAN,PURPOSE_MAKE_PAYMENTS,PURPOSE_OTHER"
+        }
+    ],
+"listIntroductionSource": [
+        {
+            "introductionSource": "Internet"
+        }
+    ],
+        "listOrderedService": [
+        {
+        "serviceType": "LOANS"
+        }
+    ],
+"listDeclaredTurnover": [
+        {
+            "from": 5000,
+            "turnoverRange": "MONTHLY",
+            "turnoverType": "OPERATION_AMOUNT_MONTHLY"
+        }
+    ],
+"listIncomeSource": [
+        {
+            "incomeSourceType": "BUSINESS_REVENUE_OR_ASSET_SALE",
+            "incomePercentage": 10,
+            "from": 10,
+            "to": 100
+        }
+    ],
+"listPaymentPurpose": [
+        {
+            "paymentPurposeType": "TAXES",
+            "turnoverDirection": "OUT"
+        }
+    ],
+"listSourceOfWealth": [
+        {
+            "amount": 20000,
+            "code": "3",
+            "comment": "text"
+        }
+    ],
+"listPaymentCountry": [
+        {
+            "country": "LT",
+            "turnoverDirection": "OUT"
+        }
+    ],
+"listActivity": [
+        {
+            "activityType": "ACTIVITY_OTHER",
+            "incomePercentage": 50
+        }
+    ],
+"listRegionOfActivity": [
+        {
+            "region": "EU"
+        }
+    ],
+"listCountryOfActivity": [
+        {
+            "country": "LV"
+        }
+    ],
+"listCountryOfTaxPayment": [
+        {
+            "country": "LT"
+        }
+    ],
+"listAdditionalValues": [
+        {
+            "code": "relation_us",
+            "description": "Has a relation to USA.",
+            "datatype": "STRING",
+            "value" : "true"
+        }
+    ],
+
+	"listRelatedEntity": [
+        {
+            "entityType": "INDIVIDUAL",
+            "relationType": "DIRECTOR",
+            "relationDescription": "founder",
+            "extId": "Rel_entity_ExtID_4051",
+            "share": 75,
+            "votePercentage": 10,
+            "nationalCode": "123456789",
+            "activityDescription": "Represents an organization",
+            "country": "AF",
+            "birthCountry": "LT",
+            "firstName": "Teodor",
+            "lastName": "Mariko",
+            "birthDate": "1998-04-07",
+            "isPEP": true,
+            "isSanctioned": false,
+            "isInAdverseMedia": false,
+            "isInInternalList": false,
+            "regionOfActivityDescription": "Western Region",
+            "listContact": [
+                {
+                    "contactType": "EMAIL",
+                    "contactDetails": "personalemail@gmail.com",
+                    "useForCommunication": true
+                }
+            ],
+            "listAddress": [
+                {
+                    "addressType": "HEADQUARTERS",
+                    "addressDetails": "Lvovo g. 15/4",
+                    "country": "LT",
+                    "region": "EU",
+                    "city": "Vilnius",
+                    "streetAddress": "Lvovo g.",
+                    "zipCode": "04127",
+                    "useForCorrespondence": true
+                }
+            ],
+            "listBusinessEntityDocument": [
+                {
+                    "entityType": "INDIVIDUAL",
+                    "identityDocumentType": "OTHER",
+                    "documentNumber": "L548:154477425",
+                    "documentIssueDate": "2020-01-03",
+                    "documentExpiryDate": "2025-01-03",
+                    "documentIssueCountry": "LT",
+                    "documentIssueAuthority": "Migration office",
+                    "description": "agreement"
+                }
+            ],
+            "listIncomeSource": [
+                {
+                    "incomeSourceType": "BUSINESS_REVENUE_OR_ASSET_SALE",
+                    "incomePercentage": 10,
+                    "from": 10,
+                    "to": 100
+                }
+            ],
+            "listActivity": [
+                {
+                    "activityType": "ACTIVITY_OTHER",
+                    "incomePercentage": 50
+                }
+            ],
+            "listRegionOfActivity": [
+                {
+                    "region": "EU"
+                }
+            ],
+            "listCountryOfActivity": [
+                {
+                    "country": "LV"
+                }
+            ],
+            "listAdditionalValues": [
+                {
+                    "code": "relation_us",
+                    "description": "Is related to US?",
+                    "datatype": "BOOLEAN",
+                    "value": "false"
+                }
+            ]
+        },
+		{
+            "entityType": "ORGANIZATION",
+            "relationType": "HOST",
+            "relationDescription": "founder",
+			"extId": "Rel_entity_ExtID_4052",
+            "share": 10,
+            "votePercentage": 10,
+            "nationalCode": "50007422259",
+            "activityDescription": "BEARER",
+            "country": "LT",
+            "registrationCountry": "LT",
+            "isPEP": false,
+            "isSanctioned": true,
+            "isInAdverseMedia": true,
+            "isInInternalList": true,
+            "regionOfActivityDescription": "Eastern region",
+            "title": "LTD 'VitaGold'",
+            "legalForm": "LTD",
+            "establishmentDate": "1998-04-07",
+
+            "listContact": [
+                {
+                    "contactType": "EMAIL",
+                    "contactDetails": "vitaGold.info@gmail.com",
+                    "useForCommunication": true
+                }
+            ],
+            "listAddress": [
+                {
+                    "addressType": "HEADQUARTERS",
+                    "addressDetails": "Panemunių g. 15-4",
+                    "city": "Vilnius",
+                    "country": "LT",
+                    "region": "EU",
+                    "streetAddress": "Panemunių g.",
+                    "useForCorrespondence": true,
+                    "zipCode": "048715"
+                }
+            ],
+            "listBusinessEntityDocument": [
+                {
+                    "entityType": "ORGANIZATION",
+                    "identityDocumentType": "REGISTRATIONCERTIFICATE",
+                    "documentNumber": "LT-4574551121",
+                    "documentIssueDate": "2015-01-03",
+                    "documentExpiryDate": "2020-01-03",
+                    "documentIssueCountry": "LT",
+                    "documentIssueAuthority": "VMI",
+                    "description": "Certificate of Registration"
+                }
+            ],
+            "listIncomeSource": [
+                {
+                    "incomeSourceType": "BUSINESS_REVENUE_OR_ASSET_SALE",
+                    "incomePercentage": 10,
+                    "from": 10,
+                    "to": 100
+                }
+            ],
+            "listActivity": [
+                {
+                    "activityType": "ACTIVITY_OTHER",
+                    "incomePercentage": 50
+                }
+            ],
+            "listRegionOfActivity": [
+                {
+                    "region": "EU"
+                }
+            ],
+            "listCountryOfActivity": [
+                {
+                    "country": "LV"
+                }
+            ],
+            "listAdditionalValues": [
+                {
+                    "code": "relation_russia",
+                    "description": "Related to Russia?",
+                    "datatype": "BOOLEAN",
+                    "value": "false"
+                }
+            ]
+        }
+    ]
 }
   ```
 </ResponseField>
@@ -61,17 +448,9 @@ _Example:_ `UPDATE`
 </ResponseField>
 
 <ResponseField name="sourceOfRiskLevel" type="string" required>
-The value `IMPORT` is to be used for migration only – the customer and it's questionnaire will be imported without risk assessment.
+The value `EVALUATE` is used for initiating a customer risk assessment.
 
-_Value:_ `IMPORT`
-</ResponseField>
-
-<ResponseField name="riskLevel" type="string from enum" required>
-Predefined risk level of imported customer.
-
-Enum class values: `NONE`,  `LOW`, `MEDIUM`, `HIGH`, `EXTREME`
-
-_Example:_ `LOW`
+_Value:_ `EVALUATE`
 </ResponseField>
 
 <ResponseField name="customerStatus" type="string from enum" required>
@@ -299,14 +678,14 @@ Enum class values: `WHITE`,  `BLACK`
 _Example:_ `WHITE`
 </ResponseField>
 
-<ResponseField name="fieldOfActivity" type="list[]">
-Information about the activities. Fields of the list are described in the dropdown below.
+<ResponseField name="fieldOfActivity" type="object{}">
+Information about the activities. Fields of the object properties are described in the dropdown below.
 
-<Expandable title="fieldOfActivity list[] fields">
+<Expandable title="fieldOfActivity object{} fields">
 
-<ResponseField name="student" type="list[]">
+<ResponseField name="student" type="object{}">
 
-<Expandable title="student list[] fields">
+<Expandable title="student object{} fields">
 
 <ResponseField name="isStudent" type="boolean">
 Indicator of whether the customer is a student.
@@ -336,9 +715,9 @@ _Example:_ `US`
 
 </ResponseField>
 
-<ResponseField name="pension" type="list[]">
+<ResponseField name="pension" type="object{}">
 
-<Expandable title="pension list[] fields">
+<Expandable title="pension object{} fields">
 
 <ResponseField name="isPensioner" type="boolean">
 Indicator of whether the customer is a pensioner.
@@ -362,9 +741,9 @@ _Example:_ `DE`
 
 </ResponseField>
 
-<ResponseField name="employment" type="list[]">
+<ResponseField name="employment" type="object{}">
 
-<Expandable title="employment list[] fields">
+<Expandable title="employment object{} fields">
 
 <ResponseField name="isUnemployed" type="boolean">
 Indicator for the individual entity being unemployed.
@@ -400,9 +779,9 @@ _Example:_ `Software tester`
 
 </ResponseField>
 
-<ResponseField name="other" type="list[]">
+<ResponseField name="other" type="object{}">
 
-<Expandable title="other list[] fields">
+<Expandable title="other object{} fields">
 
 <ResponseField name="isOtherStatus" type="boolean">
 Indicator for individual other status.
