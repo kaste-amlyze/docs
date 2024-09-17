@@ -1,12 +1,19 @@
 ---
-title: 'Simplified customer import'
+title: 'Simplified customer import - Individual'
 icon: 'arrow-right'
 ---
 
-This section provides information on how to generate a Simflified Customer
+This section provides information on how to generate a Simplified Customer for individuals.
 
-This section provides information how to submit customer details to our database and is focused on individuals requiring risk assessment.
-It includes examples of API requests with mandatory and optional fields, a comprehensive list of all available fields, common responses and error descriptions.
+Simplified Customer submission contains less Mandatory fields than a regular Customer, therefore workflows for these two separate servers differ.
+
+-> Simplified customers contain a minimum ammount of identifying information and KYC data;
+
+-> If needed - Simplified customers goes through Screening workflow;
+
+-> Simplified Customer can be updated to become a regular Customer, but Regular Customer cannot be downgraded to a Simplified Customer;
+
+Below are examples of API requests with mandatory and optional fields, a comprehensive list of all available fields, common responses and error descriptions.
 
 **HTTP Method:**  `POST`
 
@@ -18,408 +25,127 @@ It includes examples of API requests with mandatory and optional fields, a compr
 
 ## API requests examples
 
-<Expandable title="Mandatory fields example | CUSTOMER import - individual with risk assessment">
+<Expandable title="Mandatory fields example | Simplified customer import - Individual">
 <ResponseField>
   ```json
 {
-  "communicationNumber" : "Test_ComNr_002mHzZZ",
-	"requester" : "Company Name Amlyze",
-	
-	"sourceOfRiskLevel" : "EVALUATE",
-
-	"riskManagementCategory": "IND",
-	"entityType" : "INDIVIDUAL",
-	"customerExtId" : "IND_IMPORT_B1_TEST",
-	"applicationDate": "2023-10-01",
-	"firstName" : "Lukas",
-	"lastName" : "Garcia",
-	"citizenshipCountry" : "LV"
+    "communicationNumber": "ComNr_1001",
+    "requester": "AMLYZE_TEST",
+    "riskManagementCategory": "OCCASIONAL_CUSTOMER",
+    "entityType": "INDIVIDUAL",
+    "customerExtId": "IND20231117538",
+    "firstName": "Tony",
+    "lastName": "Mikelangelo"
 }
   ```
 </ResponseField>
 </Expandable>
 
-<Expandable title="Mandatory fields example | CUSTOMER import - individual with risk assessment with screening">
+<Expandable title="Mandatory fields example | Simplified customer import - Individual with screening">
 <ResponseField>
   ```json
 {
-  "communicationNumber" : "Test_ComNr_002mHzZZ",
-	"requester" : "Company Name Amlyze",
-	
-	"sourceOfRiskLevel" : "EVALUATE",
+    "communicationNumber": "ComNr_1001",
+    "requester": "AMLYZE_TEST",
+    "riskManagementCategory": "OCCASIONAL_CUSTOMER",
+    "entityType": "INDIVIDUAL",
+    "customerExtId": "IND20231117538",
 
-  "initializeScreeningProcesses": [
-      "SANCTIONS",
-      "INTERNAL_LIST"
-  ],
+	"initializeScreeningProcesses": [
+		"SANCTIONS",
+		"ADVERSE_MEDIA",
+		"PEP"
+	],
 
-	"riskManagementCategory": "IND",
-	"entityType" : "INDIVIDUAL",
-	"customerExtId" : "IND_IMPORT_B1_TEST",
-	"applicationDate": "2023-10-01",
-	"firstName" : "Lukas",
-	"lastName" : "Garcia",
-	"citizenshipCountry" : "LV"
+    "firstName": "Tony",
+    "lastName": "Mikelangelo"
 }
   ```
 </ResponseField>
 </Expandable>
 
-<Expandable title="All fields example | CUSTOMER import - individual with risk assessment">
+<Expandable title="All fields example | Simplified customer import - Individual">
 <ResponseField>
   ```json
 {
-	"communicationNumber" : "Test_ComNr_002mHzZZZ",
-	"requester" : "Company Name Amlyze",
-
-	"action" : "CREATE",
-
-	"sourceOfRiskLevel" : "EVALUATE",
-    "customerStatus" : "CLOSED",
-
-    "businessUnit" : "business unit name"
-
-    "initializeScreeningProcesses": [
-        "SANCTIONS",
-        "ADVERSE_MEDIA",
-        "PEP",
-        "INTERNAL_LIST"
-    ],
-
-	"riskManagementCategory": "IND",
-    "entityType" : "INDIVIDUAL",
-	"customerExtId" : "IND_EVALUATE_A3_TEST",
-	"applicationDate": "2023-10-01",
-	"firstName" : "Mikas",
-	"lastName" : "Garcia",
-	"citizenshipCountry" : "LT",
-    "birthDate" : "2000-01-01",
-    "approvalDate" : "2023-10-01T09:45:00.000+02:00",
-    "closingDate" : "2023-10-02",
-    "birthCountry" : "ES",
-    "nationalCode" : "9000000485",
-    "secondCitizenshipCountry" : "ES",
-    "permanentResidenceCountry" : "LT",
-    "isLegalResident" : true,
-    "isPEP": false,
-    "isSanctioned": false,
-    "isInAdverseMedia": false,
-    "isInInternalList": false,
-    "isFamilyPEP" : false,
-    "isLitigated" : false,
-    "amlOfficer" : false,
-    "listPurpose" : "WHITE",
-
-    "fieldOfActivity": {
-        "student": {
-          "isStudent": true,
-          "higherSchoolTitle": "Uni",
-          "higherSchoolCountry": "LT"
-        },
-        "employment": {
-          "isUnemployed": false,
-          "isSelfEmployed": false,
-          "isEmployee": false,
-          "employerTitle": "company A",
-          "employmentPositionDescription": "Sales intern"
-        }
-      },
-
-    "isActualAddressDeclared" : true,
-    "isCorrespondenceAddressDeclared" : false,
-    "activityDescription" : "Financial activity",
-    "incomeSourceDescription" : "Job Salary",
-    "initialDepositSource": "Salary",
-    "initialDepositBank" : "ABC",
-    "initialDepositAccount" : "LT0089500500000070",
-    "initialDepositAmount" : 100000,
-    "initialDepositCurrency" : "EUR",
-    "doesCashDominate" : false,
-
-"listContact": [
-        {
-            "contactType": "MOBILEPHONE",
-            "contactDetails": "860123123",
-            "useForCommunication": true
-        },
-        {
-            "contactType": "EMAIL",
-            "contactDetails": "personal@gmail.com",
-            "useForCommunication": true
-        }
-    ],
-"listAddress": [
-        {
-            "addressDetails": "Pilies g. 19",
-            "addressType": "RESIDENCE",
-            "city": "Vilnius",
-            "country": "LT",
-            "region": "EU",
-            "streetAddress": "Pilies g.",
-            "useForCorrespondence": true,
-            "zipCode": "04457"
-        }
-    ],
-"listBusinessEntityDocument": [
-        {
-            "entityType": "INDIVIDUAL",
-            "identityDocumentType": "OTHER",
-            "documentNumber": "L548:15447651",
-            "documentIssueDate": "2020-01-01",
-            "documentExpiryDate": "2025-01-01",
-            "documentIssueCountry": "LT",
-            "documentIssueAuthority": "Migration office",
-            "description": "agreement"
-        }
-    ],
-"listAppealReason": [
-        {
-            "appealReasonType": "PURPOSE_GET_LOAN,PURPOSE_MAKE_PAYMENTS,PURPOSE_OTHER"
-        }
-    ],
-"listIntroductionSource": [
-        {
-            "introductionSource": "Internet"
-        }
-    ],
-        "listOrderedService": [
-        {
-        "serviceType": "LOANS"
-        }
-    ],
-"listDeclaredTurnover": [
-        {
-            "from": 5000,
-            "turnoverRange": "MONTHLY",
-            "turnoverType": "OPERATION_AMOUNT_MONTHLY"
-        }
-    ],
-"listIncomeSource": [
-        {
-            "incomeSourceType": "BUSINESS_REVENUE_OR_ASSET_SALE",
-            "incomePercentage": 10,
-            "from": 10,
-            "to": 100
-        }
-    ],
-"listPaymentPurpose": [
-        {
-            "paymentPurposeType": "TAXES",
-            "turnoverDirection": "OUT"
-        }
-    ],
-"listSourceOfWealth": [
-        {
-            "amount": 20000,
-            "code": "3",
-            "comment": "text"
-        }
-    ],
-"listPaymentCountry": [
-        {
-            "country": "LT",
-            "turnoverDirection": "OUT"
-        }
-    ],
-"listActivity": [
-        {
-            "activityType": "ACTIVITY_OTHER",
-            "incomePercentage": 50
-        }
-    ],
-"listRegionOfActivity": [
-        {
-            "region": "EU"
-        }
-    ],
-"listCountryOfActivity": [
-        {
-            "country": "LV"
-        }
-    ],
-"listCountryOfTaxPayment": [
-        {
-            "country": "LT"
-        }
-    ],
-"listAdditionalValues": [
-        {
-            "code": "relation_us",
-            "description": "Has a relation to USA.",
-            "datatype": "STRING",
-            "value" : "true"
-        }
-    ],
-
-	"listRelatedEntity": [
-        {
-            "entityType": "INDIVIDUAL",
-            "relationType": "DIRECTOR",
-            "relationDescription": "founder",
-            "extId": "Rel_entity_ExtID_4051",
-            "share": 75,
-            "votePercentage": 10,
-            "nationalCode": "123456789",
-            "activityDescription": "Represents an organization",
-            "country": "AF",
-            "birthCountry": "LT",
-            "firstName": "Teodor",
-            "lastName": "Mariko",
-            "birthDate": "1998-04-07",
-            "isPEP": true,
-            "isSanctioned": false,
-            "isInAdverseMedia": false,
-            "isInInternalList": false,
-            "regionOfActivityDescription": "Western Region",
-            "listContact": [
-                {
-                    "contactType": "EMAIL",
-                    "contactDetails": "personalemail@gmail.com",
-                    "useForCommunication": true
-                }
-            ],
-            "listAddress": [
-                {
-                    "addressType": "HEADQUARTERS",
-                    "addressDetails": "Lvovo g. 15/4",
-                    "country": "LT",
-                    "region": "EU",
-                    "city": "Vilnius",
-                    "streetAddress": "Lvovo g.",
-                    "zipCode": "04127",
-                    "useForCorrespondence": true
-                }
-            ],
-            "listBusinessEntityDocument": [
-                {
-                    "entityType": "INDIVIDUAL",
-                    "identityDocumentType": "OTHER",
-                    "documentNumber": "L548:154477425",
-                    "documentIssueDate": "2020-01-03",
-                    "documentExpiryDate": "2025-01-03",
-                    "documentIssueCountry": "LT",
-                    "documentIssueAuthority": "Migration office",
-                    "description": "agreement"
-                }
-            ],
-            "listIncomeSource": [
-                {
-                    "incomeSourceType": "BUSINESS_REVENUE_OR_ASSET_SALE",
-                    "incomePercentage": 10,
-                    "from": 10,
-                    "to": 100
-                }
-            ],
-            "listActivity": [
-                {
-                    "activityType": "ACTIVITY_OTHER",
-                    "incomePercentage": 50
-                }
-            ],
-            "listRegionOfActivity": [
-                {
-                    "region": "EU"
-                }
-            ],
-            "listCountryOfActivity": [
-                {
-                    "country": "LV"
-                }
-            ],
-            "listAdditionalValues": [
-                {
-                    "code": "relation_us",
-                    "description": "Is related to US?",
-                    "datatype": "BOOLEAN",
-                    "value": "false"
-                }
-            ]
-        },
+	"communicationNumber": "ComNr_00548",
+	"requester": "AMLYZE_SYSTEM",
+	"riskManagementCategory": "OCCASIONAL_CUSTOMER",
+	"riskLevel": "HIGH",
+	"customerStatus": "CLOSED",
+	"entityType": "INDIVIDUAL",
+	"customerExtId": "IND20231113T18099",
+	"initializeScreeningProcesses": [
+		"SANCTIONS",
+		"ADVERSE_MEDIA",
+		"PEP"
+	],
+	"applicationDate": "2012-10-01T09:45:00.000+02:00",
+	"firstName": "Jose",
+	"lastName": "Rodriguez",
+	"birthDate": "1990-01-01",
+	"citizenshipCountry": "LT",
+	"approvalDate": "2012-10-01T09:45:00.000+02:00",
+	"birthCountry": "LV",
+	"closingDate": "2023-01-01",	
+	"nationalCode": "123456789123",
+	"secondCitizenshipCountry": "LV",
+	"permanentResidenceCountry": "LT",
+	"isLegalResident": true,
+	"isPEP": true,
+	"isSanctioned": false,
+	"isInAdverseMedia": true,
+	"isInInternalList": true,
+	"isFamilyPEP": true,
+	"isLitigated": true,
+	"amlOfficer": true,
+	"listPurpose": "BLACK",
+	"isActualAddressDeclared": true,
+	"isCorrespondenceAddressDeclared": false,
+	"activityDescription": "financial activity",
+	"incomeSourceDescription": "Dividends",
+	"initialDepositSource": "Salary",
+	"initialDepositBank": "LB",
+	"initialDepositAccount": "LV45547888441236",
+	"initialDepositAmount": 5000,
+	"initialDepositCurrency": "EUR",
+	"doesCashDominate": false,
+	"listContact": [
 		{
-            "entityType": "ORGANIZATION",
-            "relationType": "HOST",
-            "relationDescription": "founder",
-			"extId": "Rel_entity_ExtID_4052",
-            "share": 10,
-            "votePercentage": 10,
-            "nationalCode": "50007422259",
-            "activityDescription": "BEARER",
-            "country": "LT",
-            "registrationCountry": "LT",
-            "isPEP": false,
-            "isSanctioned": true,
-            "isInAdverseMedia": true,
-            "isInInternalList": true,
-            "regionOfActivityDescription": "Eastern region",
-            "title": "LTD 'VitaGold'",
-            "legalForm": "LTD",
-            "establishmentDate": "1998-04-07",
-
-            "listContact": [
-                {
-                    "contactType": "EMAIL",
-                    "contactDetails": "vitaGold.info@gmail.com",
-                    "useForCommunication": true
-                }
-            ],
-            "listAddress": [
-                {
-                    "addressType": "HEADQUARTERS",
-                    "addressDetails": "Panemunių g. 15-4",
-                    "city": "Vilnius",
-                    "country": "LT",
-                    "region": "EU",
-                    "streetAddress": "Panemunių g.",
-                    "useForCorrespondence": true,
-                    "zipCode": "048715"
-                }
-            ],
-            "listBusinessEntityDocument": [
-                {
-                    "entityType": "ORGANIZATION",
-                    "identityDocumentType": "REGISTRATIONCERTIFICATE",
-                    "documentNumber": "LT-4574551121",
-                    "documentIssueDate": "2015-01-03",
-                    "documentExpiryDate": "2020-01-03",
-                    "documentIssueCountry": "LT",
-                    "documentIssueAuthority": "VMI",
-                    "description": "Certificate of Registration"
-                }
-            ],
-            "listIncomeSource": [
-                {
-                    "incomeSourceType": "BUSINESS_REVENUE_OR_ASSET_SALE",
-                    "incomePercentage": 10,
-                    "from": 10,
-                    "to": 100
-                }
-            ],
-            "listActivity": [
-                {
-                    "activityType": "ACTIVITY_OTHER",
-                    "incomePercentage": 50
-                }
-            ],
-            "listRegionOfActivity": [
-                {
-                    "region": "EU"
-                }
-            ],
-            "listCountryOfActivity": [
-                {
-                    "country": "LV"
-                }
-            ],
-            "listAdditionalValues": [
-                {
-                    "code": "relation_russia",
-                    "description": "Related to Russia?",
-                    "datatype": "BOOLEAN",
-                    "value": "false"
-                }
-            ]
-        }
-    ]
+			"contactType": "MOBILEPHONE",
+			"contactDetails": "+370 68* *****",
+			"useForCommunication": true
+		},
+		{
+			"contactType": "EMAIL",
+			"contactDetails": "customer64@amlyze-test.com",
+			"useForCommunication": true
+		}
+	],
+	"listAddress": [
+		{
+			"addressType": "RESIDENCE",
+			"addressDetails": "Verkiu g. 1/5",
+			"country": "LT",
+			"region": "EU",
+			"city": "Vilnius",
+			"streetAddress": "Verkiu g.",
+			"zipCode": "04127",
+			"useForCorrespondence": true
+		}
+	],
+	"listBusinessEntityDocument": [
+		{
+			"entityType": "INDIVIDUAL",
+			"identityDocumentType": "PASSPORT",
+			"documentNumber": "123456789",
+			"documentIssueDate": "2020-09-20",
+			"documentExpiryDate": "2030-09-20",
+			"documentIssueCountry": "LT",
+			"documentIssueAuthority": "LT",
+			"description": "identification document"
+		}
+	]
 }
   ```
 </ResponseField>
