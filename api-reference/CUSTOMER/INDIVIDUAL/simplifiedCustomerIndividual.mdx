@@ -1,4 +1,1849 @@
 ---
-title: 'Customer import - Individual Simplified'
+title: 'Simplified customer import'
 icon: 'arrow-right'
 ---
+
+This section provides information on how to generate a Simflified Customer
+
+This section provides information how to submit customer details to our database and is focused on individuals requiring risk assessment.
+It includes examples of API requests with mandatory and optional fields, a comprehensive list of all available fields, common responses and error descriptions.
+
+**HTTP Method:**  `POST`
+
+**Path:** `{{baseUrl}}`/amlyze-ws-rest/simplifiedcustomer
+
+**ContentType:** `application/json`
+
+**Authorization:** `Bearer Token`
+
+## API requests examples
+
+<Expandable title="Mandatory fields example | CUSTOMER import - individual with risk assessment">
+<ResponseField>
+  ```json
+{
+  "communicationNumber" : "Test_ComNr_002mHzZZ",
+	"requester" : "Company Name Amlyze",
+	
+	"sourceOfRiskLevel" : "EVALUATE",
+
+	"riskManagementCategory": "IND",
+	"entityType" : "INDIVIDUAL",
+	"customerExtId" : "IND_IMPORT_B1_TEST",
+	"applicationDate": "2023-10-01",
+	"firstName" : "Lukas",
+	"lastName" : "Garcia",
+	"citizenshipCountry" : "LV"
+}
+  ```
+</ResponseField>
+</Expandable>
+
+<Expandable title="Mandatory fields example | CUSTOMER import - individual with risk assessment with screening">
+<ResponseField>
+  ```json
+{
+  "communicationNumber" : "Test_ComNr_002mHzZZ",
+	"requester" : "Company Name Amlyze",
+	
+	"sourceOfRiskLevel" : "EVALUATE",
+
+  "initializeScreeningProcesses": [
+      "SANCTIONS",
+      "INTERNAL_LIST"
+  ],
+
+	"riskManagementCategory": "IND",
+	"entityType" : "INDIVIDUAL",
+	"customerExtId" : "IND_IMPORT_B1_TEST",
+	"applicationDate": "2023-10-01",
+	"firstName" : "Lukas",
+	"lastName" : "Garcia",
+	"citizenshipCountry" : "LV"
+}
+  ```
+</ResponseField>
+</Expandable>
+
+<Expandable title="All fields example | CUSTOMER import - individual with risk assessment">
+<ResponseField>
+  ```json
+{
+	"communicationNumber" : "Test_ComNr_002mHzZZZ",
+	"requester" : "Company Name Amlyze",
+
+	"action" : "CREATE",
+
+	"sourceOfRiskLevel" : "EVALUATE",
+    "customerStatus" : "CLOSED",
+
+    "businessUnit" : "business unit name"
+
+    "initializeScreeningProcesses": [
+        "SANCTIONS",
+        "ADVERSE_MEDIA",
+        "PEP",
+        "INTERNAL_LIST"
+    ],
+
+	"riskManagementCategory": "IND",
+    "entityType" : "INDIVIDUAL",
+	"customerExtId" : "IND_EVALUATE_A3_TEST",
+	"applicationDate": "2023-10-01",
+	"firstName" : "Mikas",
+	"lastName" : "Garcia",
+	"citizenshipCountry" : "LT",
+    "birthDate" : "2000-01-01",
+    "approvalDate" : "2023-10-01T09:45:00.000+02:00",
+    "closingDate" : "2023-10-02",
+    "birthCountry" : "ES",
+    "nationalCode" : "9000000485",
+    "secondCitizenshipCountry" : "ES",
+    "permanentResidenceCountry" : "LT",
+    "isLegalResident" : true,
+    "isPEP": false,
+    "isSanctioned": false,
+    "isInAdverseMedia": false,
+    "isInInternalList": false,
+    "isFamilyPEP" : false,
+    "isLitigated" : false,
+    "amlOfficer" : false,
+    "listPurpose" : "WHITE",
+
+    "fieldOfActivity": {
+        "student": {
+          "isStudent": true,
+          "higherSchoolTitle": "Uni",
+          "higherSchoolCountry": "LT"
+        },
+        "employment": {
+          "isUnemployed": false,
+          "isSelfEmployed": false,
+          "isEmployee": false,
+          "employerTitle": "company A",
+          "employmentPositionDescription": "Sales intern"
+        }
+      },
+
+    "isActualAddressDeclared" : true,
+    "isCorrespondenceAddressDeclared" : false,
+    "activityDescription" : "Financial activity",
+    "incomeSourceDescription" : "Job Salary",
+    "initialDepositSource": "Salary",
+    "initialDepositBank" : "ABC",
+    "initialDepositAccount" : "LT0089500500000070",
+    "initialDepositAmount" : 100000,
+    "initialDepositCurrency" : "EUR",
+    "doesCashDominate" : false,
+
+"listContact": [
+        {
+            "contactType": "MOBILEPHONE",
+            "contactDetails": "860123123",
+            "useForCommunication": true
+        },
+        {
+            "contactType": "EMAIL",
+            "contactDetails": "personal@gmail.com",
+            "useForCommunication": true
+        }
+    ],
+"listAddress": [
+        {
+            "addressDetails": "Pilies g. 19",
+            "addressType": "RESIDENCE",
+            "city": "Vilnius",
+            "country": "LT",
+            "region": "EU",
+            "streetAddress": "Pilies g.",
+            "useForCorrespondence": true,
+            "zipCode": "04457"
+        }
+    ],
+"listBusinessEntityDocument": [
+        {
+            "entityType": "INDIVIDUAL",
+            "identityDocumentType": "OTHER",
+            "documentNumber": "L548:15447651",
+            "documentIssueDate": "2020-01-01",
+            "documentExpiryDate": "2025-01-01",
+            "documentIssueCountry": "LT",
+            "documentIssueAuthority": "Migration office",
+            "description": "agreement"
+        }
+    ],
+"listAppealReason": [
+        {
+            "appealReasonType": "PURPOSE_GET_LOAN,PURPOSE_MAKE_PAYMENTS,PURPOSE_OTHER"
+        }
+    ],
+"listIntroductionSource": [
+        {
+            "introductionSource": "Internet"
+        }
+    ],
+        "listOrderedService": [
+        {
+        "serviceType": "LOANS"
+        }
+    ],
+"listDeclaredTurnover": [
+        {
+            "from": 5000,
+            "turnoverRange": "MONTHLY",
+            "turnoverType": "OPERATION_AMOUNT_MONTHLY"
+        }
+    ],
+"listIncomeSource": [
+        {
+            "incomeSourceType": "BUSINESS_REVENUE_OR_ASSET_SALE",
+            "incomePercentage": 10,
+            "from": 10,
+            "to": 100
+        }
+    ],
+"listPaymentPurpose": [
+        {
+            "paymentPurposeType": "TAXES",
+            "turnoverDirection": "OUT"
+        }
+    ],
+"listSourceOfWealth": [
+        {
+            "amount": 20000,
+            "code": "3",
+            "comment": "text"
+        }
+    ],
+"listPaymentCountry": [
+        {
+            "country": "LT",
+            "turnoverDirection": "OUT"
+        }
+    ],
+"listActivity": [
+        {
+            "activityType": "ACTIVITY_OTHER",
+            "incomePercentage": 50
+        }
+    ],
+"listRegionOfActivity": [
+        {
+            "region": "EU"
+        }
+    ],
+"listCountryOfActivity": [
+        {
+            "country": "LV"
+        }
+    ],
+"listCountryOfTaxPayment": [
+        {
+            "country": "LT"
+        }
+    ],
+"listAdditionalValues": [
+        {
+            "code": "relation_us",
+            "description": "Has a relation to USA.",
+            "datatype": "STRING",
+            "value" : "true"
+        }
+    ],
+
+	"listRelatedEntity": [
+        {
+            "entityType": "INDIVIDUAL",
+            "relationType": "DIRECTOR",
+            "relationDescription": "founder",
+            "extId": "Rel_entity_ExtID_4051",
+            "share": 75,
+            "votePercentage": 10,
+            "nationalCode": "123456789",
+            "activityDescription": "Represents an organization",
+            "country": "AF",
+            "birthCountry": "LT",
+            "firstName": "Teodor",
+            "lastName": "Mariko",
+            "birthDate": "1998-04-07",
+            "isPEP": true,
+            "isSanctioned": false,
+            "isInAdverseMedia": false,
+            "isInInternalList": false,
+            "regionOfActivityDescription": "Western Region",
+            "listContact": [
+                {
+                    "contactType": "EMAIL",
+                    "contactDetails": "personalemail@gmail.com",
+                    "useForCommunication": true
+                }
+            ],
+            "listAddress": [
+                {
+                    "addressType": "HEADQUARTERS",
+                    "addressDetails": "Lvovo g. 15/4",
+                    "country": "LT",
+                    "region": "EU",
+                    "city": "Vilnius",
+                    "streetAddress": "Lvovo g.",
+                    "zipCode": "04127",
+                    "useForCorrespondence": true
+                }
+            ],
+            "listBusinessEntityDocument": [
+                {
+                    "entityType": "INDIVIDUAL",
+                    "identityDocumentType": "OTHER",
+                    "documentNumber": "L548:154477425",
+                    "documentIssueDate": "2020-01-03",
+                    "documentExpiryDate": "2025-01-03",
+                    "documentIssueCountry": "LT",
+                    "documentIssueAuthority": "Migration office",
+                    "description": "agreement"
+                }
+            ],
+            "listIncomeSource": [
+                {
+                    "incomeSourceType": "BUSINESS_REVENUE_OR_ASSET_SALE",
+                    "incomePercentage": 10,
+                    "from": 10,
+                    "to": 100
+                }
+            ],
+            "listActivity": [
+                {
+                    "activityType": "ACTIVITY_OTHER",
+                    "incomePercentage": 50
+                }
+            ],
+            "listRegionOfActivity": [
+                {
+                    "region": "EU"
+                }
+            ],
+            "listCountryOfActivity": [
+                {
+                    "country": "LV"
+                }
+            ],
+            "listAdditionalValues": [
+                {
+                    "code": "relation_us",
+                    "description": "Is related to US?",
+                    "datatype": "BOOLEAN",
+                    "value": "false"
+                }
+            ]
+        },
+		{
+            "entityType": "ORGANIZATION",
+            "relationType": "HOST",
+            "relationDescription": "founder",
+			"extId": "Rel_entity_ExtID_4052",
+            "share": 10,
+            "votePercentage": 10,
+            "nationalCode": "50007422259",
+            "activityDescription": "BEARER",
+            "country": "LT",
+            "registrationCountry": "LT",
+            "isPEP": false,
+            "isSanctioned": true,
+            "isInAdverseMedia": true,
+            "isInInternalList": true,
+            "regionOfActivityDescription": "Eastern region",
+            "title": "LTD 'VitaGold'",
+            "legalForm": "LTD",
+            "establishmentDate": "1998-04-07",
+
+            "listContact": [
+                {
+                    "contactType": "EMAIL",
+                    "contactDetails": "vitaGold.info@gmail.com",
+                    "useForCommunication": true
+                }
+            ],
+            "listAddress": [
+                {
+                    "addressType": "HEADQUARTERS",
+                    "addressDetails": "Panemunių g. 15-4",
+                    "city": "Vilnius",
+                    "country": "LT",
+                    "region": "EU",
+                    "streetAddress": "Panemunių g.",
+                    "useForCorrespondence": true,
+                    "zipCode": "048715"
+                }
+            ],
+            "listBusinessEntityDocument": [
+                {
+                    "entityType": "ORGANIZATION",
+                    "identityDocumentType": "REGISTRATIONCERTIFICATE",
+                    "documentNumber": "LT-4574551121",
+                    "documentIssueDate": "2015-01-03",
+                    "documentExpiryDate": "2020-01-03",
+                    "documentIssueCountry": "LT",
+                    "documentIssueAuthority": "VMI",
+                    "description": "Certificate of Registration"
+                }
+            ],
+            "listIncomeSource": [
+                {
+                    "incomeSourceType": "BUSINESS_REVENUE_OR_ASSET_SALE",
+                    "incomePercentage": 10,
+                    "from": 10,
+                    "to": 100
+                }
+            ],
+            "listActivity": [
+                {
+                    "activityType": "ACTIVITY_OTHER",
+                    "incomePercentage": 50
+                }
+            ],
+            "listRegionOfActivity": [
+                {
+                    "region": "EU"
+                }
+            ],
+            "listCountryOfActivity": [
+                {
+                    "country": "LV"
+                }
+            ],
+            "listAdditionalValues": [
+                {
+                    "code": "relation_russia",
+                    "description": "Related to Russia?",
+                    "datatype": "BOOLEAN",
+                    "value": "false"
+                }
+            ]
+        }
+    ]
+}
+  ```
+</ResponseField>
+</Expandable>
+
+## Fields
+
+<ResponseField name="communicationNumber" type="string" required>
+Unique number of communication. It is used for risk assessment callback. This field can store up to 256 characters.
+
+_Example:_ `Test_ComNr_002mHzZZ`
+</ResponseField>
+
+<ResponseField name="requester" type="string" required>
+Name of the system requesting web service.
+
+_Example:_ `Amlyze` _(name of your company)_
+</ResponseField>
+
+<ResponseField name="action" type="string from enum">
+Element is used to indicate whether a client needs to be created or the existing customer's data to be updated. As this field is not mandatory and if not provided, `CREATE` values is set as default.
+
+❗ By `UPDATE`ing, all data will be replaced with newly received one
+
+Enum class values: `CREATE`,  `UPDATE`
+
+_Example:_ `UPDATE`
+</ResponseField>
+
+<ResponseField name="sourceOfRiskLevel" type="string" required>
+The value `EVALUATE` is used for initiating a customer risk assessment.
+
+_Value:_ `EVALUATE`
+</ResponseField>
+
+<ResponseField name="customerStatus" type="string from enum" required>
+Customer's predefined status represents the current standing or state of a customer's relationship with a business or organization
+
+Enum class values: `PENDING`,  `ACTIVE`, `REJECTED`, `SUSPENDED`, `CLOSED`
+
+`PENDING` - Customer application is received but not yet prepared for upcoming workflow
+
+`ACTIVE` - Customer is onboarded and ready for workflow
+
+`REJECTED`- the customer for some reasons was rejected before opening an account for him
+
+`SUSPENDED` - Customer's activities for some reasons are restricted
+
+`CLOSED` - Customer's profile is disabled
+
+_Example:_ `ACTIVE`
+</ResponseField>
+
+<ResponseField name="initializeScreeningProcesses" type="list[]">
+Defines which lists to check during screening process. Strings of the list are noted in the dropdown below.
+
+<Expandable title="list[]">
+  ```json
+     "initializeScreeningProcesses": [
+         "SANCTIONS",
+         "PEP",
+         "ADVERSE_MEDIA",
+         "INTERNAL_LIST"
+     ]
+  ```
+</Expandable>
+
+_Example:_ `PEP, ADVERSE_MEDIA`
+</ResponseField>
+
+<ResponseField name="businessUnit" type="string from classifier list">
+❗Mandatory field for clients utilizing a multi-organizational solution. Omit this parameter unless instructed about it.
+
+It serves to specify the unique identifier for the business unit. Business units are logical groupings of users and data. Each business unit can have its own set of users, permissions, and data access rules.
+
+_Example:_ `BUSINESS_UNIT_NAME`
+
+<Expandable title="Path to extract classifier values">
+**HTTP Method:**  `GET`
+
+**Path:** `{{baseUrl}}`/classifier/businessUnit
+</Expandable>
+
+</ResponseField>
+
+<ResponseField name="riskManagementCategory" type="string from classifier list" required>
+Code of risk management category of the object. Value must be from a classifier list personalized to your company.
+
+_Example:_ `IND_AMLYZE`
+
+<Expandable title="Path to extract classifier values">
+**HTTP Method:**  `GET`
+
+**Path:** `{{baseUrl}}`/classifier/riskManagementCategory
+</Expandable>
+
+</ResponseField>
+
+<ResponseField name="entityType" type="string" required>
+Notifies about customer type.
+
+_Value:_ `INDIVIDUAL`
+</ResponseField>
+
+<ResponseField name="customerExtId" type="string" required>
+Unique external customer identifier. This identifier corresponds to the client's identifier in the financial institution.
+
+_Example:_ `cust_1232`
+</ResponseField>
+
+<ResponseField name="applicationDate" type="date" required>
+Date when customer first applied.
+
+_Example:_ `2020-01-03`
+</ResponseField>
+
+<ResponseField name="firstName" type="string" required>
+First name of individual entity.
+
+_Example:_ `Jose`
+</ResponseField>
+
+<ResponseField name="lastName" type="string" required>
+Last name of individual entity.
+
+_Example:_ `Rodriguez`
+</ResponseField>
+
+<ResponseField name="citizenshipCountry" type="string from classifier list" required>
+Country of citizenship of individual entity.
+
+<Expandable title="Path to extract classifier values">
+**HTTP Method:**  `GET`
+
+**Path:** `{{baseUrl}}`/classifier/country
+</Expandable>
+
+_Example:_ `LT`
+</ResponseField>
+
+<ResponseField name="birthDate" type="date">
+Date of birth of individual entity
+
+_Example:_ `2000-01-01`
+</ResponseField>
+
+<ResponseField name="approvalTime" type="date">
+Date of application approval.
+
+_Example:_ `2023-10-01T09:45:00.000+02:00`
+</ResponseField>
+
+<ResponseField name="closingDate" type="date">
+❗Mandatory only when `customerStatus` = `CLOSED`. Not used when `customerStatus` is `PENDING`,  `ACTIVE`, `REJECTED` or `SUSPENDED`.
+
+_Example:_ `1995-05-24`
+</ResponseField>
+
+<ResponseField name="birthCountry" type="string from classifier list">
+Country of birth of individual entity.
+
+<Expandable title="Path to extract classifier values">
+**HTTP Method:**  `GET`
+
+**Path:** `{{baseUrl}}`/classifier/country
+</Expandable>
+
+_Example:_ `LT`
+</ResponseField>
+
+<ResponseField name="nationalCode" type="string">
+National code or national identification number of individual. If a country does not issue national code, any other unique identifier can be used:
+* Passport number
+* Social security number of person
+* A number of taxpayer or registration certificate of the company, etc
+* A number of taxpayer or registration certificate of the company
+
+_Example:_ `50001010022`
+</ResponseField>
+
+<ResponseField name="secondCitizenshipCountry" type="string from classifier list">
+Country of second citizenship of individual entity.
+
+<Expandable title="Path to extract classifier values">
+**HTTP Method:**  `GET`
+
+**Path:** `{{baseUrl}}`/classifier/country
+</Expandable>
+
+_Value:_ `LV`
+</ResponseField>
+
+<ResponseField name="permanentResidenceCountry" type="string from classifier list">
+Country of permanent residency of an individual entity.
+
+<Expandable title="Path to extract classifier values">
+**HTTP Method:**  `GET`
+
+**Path:** `{{baseUrl}}`/classifier/country
+</Expandable>
+
+_Value:_ `LT`
+</ResponseField>
+
+<ResponseField name="isLegalResident" type="boolean">
+Indicator for whether individual entity is a legal resident.
+
+_Example:_ `true`
+</ResponseField>
+
+<ResponseField name="isPEP" type="boolean">
+Identification for whether a person is politically exposed.
+
+_Example:_ `true`
+</ResponseField>
+
+<ResponseField name="isSanctioned" type="boolean">
+Identification for whether a person is sanctioned.
+
+_Example:_ `false`
+</ResponseField>
+
+<ResponseField name="isInAdverseMedia" type="boolean">
+An indication of the existence of information on adverse media about the entity.
+
+_Example:_ `true`
+</ResponseField>
+
+<ResponseField name="isInInternalList" type="boolean">
+An indication of the existence of information on internal list about the entity.
+
+_Example:_ `true`
+</ResponseField>
+
+<ResponseField name="isFamilyPEP" type="boolean">
+Identification of whether a family member of an individual entity is politically exposed.
+
+_Example:_ `false`
+</ResponseField>
+
+<ResponseField name="isLitigated" type="boolean">
+Indicator if the customer is being litigated.
+
+_Example:_ `false`
+</ResponseField>
+
+<ResponseField name="amlOfficer" type="boolean">
+Indicator for the person being AML officer.
+
+_Example:_ `false`
+</ResponseField>
+
+<ResponseField name="listPurpose" type="string from enum">
+Indicator whether entity is white/black listed.
+
+Enum class values: `WHITE`,  `BLACK`
+
+_Example:_ `WHITE`
+</ResponseField>
+
+<ResponseField name="fieldOfActivity" type="object{}">
+Information about the activities. Fields of the object properties are described in the dropdown below.
+
+<Expandable title="fieldOfActivity object{} fields">
+
+<ResponseField name="student" type="object{}">
+
+<Expandable title="student object{} fields">
+
+<ResponseField name="isStudent" type="boolean">
+Indicator of whether the customer is a student.
+
+_Example:_ `true`
+</ResponseField>
+
+<ResponseField name="higherSchoolTitle" type="string">
+Name of the higher school where customer is studying.
+
+_Example:_ `Uni University`
+</ResponseField>
+
+<ResponseField name="higherSchoolCountry" type="string from classifier list">
+Country of higher school of the student.
+
+<Expandable title="Path to extract classifier values">
+**HTTP Method:**  `GET`
+
+**Path:** `{{baseUrl}}`/classifier/country
+</Expandable>
+
+_Example:_ `US`
+</ResponseField>
+
+</Expandable>
+
+</ResponseField>
+
+<ResponseField name="pension" type="object{}">
+
+<Expandable title="pension object{} fields">
+
+<ResponseField name="isPensioner" type="boolean">
+Indicator of whether the customer is a pensioner.
+
+_Example:_ `false`
+</ResponseField>
+
+<ResponseField name="pensionCountry" type="string from classifier list">
+The country responsible for paying an individual's pension.
+
+<Expandable title="Path to extract classifier values">
+**HTTP Method:**  `GET`
+
+**Path:** `{{baseUrl}}`/classifier/country
+</Expandable>
+
+_Example:_ `DE`
+</ResponseField>
+
+</Expandable>
+
+</ResponseField>
+
+<ResponseField name="employment" type="object{}">
+
+<Expandable title="employment object{} fields">
+
+<ResponseField name="isUnemployed" type="boolean">
+Indicator for the individual entity being unemployed.
+
+_Example:_ `true`
+</ResponseField>
+
+<ResponseField name="isSelfEmployed" type="boolean">
+Indicator for the individual entity being self-employed.
+
+_Example:_ `true`
+</ResponseField>
+
+<ResponseField name="isEmployee" type="boolean">
+Indicator for the individual entity being an employee.
+
+_Example:_ `false`
+</ResponseField>
+
+<ResponseField name="employerTitle" type="string">
+Title of the individual employer.
+
+_Example:_ `CompanyB`
+</ResponseField>
+
+<ResponseField name="employmentPositionDescription" type="string">
+Description of the individual employment position.
+
+_Example:_ `Software tester`
+</ResponseField>
+
+</Expandable>
+
+</ResponseField>
+
+<ResponseField name="other" type="object{}">
+
+<Expandable title="other object{} fields">
+
+<ResponseField name="isOtherStatus" type="boolean">
+Indicator for individual other status.
+
+_Example:_ `true`
+</ResponseField>
+
+<ResponseField name="otherStatusDescription" type="string">
+Description of other status.
+
+_Example:_ `Specific description about the  other status`
+</ResponseField>
+
+</Expandable>
+
+</ResponseField>
+
+</Expandable>
+</ResponseField>
+
+<ResponseField name="isActualAddressDeclared" type="boolean">
+Indicator for actual address declaration.
+
+_Example:_ `true`
+</ResponseField>
+
+<ResponseField name="isCorrespondenceAddressDeclared" type="boolean">
+Indicator for actual address declaration.
+
+_Example:_ `false`
+</ResponseField>
+
+<ResponseField name="activityDescription" type="string">
+Description of entity activity.
+
+_Example:_ `Financial activity`
+</ResponseField>
+
+<ResponseField name="incomeSourceDescription" type="string">
+Description of income source of the entity.
+
+_Example:_ `Job salary`
+</ResponseField>
+
+<ResponseField name="initialDepositSource	" type="string">
+Source of initial deposit.
+
+_Example:_ `Salary`
+</ResponseField>
+
+<ResponseField name="initialDepositBank	" type="string">
+Bank of the initial deposit
+
+_Example:_ `TBC`
+</ResponseField>
+
+<ResponseField name="initialDepositAccount	" type="string">
+Account of initial deposit
+
+_Example:_ `LT0089500500000070`
+</ResponseField>
+
+<ResponseField name="initialDepositAmount	" type="double">
+Amount of initial deposit.
+
+_Example:_ `8500.48`
+</ResponseField>
+
+<ResponseField name="initialDepositCurrency" type="string from classifier list">
+This currency field notifies about initial deposit currency.
+
+<Expandable title="Path to extract classifier values">
+**HTTP Method:**  `GET`
+
+**Path:** `{{baseUrl}}`/classifier/currency
+</Expandable>
+
+_Example:_ `EUR`
+</ResponseField>
+
+<ResponseField name="doesCashDominate" type="boolean">
+Indicator for cash being the main income source.
+
+_Example:_ `true`
+</ResponseField>
+
+<ResponseField name="listContact" type="list[]">
+
+<Expandable title="listContact list[] fields">
+
+<ResponseField name="contactType" type="string from enum" required>
+Way of contacting entity. This field is not mandatory if `listContact` field is not provided at all.
+
+Enum class values: `MOBILEPHONE`, `FIXEDPHONE`, `EMAIL`, `WEBSITE`
+
+_Example:_ `MOBILEPHONE`
+</ResponseField>
+
+<ResponseField name="contactDetails" type="string" required>
+Details of contact. This field is not mandatory if `listContact` field is not provided at all.
+
+_Examples:_ `868758585`, `hello@gmail.com`, `www.website.com`
+</ResponseField>
+
+<ResponseField name="useForCommunication" type="boolean">
+Indicator for the usage of communication way.
+
+_Example:_ `true`
+</ResponseField>
+
+</Expandable>
+</ResponseField>
+
+<ResponseField name="listAddress" type="list[]">
+    <Expandable title="listAddress list[] fields">
+    
+        <ResponseField name="addressDetails" type="string">
+            Full address description.
+            
+            _Example:_ `Building B`
+        </ResponseField>
+    
+        <ResponseField name="addressType" type="string from classifier list">
+            Type of entity address.
+            
+            <Expandable title="Path to extract classifier values">
+            **HTTP Method:**  `GET`
+
+            **Path:** `{{baseUrl}}`/classifier/addressType
+            </Expandable>
+
+            _Example:_ `RESIDENCE`
+        </ResponseField>
+    
+        <ResponseField name="city" type="string">
+            City of the given address.
+            
+            _Example:_ `Vilnius`
+        </ResponseField>
+    
+        <ResponseField name="country" type="string from classifier list" required>
+            Country of the given address. This field is not mandatory if `listAddress` field is not provided at all.
+            
+            <Expandable title="Path to extract classifier values">
+            **HTTP Method:**  `GET`
+
+            **Path:** `{{baseUrl}}`/classifier/country
+            </Expandable>
+
+            _Example:_ `LT`
+        </ResponseField>
+    
+        <ResponseField name="region" type="string">
+            Region of the given address.
+            
+            _Example:_ `EU`
+        </ResponseField>
+    
+        <ResponseField name="streetAddress" type="string">
+            Street, house, and flat number of the given address.
+            
+            _Example:_ `Verkių g. 1-9`
+        </ResponseField>
+    
+        <ResponseField name="useForCorrespondence" type="boolean">
+            Indicator for using the address in correspondence.
+            
+            _Example:_ `true`
+        </ResponseField>
+    
+        <ResponseField name="zipCode" type="string">
+            Zip code of the address.
+            
+            _Example:_ `12345`
+        </ResponseField>
+
+    </Expandable>
+</ResponseField>
+
+<ResponseField name="listBusinessEntityDocument" type="list[]">
+    <Expandable title="listBusinessEntityDocument list[] fields">
+    
+        <ResponseField name="description" type="string">
+            Document description.
+            
+            _Example:_ `passport`
+        </ResponseField>
+    
+        <ResponseField name="documentExpiryDate" type="date">
+            The expiry date of the document in question.
+            
+            _Example:_ `2032-01-15`
+        </ResponseField>
+    
+        <ResponseField name="documentIssueAuthority" type="string" required>
+            An authority that issued the document. This field is not mandatory if `listBusinessEntityDocument` field is not provided at all.
+            
+            _Example:_ `Migration office`
+        </ResponseField>
+    
+        <ResponseField name="documentIssueCountry" type="string" required>
+            The country that issued the document. This field is not mandatory if `listBusinessEntityDocument` field is not provided at all.
+            
+            _Example:_ `LT`
+        </ResponseField>
+    
+        <ResponseField name="documentIssueDate" type="date" required>
+            The issue date of the document in question. This field is not mandatory if `listBusinessEntityDocument` field is not provided at all.
+            
+            _Example:_ `2022-01-15`
+        </ResponseField>
+    
+        <ResponseField name="documentNumber" type="string" required>
+            The number of the document in question. This field is not mandatory if `listBusinessEntityDocument` field is not provided at all.
+            
+            _Example:_ `0123456789`
+        </ResponseField>
+    
+        <ResponseField name="entityType" type="string" required>
+            Entity type describes the client status. This field is not mandatory if `listBusinessEntityDocument` field is not provided at all.
+            
+            _Value:_ `INDIVIDUAL`
+        </ResponseField>
+    
+        <ResponseField name="identityDocumentType" type="string from enum" required>
+            Identification document type. This field is not mandatory if `listBusinessEntityDocument` field is not provided at all.
+            
+            Enum class values: `PASSPORT`, `IDENTITYCARD`, `RESIDENCEPERMIT`, `DRIVINGLICENSE`, `REGISTRATIONCERTIFICATE`, `OTHER`
+            
+            _Example:_ `PASSPORT`
+        </ResponseField>
+
+    </Expandable>
+</ResponseField>
+
+<ResponseField name="listAppealReason" type="list[]">
+    <Expandable title="listAppealReason list[] fields">
+    
+        <ResponseField name="appealReasonType" type="string from classifier list" required>
+            Appeal reason type. This field is not mandatory if `listAppealReason` field is not provided at all.
+            
+            <Expandable title="Path to extract classifier values">
+                **HTTP Method:**  `GET`  
+                **Path:** `{{baseUrl}}/classifier/appealReasonType`
+            </Expandable>
+
+            _Example:_ `PRICING`
+        </ResponseField>
+
+    </Expandable>
+</ResponseField>
+
+<ResponseField name="listIntroductionSource" type="list[]">
+    <Expandable title="listIntroductionSource list[] fields">
+    
+        <ResponseField name="introductionSource" type="string from classifier list" required>
+            Introduction source. This field is not mandatory if `listIntroductionSource` field is not provided at all.
+            
+            <Expandable title="Path to extract classifier values">
+                **HTTP Method:**  `GET`  
+                **Path:** `{{baseUrl}}/classifier/introductionSourceType`
+            </Expandable>
+
+            _Examples:_ `INTERNET`, `INTRODUCER`
+        </ResponseField>
+
+    </Expandable>
+</ResponseField>
+
+<ResponseField name="listOrderedService" type="list[]">
+    <Expandable title="listOrderedService list[] fields">
+    
+        <ResponseField name="serviceType" type="string from classifier list" required>
+            Service type. This field is not mandatory if `listOrderedService` field is not provided at all.
+            
+            <Expandable title="Path to extract classifier values">
+                **HTTP Method:**  `GET`  
+                **Path:** `{{baseUrl}}/classifier/serviceType`
+            </Expandable>
+
+            _Examples:_ `LOANS`, `DEPOSITS`
+        </ResponseField>
+
+    </Expandable>
+</ResponseField>
+
+<ResponseField name="listDeclaredTurnover" type="list[]">
+    <Expandable title="listDeclaredTurnover list[] fields">
+    
+        <ResponseField name="from" type="integer" required>
+            Amount range from. This field is not mandatory if `listDeclaredTurnover` field is not provided at all or `to` field is provided.
+            
+            _Example:_ `1000`
+        </ResponseField>
+    
+        <ResponseField name="to" type="integer" required>
+            Amount range to. At least one value (`from` or `to`) must be specified. This field is not mandatory if `listDeclaredTurnover` field is not provided at all or `to` field is provided.
+            
+            _Example:_ `5000`
+        </ResponseField>
+    
+        <ResponseField name="turnoverRange" type="string from enum" required>
+            Range of declared turnover.
+            
+            Enum class values: `SINGLE`, `DAILY`, `MONTHLY`, `ANNUAL`
+            
+            _Example:_ `MONTHLY`
+        </ResponseField>
+    
+        <ResponseField name="turnoverType" type="string from classifier list" required>
+            Type of declared turnover.
+            
+            <Expandable title="Path to extract classifier values">
+                **HTTP Method:**  `GET`  
+                **Path:** `{{baseUrl}}/classifier/turnoverType`
+            </Expandable>
+
+            _Example:_ `TURNOVER_PER_MONTH`
+        </ResponseField>
+
+    </Expandable>
+</ResponseField>
+
+<ResponseField name="listIncomeSource" type="list[]">
+    <Expandable title="listIncomeSource list[] fields">
+    
+        <ResponseField name="from" type="integer">
+            Amount from.
+            
+            _Example:_ `100`
+        </ResponseField>
+    
+        <ResponseField name="to" type="integer">
+            Amount to.
+            
+            _Example:_ `1000`
+        </ResponseField>
+    
+        <ResponseField name="incomePercentage" type="integer" required>
+            Percentage of income from the source.
+            
+            _Example:_ `5`
+        </ResponseField>
+    
+        <ResponseField name="incomeSourceType" type="string from classifier list" required>
+            Type of income source.
+            
+            <Expandable title="Path to extract classifier values">
+                **HTTP Method:**  `GET`  
+                **Path:** `{{baseUrl}}/classifier/incomeSourceType`
+            </Expandable>
+            
+            _Example:_ `SALARY`
+        </ResponseField>
+    
+    </Expandable>
+</ResponseField>
+
+<ResponseField name="listPaymentPurpose" type="list[]">
+    <Expandable title="listPaymentPurpose list[] fields">
+    
+        <ResponseField name="paymentPurposeType" type="string from classifier list" required>
+            Type of payment purpose. This field is not mandatory if `paymentPurposeType` field is not provided at all.
+            
+            <Expandable title="Path to extract classifier values">
+                **HTTP Method:**  `GET`  
+                **Path:** `{{baseUrl}}/classifier/paymentPurposeType`
+            </Expandable>
+            
+            _Example:_ `TAXES`
+        </ResponseField>
+    
+        <ResponseField name="turnoverDirection" type="string from enum" required>
+            Direction of payment turnover. This field is not mandatory if `paymentPurposeType` field is not provided at all.
+            
+            Enum class values: `IN`, `OUT`
+            
+            _Example:_ `OUT`
+        </ResponseField>
+    
+    </Expandable>
+</ResponseField>
+
+<ResponseField name="listSourceOfWealth" type="list[]">
+    <Expandable title="listSourceOfWealth list[] fields">
+    
+        <ResponseField name="amount" type="decimal">
+            Collected monetary amount.
+            
+            _Example:_ `100000`
+        </ResponseField>
+    
+        <ResponseField name="code" type="string from classifier list" required>
+            Source of wealth code. This field is not mandatory if `listSourceOfWealth` field is not provided at all.
+            
+            <Expandable title="Path to extract classifier values">
+                **HTTP Method:**  `GET`  
+                **Path:** `{{baseUrl}}/classifier/sourceOfWealth`
+            </Expandable>
+            
+            _Example:_ `INHERITANCE`
+        </ResponseField>
+    
+        <ResponseField name="comment" type="string">
+            Additional details about the source of wealth.
+            
+            _Example:_ `text`
+        </ResponseField>
+    
+    </Expandable>
+</ResponseField>
+
+<ResponseField name="listPaymentCountry" type="list[]">
+    <Expandable title="listPaymentCountry list[] fields">
+    
+        <ResponseField name="country" type="string from classifier list" required>
+            Country code. This field is not mandatory if `listPaymentCountry` field is not provided at all.
+            
+            <Expandable title="Path to extract classifier values">
+                **HTTP Method:**  `GET`  
+                **Path:** `{{baseUrl}}/classifier/country`
+            </Expandable>
+            
+            _Example:_ `US`
+        </ResponseField>
+    
+        <ResponseField name="turnoverDirection" type="string from enum" required>
+            Direction of payment turnover. This field is not mandatory if `listPaymentCountry` field is not provided at all.
+            
+            Enum class values: `IN`, `OUT`
+            
+            _Example:_ `OUT`
+        </ResponseField>
+    
+    </Expandable>
+</ResponseField>
+
+<ResponseField name="listActivity" type="list[]">
+    <Expandable title="listActivity list[] fields">
+    
+        <ResponseField name="activityType" type="string from classifier list" required>
+            Type of business activity. This field is not mandatory if `listActivity` field is not provided at all.
+            
+            <Expandable title="Path to extract classifier values">
+                **HTTP Method:**  `GET`  
+                **Path:** `{{baseUrl}}/classifier/activityType`
+            </Expandable>
+            
+            _Example:_ `ACTIVITY_OTHER`
+        </ResponseField>
+    
+        <ResponseField name="incomePercentage" type="integer">
+            Percentage of income from this activity. 
+            
+            _Example:_ `15`
+        </ResponseField>
+    
+    </Expandable>
+</ResponseField>
+
+<ResponseField name="listRegionOfActivity" type="list[]">
+    <Expandable title="listRegionOfActivity list[] fields">
+    
+        <ResponseField name="region" type="string from classifier list" required>
+            Region where the activity takes place. This field is not mandatory if `region` field is not provided at all.
+            
+            <Expandable title="Path to extract classifier values">
+                **HTTP Method:**  `GET`  
+                **Path:** `{{baseUrl}}/classifier/country`
+            </Expandable>
+            
+            _Examples:_ `AU`, `EU`
+        </ResponseField>
+    
+    </Expandable>
+</ResponseField>
+
+<ResponseField name="listCountryOfActivity" type="list[]">
+    <Expandable title="listCountryOfActivity list[] fields">
+    
+        <ResponseField name="country" type="string from classifier list" required>
+            Country where the activity takes place. This field is mandatory.
+            
+            <Expandable title="Path to extract classifier values">
+                **HTTP Method:**  `GET`  
+                **Path:** `{{baseUrl}}/classifier/country`
+            </Expandable>
+            
+            _Example:_ `US`, `LT`
+        </ResponseField>
+    
+    </Expandable>
+</ResponseField>
+
+<ResponseField name="listCountryOfTaxPayment" type="list[]">
+    <Expandable title="listCountryOfTaxPayment list[] fields">
+    
+        <ResponseField name="country" type="string from classifier list" required>
+            Country where the tax payment is made. This field is not mandatory if `listCountryOfTaxPayment` field is not provided at all.
+            
+            <Expandable title="Path to extract classifier values">
+                **HTTP Method:**  `GET`  
+                **Path:** `{{baseUrl}}/classifier/country`
+            </Expandable>
+            
+            _Example:_ `LT`
+        </ResponseField>
+    
+        <ResponseField name="taxpayerNumber" type="string">
+            The tax identification number of the taxpayer.
+            
+            _Example:_ `5541245574`
+        </ResponseField>
+    
+    </Expandable>
+</ResponseField>
+
+<ResponseField name="listAdditionalValue" type="list[]">
+    <Expandable title="listAdditionalValue list[] fields">
+    
+        <ResponseField name="code" type="string" required>
+            Identifier for the additional field. This field is not mandatory if `listAdditionalValue` field is not provided at all.
+            
+            _Example:_ `related_to_usa`
+        </ResponseField>
+    
+        <ResponseField name="datatype" type="string from enum" required>
+            Type of provided value. This field is not mandatory if `listAdditionalValue` field is not provided at all.
+            
+            Enum class values: `STRING`, `INTEGER`, `DECIMAL`, `DATE`, `TIMESTAMP`, `BOOLEAN`
+            
+            _Example:_ `STRING`
+        </ResponseField>
+    
+        <ResponseField name="description" type="string" required>
+            Human readable description of the field. This field is not mandatory if `listAdditionalValue` field is not provided at all.
+            
+            _Example:_ `Entity has relation to USA`
+        </ResponseField>
+    
+        <ResponseField name="value" type="string" required>
+            Value of the field. This field is not mandatory if `listAdditionalValue` field is not provided at all.
+            
+            _Example:_ `true`
+        </ResponseField>
+    
+    </Expandable>
+</ResponseField>
+
+<ResponseField name="listRelatedEntity" type="list[]">
+List for related business entities. Fields of the list are described in the dropdown below.
+
+    <Expandable title="listRelatedEntity list[] fields">
+    
+        <ResponseField name="entityType" type="string from enum" required>
+            Type of entity describing client status. This field is not mandatory if `listRelatedEntity` field is not provided at all.
+            
+            Enum class values: `INDIVIDUAL`, `ORGANIZATION`
+            
+            _Example:_ `INDIVIDUAL`
+        </ResponseField>
+    
+        <ResponseField name="relationType" type="string from classifier list" required>
+            Type of relationship between entities. This field is not mandatory if `listRelatedEntity` field is not provided at all.
+            
+            <Expandable title="Path to extract classifier values">
+                **HTTP Method:**  `GET`  
+                **Path:** `{{baseUrl}}/classifier/relationType`
+            </Expandable>
+            
+            _Example:_ `OWNER`
+        </ResponseField>
+    
+        <ResponseField name="relationDescription" type="string">
+            Description of the relationship between entities.
+            
+            _Example:_ `Founder`
+        </ResponseField>
+    
+        <ResponseField name="extId" type="string">
+            Identifier used for screening callbacks to identify the entity.
+            
+            _Example:_ `Related_extID_000`
+        </ResponseField>
+    
+        <ResponseField name="share" type="integer">
+            Shares owned by shareholders in the organization of the business entity.
+            
+            _Example:_ `75`
+        </ResponseField>
+    
+        <ResponseField name="votePercentage" type="integer">
+            Vote percentage of shareholders in the organization of the business entity.
+            
+            _Example:_ `99`
+        </ResponseField>
+    
+        <ResponseField name="nationalCode" type="string">
+            National code or national identification number of the individual or organization.
+            
+            _Example:_ `123456789`
+        </ResponseField>
+    
+        <ResponseField name="activityDescription" type="string">
+            Activity description of the related entity.
+            
+            _Example:_ `Financial activity`
+        </ResponseField>
+    
+        <ResponseField name="country" type="string from classifier list">
+            Citizenship country of the related entity.
+            
+            <Expandable title="Path to extract classifier values">
+                **HTTP Method:**  `GET`  
+                **Path:** `{{baseUrl}}/classifier/country`
+            </Expandable>
+            
+            _Example:_ `LT`
+        </ResponseField>
+    
+        <ResponseField name="birthCountry" type="string from classifier list">
+            Birth country of the related entity.
+            
+            <Expandable title="Path to extract classifier values">
+                **HTTP Method:**  `GET`  
+                **Path:** `{{baseUrl}}/classifier/country`
+            </Expandable>
+            
+            _Example:_ `LT`
+        </ResponseField>
+    
+        <ResponseField name="firstName" type="string">
+          ❗This field is mandatory when `entityType` is `INDIVIDUAL`.
+            
+            First name of the related entity.
+            
+            _Example:_ `John`
+        </ResponseField>
+    
+        <ResponseField name="lastName" type="string">
+          ❗This field is mandatory when `entityType` is `INDIVIDUAL`.
+
+            Last name of the related entity.
+            
+            _Example:_ `Rodriguez`
+        </ResponseField>
+    
+        <ResponseField name="birthDate" type="date">
+            Birth date of the related individual entity.
+            
+            _Example:_ `2000-05-28`
+        </ResponseField>
+    
+        <ResponseField name="isPEP" type="boolean">
+            Indicator if the related individual entity is a politically exposed person.
+            
+            _Example:_ `false`
+        </ResponseField>
+    
+        <ResponseField name="isSanctioned" type="boolean">
+            Indicator if sanctions are applied to the entity.
+            
+            _Example:_ `false`
+        </ResponseField>
+    
+        <ResponseField name="isInAdverseMedia" type="boolean">
+            Indicator if there is information for an adverse media entity.
+            
+            _Example:_ `false`
+        </ResponseField>
+    
+        <ResponseField name="isInInternalList" type="boolean">
+            Indicator if there is information for an internal list entity.
+            
+            _Example:_ `false`
+        </ResponseField>
+    
+        <ResponseField name="regionOfActivityDescription" type="string">
+            Description of the activity region of the related entity.
+            
+            _Example:_ `EU`
+        </ResponseField>
+    
+        <ResponseField name="listContact" type="list of ContactApi">
+  
+<ResponseField name="listContact" type="list[]">
+List for contacts. Fields of the list are described in the dropdown below.
+
+<Expandable title="listContact list[] fields">
+
+<ResponseField name="contactType" type="string from enum" required>
+Way of contacting entity. This field is not mandatory if `listContact` field is not provided at all.
+
+Enum class values: `MOBILEPHONE`, `FIXEDPHONE`, `EMAIL`, `WEBSITE`
+
+_Example:_ `MOBILEPHONE`
+</ResponseField>
+
+<ResponseField name="contactDetails" type="string" required>
+Details of contact. This field is not mandatory if `listContact` field is not provided at all.
+
+_Examples:_ `868758585`, `hello@gmail.com`, `www.website.com`
+</ResponseField>
+
+<ResponseField name="useForCommunication" type="boolean">
+Indicator for the usage of communication way.
+
+_Example:_ `true`
+</ResponseField>
+
+</Expandable>
+</ResponseField>
+
+<ResponseField name="listAddress" type="list[]">
+List of addresses. Fields of the list are described in the dropdown below.
+
+    <Expandable title="listAddress list[] fields">
+    
+        <ResponseField name="addressDetails" type="string">
+            Full address description.
+            
+            _Example:_ `Building B`
+        </ResponseField>
+    
+        <ResponseField name="addressType" type="string from classifier list">
+            Type of entity address.
+            
+            <Expandable title="Path to extract classifier values">
+            **HTTP Method:**  `GET`
+
+            **Path:** `{{baseUrl}}`/classifier/addressType
+            </Expandable>
+
+            _Example:_ `RESIDENCE`
+        </ResponseField>
+    
+        <ResponseField name="city" type="string">
+            City of the given address.
+            
+            _Example:_ `Vilnius`
+        </ResponseField>
+    
+        <ResponseField name="country" type="string from classifier list" required>
+            Country of the given address. This field is not mandatory if `listAddress` field is not provided at all.
+            
+            <Expandable title="Path to extract classifier values">
+            **HTTP Method:**  `GET`
+
+            **Path:** `{{baseUrl}}`/classifier/country
+            </Expandable>
+
+            _Example:_ `LT`
+        </ResponseField>
+    
+        <ResponseField name="region" type="string">
+            Region of the given address.
+            
+            _Example:_ `EU`
+        </ResponseField>
+    
+        <ResponseField name="streetAddress" type="string">
+            Street, house, and flat number of the given address.
+            
+            _Example:_ `Verkių g. 1-9`
+        </ResponseField>
+    
+        <ResponseField name="useForCorrespondence" type="boolean">
+            Indicator for using the address in correspondence.
+            
+            _Example:_ `true`
+        </ResponseField>
+    
+        <ResponseField name="zipCode" type="string">
+            Zip code of the address.
+            
+            _Example:_ `12345`
+        </ResponseField>
+
+    </Expandable>
+</ResponseField>
+
+<ResponseField name="listBusinessEntityDocument" type="list[]">
+List of related entity documents. Fields of the list are described in the dropdown below.
+
+    <Expandable title="listBusinessEntityDocument list[] fields">
+    
+        <ResponseField name="description" type="string">
+            Document description.
+            
+            _Example:_ `passport`
+        </ResponseField>
+    
+        <ResponseField name="documentExpiryDate" type="date">
+            The expiry date of the document in question.
+            
+            _Example:_ `2032-01-15`
+        </ResponseField>
+    
+        <ResponseField name="documentIssueAuthority" type="string" required>
+            An authority that issued the document. This field is not mandatory if `listBusinessEntityDocument` field is not provided at all.
+            
+            _Example:_ `Migration office`
+        </ResponseField>
+    
+        <ResponseField name="documentIssueCountry" type="string" required>
+            The country that issued the document. This field is not mandatory if `listBusinessEntityDocument` field is not provided at all.
+            
+            _Example:_ `LT`
+        </ResponseField>
+    
+        <ResponseField name="documentIssueDate" type="date" required>
+            The issue date of the document in question. This field is not mandatory if `listBusinessEntityDocument` field is not provided at all.
+            
+            _Example:_ `2022-01-15`
+        </ResponseField>
+    
+        <ResponseField name="documentNumber" type="string" required>
+            The number of the document in question. This field is not mandatory if `listBusinessEntityDocument` field is not provided at all.
+            
+            _Example:_ `0123456789`
+        </ResponseField>
+    
+        <ResponseField name="entityType" type="string" required>
+            Entity type describes the client status. This field is not mandatory if `listBusinessEntityDocument` field is not provided at all.
+            
+            _Value:_ `INDIVIDUAL`
+        </ResponseField>
+    
+        <ResponseField name="identityDocumentType" type="string from enum" required>
+            Identification document type. This field is not mandatory if `listBusinessEntityDocument` field is not provided at all.
+            
+            Enum class values: `PASSPORT`, `IDENTITYCARD`, `RESIDENCEPERMIT`, `DRIVINGLICENSE`, `REGISTRATIONCERTIFICATE`, `OTHER`
+            
+            _Example:_ `PASSPORT`
+        </ResponseField>
+
+    </Expandable>
+</ResponseField>
+
+        </ResponseField>
+    
+<ResponseField name="listIncomeSource" type="list[]">
+List of income sources. Fields of the list are described in the dropdown below.
+
+    <Expandable title="listIncomeSource list[] fields">
+    
+        <ResponseField name="from" type="integer">
+            Amount from.
+            
+            _Example:_ `100`
+        </ResponseField>
+    
+        <ResponseField name="to" type="integer">
+            Amount to.
+            
+            _Example:_ `1000`
+        </ResponseField>
+    
+        <ResponseField name="incomePercentage" type="integer" required>
+            Percentage of income from the source.
+            
+            _Example:_ `5`
+        </ResponseField>
+    
+        <ResponseField name="incomeSourceType" type="string from classifier list" required>
+            Type of income source.
+            
+            <Expandable title="Path to extract classifier values">
+                **HTTP Method:**  `GET`  
+                **Path:** `{{baseUrl}}/classifier/incomeSourceType`
+            </Expandable>
+            
+            _Example:_ `SALARY`
+        </ResponseField>
+    
+    </Expandable>
+</ResponseField>
+    
+<ResponseField name="listActivity" type="list[]">
+List of activities. Fields of the list are described in the dropdown below.
+
+    <Expandable title="listActivity list[] fields">
+    
+        <ResponseField name="activityType" type="string from classifier list" required>
+            Type of business activity. This field is not mandatory if `listActivity` field is not provided at all.
+            
+            <Expandable title="Path to extract classifier values">
+                **HTTP Method:**  `GET`  
+                **Path:** `{{baseUrl}}/classifier/activityType`
+            </Expandable>
+            
+            _Example:_ `ACTIVITY_OTHER`
+        </ResponseField>
+    
+        <ResponseField name="incomePercentage" type="integer">
+            Percentage of income from this activity. 
+            
+            _Example:_ `15`
+        </ResponseField>
+    
+    </Expandable>
+</ResponseField>
+
+<ResponseField name="listRegionOfActivity" type="list[]">
+List of activity countries of related entity. Fields of the list are described in the dropdown below.
+
+    <Expandable title="listRegionOfActivity list[] fields">
+    
+        <ResponseField name="region" type="string from classifier list" required>
+            Region where the activity takes place. This field is not mandatory if `region` field is not provided at all.
+            
+            <Expandable title="Path to extract classifier values">
+                **HTTP Method:**  `GET`  
+                **Path:** `{{baseUrl}}/classifier/country`
+            </Expandable>
+            
+            _Examples:_ `AU`, `EU`
+        </ResponseField>
+    
+    </Expandable>
+</ResponseField>
+
+<ResponseField name="listCountryOfActivity" type="list[]">
+List of activity regions. Fields of the list are described in the dropdown below.
+
+    <Expandable title="listCountryOfActivity list[] fields">
+    
+        <ResponseField name="country" type="string from classifier list" required>
+            Country where the activity takes place. This field is mandatory.
+            
+            <Expandable title="Path to extract classifier values">
+                **HTTP Method:**  `GET`  
+                **Path:** `{{baseUrl}}/classifier/country`
+            </Expandable>
+            
+            _Example:_ `US`, `LT`
+        </ResponseField>
+    
+    </Expandable>
+</ResponseField>
+    
+<ResponseField name="listAdditionalValue" type="list[]">
+Additional information about customer. Fields of the list are described in the dropdown below. This list can be used to provide data, e.g. relation to Lithuania. The provided classification codes must be unique for one client or related entity and apply to all clients in the same way.
+
+    <Expandable title="listAdditionalValue list[] fields">
+    
+        <ResponseField name="code" type="string" required>
+            Identifier for the additional field. This field is not mandatory if `listAdditionalValue` field is not provided at all.
+            
+            _Example:_ `related_to_usa`
+        </ResponseField>
+    
+        <ResponseField name="datatype" type="string from enum" required>
+            Type of provided value. This field is not mandatory if `listAdditionalValue` field is not provided at all.
+            
+            Enum class values: `STRING`, `INTEGER`, `DECIMAL`, `DATE`, `TIMESTAMP`, `BOOLEAN`
+            
+            _Example:_ `STRING`
+        </ResponseField>
+    
+        <ResponseField name="description" type="string" required>
+            Human readable description of the field. This field is not mandatory if `listAdditionalValue` field is not provided at all.
+            
+            _Example:_ `Entity has relation to USA`
+        </ResponseField>
+    
+        <ResponseField name="value" type="string" required>
+            Value of the field. This field is not mandatory if `listAdditionalValue` field is not provided at all.
+            
+            _Example:_ `true`
+        </ResponseField>
+    
+    </Expandable>
+</ResponseField>
+    
+    </Expandable>
+</ResponseField>
+
+## List of possible responses
+
+This part lists common responses after the submission of the request.
+
+```json
+200 OK
+  "resultType": "REQUEST_ACCEPTED"
+
+
+400 Bad Request
+    "resultType": "REQUEST_REJECTED",
+    "errorCode": "O001",
+    "errorDescription": "CommunicationNumber already used in amlyze"
+
+
+404 Not Found
+    "timestamp": "2024-05-26T16:49:50.237+00:00",
+    "status": 404,
+    "error": "Not Found",
+    "path": "/amlyze-ws-rest/customerr" --> mistake inside the endpoint
+
+
+500 Internal Server Error
+  "resultType": "REQUEST_REJECTED"
+  "status": 500,
+  "error": "Internal Server Error"
+
+```
+
+## List of possible errors
+
+This section lists the possible errors that can occur when making a bad request to the API. A bad request is a request that somehow does not follow the API specifications.
+
+| **Category**                | **Error Message**                                                               |
+|-----------------------------|---------------------------------------------------------------------------------|
+| Action Not Supported        | Action is not supported.                                                        |
+| OperationExtId Issues       | OperationExtId is mandatory.                                                     |
+|                             | Operation with given OperationExtId already exists in Amlyze.                     |
+|                             | Operation with given OperationExtId does not exist in Amlyze.                     |
+| Requester Issues            | Requester is mandatory.                                                           |
+| OperationDateTime Issues    | OperationDateTime is mandatory.                                                   |
+| Description Issues          | Description is mandatory.                                                         |
+| CommunicationNumber Issues  | CommunicationNumber is mandatory.                                                 |
+|                             | CommunicationNumber was already used in Amlyze.                                   |
+| SourceOfRiskLevel Issues    | SourceOfRiskLevel is mandatory; allowed values: IMPORT / EVALUATE.                |
+|                             | Problem with SourceOfRiskLevel.                                                   |
+| Country Issues              | SourceCountry is mandatory; check country classifier codes for allowed values.   |
+|                             | DestinationCountry is mandatory; check country classifier codes for allowed values.|
+|                             | Invalid MerchantCountryCode.                                                      |
+| Amount Issues               | Amount is mandatory and must be greater than 0.                                  |
+|                             | Despite currency = EUR, AmountInEur differs from Amount.                          |
+|                             | AmountInEur is mandatory and must be greater than 0.                             |
+|                             | EuroExchangeRate is mandatory and must be greater than 0 (when currency != EUR). |
+| OperationType Issues        | OperationType is mandatory.                                                       |
+|                             | Problem with OperationType.                                                        |
+|                             | OperationType is not defined in Amlyze. Check Operation type classifier for available values. |
+| OperationStatus Issues      | OperationStatus is mandatory for IMPORT operation. Possible values: REJECTED / EXECUTED. |
+|                             | OperationStatus must be empty for EVALUATE operation.                             |
+| FinancialFlowDirection Issues| For not INTERNAL operation financialFlowDirection value can't be 'NULL'.         |
+|                             | Invalid FinancialFlowDirection. Your institution DEBTOR found for INCOMING operation. |
+|                             | Invalid FinancialFlowDirection. Your institution CREDITOR found for OUTGOING operation. |
+| General Issues              | ListOperationParty is mandatory and can't be empty.                              |
+|                             | Problem with OperationParties.                                                   |
+|                             | Invalid operation party count. Range: min 1 max 4.                                |
+|                             | No operation party account related to your institution BIC, or Customer.          |
+|                             | OperationParties must contain CREDITOR.                                           |
+|                             | OperationParties must contain DEBTOR.                                             |
+|                             | Invalid count of your institution operation parties for [operationType].           |
+| Specific Roles and Types    | entityType mismatch in operationParty[i]. Amlyze customer has a different entity type to operation one. |
+|                             | For INCOMING operation your's customer party role must be CREDITOR.              |
+|                             | For OUTGOING operation your's customer party role must be DEBTOR.                |
+|                             | For card_refund subtype, creditor must be your customer.                         |
+|                             | For 'PIS' operation only creditor can be provided.                               |
+|                             | Operation party title or firstName or lastName or cardHolderName is mandatory.  |
+|                             | AccountNumber or CardNumber is mandatory for card operation.                     |
+| RiskManagementCategory Issues| RiskManagementCategory is mandatory.                                            |
+|                             | RiskManagementCategory does not exist in Amlyze.                                 |
+|                             | RiskManagementCategory does not support Operation.                               |
+| Account Issues              | Account registered to your institution, Account found in Amlyze, but customer not found in Amlyze. |
+| EntityType Issues           | EntityType is mandatory, values: INDIVIDUAL, ORGANIZATION, UNKNOWN.             |
+| PartyRole Issues            | PartyRole is mandatory, possible values: DEBTOR, CREDITOR, ULTIMATE_DEBTOR, ULTIMATE_CREDITOR. |
+| Country Values              | The value for the country in the party is not within the allowed values specified by the country classifier. |
+| Tenant and Business Unit Issues | Tenant header [tenant code] is mandatory.                                    |
+|                             | Business unit is mandatory.                                                      |
+|                             | Tenant [tenantCode] business unit [businessUnitCode] does not exist.             |
