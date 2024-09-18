@@ -1,9 +1,9 @@
 ---
-title: 'Customer import - Individual no risk assessment'
+title: 'Customer import - Organization no risk assessment'
 icon: 'arrow-right'
 ---
 
-This section provides information how to submit customer details to our database and is focused on individuals who doesn't require risk assessment (data migration cases).
+This section provides information how to submit customer details to our database and is focused on organizations who doesn't require risk assessment (data migration cases).
 It includes examples of API requests with mandatory and optional fields, a comprehensive list of all available fields, common responses, and error descriptions.
 
 **HTTP Method:**  `POST`
@@ -16,413 +16,342 @@ It includes examples of API requests with mandatory and optional fields, a compr
 
 ## API requests examples
 
-<Expandable title="Mandatory fields example | CUSTOMER import - individual no risk assessment">
+<Expandable title="Mandatory fields example | CUSTOMER import - organization no risk assessment">
 <ResponseField>
   ```json
 {
-  "communicationNumber" : "Test_ComNr_002mHzZZ",
-	"requester" : "Company Name Amlyze",
-	
-	"sourceOfRiskLevel" : "IMPORT",
-  "riskLevel" : "HIGH",
-  "customerStatus" : "ACTIVE",
-
-	"riskManagementCategory": "IND",
-	"entityType" : "INDIVIDUAL",
-	"customerExtId" : "IND_IMPORT_B1_TEST",
-	"applicationDate": "2023-10-01",
-	"firstName" : "Lukas",
-	"lastName" : "Garcia",
-	"citizenshipCountry" : "LV"
-}
-  ```
-</ResponseField>
-</Expandable>
-
-<Expandable title="Mandatory fields example | CUSTOMER import - individual no risk assessment with screening">
-<ResponseField>
-  ```json
-{
-  "communicationNumber" : "Test_ComNr_002mHzZZ",
-	"requester" : "Company Name Amlyze",
-	
-	"sourceOfRiskLevel" : "IMPORT",
-  "riskLevel" : "HIGH",
-  "customerStatus" : "ACTIVE",
-
-  "initializeScreeningProcesses": [
-      "SANCTIONS",
-      "INTERNAL_LIST"
-  ],
-
-	"riskManagementCategory": "IND",
-	"entityType" : "INDIVIDUAL",
-	"customerExtId" : "IND_IMPORT_B1_TEST",
-	"applicationDate": "2023-10-01",
-	"firstName" : "Lukas",
-	"lastName" : "Garcia",
-	"citizenshipCountry" : "LV"
-}
-  ```
-</ResponseField>
-</Expandable>
-
-<Expandable title="All fields example | CUSTOMER import - individual no risk assessment">
-<ResponseField>
-  ```json
-{
-	"communicationNumber" : "Test_ComNr_002mHzZZZ",
-	"requester" : "Company Name Amlyze",
+    "communicationNumber": "Test_ComNr_003ZZZc",
+	"requester": "Company Name Amlyze",
 
 	"action" : "CREATE",
 
-	"sourceOfRiskLevel" : "IMPORT",
-    "riskLevel" : "HIGH",
-    "customerStatus" : "CLOSED",
+	"sourceOfRiskLevel": "IMPORT",
+    "riskLevel": "HIGH",
+	"customerStatus": "ACTIVE",
 
-    "businessUnit" : "business unit name"
+	"riskManagementCategory": "ORG",
+	"entityType": "ORGANIZATION",
+	"customerExtId": "ORG_IMPORT_B1_TEST",
+	"applicationDate": "2024-04-08T10:45:00.000+02:00",
+	"title": "LTD 'VivaElementus'",
+	"registrationCountry": "LV",
+	"legalForm": "LTD"
+}
+  ```
+</ResponseField>
+</Expandable>
 
-    "initializeScreeningProcesses": [
+<Expandable title="Mandatory fields example | CUSTOMER import - organization no risk assessment with screening">
+<ResponseField>
+  ```json
+{
+   "communicationNumber": "Test_ComNr_003ZZZc",
+	"requester": "Company Name Amlyze",
+
+	"action" : "CREATE",
+
+	"sourceOfRiskLevel": "IMPORT",
+    "riskLevel": "HIGH",
+	"customerStatus": "ACTIVE",
+
+      "initializeScreeningProcesses": [
+      "SANCTIONS",
+      "INTERNAL_LIST"
+    ],
+
+	"riskManagementCategory": "ORG",
+	"entityType": "ORGANIZATION",
+	"customerExtId": "ORG_IMPORT_B1_TEST",
+	"applicationDate": "2024-04-08T10:45:00.000+02:00",
+	"title": "LTD 'VivaElementus'",
+	"registrationCountry": "LV",
+	"legalForm": "LTD"
+}
+  ```
+</ResponseField>
+</Expandable>
+
+<Expandable title="All fields example | CUSTOMER import - organization no risk assessment">
+<ResponseField>
+  ```json
+{
+"communicationNumber": "Test_ComNr_003ZZZD",
+    "requester": "Company Name Amlyze",
+
+	"action": "CREATE",
+
+    "sourceOfRiskLevel": "IMPORT",
+    "riskLevel": "HIGH",
+    "customerStatus": "ACTIVE",
+
+
+	"initializeScreeningProcesses": [
         "SANCTIONS",
         "ADVERSE_MEDIA",
         "PEP",
-        "INTERNAL_LIST"
+      "INTERNAL_LIST"
     ],
 
-	"riskManagementCategory": "IND",
-    "entityType" : "INDIVIDUAL",
-	"customerExtId" : "IND_EVALUATE_A3_TEST",
-	"applicationDate": "2023-10-01",
-	"firstName" : "Mikas",
-	"lastName" : "Garcia",
-	"citizenshipCountry" : "LT",
-    "birthDate" : "2000-01-01",
-    "approvalDate" : "2023-10-01T09:45:00.000+02:00",
-    "closingDate" : "2023-10-02",
-    "birthCountry" : "ES",
-    "nationalCode" : "9000000485",
-    "secondCitizenshipCountry" : "ES",
-    "permanentResidenceCountry" : "LT",
-    "isLegalResident" : true,
+
+    "riskManagementCategory": "ORG",
+    "entityType": "ORGANIZATION",
+    "customerExtId": "ORG_C1_TEST",
+    "applicationDate": "2020-01-03",
+    "title": "LTD 'MinorMajor'",
+    "registrationCountry": "LT",
+    "legalForm": "LTD",
+
+    "tradingName": "MinorMajor",
+    "approvalDate": "2020-01-05",
+    "establishmentDate": "2001-02-23",
+    "nationalCode": "REG74121101",
+    "activityDescription": "Logistics",
+    "activityInRestrictedRegionDescription": "Logistics",
+
     "isPEP": false,
     "isSanctioned": false,
-    "isInAdverseMedia": false,
-    "isInInternalList": false,
-    "isFamilyPEP" : false,
-    "isLitigated" : false,
-    "amlOfficer" : false,
-    "listPurpose" : "WHITE",
+    "isInAdverseMedia": true,
+    "isInInternalList": true,
 
-    "fieldOfActivity": {
-        "student": {
-          "isStudent": true,
-          "higherSchoolTitle": "Uni",
-          "higherSchoolCountry": "LT"
-        },
-        "employment": {
-          "isUnemployed": false,
-          "isSelfEmployed": false,
-          "isEmployee": false,
-          "employerTitle": "company A",
-          "employmentPositionDescription": "Sales intern"
-        }
-      },
-
-    "isActualAddressDeclared" : true,
-    "isCorrespondenceAddressDeclared" : false,
-    "activityDescription" : "Financial activity",
-    "incomeSourceDescription" : "Job Salary",
+    "giin": "GIIN123445",
+    "lei": "LEI124545",
+    "listPurpose": "BLACK",
+    "isActualAddressDeclared": true,
+    "isCorrespondenceAddressDeclared": false,
+    "incomeSourceDescription": "Salary",
     "initialDepositSource": "Salary",
-    "initialDepositBank" : "ABC",
-    "initialDepositAccount" : "LT0089500500000070",
-    "initialDepositAmount" : 100000,
-    "initialDepositCurrency" : "EUR",
-    "doesCashDominate" : false,
-
-"listContact": [
-        {
-            "contactType": "MOBILEPHONE",
-            "contactDetails": "860123123",
-            "useForCommunication": true
-        },
+    "initialDepositBank": "TBC",
+    "initialDepositAccount": "LT0089500500000070",
+    "initialDepositAmount": "10000",
+    "initialDepositCurrency": "EUR",
+    "doesCashDominate": true,
+    "isAudited": true,
+    "numberOfAudits": 6,
+    "periodsOfAuditsInYears": 3,
+    "organizationalStructureDescription": "Hierarchical",
+    "hasMultiLayerStructure": false,
+    "isFinancialInstitution": false,
+    "isDirectlyManaged": true,
+    "noMajorShareHolders": true,
+    "numberOfEmployees": 25,
+    "companyAssetValue": 100000,
+    "isFined": false,
+    "periodsOfFiningInYears": 3,
+    "isListed": false,
+    "isRegulated": false,
+    "isLicenseRequired": true,
+    "licenseDescription": "Licence No.4012",
+    "thirdPartyServicesUsed": true,
+    "thirdPartyServicesUsedDescription": "Hosting",
+    "regionOfActivityDescription": "Wester region",
+    "listContact": [
         {
             "contactType": "EMAIL",
-            "contactDetails": "personal@gmail.com",
+            "contactDetails": "companyMail@gmail.com",
             "useForCommunication": true
         }
     ],
-"listAddress": [
+    "listAddress": [
         {
-            "addressDetails": "Pilies g. 19",
-            "addressType": "RESIDENCE",
-            "city": "Vilnius",
+            "addressType": "HEADQUARTERS",
+            "addressDetails": "Verkiu g. 1-53, Vilnius",
             "country": "LT",
             "region": "EU",
-            "streetAddress": "Pilies g.",
-            "useForCorrespondence": true,
-            "zipCode": "04457"
+            "city": "Vilnius",
+            "streetAddress": "Verkiu g.",
+            "zipCode": "04128",
+            "useForCorrespondence": true
         }
     ],
-"listBusinessEntityDocument": [
+    "listBusinessEntityDocument": [
         {
-            "entityType": "INDIVIDUAL",
+            "entityType": "ORGANIZATION",
             "identityDocumentType": "OTHER",
-            "documentNumber": "L548:15447651",
-            "documentIssueDate": "2020-01-01",
-            "documentExpiryDate": "2025-01-01",
+            "documentNumber": "LK4545587741121",
+            "documentIssueDate": "2020-01-03",
+            "documentExpiryDate": "2030-01-03",
             "documentIssueCountry": "LT",
             "documentIssueAuthority": "Migration office",
-            "description": "agreement"
+            "description": "Main identification document"
         }
     ],
-"listAppealReason": [
+    "listAppealReason": [
         {
-            "appealReasonType": "PURPOSE_GET_LOAN,PURPOSE_MAKE_PAYMENTS,PURPOSE_OTHER"
+            "appealReasonType": "RECOMMENDATIONS"
         }
     ],
-"listIntroductionSource": [
+    "listIntroductionSource": [
         {
             "introductionSource": "Internet"
         }
     ],
-        "listOrderedService": [
+    "listOrderedService": [
         {
-        "serviceType": "LOANS"
+            "serviceType": "LOANS"
         }
     ],
-"listDeclaredTurnover": [
+    "listDeclaredTurnover": [
         {
-            "from": 5000,
+            "turnoverType": "PLANNED_FUTURE_INCOME",
             "turnoverRange": "MONTHLY",
-            "turnoverType": "OPERATION_AMOUNT_MONTHLY"
+            "from": 1000,
+            "to": 2000
         }
     ],
-"listIncomeSource": [
+    "listIncomeSource": [
         {
-            "incomeSourceType": "BUSINESS_REVENUE_OR_ASSET_SALE",
-            "incomePercentage": 10,
-            "from": 10,
-            "to": 100
+            "incomeSourceType": "SALARY",
+            "incomePercentage": 95,
+            "from": 2000,
+            "to": 2200
         }
     ],
-"listPaymentPurpose": [
+    "listPaymentPurpose": [
         {
-            "paymentPurposeType": "TAXES",
-            "turnoverDirection": "OUT"
-        }
-    ],
-"listSourceOfWealth": [
+            "turnoverDirection": "OUT",
+            "paymentPurposeType": "RENT_AND_UTILITIES"
+        },
         {
-            "amount": 20000,
-            "code": "3",
-            "comment": "text"
+            "turnoverDirection": "IN",
+            "paymentPurposeType": "MARKETING_SERVICES"
         }
     ],
-"listPaymentCountry": [
+    "listSourceOfWealth": [
+		{
+			"code": "6",
+			"amount": 100000,
+			"comment": "Wealth from inheritance"
+		}
+	],
+    "listPaymentCountry": [
         {
             "country": "LT",
+            "turnoverDirection": "IN"
+        },
+        {
+            "country": "LV",
             "turnoverDirection": "OUT"
         }
     ],
-"listActivity": [
+    "listActivity": [
         {
             "activityType": "ACTIVITY_OTHER",
-            "incomePercentage": 50
+            "incomePercentage": 15
         }
     ],
-"listRegionOfActivity": [
+    "listRegionOfActivity": [
         {
             "region": "EU"
         }
     ],
-"listCountryOfActivity": [
+    "listCountryOfActivity": [
+        {
+            "country": "LT"
+        },
         {
             "country": "LV"
         }
     ],
-"listCountryOfTaxPayment": [
+    "listCountryOfTaxPayment": [
         {
-            "country": "LT"
+            "country": "LV",
+            "taxpayerNumber": "5541245574"
         }
     ],
-"listAdditionalValues": [
+    "listAdditionalValues": [
         {
-            "code": "relation_us",
-            "description": "Has a relation to USA.",
-            "datatype": "STRING",
-            "value" : "true"
+            "code": "relation_usa",
+            "description": "Entity related to USA?",
+            "datatype": "BOOLEAN",
+            "value": true
         }
     ],
-
 	"listRelatedEntity": [
-        {
-            "entityType": "INDIVIDUAL",
-            "relationType": "DIRECTOR",
-            "relationDescription": "founder",
-            "extId": "Rel_entity_ExtID_4051",
-            "share": 75,
-            "votePercentage": 10,
-            "nationalCode": "123456789",
-            "activityDescription": "Represents an organization",
-            "country": "AF",
-            "birthCountry": "LT",
-            "firstName": "Teodor",
-            "lastName": "Mariko",
-            "birthDate": "1998-04-07",
-            "isPEP": true,
-            "isSanctioned": false,
-            "isInAdverseMedia": false,
-            "isInInternalList": false,
-            "regionOfActivityDescription": "Western Region",
-            "listContact": [
-                {
-                    "contactType": "EMAIL",
-                    "contactDetails": "personalemail@gmail.com",
-                    "useForCommunication": true
-                }
-            ],
-            "listAddress": [
-                {
-                    "addressType": "HEADQUARTERS",
-                    "addressDetails": "Lvovo g. 15/4",
-                    "country": "LT",
-                    "region": "EU",
-                    "city": "Vilnius",
-                    "streetAddress": "Lvovo g.",
-                    "zipCode": "04127",
-                    "useForCorrespondence": true
-                }
-            ],
-            "listBusinessEntityDocument": [
-                {
-                    "entityType": "INDIVIDUAL",
-                    "identityDocumentType": "OTHER",
-                    "documentNumber": "L548:154477425",
-                    "documentIssueDate": "2020-01-03",
-                    "documentExpiryDate": "2025-01-03",
-                    "documentIssueCountry": "LT",
-                    "documentIssueAuthority": "Migration office",
-                    "description": "agreement"
-                }
-            ],
-            "listIncomeSource": [
-                {
-                    "incomeSourceType": "BUSINESS_REVENUE_OR_ASSET_SALE",
-                    "incomePercentage": 10,
-                    "from": 10,
-                    "to": 100
-                }
-            ],
-            "listActivity": [
-                {
-                    "activityType": "ACTIVITY_OTHER",
-                    "incomePercentage": 50
-                }
-            ],
-            "listRegionOfActivity": [
-                {
-                    "region": "EU"
-                }
-            ],
-            "listCountryOfActivity": [
-                {
-                    "country": "LV"
-                }
-            ],
-            "listAdditionalValues": [
-                {
-                    "code": "relation_us",
-                    "description": "Is related to US?",
-                    "datatype": "BOOLEAN",
-                    "value": "false"
-                }
-            ]
-        },
 		{
-            "entityType": "ORGANIZATION",
-            "relationType": "HOST",
-            "relationDescription": "founder",
-			"extId": "Rel_entity_ExtID_4052",
-            "share": 10,
-            "votePercentage": 10,
-            "nationalCode": "50007422259",
-            "activityDescription": "BEARER",
-            "country": "LT",
-            "registrationCountry": "LT",
-            "isPEP": false,
-            "isSanctioned": true,
-            "isInAdverseMedia": true,
-            "isInInternalList": true,
-            "regionOfActivityDescription": "Eastern region",
-            "title": "LTD 'VitaGold'",
-            "legalForm": "LTD",
-            "establishmentDate": "1998-04-07",
+			"entityType" : "ORGANIZATION",
+			"relationType" : "OWNER",
+			"relationDescription" : "Founder",
+			"extId" : "Rel_entity_ExtID_4052",
+			"share" : 10,
+			"votePercentage" : 10,
+			"activityDescription" : "Financial activity",
+            "regionOfActivityDescription" : "Eastern Europe",
+            "nationalCode" : "554555447884557",
+			"country" : "LT",
+			"registrationCountry" : "LT",
+			"isPEP" : true,
+			"isSanctioned" : true,
+			"isInAdverseMedia" : true,
+			"isInInternalList" : true,
+			"title" : "LTD 'Fokusmano'",
+			"legalForm" : "LTD",
+			"establishmentDate" : "1998-04-07",
 
-            "listContact": [
-                {
-                    "contactType": "EMAIL",
-                    "contactDetails": "vitaGold.info@gmail.com",
-                    "useForCommunication": true
-                }
-            ],
-            "listAddress": [
-                {
-                    "addressType": "HEADQUARTERS",
-                    "addressDetails": "Panemunių g. 15-4",
-                    "city": "Vilnius",
-                    "country": "LT",
-                    "region": "EU",
-                    "streetAddress": "Panemunių g.",
-                    "useForCorrespondence": true,
-                    "zipCode": "048715"
-                }
-            ],
-            "listBusinessEntityDocument": [
-                {
-                    "entityType": "ORGANIZATION",
-                    "identityDocumentType": "REGISTRATIONCERTIFICATE",
-                    "documentNumber": "LT-4574551121",
-                    "documentIssueDate": "2015-01-03",
-                    "documentExpiryDate": "2020-01-03",
-                    "documentIssueCountry": "LT",
-                    "documentIssueAuthority": "VMI",
-                    "description": "Certificate of Registration"
-                }
-            ],
-            "listIncomeSource": [
-                {
-                    "incomeSourceType": "BUSINESS_REVENUE_OR_ASSET_SALE",
-                    "incomePercentage": 10,
-                    "from": 10,
-                    "to": 100
-                }
-            ],
-            "listActivity": [
-                {
-                    "activityType": "ACTIVITY_OTHER",
-                    "incomePercentage": 50
-                }
-            ],
-            "listRegionOfActivity": [
-                {
-                    "region": "EU"
-                }
-            ],
-            "listCountryOfActivity": [
-                {
-                    "country": "LV"
-                }
-            ],
-            "listAdditionalValues": [
-                {
-                    "code": "relation_russia",
-                    "description": "Related to Russia?",
-                    "datatype": "BOOLEAN",
-                    "value": "false"
-                }
-            ]
-        }
-    ]
+			"listContact": [
+				{
+					"contactType" : "EMAIL",
+					"contactDetails" : "Karuna.info@gmail.com",
+					"useForCommunication" : true
+				}
+			],
+			"listAddress": [
+				{
+					"addressType" : "HEADQUARTERS",
+					"addressDetails" : "Panemunių g. 15-4",
+					"country" : "LT",
+					"region" : "EU",
+					"city" : "Vilnius",
+					"streetAddress" : "Panemunių g.",
+					"zipCode" : "048715",
+					"useForCorrespondence" : true
+				}
+			],
+			"listBusinessEntityDocument": [
+				{
+					"entityType": "ORGANIZATION",
+					"identityDocumentType": "REGISTRATIONCERTIFICATE",
+					"documentNumber": "LT-4574551121",
+					"documentIssueDate": "2015-01-03",
+					"documentExpiryDate": "2025-01-03",
+					"documentIssueCountry": "LT",
+					"documentIssueAuthority": "VMI",
+					"description": "Certificate of Registration"
+				}
+			],
+			"listIncomeSource": [
+				{
+					"incomeSourceType": "BUSINESS_REVENUE_OR_ASSET_SALE",
+					"incomePercentage": 10,
+					"from": 10,
+					"to": 100
+				}
+			],
+			"listActivity": [
+				{
+					"activityType": "ACTIVITY_OTHER",
+					"incomePercentage": 50
+				}
+			],
+			"listRegionOfActivity": [
+				{
+					"region": "EU"
+				}
+			],
+			"listCountryOfActivity": [
+				{
+					"country": "LV"
+				}
+			],
+			"listAdditionalValues": [
+				{
+					"code": "identity_verification_passed",
+					"description": "Verification has been passed?",
+					"datatype": "BOOLEAN",
+					"value": "true"
+				}
+			]
+		}
+	]
 }
   ```
 </ResponseField>
@@ -519,7 +448,7 @@ _Example:_ `BUSINESS_UNIT_NAME`
 <ResponseField name="riskManagementCategory" type="string from classifier list" required>
 Code of risk management category of the object. Value must be from a classifier list personalized to your company.
 
-_Example:_ `IND_AMLYZE`
+_Example:_ `ORG`
 
 <Expandable title="Path to extract classifier values">
 **HTTP Method:**  `GET`
@@ -532,7 +461,7 @@ _Example:_ `IND_AMLYZE`
 <ResponseField name="entityType" type="string" required>
 Notifies about customer type.
 
-_Value:_ `INDIVIDUAL`
+_Value:_ `ORGANIZATION`
 </ResponseField>
 
 <ResponseField name="customerExtId" type="string" required>
@@ -547,20 +476,14 @@ Date when customer first applied.
 _Example:_ `2020-01-03`
 </ResponseField>
 
-<ResponseField name="firstName" type="string" required>
-First name of individual entity.
+<ResponseField name="title" type="string" required>
+Title of the organization entity.
 
-_Example:_ `Jose`
+_Example:_ `LTD 'MinorMajor'`
 </ResponseField>
 
-<ResponseField name="lastName" type="string" required>
-Last name of individual entity.
-
-_Example:_ `Rodriguez`
-</ResponseField>
-
-<ResponseField name="citizenshipCountry" type="string from classifier list" required>
-Country of citizenship of individual entity.
+<ResponseField name="registrationCountry" type="string from classifier list" required>
+Country of registration of the organization.
 
 <Expandable title="Path to extract classifier values">
 **HTTP Method:**  `GET`
@@ -571,34 +494,40 @@ Country of citizenship of individual entity.
 _Example:_ `LT`
 </ResponseField>
 
-<ResponseField name="birthDate" type="date">
-Date of birth of individual entity
+<ResponseField name="legalForm" type="string from classifier list" required>
+Legal form of the organization.
 
-_Example:_ `2000-01-01`
+<Expandable title="Path to extract classifier values">
+**HTTP Method:**  `GET`
+
+**Path:** `{{baseUrl}}`/classifier/legalForm
+</Expandable>
+
+_Example:_ `LTD`
+</ResponseField>
+
+<ResponseField name="tradingName" type="string">
+Trading name of the organization.
+
+_Example:_ `MinorMajor`
 </ResponseField>
 
 <ResponseField name="approvalTime" type="date">
 Date of application approval.
 
-_Example:_ `2023-10-01T09:45:00.000+02:00`
+_Example:_ `2020-01-05`
+</ResponseField>
+
+<ResponseField name="establishmentDate" type="date">
+Establishment date for organization type entities.
+
+_Example:_ `2001-02-23`
 </ResponseField>
 
 <ResponseField name="closingDate" type="date">
 ❗Mandatory only when `customerStatus` = `CLOSED`. Not used when `customerStatus` is `PENDING`,  `ACTIVE`, `REJECTED` or `SUSPENDED`.
 
-_Example:_ `1995-05-24`
-</ResponseField>
-
-<ResponseField name="birthCountry" type="string from classifier list">
-Country of birth of individual entity.
-
-<Expandable title="Path to extract classifier values">
-**HTTP Method:**  `GET`
-
-**Path:** `{{baseUrl}}`/classifier/country
-</Expandable>
-
-_Example:_ `LT`
+_Example:_ `2005-05-24`
 </ResponseField>
 
 <ResponseField name="nationalCode" type="string">
@@ -611,34 +540,16 @@ National code or national identification number of individual. If a country does
 _Example:_ `50001010022`
 </ResponseField>
 
-<ResponseField name="secondCitizenshipCountry" type="string from classifier list">
-Country of second citizenship of individual entity.
+<ResponseField name="activityDescription" type="string">
+Description of entity activity.
 
-<Expandable title="Path to extract classifier values">
-**HTTP Method:**  `GET`
-
-**Path:** `{{baseUrl}}`/classifier/country
-</Expandable>
-
-_Value:_ `LV`
+_Value:_ `Logistics`
 </ResponseField>
 
-<ResponseField name="permanentResidenceCountry" type="string from classifier list">
-Country of permanent residency of an individual entity.
+<ResponseField name="activityInRestrictedRegionDescription" type="string">
+Description of business entities' activities in a restricted region.
 
-<Expandable title="Path to extract classifier values">
-**HTTP Method:**  `GET`
-
-**Path:** `{{baseUrl}}`/classifier/country
-</Expandable>
-
-_Value:_ `LT`
-</ResponseField>
-
-<ResponseField name="isLegalResident" type="boolean">
-Indicator for whether individual entity is a legal resident.
-
-_Example:_ `true`
+_Value:_ `Logistics`
 </ResponseField>
 
 <ResponseField name="isPEP" type="boolean">
@@ -665,22 +576,16 @@ An indication of the existence of information on internal list about the entity.
 _Example:_ `true`
 </ResponseField>
 
-<ResponseField name="isFamilyPEP" type="boolean">
-Identification of whether a family member of an individual entity is politically exposed.
+<ResponseField name="giin" type="string">
+Global intermediary identification number.
 
-_Example:_ `false`
+_Example:_ `GIN548745122`
 </ResponseField>
 
-<ResponseField name="isLitigated" type="boolean">
-Indicator if the customer is being litigated.
+<ResponseField name="lei" type="string">
+LEI stands for Legal Entity Identifier, which is a unique code used to identify legal entities that participate in financial transactions.
 
-_Example:_ `false`
-</ResponseField>
-
-<ResponseField name="amlOfficer" type="boolean">
-Indicator for the person being AML officer.
-
-_Example:_ `false`
+_Example:_ `LEI54511548`
 </ResponseField>
 
 <ResponseField name="listPurpose" type="string from enum">
@@ -689,130 +594,6 @@ Indicator whether entity is white/black listed.
 Enum class values: `WHITE`,  `BLACK`
 
 _Example:_ `WHITE`
-</ResponseField>
-
-<ResponseField name="fieldOfActivity" type="object{}">
-Information about the activities. Fields of the object properties are described in the dropdown below.
-
-<Expandable title="fieldOfActivity object{} fields">
-
-<ResponseField name="student" type="object{}">
-
-<Expandable title="student object{} fields">
-
-<ResponseField name="isStudent" type="boolean">
-Indicator of whether the customer is a student.
-
-_Example:_ `true`
-</ResponseField>
-
-<ResponseField name="higherSchoolTitle" type="string">
-Name of the higher school where customer is studying.
-
-_Example:_ `Uni University`
-</ResponseField>
-
-<ResponseField name="higherSchoolCountry" type="string from classifier list">
-Country of higher school of the student.
-
-<Expandable title="Path to extract classifier values">
-**HTTP Method:**  `GET`
-
-**Path:** `{{baseUrl}}`/classifier/country
-</Expandable>
-
-_Example:_ `US`
-</ResponseField>
-
-</Expandable>
-
-</ResponseField>
-
-<ResponseField name="pension" type="object{}">
-
-<Expandable title="pension object{} fields">
-
-<ResponseField name="isPensioner" type="boolean">
-Indicator of whether the customer is a pensioner.
-
-_Example:_ `false`
-</ResponseField>
-
-<ResponseField name="pensionCountry" type="string from classifier list">
-The country responsible for paying an individual's pension.
-
-<Expandable title="Path to extract classifier values">
-**HTTP Method:**  `GET`
-
-**Path:** `{{baseUrl}}`/classifier/country
-</Expandable>
-
-_Example:_ `DE`
-</ResponseField>
-
-</Expandable>
-
-</ResponseField>
-
-<ResponseField name="employment" type="object{}">
-
-<Expandable title="employment object{} fields">
-
-<ResponseField name="isUnemployed" type="boolean">
-Indicator for the individual entity being unemployed.
-
-_Example:_ `true`
-</ResponseField>
-
-<ResponseField name="isSelfEmployed" type="boolean">
-Indicator for the individual entity being self-employed.
-
-_Example:_ `true`
-</ResponseField>
-
-<ResponseField name="isEmployee" type="boolean">
-Indicator for the individual entity being an employee.
-
-_Example:_ `false`
-</ResponseField>
-
-<ResponseField name="employerTitle" type="string">
-Title of the individual employer.
-
-_Example:_ `CompanyB`
-</ResponseField>
-
-<ResponseField name="employmentPositionDescription" type="string">
-Description of the individual employment position.
-
-_Example:_ `Software tester`
-</ResponseField>
-
-</Expandable>
-
-</ResponseField>
-
-<ResponseField name="other" type="object{}">
-
-<Expandable title="other object{} fields">
-
-<ResponseField name="isOtherStatus" type="boolean">
-Indicator for individual other status.
-
-_Example:_ `true`
-</ResponseField>
-
-<ResponseField name="otherStatusDescription" type="string">
-Description of other status.
-
-_Example:_ `Specific description about the  other status`
-</ResponseField>
-
-</Expandable>
-
-</ResponseField>
-
-</Expandable>
 </ResponseField>
 
 <ResponseField name="isActualAddressDeclared" type="boolean">
@@ -839,25 +620,25 @@ Description of income source of the entity.
 _Example:_ `Job salary`
 </ResponseField>
 
-<ResponseField name="initialDepositSource	" type="string">
+<ResponseField name="initialDepositSource" type="string">
 Source of initial deposit.
 
 _Example:_ `Salary`
 </ResponseField>
 
-<ResponseField name="initialDepositBank	" type="string">
+<ResponseField name="initialDepositBank" type="string">
 Bank of the initial deposit
 
 _Example:_ `TBC`
 </ResponseField>
 
-<ResponseField name="initialDepositAccount	" type="string">
+<ResponseField name="initialDepositAccount" type="string">
 Account of initial deposit
 
 _Example:_ `LT0089500500000070`
 </ResponseField>
 
-<ResponseField name="initialDepositAmount	" type="double">
+<ResponseField name="initialDepositAmount" type="double">
 Amount of initial deposit.
 
 _Example:_ `8500.48`
@@ -879,6 +660,120 @@ _Example:_ `EUR`
 Indicator for cash being the main income source.
 
 _Example:_ `true`
+</ResponseField>
+
+<ResponseField name="isAudited" type="boolean">
+Indicator for the business entity being audited.
+
+_Example:_ `true`
+</ResponseField>
+
+<ResponseField name="numberOfAudits" type="integer">
+The number of times a business entity has been audited
+
+_Example:_ `3`
+</ResponseField>
+
+<ResponseField name="periodsOfAuditsInYears" type="integer">
+The number of years that are in question for being audited.
+
+_Example:_ `1`
+</ResponseField>
+
+<ResponseField name="organizationalStructureDescription" type="string">
+Description of organization structure.
+
+_Example:_ `Hierarchical`
+</ResponseField>
+
+<ResponseField name="hasMultiLayerStructure" type="boolean">
+Check for multi-layer organizational structure.
+
+_Example:_ `true`
+</ResponseField>
+
+<ResponseField name="isFinancialInstitution" type="boolean">
+Whether entity is financial institution.
+
+_Example:_ `true`
+</ResponseField>
+
+<ResponseField name="isDirectlyManaged" type="boolean">
+Whether entity is managed directly.
+
+_Example:_ `false`
+</ResponseField>
+
+<ResponseField name="noMajorShareHolders" type="boolean">
+Whether entity has no major shareholders involved.
+
+_Example:_ `false`
+</ResponseField>
+
+<ResponseField name="numberOfEmployees" type="integer">
+The number of employees in the company.
+
+_Example:_ `25`
+</ResponseField>
+
+<ResponseField name="companyAssetValue" type="integer">
+Value of companies assets.
+
+_Example:_ `100000`
+</ResponseField>
+
+<ResponseField name="isFined" type="boolean">
+Whether entity has fines.
+
+_Example:_ `false`
+</ResponseField>
+
+<ResponseField name="periodsOfFiningInYears" type="integer">
+The number of years that are in question for being fined.
+
+_Example:_ `3`
+</ResponseField>
+
+<ResponseField name="isListed" type="boolean">
+Indicator for the business entity is listed in stock exchange companies.
+
+_Example:_ `false`
+</ResponseField>
+
+<ResponseField name="isRegulated" type="boolean">
+Indicator for the business entity being regulated by third-party authorities.
+
+_Example:_ `false`
+</ResponseField>
+
+<ResponseField name="isLicenseRequired" type="boolean">
+Whether entity activity requires license.
+
+_Example:_ `false`
+</ResponseField>
+
+<ResponseField name="licenseDescription" type="string">
+Business entities license description.
+
+_Example:_ `Licence No.4012`
+</ResponseField>
+
+<ResponseField name="thirdPartyServicesUsed" type="string">
+Whether client is using third party services.
+
+_Example:_ `true`
+</ResponseField>
+
+<ResponseField name="thirdPartyServicesUsedDescription" type="string">
+Description of third party services.
+
+_Example:_ `Hosting`
+</ResponseField>
+
+<ResponseField name="regionOfActivityDescription" type="string">
+Description of the region for activities.
+
+_Example:_ `Customer service`
 </ResponseField>
 
 <ResponseField name="listContact" type="list[]">
