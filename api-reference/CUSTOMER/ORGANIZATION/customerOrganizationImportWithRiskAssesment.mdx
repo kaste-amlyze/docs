@@ -70,9 +70,10 @@ It includes examples of API requests with mandatory and optional fields, a compr
     "communicationNumber": "Test_ComNr_003ZZZD",
     "requester": "Company Name Amlyze",
 
-    "action" : "UPDATE",
+    "action" : "CREATE",
 
-    "sourceOfRiskLevel": "EVALUATE,
+    "sourceOfRiskLevel": "EVALUATE",
+    "customerStatus" : "CLOSED",
 
 	"initializeScreeningProcesses": [
         "SANCTIONS",
@@ -371,17 +372,9 @@ _Example:_ `UPDATE`
 </ResponseField>
 
 <ResponseField name="sourceOfRiskLevel" type="string" required>
-The value `IMPORT` is to be used for migration only – the customer and it's questionnaire will be imported without risk assessment.
+The value `EVALUATE` is used for initiating a customer risk assessment.
 
-_Value:_ `IMPORT`
-</ResponseField>
-
-<ResponseField name="riskLevel" type="string from enum" required>
-Predefined risk level of imported customer.
-
-Enum class values: `NONE`,  `LOW`, `MEDIUM`, `HIGH`, `EXTREME`
-
-_Example:_ `LOW`
+_Value:_ `EVALUATE`
 </ResponseField>
 
 <ResponseField name="customerStatus" type="string from enum" required>
@@ -465,6 +458,12 @@ Date when customer first applied.
 _Example:_ `2020-01-03`
 </ResponseField>
 
+<ResponseField name="closingDate" type="date">
+❗Mandatory only when `customerStatus` = `CLOSED`. Not used when `customerStatus` is `PENDING`,  `ACTIVE`, `REJECTED` or `SUSPENDED`.
+
+_Example:_ `2005-05-24`
+</ResponseField>
+
 <ResponseField name="title" type="string" required>
 Title of the organization entity.
 
@@ -511,12 +510,6 @@ _Example:_ `2020-01-05`
 Establishment date for organization type entities.
 
 _Example:_ `2001-02-23`
-</ResponseField>
-
-<ResponseField name="closingDate" type="date">
-❗Mandatory only when `customerStatus` = `CLOSED`. Not used when `customerStatus` is `PENDING`,  `ACTIVE`, `REJECTED` or `SUSPENDED`.
-
-_Example:_ `2005-05-24`
 </ResponseField>
 
 <ResponseField name="nationalCode" type="string">
@@ -595,12 +588,6 @@ _Example:_ `true`
 Indicator for actual address declaration.
 
 _Example:_ `false`
-</ResponseField>
-
-<ResponseField name="activityDescription" type="string">
-Description of entity activity.
-
-_Example:_ `Financial activity`
 </ResponseField>
 
 <ResponseField name="incomeSourceDescription" type="string">
@@ -1196,7 +1183,7 @@ _Example:_ `true`
     </Expandable>
 </ResponseField>
 
-<ResponseField name="listAdditionalValue" type="list[]">
+<ResponseField name="listAdditionalValues" type="list[]">
     <Expandable title="listAdditionalValue list[] fields">
     
         <ResponseField name="code" type="string" required>
