@@ -23,8 +23,6 @@ It includes examples of API requests with mandatory and optional fields, a compr
     "communicationNumber": "Test_ComNr_003ZZZc",
 	"requester": "Company Name Amlyze",
 
-	"action" : "CREATE",
-
 	"sourceOfRiskLevel": "IMPORT",
     "riskLevel": "HIGH",
 	"customerStatus": "ACTIVE",
@@ -47,8 +45,6 @@ It includes examples of API requests with mandatory and optional fields, a compr
 {
    "communicationNumber": "Test_ComNr_003ZZZc",
 	"requester": "Company Name Amlyze",
-
-	"action" : "CREATE",
 
 	"sourceOfRiskLevel": "IMPORT",
     "riskLevel": "HIGH",
@@ -75,28 +71,28 @@ It includes examples of API requests with mandatory and optional fields, a compr
 <ResponseField>
   ```json
 {
-"communicationNumber": "Test_ComNr_003ZZZD",
+    "communicationNumber": "Test_ComNr_003ZZZD",
     "requester": "Company Name Amlyze",
 
-	"action": "CREATE",
+	"action": "UPDATE",
 
     "sourceOfRiskLevel": "IMPORT",
     "riskLevel": "HIGH",
-    "customerStatus": "ACTIVE",
+    "customerStatus": "CLOSED",
 
 
 	"initializeScreeningProcesses": [
         "SANCTIONS",
-        "ADVERSE_MEDIA",
         "PEP",
-      "INTERNAL_LIST"
+        "INTERNAL_LIST"
     ],
 
-
+    "businessUnit" : "unit A",
     "riskManagementCategory": "ORG",
     "entityType": "ORGANIZATION",
     "customerExtId": "ORG_C1_TEST",
     "applicationDate": "2020-01-03",
+    "closingDate" : "2023-09-08",
     "title": "LTD 'MinorMajor'",
     "registrationCountry": "LT",
     "legalForm": "LTD",
