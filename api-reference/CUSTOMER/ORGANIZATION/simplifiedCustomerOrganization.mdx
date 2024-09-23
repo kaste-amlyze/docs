@@ -74,6 +74,7 @@ Below are examples of API requests with mandatory and optional fields, a compreh
     "customerStatus": "ACTIVE",
     "entityType": "ORGANIZATION",
     "customerExtId": "ORG20231117550",
+    "businessUnit": "Unit B",
     "initializeScreeningProcesses": [
         "SANCTIONS",
         "ADVERSE_MEDIA",
@@ -119,7 +120,9 @@ Below are examples of API requests with mandatory and optional fields, a compreh
     "isRegulated": false,
     "isLicenseRequired": true,
     "licenseDescription": "LicenceNo:LV57.144",
+    "listPurpose" : "WHITE",
     "closingDate": "2005-05-24",
+    "isLitigated": false,
     "thirdPartyServicesUsed": true,
     "thirdPartyServicesUsedDescription": "hosting",
     "regionOfActivityDescription": "Central Europe",
@@ -522,7 +525,6 @@ Business entities license description.
 
 _Example:_ `Licence No.4012`
 </ResponseField>
-
 
 <ResponseField name="listPurpose" type="string from enum">
 Indicator whether entity is white/black listed.
