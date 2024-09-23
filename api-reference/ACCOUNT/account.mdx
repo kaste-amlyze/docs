@@ -2,3 +2,565 @@
 title: 'Account import'
 icon: 'arrow-right'
 ---
+
+This section provides information how to submit account details to our database.
+
+It includes examples of API requests with mandatory and optional fields, a comprehensive list of all available fields, common responses, and error descriptions.
+
+**HTTP Method:**  `POST`
+
+**Path:** `{{baseUrl}}`/amlyze-ws-rest/account
+
+**ContentType:** `application/json`
+
+**Authorization:** `Bearer Token`
+
+## API requests examples
+
+<Expandable title="Mandatory fields example | ACCOUNT import">
+<ResponseField>
+  ```json
+{
+
+}
+  ```
+</ResponseField>
+</Expandable>
+
+<Expandable title="All fields example | ACCOUNT import">
+<ResponseField>
+  ```json
+{
+
+}
+  ```
+</ResponseField>
+</Expandable>
+
+## Fields
+
+<ResponseField name="communicationNumber" type="string" required>
+Unique number of communication. It is used for risk assessment callback. This field can store up to 256 characters.
+
+_Example:_ `Test_ComNr_002mHzZZ`
+</ResponseField>
+
+<ResponseField name="requester" type="string" required>
+Name of the system requesting web service.
+
+_Example:_ `Amlyze` _(name of your company)_
+</ResponseField>
+
+<ResponseField name="businessEntityExtId" type="string" required>
+External business entity indicator. Refers to the same value used for the `customerExtId`, which helps to identify external business entity. This identifier corresponds to the client's identifier in the financial institution.
+
+_Example:_ `IND_A1_TEST`
+</ResponseField>
+
+<ResponseField name="businessUnit" type="string from classifier list">
+❗Mandatory field for clients utilizing a multi-organizational solution. Omit this parameter unless instructed about it.
+
+It serves to specify the unique identifier for the business unit. Business units are logical groupings of users and data. Each business unit can have its own set of users, permissions, and data access rules.
+
+_Example:_ `BUSINESS_UNIT_NAME`
+
+<Expandable title="Path to extract classifier values">
+**HTTP Method:**  `GET`
+
+**Path:** `{{baseUrl}}`/classifier/businessUnit
+</Expandable>
+
+</ResponseField>
+
+<ResponseField name="accountExtId" type="string" required>
+External account identification number used to track activity regarding the specific account.
+
+_Example:_ `ACC_001`
+</ResponseField>
+
+<ResponseField name="accountNumber" type="string" required>
+Unique account identification number used in performing operations.
+
+_Example:_ `LI9208800274335945522`
+</ResponseField>
+
+-----------------
+
+<ResponseField name="action" type="string from enum">
+Element is used to indicate whether a client needs to be created or the existing customer's data to be updated. As this field is not mandatory and if not provided, `CREATE` values is set as default.
+
+❗ By `UPDATE`ing, all data will be replaced with newly received one
+
+Enum class values: `CREATE`,  `UPDATE`
+
+_Example:_ `UPDATE`
+</ResponseField>
+
+<ResponseField name="sourceOfRiskLevel" type="string" required>
+The value `IMPORT` is to be used for migration only – the customer and it's questionnaire will be imported without risk assessment.
+
+_Value:_ `IMPORT`
+</ResponseField>
+
+<ResponseField name="riskLevel" type="string from enum" required>
+Predefined risk level of imported customer.
+
+Enum class values: `NONE`,  `LOW`, `MEDIUM`, `HIGH`, `EXTREME`
+
+_Example:_ `LOW`
+</ResponseField>
+
+<ResponseField name="customerStatus" type="string from enum" required>
+Customer's predefined status represents the current standing or state of a customer's relationship with a business or organization
+
+Enum class values: `PENDING`,  `ACTIVE`, `REJECTED`, `SUSPENDED`, `CLOSED`
+
+`PENDING` - Customer application is received but not yet prepared for upcoming workflow
+
+`ACTIVE` - Customer is onboarded and ready for workflow
+
+`REJECTED`- the customer for some reasons was rejected before opening an account for him
+
+`SUSPENDED` - Customer's activities for some reasons are restricted
+
+`CLOSED` - Customer's profile is disabled
+
+_Example:_ `ACTIVE`
+</ResponseField>
+
+<ResponseField name="initializeScreeningProcesses" type="list[]">
+Defines which lists to check during screening process. Strings of the list are noted in the dropdown below.
+
+<Expandable title="list[]">
+  ```json
+     "initializeScreeningProcesses": [
+         "SANCTIONS",
+         "PEP",
+         "ADVERSE_MEDIA",
+         "INTERNAL_LIST"
+     ]
+  ```
+</Expandable>
+
+_Example:_ `PEP, ADVERSE_MEDIA`
+</ResponseField>
+
+<ResponseField name="riskManagementCategory" type="string from classifier list" required>
+Code of risk management category of the object. Value must be from a classifier list personalized to your company.
+
+_Example:_ `IND_AMLYZE`
+
+<Expandable title="Path to extract classifier values">
+**HTTP Method:**  `GET`
+
+**Path:** `{{baseUrl}}`/classifier/riskManagementCategory
+</Expandable>
+
+</ResponseField>
+
+<ResponseField name="entityType" type="string" required>
+Notifies about customer type.
+
+_Value:_ `INDIVIDUAL`
+</ResponseField>
+
+<ResponseField name="applicationDate" type="date" required>
+Date when customer first applied.
+
+_Example:_ `2020-01-03`
+</ResponseField>
+
+<ResponseField name="firstName" type="string" required>
+First name of individual entity.
+
+_Example:_ `Jose`
+</ResponseField>
+
+<ResponseField name="lastName" type="string" required>
+Last name of individual entity.
+
+_Example:_ `Rodriguez`
+</ResponseField>
+
+<ResponseField name="citizenshipCountry" type="string from classifier list" required>
+Country of citizenship of individual entity.
+
+<Expandable title="Path to extract classifier values">
+**HTTP Method:**  `GET`
+
+**Path:** `{{baseUrl}}`/classifier/country
+</Expandable>
+
+_Example:_ `LT`
+</ResponseField>
+
+<ResponseField name="birthDate" type="date">
+Date of birth of individual entity
+
+_Example:_ `2000-01-01`
+</ResponseField>
+
+<ResponseField name="approvalTime" type="date">
+Date of application approval.
+
+_Example:_ `2023-10-01T09:45:00.000+02:00`
+</ResponseField>
+
+<ResponseField name="closingDate" type="date">
+❗Mandatory only when `customerStatus` = `CLOSED`. Not used when `customerStatus` is `PENDING`,  `ACTIVE`, `REJECTED` or `SUSPENDED`.
+
+_Example:_ `1995-05-24`
+</ResponseField>
+
+<ResponseField name="birthCountry" type="string from classifier list">
+Country of birth of individual entity.
+
+<Expandable title="Path to extract classifier values">
+**HTTP Method:**  `GET`
+
+**Path:** `{{baseUrl}}`/classifier/country
+</Expandable>
+
+_Example:_ `LT`
+</ResponseField>
+
+<ResponseField name="nationalCode" type="string">
+National code or national identification number of individual. If a country does not issue national code, any other unique identifier can be used:
+* Passport number
+* Social security number of person
+* A number of taxpayer or registration certificate of the company, etc
+* A number of taxpayer or registration certificate of the company
+
+_Example:_ `50001010022`
+</ResponseField>
+
+<ResponseField name="secondCitizenshipCountry" type="string from classifier list">
+Country of second citizenship of individual entity.
+
+<Expandable title="Path to extract classifier values">
+**HTTP Method:**  `GET`
+
+**Path:** `{{baseUrl}}`/classifier/country
+</Expandable>
+
+_Value:_ `LV`
+</ResponseField>
+
+<ResponseField name="permanentResidenceCountry" type="string from classifier list">
+Country of permanent residency of an individual entity.
+
+<Expandable title="Path to extract classifier values">
+**HTTP Method:**  `GET`
+
+**Path:** `{{baseUrl}}`/classifier/country
+</Expandable>
+
+_Value:_ `LT`
+</ResponseField>
+
+<ResponseField name="isLegalResident" type="boolean">
+Indicator for whether individual entity is a legal resident.
+
+_Example:_ `true`
+</ResponseField>
+
+<ResponseField name="isPEP" type="boolean">
+Identification for whether a person is politically exposed.
+
+_Example:_ `true`
+</ResponseField>
+
+<ResponseField name="isSanctioned" type="boolean">
+Identification for whether a person is sanctioned.
+
+_Example:_ `false`
+</ResponseField>
+
+<ResponseField name="isInAdverseMedia" type="boolean">
+An indication of the existence of information on adverse media about the entity.
+
+_Example:_ `true`
+</ResponseField>
+
+<ResponseField name="isInInternalList" type="boolean">
+An indication of the existence of information on internal list about the entity.
+
+_Example:_ `true`
+</ResponseField>
+
+<ResponseField name="isFamilyPEP" type="boolean">
+Identification of whether a family member of an individual entity is politically exposed.
+
+_Example:_ `false`
+</ResponseField>
+
+<ResponseField name="isLitigated" type="boolean">
+Indicator if the customer is being litigated.
+
+_Example:_ `false`
+</ResponseField>
+
+<ResponseField name="amlOfficer" type="boolean">
+Indicator for the person being AML officer.
+
+_Example:_ `false`
+</ResponseField>
+
+<ResponseField name="listPurpose" type="string from enum">
+Indicator whether entity is white/black listed.
+
+Enum class values: `WHITE`,  `BLACK`
+
+_Example:_ `WHITE`
+</ResponseField>
+
+<ResponseField name="fieldOfActivity" type="object{}">
+Information about the activities. Fields of the object properties are described in the dropdown below.
+
+<Expandable title="fieldOfActivity object{} fields">
+
+<ResponseField name="student" type="object{}">
+
+<Expandable title="student object{} fields">
+
+<ResponseField name="isStudent" type="boolean">
+Indicator of whether the customer is a student.
+
+_Example:_ `true`
+</ResponseField>
+
+<ResponseField name="higherSchoolTitle" type="string">
+Name of the higher school where customer is studying.
+
+_Example:_ `Uni University`
+</ResponseField>
+
+<ResponseField name="higherSchoolCountry" type="string from classifier list">
+Country of higher school of the student.
+
+<Expandable title="Path to extract classifier values">
+**HTTP Method:**  `GET`
+
+**Path:** `{{baseUrl}}`/classifier/country
+</Expandable>
+
+_Example:_ `US`
+</ResponseField>
+
+</Expandable>
+
+</ResponseField>
+
+<ResponseField name="pension" type="object{}">
+
+<Expandable title="pension object{} fields">
+
+<ResponseField name="isPensioner" type="boolean">
+Indicator of whether the customer is a pensioner.
+
+_Example:_ `false`
+</ResponseField>
+
+<ResponseField name="pensionCountry" type="string from classifier list">
+The country responsible for paying an individual's pension.
+
+<Expandable title="Path to extract classifier values">
+**HTTP Method:**  `GET`
+
+**Path:** `{{baseUrl}}`/classifier/country
+</Expandable>
+
+_Example:_ `DE`
+</ResponseField>
+
+</Expandable>
+
+</ResponseField>
+
+<ResponseField name="employment" type="object{}">
+
+<Expandable title="employment object{} fields">
+
+<ResponseField name="isUnemployed" type="boolean">
+Indicator for the individual entity being unemployed.
+
+_Example:_ `true`
+</ResponseField>
+
+<ResponseField name="isSelfEmployed" type="boolean">
+Indicator for the individual entity being self-employed.
+
+_Example:_ `true`
+</ResponseField>
+
+<ResponseField name="isEmployee" type="boolean">
+Indicator for the individual entity being an employee.
+
+_Example:_ `false`
+</ResponseField>
+
+<ResponseField name="employerTitle" type="string">
+Title of the individual employer.
+
+_Example:_ `CompanyB`
+</ResponseField>
+
+<ResponseField name="employmentPositionDescription" type="string">
+Description of the individual employment position.
+
+_Example:_ `Software tester`
+</ResponseField>
+
+</Expandable>
+
+</ResponseField>
+
+<ResponseField name="other" type="object{}">
+
+<Expandable title="other object{} fields">
+
+<ResponseField name="isOtherStatus" type="boolean">
+Indicator for individual other status.
+
+_Example:_ `true`
+</ResponseField>
+
+<ResponseField name="otherStatusDescription" type="string">
+Description of other status.
+
+_Example:_ `Specific description about the  other status`
+</ResponseField>
+
+</Expandable>
+
+</ResponseField>
+
+</Expandable>
+</ResponseField>
+
+<ResponseField name="isActualAddressDeclared" type="boolean">
+Indicator for actual address declaration.
+
+_Example:_ `true`
+</ResponseField>
+
+<ResponseField name="isCorrespondenceAddressDeclared" type="boolean">
+Indicator for actual address declaration.
+
+_Example:_ `false`
+</ResponseField>
+
+<ResponseField name="activityDescription" type="string">
+Description of entity activity.
+
+_Example:_ `Financial activity`
+</ResponseField>
+
+<ResponseField name="incomeSourceDescription" type="string">
+Description of income source of the entity.
+
+_Example:_ `Job salary`
+</ResponseField>
+
+<ResponseField name="initialDepositSource	" type="string">
+Source of initial deposit.
+
+_Example:_ `Salary`
+</ResponseField>
+
+<ResponseField name="initialDepositBank	" type="string">
+Bank of the initial deposit
+
+_Example:_ `TBC`
+</ResponseField>
+
+<ResponseField name="initialDepositAccount	" type="string">
+Account of initial deposit
+
+_Example:_ `LT0089500500000070`
+</ResponseField>
+
+<ResponseField name="initialDepositAmount	" type="double">
+Amount of initial deposit.
+
+_Example:_ `8500.48`
+</ResponseField>
+
+<ResponseField name="initialDepositCurrency" type="string from classifier list">
+This currency field notifies about initial deposit currency.
+
+<Expandable title="Path to extract classifier values">
+**HTTP Method:**  `GET`
+
+**Path:** `{{baseUrl}}`/classifier/currency
+</Expandable>
+
+_Example:_ `EUR`
+</ResponseField>
+
+<ResponseField name="doesCashDominate" type="boolean">
+Indicator for cash being the main income source.
+
+_Example:_ `true`
+</ResponseField>
+
+<ResponseField name="listContact" type="list[]">
+
+<Expandable title="listContact list[] fields">
+
+<ResponseField name="contactType" type="string from enum" required>
+Way of contacting entity. This field is not mandatory if `listContact` field is not provided at all.
+
+Enum class values: `MOBILEPHONE`, `FIXEDPHONE`, `EMAIL`, `WEBSITE`
+
+_Example:_ `MOBILEPHONE`
+</ResponseField>
+
+<ResponseField name="contactDetails" type="string" required>
+Details of contact. This field is not mandatory if `listContact` field is not provided at all.
+
+_Examples:_ `868758585`, `hello@gmail.com`, `www.website.com`
+</ResponseField>
+
+<ResponseField name="useForCommunication" type="boolean">
+Indicator for the usage of communication way.
+
+_Example:_ `true`
+</ResponseField>
+
+</Expandable>
+</ResponseField>
+
+
+## List of possible responses
+
+This part lists common responses after the submission of the request.
+
+```json
+200 OK
+  "resultType": "REQUEST_ACCEPTED"
+
+
+400 Bad Request
+    "resultType": "REQUEST_REJECTED",
+    "errorCode": "O001",
+    "errorDescription": "CommunicationNumber already used in amlyze"
+
+
+404 Not Found
+    "timestamp": "2024-05-26T16:49:50.237+00:00",
+    "status": 404,
+    "error": "Not Found",
+    "path": "/amlyze-ws-rest/acount" --> mistake inside the endpoint
+
+
+500 Internal Server Error
+  "resultType": "REQUEST_REJECTED"
+  "status": 500,
+  "error": "Internal Server Error"
+
+```
+
+## List of possible errors
+
+This section lists the possible errors that can occur when making a bad request to the API. A bad request is a request that somehow does not follow the API specifications.
