@@ -50,7 +50,8 @@
         {
           "group": "ACCOUNT",
           "pages": [
-                "api-reference/ACCOUNT"
+                "api-reference/ACCOUNT/introduction"
+                "api-reference/ACCOUNT/account"
           ]
         },
         {
