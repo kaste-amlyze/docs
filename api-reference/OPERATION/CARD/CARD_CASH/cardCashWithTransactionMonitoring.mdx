@@ -2,3 +2,58 @@
 title: 'CARD operation import - with transaction monitoring'
 icon: 'arrow-right'
 ---
+<Note>
+Just so you know, further examples and descriptions apply only to CARD-CASH operation imports with transaction monitoring.
+</Note>
+
+This section provides information how to submit operation (transaction) details to our database and is focused to those operations which don't require to perform transaction monitoring.
+It includes examples of API requests with mandatory and optional fields, a comprehensive list of all available fields, common responses and error descriptions.
+
+CARD-CASH operation is a simple cash withdrawal from ATM. So in this case note that:
+
+DEBTOR - is an entity
+
+CREDITOR - is an ATM.
+
+
+**HTTP Method:**  `POST`
+
+**Path:** `{{baseUrl}}`/amlyze-ws-rest/operation
+
+**ContentType:** `application/json`
+
+**Authorization:** `Bearer Token`
+
+## API requests examples
+
+<Expandable title="Mandatory fields example | CARD-CASH operation import - with transaction monitoring">
+<ResponseField>
+  ```json
+{
+}
+
+  ```
+</ResponseField>
+</Expandable>
+
+<Expandable title="Mandatory fields example | CARD-CASH operation import - with transaction monitoring with screening">
+<ResponseField>
+  ```json
+{
+   
+}
+  ```
+</ResponseField>
+</Expandable>
+
+<Expandable title="All fields example | CARD-CASH operation import - with transaction monitoring">
+<ResponseField>
+  ```json
+{
+    
+}
+  ```
+</ResponseField>
+</Expandable>
+
+## Fields
