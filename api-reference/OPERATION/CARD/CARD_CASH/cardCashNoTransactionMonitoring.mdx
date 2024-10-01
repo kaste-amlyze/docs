@@ -93,6 +93,8 @@ Enum class values: `NONE`,  `LOW`, `MEDIUM`, `HIGH`, `EXTREME`
 _Example:_ `LOW`
 </ResponseField>
 
+<!-- Is risk level mandatory with import? -->
+
 <ResponseField name="riskManagementCategory" type="string from classifier list" required>
 Code of risk management category of the object. Value must be from a classifier list personalized to your company.
 
@@ -107,9 +109,16 @@ _Example:_ `OP_TRANSFER`
 </ResponseField>
 
 <ResponseField name="operationType" type="string" required>
-Notifies about which kind of operation type was performed
+Notifies about which kind of operation type was performed.
 
-_Value:_ `SEPA`
+_Value:_ `CARD_CASH`
+</ResponseField>
+
+<ResponseField name="cardOperationSubType" type="string" required>
+Card operation subtype code.
+
+_Example:_ `CARD_CASH_WITHDRAWAL`
+
 </ResponseField>
 
 <ResponseField name="businessUnit" type="string from classifier list">
@@ -176,6 +185,24 @@ Amount of money sent in an operation.
 _Example:_ `1499`
 </ResponseField>
 
+<ResponseField name="euroExchangeRate" type="BigDecimal">
+❗Mandatory if  `currency` is not `EUR`. Not Used when `currency` is `EUR`.
+
+Euro exchange rate for other than Eur currency.
+
+_Example:_ `0.93`
+
+</ResponseField>
+
+
+<ResponseField name="amountinEuro" type="BigDecimal">
+❗Mandatory if  `currency` is not `EUR`. Not Used when `currency` is `EUR`.
+
+Amount of money in euro currency.
+
+_Example:_ `1499`
+
+</ResponseField>
 
 <ResponseField name="description" type="string" required>
 The purpose of payment is saved under description.
@@ -224,6 +251,50 @@ Country of an IP address of the operation.
 
 _Example:_ `LT`
 </ResponseField>
+
+<ResponseField name="merchantCode" type="string">
+External identifier of the seller-mediator.
+
+_Example:_ `5541`
+</ResponseField>
+
+<ResponseField name="merchantCountryCode" type="string from classifier list">
+Seller-mediator country code.
+
+<Expandable title="Path to extract classifier values">
+**HTTP Method:**  `GET`
+
+**Path:** `{{baseUrl}}`/classifier/country
+</Expandable>
+
+_Example:_ `ES`
+</ResponseField>
+
+<ResponseField name="merchantDescription" type="string">
+Seller-mediator description.
+
+_Example:_ `Ecommerce merchants`
+</ResponseField>
+
+<ResponseField name="merchantExtId" type="string">
+External identifier of the seller-mediator.
+
+_Example:_ `External_0112`
+</ResponseField>
+
+<ResponseField name="merchantName" type="string">
+Name of the seller-mediator.
+
+_Example:_ `Costco`
+</ResponseField>
+
+<ResponseField name="salesPointCode" type="string">
+External code of the sales point.
+
+_Example:_ `54574`
+</ResponseField>
+
+-----
 
 <ResponseField name="listOperationParty" type="list[]" required>
 List of entities that belong to one operation. Fields of the list are described in the dropdown below.
