@@ -294,7 +294,23 @@ External code of the sales point.
 _Example:_ `54574`
 </ResponseField>
 
------
+<ResponseField name="salesPointExtId" type="string">
+External identifier of the sales point.
+
+_Example:_ `S_extid_0145`
+</ResponseField>
+
+<ResponseField name="terminalCode" type="string">
+External code of terminal.
+
+_Example:_ `57455`
+</ResponseField>
+
+<ResponseField name="terminalExtId" type="string">
+External identifier of the terminal.
+
+_Example:_ `t_extid_145`
+</ResponseField>
 
 <ResponseField name="listOperationParty" type="list[]" required>
 List of entities that belong to one operation. Fields of the list are described in the dropdown below.
@@ -400,6 +416,12 @@ _Example:_ `DE`
 </ResponseField>
 
 </Expandable>
+</ResponseField>
+
+<ResponseField name="cardHolderName" type="string">
+Name on the card.
+
+_Example:_ `Eduardo Rodrigues`
 </ResponseField>
 
 ## List of possible responses
