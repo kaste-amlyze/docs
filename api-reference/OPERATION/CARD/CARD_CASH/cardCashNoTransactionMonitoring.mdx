@@ -31,6 +31,35 @@ CREDITOR - is an ATM.
 <ResponseField>
   ```json
 {
+    "communicationNumber": "Com_458",
+    "requester": "ATM",
+    "operationExtId": "ExtId_458",
+    "operationType": "CARD_CASH",
+    "cardOperationSubType": "CARD_CASH_WITHDRAWAL",
+    "riskManagementCategory": "OP_DEFAULT",
+    "sourceOfRiskLevel": "IMPORT",
+    "operationDateTime": "2024-01-22T15:09:33+02:00",
+    "operationStatus":"EXECUTED",
+    "financialFlowDirection": "OUTGOING",
+    "currency": "EUR",
+    "amount": 2000,
+    "description": "ATM TBCBANK CEN: Cash Withdrawal",
+    "listOperationParty": [
+        {
+            "partyRole": "DEBTOR",
+            "accountNumber": "LT933520036948858623",
+            "bic": "BICXX22",
+            "entityType": "INDIVIDUAL",
+            "firstName": "Geli",
+            "lastName": "Deliono"
+        },
+        {
+            "partyRole": "CREDITOR",
+            "accountNumber": "ATM TBCBANK CEN ",
+            "entityType": "UNKNOWN",
+            "title": "ATM"
+        }
+    ]
 }
 
   ```
