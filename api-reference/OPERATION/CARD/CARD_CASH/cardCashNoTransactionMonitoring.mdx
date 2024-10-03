@@ -70,7 +70,43 @@ CREDITOR - is an ATM.
 <ResponseField>
   ```json
 {
-   
+    "communicationNumber": "Com_458",
+    "requester": "ATM",
+    "operationExtId": "ExtId_458",
+    "operationType": "CARD_CASH",
+    "cardOperationSubType": "CARD_CASH_WITHDRAWAL",
+    "riskManagementCategory": "OP_DEFAULT",
+    "sourceOfRiskLevel": "IMPORT",
+
+    "initializeScreeningProcesses": [
+         "SANCTIONS",
+         "PEP",
+         "ADVERSE_MEDIA",
+         "INTERNAL_LIST"
+    ],
+
+    "operationDateTime": "2024-01-22T15:09:33+02:00",
+    "operationStatus":"EXECUTED",
+    "financialFlowDirection": "OUTGOING",
+    "currency": "EUR",
+    "amount": 2000,
+    "description": "ATM TBCBANK CEN: Cash Withdrawal",
+    "listOperationParty": [
+        {
+            "partyRole": "DEBTOR",
+            "accountNumber": "LT933520036948858623",
+            "bic": "BICXX22",
+            "entityType": "INDIVIDUAL",
+            "firstName": "Geli",
+            "lastName": "Deliono"
+        },
+        {
+            "partyRole": "CREDITOR",
+            "accountNumber": "ATM TBCBANK CEN ",
+            "entityType": "UNKNOWN",
+            "title": "ATM"
+        }
+    ]
 }
   ```
 </ResponseField>
@@ -80,7 +116,68 @@ CREDITOR - is an ATM.
 <ResponseField>
   ```json
 {
-    
+    "communicationNumber": "Com_0027",
+    "requester": "AMLYZE",
+    "operationExtId": "ExtId_0027",
+    "operationType": "CARD_CASH",
+    "cardOperationSubType": "CARD_CASH_WITHDRAWAL",
+    "businessUnit": "Unit B"
+    "riskManagementCategory": "OP_DEFAULT",
+    "sourceOfRiskLevel": "IMPORT",
+
+    "initializeScreeningProcesses": [
+        "SANCTIONS",
+        "ADVERSE_MEDIA",
+        "PEP",
+        "INTERNAL_LIST"
+    ],
+
+    "operationStatus":"EXECUTED",
+    "riskLevel": "HIGH",
+    "operationDateTime": "2024-01-22T15:09:33+02:00",
+    "sourceCountry": "LT",
+    "destinationCountry": "LT",
+    "currency": "EUR",
+    "amount": 5000,
+    "euroExchangeRate": 1,
+    "amountInEuro": 5000,
+    "financialFlowDirection": "OUTGOING",
+    "description": "BANKOMAT TBC: Manual Cash Disbursements",
+    "iPAddress": "222.222.222.222",
+    "iPAddressCountry": "LT",
+    "terminalExtId": "TerminalExtId_0101",
+    "terminalCode": "TerminalCode_0101",
+    "merchantExtId": "MerchantExtId_0101",
+    "merchantCode": "MerchantCode_0101",
+    "merchantDescription": "Decription of a merchant",
+    "merchantName": "XYZ Bank Group - Merchant 1",
+    "merchantCountryCode": "UA",
+    "salesPointExtId": "SalesPointExtId_0101",
+    "salesPointCode": "SalesPointCode_0101",
+    "listOperationParty": [
+        {
+            "partyRole": "DEBTOR",
+            "accountNumber": "LT933520036948858623",
+            "currency": "EUR",
+            "bic": "BICXX22",
+            "bankTitle": "TBC",
+            "entityType": "INDIVIDUAL",
+            "firstName": "Geli",
+            "lastName": "Deliono",
+            "cardNumber": "5167945220452179",
+            "cardValidTill": "2025-12-01",
+            "cardHolderName": "Geli Jr. Deliono"
+        },
+        {
+            "partyRole": "CREDITOR",
+            "accountNumber": "BANKOMAT TBC",
+            "currency": "EUR",
+            "bic": "BIC23",
+            "bankTitle": "TBC",
+            "entityType": "UNKNOWN",
+            "title": "MINDAUGO G.1: TBC ATM – Manual Cash Disbursements"
+        }
+    ]
 }
   ```
 </ResponseField>
