@@ -23,7 +23,36 @@ It includes examples of API requests with mandatory and optional fields, a compr
 <Expandable title="Mandatory fields example | CARD-PAYMENT operation import - with transaction monitoring">
 <ResponseField>
   ```json
-
+{
+    "communicationNumber": "Com_1455",
+    "requester": "financial_institution",
+    "operationExtId": "ExtId_879",
+    "operationType": "CARD_PAYMENT",
+    "cardOperationSubType": "CARD_PURCHASE",
+    "riskManagementCategory": "OP_DEFAULT",
+    "sourceOfRiskLevel": "EVALUATE",
+    "operationDateTime": "2023-09-22T15:09:33+02:00",
+    "currency": "EUR",
+    "amount": 999,
+    "financialFlowDirection": "OUTGOING",
+    "description": "invoice 'LT5234599'",
+    "listOperationParty": [
+        {
+            "partyRole": "DEBTOR",
+            "accountNumber": "LT933520036948858623",
+            "bic": "BICXX22",
+            "entityType": "INDIVIDUAL",
+            "firstName": "Geli",
+            "lastName": "Deliono"
+        },
+        {
+            "partyRole": "CREDITOR",
+            "accountNumber": "LT12345678901234567890",
+            "entityType": "ORGANIZATION",
+            "title": "LAMEER"
+        }
+    ]
+}
   ```
 </ResponseField>
 </Expandable>
@@ -59,17 +88,9 @@ _Example:_ `Amlyze` _(name of your company)_
 </ResponseField>
 
 <ResponseField name="sourceOfRiskLevel" type="string" required>
-The value `IMPORT` is to be used for migration purposes only – the transaction be imported without risk assessment.
+The value "EVALUATE" is used for normal business processes - risk assessment will be performed.
 
-_Value:_ `IMPORT`
-</ResponseField>
-
-<ResponseField name="operationStatus" type="string from enum" required>
-Operation result either it was successfully executed, or the operation was rejected.
-
-Enum class values: `EXECUTED`,  `REJECTED`
-
-_Example:_ `EXECUTED`
+_Value:_ `EVALUATE`
 </ResponseField>
 
 <ResponseField name="riskLevel" type="string from enum">
