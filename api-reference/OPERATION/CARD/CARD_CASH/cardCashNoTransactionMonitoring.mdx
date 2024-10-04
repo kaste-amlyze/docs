@@ -198,7 +198,7 @@ _Example:_ `Amlyze` _(name of your company)_
 </ResponseField>
 
 <ResponseField name="sourceOfRiskLevel" type="string" required>
-The value `IMPORT` is to be used for migration purposes only – the customer and it's questionnaire will be imported without risk assessment.
+The value `IMPORT` is to be used for migration purposes only – the transaction be imported without risk assessment.
 
 _Value:_ `IMPORT`
 </ResponseField>
@@ -211,7 +211,7 @@ Enum class values: `EXECUTED`,  `REJECTED`
 _Example:_ `EXECUTED`
 </ResponseField>
 
-<ResponseField name="riskLevel" type="string from enum" required>
+<ResponseField name="riskLevel" type="string from enum">
 The risk level of imported operation.
 
 Enum class values: `NONE`,  `LOW`, `MEDIUM`, `HIGH`, `EXTREME`

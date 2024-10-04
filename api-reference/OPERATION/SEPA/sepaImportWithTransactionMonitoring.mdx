@@ -110,6 +110,7 @@ SEPA (Single Euro Payments Area) operations involve transactions between two or 
     "requester": "Company Name Amlyze",
 
     "sourceOfRiskLevel": "EVALUATE",
+    "riskLevel": "LOW",
     "riskManagementCategory": "OP_TRANSFER",
     "operationType": "SEPA",
 
@@ -207,17 +208,9 @@ _Example:_ `Amlyze` _(name of your company)_
 </ResponseField>
 
 <ResponseField name="sourceOfRiskLevel" type="string" required>
-The value `IMPORT` is to be used for migration purposes only – the customer and it's questionnaire will be imported without risk assessment.
+The value "EVALUATE" is used for normal business processes - risk assessment will be performed.
 
 _Value:_ `EVALUATE`
-</ResponseField>
-
-<ResponseField name="operationStatus" type="string from enum">
-Operation result either it was successfully executed, or the operation was rejected.
-
-Enum class values: `EXECUTED`,  `REJECTED`
-
-_Example:_ `EXECUTED`
 </ResponseField>
 
 <ResponseField name="riskLevel" type="string from enum">
