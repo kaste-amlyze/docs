@@ -4,7 +4,7 @@ icon: 'arrow-right'
 ---
 
 <Note>
-Just so you know, further examples and descriptions apply only to CASH DEPOSIT INCOMING operation imports without transaction monitoring.
+Just so you know, further examples and descriptions apply only to CASH DEPOSIT INCOMING operation imports with transaction monitoring.
 </Note>
 
 This section provides information how to submit operation (transaction) details to our database and is focused to those operations which don't require to perform transaction monitoring.
@@ -29,26 +29,136 @@ CREDITOR is the receiver
 
 ## API requests examples
 
-<Expandable title="Mandatory fields example | CASH DEPOSIT INCOMING operation import - no transaction monitoring">
+<Expandable title="Mandatory fields example | CASH DEPOSIT INCOMING operation import - with transaction monitoring">
 <ResponseField>
   ```json
-
+{
+    "communicationNumber": "ComNr_0011",
+    "requester": "Kauno kredito unija",
+    "riskManagementCategory": "OP_DEFAULT",
+    "sourceOfRiskLevel": "EVALUATE",
+    "operationType": "CASH",
+    "financialFlowDirection": "INCOMING",
+    "operationExtId": "OP20231114T12",
+    "operationDateTime": "2023-11-15T15:09:33+02:00",
+    "amount": 998,
+    "currency": "EUR",
+    "description": "Depositing money into the account",
+    "listOperationParty": [
+        {
+            "partyRole": "DEBTOR",
+            "accountNumber": "IND20231113T180927",
+            "entityType": "INDIVIDUAL",
+            "firstName": "Geli",
+            "lastName": "Deliono"
+        },
+        {
+            "partyRole": "CREDITOR",
+            "accountNumber": "LV6630800200000018155",
+            "bic": "BICXX22",
+            "entityType": "INDIVIDUAL",
+            "firstName": "Geli",
+            "lastName": "Deliono"
+        }
+    ]
+}
 ```
 </ResponseField>
 </Expandable>
 
-<Expandable title="Mandatory fields example | CASH DEPOSIT INCOMING operation import - no transaction monitoring with screening">
+<Expandable title="Mandatory fields example | CASH DEPOSIT INCOMING operation import - with transaction monitoring and screening">
 <ResponseField>
   ```json
+{
+    "communicationNumber": "ComNr_0011",
+    "requester": "Kauno kredito unija",
+    "riskManagementCategory": "OP_DEFAULT",
+    "sourceOfRiskLevel": "EVALUATE",
+    "operationType": "CASH",
+    "financialFlowDirection": "INCOMING",
+    "operationExtId": "OP20231114T12",
+    "operationDateTime": "2023-11-15T15:09:33+02:00",
 
+    "initializeScreeningProcesses": [
+         "SANCTIONS",
+         "PEP",
+         "ADVERSE_MEDIA",
+         "INTERNAL_LIST"
+    ],
+
+    "amount": 998,
+    "currency": "EUR",
+    "description": "Depositing money into the account",
+    "listOperationParty": [
+        {
+            "partyRole": "DEBTOR",
+            "accountNumber": "IND20231113T180927",
+            "entityType": "INDIVIDUAL",
+            "firstName": "Geli",
+            "lastName": "Deliono"
+        },
+        {
+            "partyRole": "CREDITOR",
+            "accountNumber": "LV6630800200000018155",
+            "bic": "BICXX22",
+            "entityType": "INDIVIDUAL",
+            "firstName": "Geli",
+            "lastName": "Deliono"
+        }
+    ]
+}
 ```
 </ResponseField>
 </Expandable>
 
-<Expandable title="All fields example | CASH DEPOSIT INCOMING operation import - no transaction monitoring">
+<Expandable title="All fields example | CASH DEPOSIT INCOMING operation import - with transaction monitoring">
 <ResponseField>
   ```json
+{
+    "communicationNumber": "ComNr_0011",
+    "requester": "Kauno kredito unija",
+    "riskManagementCategory": "OP_DEFAULT",
+    "businessUnit": "BUSINESS_UNIT_NAME",
+    "sourceOfRiskLevel": "EVALUATE",
+    "operationType": "CASH",
+    "financialFlowDirection": "INCOMING",
+    "operationExtId": "OP20231114T12",
+    "operationDateTime": "2023-11-15T15:09:33+02:00",
 
+    "initializeScreeningProcesses": [
+         "SANCTIONS",
+         "PEP",
+         "ADVERSE_MEDIA",
+         "INTERNAL_LIST"
+    ],
+
+    "amount": 998,
+    "currency": "GBP",
+    "amountInEuro": 1140.41,
+    "euroExchangeRate": 1.14,
+    "description": "Depositing money into the account",
+    "sourceCountry": "LT",
+    "destinationCountry": "LT",
+    "listOperationParty": [
+        {
+            "partyRole": "DEBTOR",
+            "accountNumber": "IND20231113T180927",
+            "entityType": "INDIVIDUAL",
+            "firstName": "Geli",
+            "lastName": "Deliono"
+        },
+        {
+            "partyRole": "CREDITOR",
+            "accountNumber": "LV6630800200000018155",
+            "bic": "BICXX22",
+            "currency": "EUR",
+            "bankTitle": "TBC bank",
+            "entityType": "INDIVIDUAL",
+            "firstName": "Geli",
+            "lastName": "Deliono"
+        }
+    ]
+}
 ```
 </ResponseField>
 </Expandable>
@@ -68,17 +178,9 @@ _Example:_ `Amlyze` _(name of your company)_
 </ResponseField>
 
 <ResponseField name="sourceOfRiskLevel" type="string" required>
-The value `IMPORT` is to be used for migration purposes only – the transaction will be imported without risk assessment.
+The value "EVALUATE" is used for normal business processes - risk assessment will be performed.
 
-_Value:_ `IMPORT`
-</ResponseField>
-
-<ResponseField name="operationStatus" type="string from enum" required>
-Operation result either it was successfully executed, or the operation was rejected.
-
-Enum class values: `EXECUTED`,  `REJECTED`
-
-_Example:_ `EXECUTED`
+_Value:_ `EVALUATE`
 </ResponseField>
 
 <ResponseField name="riskLevel" type="string from enum">
@@ -105,7 +207,7 @@ _Example:_ `OP_TRANSFER`
 <ResponseField name="operationType" type="string" required>
 Notifies about which kind of operation type was performed.
 
-_Value:_ `CARD_CASH`
+_Value:_ `CASH`
 </ResponseField>
 
 <ResponseField name="businessUnit" type="string from classifier list">
@@ -129,12 +231,10 @@ External identifier of operation.
 _Example:_ `Op_01_SEPA_TEST`
 </ResponseField>
 
-<ResponseField name="financialFlowDirection" type="string from enum" required>
+<ResponseField name="financialFlowDirection" type="string" required>
 Refers to the movement of money between entities or accounts.
 
-Enum class values: `INCOMING`,  `OUTGOING`
-
-_Example:_ `INCOMING`
+_Value:_ `INCOMING`
 </ResponseField>
 
 <ResponseField name="initializeScreeningProcesses" type="list[]">

@@ -67,7 +67,7 @@ CREDITOR is the receiver
 </ResponseField>
 </Expandable>
 
-<Expandable title="Mandatory fields example | CASH DEPOSIT INCOMING operation import - no transaction monitoring with screening">
+<Expandable title="Mandatory fields example | CASH DEPOSIT INCOMING operation import - no transaction monitoring and screening">
 <ResponseField>
   ```json
 {
@@ -217,7 +217,7 @@ _Example:_ `OP_TRANSFER`
 <ResponseField name="operationType" type="string" required>
 Notifies about which kind of operation type was performed.
 
-_Value:_ `CARD_CASH`
+_Value:_ `CASH`
 </ResponseField>
 
 <ResponseField name="businessUnit" type="string from classifier list">
@@ -241,12 +241,10 @@ External identifier of operation.
 _Example:_ `Op_01_SEPA_TEST`
 </ResponseField>
 
-<ResponseField name="financialFlowDirection" type="string from enum" required>
+<ResponseField name="financialFlowDirection" type="string" required>
 Refers to the movement of money between entities or accounts.
 
-Enum class values: `INCOMING`,  `OUTGOING`
-
-_Example:_ `INCOMING`
+_Value:_ `INCOMING`
 </ResponseField>
 
 <ResponseField name="initializeScreeningProcesses" type="list[]">
