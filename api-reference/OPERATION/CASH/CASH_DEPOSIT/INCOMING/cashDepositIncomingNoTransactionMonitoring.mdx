@@ -32,7 +32,37 @@ CREDITOR is the receiver
 <Expandable title="Mandatory fields example | CASH DEPOSIT INCOMING operation import - no transaction monitoring">
 <ResponseField>
   ```json
-
+{
+    "communicationNumber": "ComNr_0011",
+    "requester": "Kauno kredito unija",
+    "riskManagementCategory": "OP_DEFAULT",
+    "sourceOfRiskLevel": "IMPORT",
+    "operationStatus": "EXECUTED",
+    "operationType": "CASH",
+    "financialFlowDirection": "INCOMING",
+    "operationExtId": "OP20231114T12",
+    "operationDateTime": "2023-11-15T15:09:33+02:00",
+    "amount": 998,
+    "currency": "EUR",
+    "description": "Depositing money into the account",
+    "listOperationParty": [
+        {
+            "partyRole": "DEBTOR",
+            "accountNumber": "IND20231113T180927",
+            "entityType": "INDIVIDUAL",
+            "firstName": "Geli",
+            "lastName": "Deliono"
+        },
+        {
+            "partyRole": "CREDITOR",
+            "accountNumber": "IND20231113T180927",
+            "bic": "BICXX22",
+            "entityType": "INDIVIDUAL",
+            "firstName": "Geli",
+            "lastName": "Deliono"
+        }
+    ]
+}
 ```
 </ResponseField>
 </Expandable>
@@ -40,7 +70,45 @@ CREDITOR is the receiver
 <Expandable title="Mandatory fields example | CASH DEPOSIT INCOMING operation import - no transaction monitoring with screening">
 <ResponseField>
   ```json
+{
+    "communicationNumber": "ComNr_0011",
+    "requester": "Kauno kredito unija",
+    "riskManagementCategory": "OP_DEFAULT",
+    "sourceOfRiskLevel": "IMPORT",
+    "operationStatus": "EXECUTED",
+    "operationType": "CASH",
+    "financialFlowDirection": "INCOMING",
 
+    "initializeScreeningProcesses": [
+         "SANCTIONS",
+         "PEP",
+         "ADVERSE_MEDIA",
+         "INTERNAL_LIST"
+    ],
+    
+    "operationExtId": "OP20231114T12",
+    "operationDateTime": "2023-11-15T15:09:33+02:00",
+    "amount": 998,
+    "currency": "EUR",
+    "description": "Depositing money into the account",
+    "listOperationParty": [
+        {
+            "partyRole": "DEBTOR",
+            "accountNumber": "IND20231113T180927",
+            "entityType": "INDIVIDUAL",
+            "firstName": "Geli",
+            "lastName": "Deliono"
+        },
+        {
+            "partyRole": "CREDITOR",
+            "accountNumber": "IND20231113T180927",
+            "bic": "BICXX22",
+            "entityType": "INDIVIDUAL",
+            "firstName": "Geli",
+            "lastName": "Deliono"
+        }
+    ]
+}
 ```
 </ResponseField>
 </Expandable>
@@ -48,7 +116,51 @@ CREDITOR is the receiver
 <Expandable title="All fields example | CASH DEPOSIT INCOMING operation import - no transaction monitoring">
 <ResponseField>
   ```json
+{
+    "communicationNumber": "ComNr_0011",
+    "requester": "Kauno kredito unija",
+    "riskManagementCategory": "OP_DEFAULT",
 
+    "initializeScreeningProcesses": [
+    "SANCTIONS",
+    "ADVERSE_MEDIA",
+    "PEP",
+    "INTERNAL_LIST"
+    ],
+
+    "sourceOfRiskLevel": "IMPORT",
+    "businessUnit": "Unit A",
+    "operationStatus": "EXECUTED",
+    "operationType": "CASH",
+    "financialFlowDirection": "INCOMING",
+    "operationExtId": "OP20231114T12",
+    "operationDateTime": "2023-11-15T15:09:33+02:00",
+    "amount": 998,
+    "currency": "EUR",
+    "riskLevel": "LOW",
+    "sourceCountry": "LT",
+    "destinationCountry": "LT",
+    "description": "Depositing money into the account",
+    "listOperationParty": [
+        {
+            "partyRole": "DEBTOR",
+            "accountNumber": "IND20231113T180927",
+            "entityType": "INDIVIDUAL",
+            "firstName": "Geli",
+            "lastName": "Deliono"
+        },
+        {
+            "partyRole": "CREDITOR",
+            "accountNumber": "IND20231113T180927",
+            "bic": "BICXX22",
+            "currency": "EUR",
+            "bankTitle": "MyBank",
+            "entityType": "INDIVIDUAL",
+            "firstName": "Geli",
+            "lastName": "Deliono"
+        }
+    ]
+}
 ```
 </ResponseField>
 </Expandable>
@@ -88,8 +200,6 @@ Enum class values: `NONE`,  `LOW`, `MEDIUM`, `HIGH`, `EXTREME`
 
 _Example:_ `LOW`
 </ResponseField>
-
-<!-- Is risk level mandatory with import? -->
 
 <ResponseField name="riskManagementCategory" type="string from classifier list" required>
 Code of risk management category of the object. Value must be from a classifier list personalized to your company.
@@ -196,7 +306,7 @@ _Example:_ `1499`
 <ResponseField name="description" type="string" required>
 The purpose of payment is saved under description.
 
-_Example:_ `Invoice '02'`
+_Example:_ `Depositing money into the account.`
 </ResponseField>
 
 <ResponseField name="sourceCountry" type="string from classifier list">
