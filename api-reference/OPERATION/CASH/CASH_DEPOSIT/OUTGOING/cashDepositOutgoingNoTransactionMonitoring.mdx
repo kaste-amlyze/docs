@@ -10,7 +10,7 @@ Just so you know, further examples and descriptions apply only to CASH DEPOSIT O
 This section provides information how to submit operation (transaction) details to our database and is focused to those operations which don't require to perform transaction monitoring.
 It includes examples of API requests with mandatory and optional fields, a comprehensive list of all available fields, common responses and error descriptions.
 
-CASH DEPOSIT OUTGOING operation is a simple money withdrawal from the account (not a card cash withdrawal). So in this case note that:
+CASH DEPOSIT OUTGOING operation is a money withdrawal from the account (not a card cash withdrawal). So in this case note that:
 
 Both OperationParty sides covers the same entity
 
@@ -137,6 +137,8 @@ CREDITOR is the receiver
     "operationDateTime": "2023-11-15T15:09:33+02:00",
     "amount": 998,
     "currency": "EUR",
+    "amountInEuro": 1140.41,
+    "euroExchangeRate": 1.14,
     "riskLevel": "LOW",
     "sourceCountry": "LT",
     "destinationCountry": "LT",
