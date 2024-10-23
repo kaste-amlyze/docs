@@ -41,7 +41,8 @@
             {
               "group": "ORGANIZATION",
               "pages": [
-                "api-reference/CUSTOMER/ORGANIZATION/customerOrganization",
+                "api-reference/CUSTOMER/ORGANIZATION/customerOrganizationImportNoRiskAssesment",
+                "api-reference/CUSTOMER/ORGANIZATION/customerOrganizationImportWithRiskAssesment",
                 "api-reference/CUSTOMER/ORGANIZATION/simplifiedCustomerOrganization"
               ]
             }
