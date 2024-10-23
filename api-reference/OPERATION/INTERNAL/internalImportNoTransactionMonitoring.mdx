@@ -24,7 +24,41 @@ It includes examples of API requests with mandatory and optional fields, a compr
 <ResponseField>
   ```json
 {
+    "communicationNumber": "Test_ComNr_INTERNAL_05",
+    "requester": "Company Name Amlyze",
 
+    "sourceOfRiskLevel": "IMPORT",
+    "operationStatus":"EXECUTED",
+    "riskLevel": "HIGH",
+
+    "riskManagementCategory": "OP_TRANSFER",
+    "operationType": "INTERNAL",
+
+    "operationExtId": "Op_05_INTERNAL_ULTIMATES_TEST",
+    "financialFlowDirection": "NULL",
+
+    "operationDateTime": "2023-09-22T15:09:33+02:00",
+    "currency": "EUR",
+    "amount": 200,
+    "description": "invoice '123456'",
+    "listOperationParty": [
+        {
+          "partyRole": "DEBTOR",
+          "accountNumber": "LT9208800274335945522",
+          "bic": "AmlyzeXX22",
+          "entityType": "INDIVIDUAL",
+          "firstName" : "Tomas",
+	        "lastName" : "Garcia"
+        },
+        {
+          "partyRole": "CREDITOR",
+          "accountNumber": "LT9208800274335945500",
+          "bic": "AmlyzeXX22",
+          "entityType": "INDIVIDUAL",
+          "firstName" : "Tomas",
+	        "lastName" : "Garcia"
+        }
+    ]
 }
 ```
 </ResponseField>
@@ -34,7 +68,48 @@ It includes examples of API requests with mandatory and optional fields, a compr
 <ResponseField>
   ```json
 {
-    
+    "communicationNumber": "Test_ComNr_INTERNAL_05",
+    "requester": "Company Name Amlyze",
+
+    "sourceOfRiskLevel": "IMPORT",
+    "operationStatus":"EXECUTED",
+    "riskLevel": "HIGH",
+
+    "initializeScreeningProcesses": [
+         "SANCTIONS",
+         "PEP",
+         "ADVERSE_MEDIA",
+         "INTERNAL_LIST"
+    ],
+
+    "riskManagementCategory": "OP_TRANSFER",
+    "operationType": "INTERNAL",
+
+    "operationExtId": "Op_05_INTERNAL_ULTIMATES_TEST",
+    "financialFlowDirection": "NULL",
+
+    "operationDateTime": "2023-09-22T15:09:33+02:00",
+    "currency": "EUR",
+    "amount": 200,
+    "description": "invoice '123456'",
+    "listOperationParty": [
+        {
+          "partyRole": "DEBTOR",
+          "accountNumber": "LT9208800274335945522",
+          "bic": "AmlyzeXX22",
+          "entityType": "INDIVIDUAL",
+          "firstName" : "Tomas",
+	        "lastName" : "Garcia"
+        },
+        {
+          "partyRole": "CREDITOR",
+          "accountNumber": "LT9208800274335945500",
+          "bic": "AmlyzeXX22",
+          "entityType": "INDIVIDUAL",
+          "firstName" : "Tomas",
+	        "lastName" : "Garcia"
+        }
+    ]
 }
 ```
 </ResponseField>
