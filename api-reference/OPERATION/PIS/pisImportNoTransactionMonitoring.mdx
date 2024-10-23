@@ -2,3 +2,390 @@
 title: 'PIS operation import - no transaction monitoring'
 icon: 'arrow-right'
 ---
+
+<Note>
+Just so you know, further examples and descriptions apply only to PIS operation imports without transaction monitoring.
+</Note>
+
+This section provides information how to submit operation (transaction) details to our database and is focused to those operations which don't require to perform transaction monitoring.
+It includes examples of API requests with mandatory and optional fields, a comprehensive list of all available fields, common responses and error descriptions.
+
+**HTTP Method:**  `POST`
+
+**Path:** `{{baseUrl}}`/amlyze-ws-rest/operation
+
+**ContentType:** `application/json`
+
+**Authorization:** `Bearer Token`
+
+## API requests examples
+
+<Expandable title="Mandatory fields example | PIS operation import - no transaction monitoring">
+<ResponseField>
+  ```json
+
+```
+</ResponseField>
+</Expandable>
+
+<Expandable title="Mandatory fields example | PIS operation import - no transaction monitoring and screening">
+<ResponseField>
+  ```json
+
+```
+</ResponseField>
+</Expandable>
+
+<Expandable title="All fields example | PIS operation import - no transaction monitoring">
+<ResponseField>
+  ```json
+
+```
+</ResponseField>
+</Expandable>
+
+## Fields
+
+<ResponseField name="communicationNumber" type="string" required>
+Unique number of communication. This field can store up to 256 characters.
+
+_Example:_ `ComNr_01_TEST`
+</ResponseField>
+
+<ResponseField name="requester" type="string" required>
+Name of the system requesting web service.
+
+_Example:_ `Amlyze` _(name of your company)_
+</ResponseField>
+
+<ResponseField name="sourceOfRiskLevel" type="string" required>
+The value `IMPORT` is to be used for migration purposes only – the transaction will be imported without risk assessment.
+
+_Value:_ `IMPORT`
+</ResponseField>
+
+<ResponseField name="operationStatus" type="string from enum" required>
+Operation result either it was successfully executed, or the operation was rejected.
+
+Enum class values: `EXECUTED`,  `REJECTED`
+
+_Example:_ `EXECUTED`
+</ResponseField>
+
+<ResponseField name="riskLevel" type="string from enum">
+The risk level of imported operation.
+
+Enum class values: `NONE`,  `LOW`, `MEDIUM`, `HIGH`, `EXTREME`
+
+_Example:_ `LOW`
+</ResponseField>
+
+<ResponseField name="riskManagementCategory" type="string from classifier list" required>
+Code of risk management category of the object. Value must be from a classifier list personalized to your company.
+
+_Example:_ `OP_DEFAULT`
+
+<Expandable title="Path to extract classifier values">
+**HTTP Method:**  `GET`
+
+**Path:** `{{baseUrl}}`/classifier/riskManagementCategory
+</Expandable>
+
+</ResponseField>
+
+<ResponseField name="operationType" type="string" required>
+Notifies about which kind of operation type was performed.
+
+_Value:_ `PIS`
+</ResponseField>
+
+<ResponseField name="businessUnit" type="string from classifier list">
+❗Mandatory field for clients utilizing a multi-organizational solution. Omit this parameter unless instructed about it.
+
+It serves to specify the unique identifier for the business unit. Business units are logical groupings of users and data. Each business unit can have its own set of users, permissions, and data access rules.
+
+_Example:_ `BUSINESS_UNIT_NAME`
+
+<Expandable title="Path to extract classifier values">
+**HTTP Method:**  `GET`
+
+**Path:** `{{baseUrl}}`/classifier/businessUnit
+</Expandable>
+
+</ResponseField>
+
+<ResponseField name="operationExtId" type="string" required>
+External identifier of operation.
+
+_Example:_ `Op_01_PIS_TEST`
+</ResponseField>
+
+<ResponseField name="financialFlowDirection" type="string" required>
+Refers to the movement of money between entities or accounts.
+
+_Value:_ `INCOMING`
+</ResponseField>
+
+<ResponseField name="initializeScreeningProcesses" type="list[]">
+Defines which lists to check during screening process. Strings of the list are noted in the dropdown below.
+
+<Expandable title="list[]">
+  ```json
+     "initializeScreeningProcesses": [
+         "SANCTIONS",
+         "PEP",
+         "ADVERSE_MEDIA",
+         "INTERNAL_LIST"
+     ]
+  ```
+</Expandable>
+
+_Example:_ `PEP, ADVERSE_MEDIA`
+</ResponseField>
+
+<ResponseField name="operationDateTime" type="date" required>
+The operation date and time show when the operation proceeded.
+
+_Example:_ `2024-08-16T13:00:00Z`
+</ResponseField>
+
+<ResponseField name="currency" type="string" required>
+Currency code.
+
+_Value:_ `EUR`
+</ResponseField>
+
+<ResponseField name="amount" type="BigDecimal" required>
+Amount of money sent in an operation.
+
+_Example:_ `1499`
+</ResponseField>
+
+<ResponseField name="euroExchangeRate" type="BigDecimal">
+❗Mandatory if  `currency` is not `EUR`. Not Used when `currency` is `EUR`.
+
+Euro exchange rate for other than Eur currency.
+
+_Example:_ `0.93`
+
+</ResponseField>
+
+
+<ResponseField name="amountinEuro" type="BigDecimal">
+❗Mandatory if  `currency` is not `EUR`. Not Used when `currency` is `EUR`.
+
+Amount of money in euro currency.
+
+_Example:_ `1499`
+
+</ResponseField>
+
+<ResponseField name="description" type="string" required>
+The purpose of payment is saved under description.
+
+_Example:_ `Payment #5`
+</ResponseField>
+
+<ResponseField name="sourceCountry" type="string from classifier list">
+Country rom where the operation was initiated.
+
+<Expandable title="Path to extract classifier values">
+**HTTP Method:**  `GET`
+
+**Path:** `{{baseUrl}}`/classifier/country
+</Expandable>
+
+_Example:_ `LT`
+</ResponseField>
+
+<ResponseField name="destinationCountry" type="string from classifier list">
+Country of operation's destination.
+
+<Expandable title="Path to extract classifier values">
+**HTTP Method:**  `GET`
+
+**Path:** `{{baseUrl}}`/classifier/country
+</Expandable>
+
+_Example:_ `LT`
+</ResponseField>
+
+<ResponseField name="ipAddress" type="string">
+The IP address of the operation.
+
+_Example:_ `xxx.zzz.yyyy.www`
+</ResponseField>
+
+<ResponseField name="ipAddressCountry" type="string from classifier list">
+Country of an IP address of the operation.
+
+<Expandable title="Path to extract classifier values">
+**HTTP Method:**  `GET`
+
+**Path:** `{{baseUrl}}`/classifier/country
+</Expandable>
+
+_Example:_ `LT`
+</ResponseField>
+
+<ResponseField name="listOperationParty" type="list[]" required>
+List of entities that belong to one operation. Fields of the list are described in the dropdown below.
+
+<Expandable title="listOperationParty list[] fields">
+
+<ResponseField name="partyRole" type="string from enum" required>
+The role of the party in ongoing operation. At least one operation party account must already exist in Amlyze.
+
+Only one operation can be imported per API request which means only one `CREDITOR` could be provided.
+
+**Enum class values:** `CREDITOR`, `ULTIMATE_CREDITOR`
+
+_Example:_ `CREDITOR`
+</ResponseField>
+
+<ResponseField name="accountNumber" type="string" required>
+❗Not mandatory if  `partyRole` is `ULTIMATE_DEBTOR` or `ULTIMATE_CREDITOR`.
+
+Unique account identification number used in performing operations.
+
+_Example:_ `LT038625979279192518`
+</ResponseField>
+
+<ResponseField name="currency" type="string">
+Currency code of operation.
+
+_Value:_ `EUR`
+</ResponseField>
+
+<ResponseField name="bic" type="string" required>
+❗Mandatory only for your customer. Not mandatory for counterparties. 
+
+Bank identifier code for account number.
+
+_Example:_ `BICXX22`
+</ResponseField>
+
+<ResponseField name="bankTitle" type="string">
+Title of bank at which the operation is happening.
+
+_Example:_ `TBC bank`
+</ResponseField>
+
+<ResponseField name="entityType" type="string from enum" required>
+Describes client status.
+
+Enum class values: `INDIVIDUAL`,  `ORGANIZATION`, `UNKNOWN`
+
+`UNKNOWN` is valid only for counterparties.
+
+_Example:_ `INDIVIDUAL`
+</ResponseField>
+
+<ResponseField name="firstName" type="string">
+Individual entity's first name, used only together with `lastName` and never alone.
+
+_Example:_ `Eduardo`
+</ResponseField>
+
+<ResponseField name="lastName" type="string">
+Individual entity's last name, used only together with `firstName` and never alone.
+
+_Example:_ `Rodriguez`
+</ResponseField>
+
+<ResponseField name="title" type="string" required>
+❗Not mandatory if entity is `INDIVIDUAL` and both `firstName` and 
+`lastName` are provided.
+
+Identifies a party (`INDIVIDUAL`, `ORGANIZATION` or `UNKNOWN`) without requiring `firstName` or `lastName`.
+
+_Example:_ `Moller`
+</ResponseField>
+
+</Expandable>
+</ResponseField>
+
+## List of possible responses
+
+This part lists common responses after the submission of the request.
+
+```json
+200 OK
+  "resultType": "REQUEST_ACCEPTED"
+
+
+400 Bad Request
+    "resultType": "REQUEST_REJECTED",
+    "errorCode": "O001",
+    "errorDescription": "CommunicationNumber already used in amlyze"
+
+
+404 Not Found
+    "timestamp": "2024-05-26T16:49:50.237+00:00",
+    "status": 404,
+    "error": "Not Found",
+    "path": "/amlyze-ws-rest/customerr" --> mistake inside the endpoint
+
+
+500 Internal Server Error
+  "resultType": "REQUEST_REJECTED"
+  "status": 500,
+  "error": "Internal Server Error"
+```
+
+## List of possible errors
+
+This part lists the possible errors that can occur when making a bad request to the API. A bad request is a request that somehow does not follow the API specifications.
+
+| **Category**                | **Error Message**                                                               |
+|-----------------------------|---------------------------------------------------------------------------------|
+| Action Not Supported        | Action is not supported.                                                        |
+| OperationExtId Issues       | OperationExtId is mandatory.                                                     |
+|                             | Operation with given OperationExtId already exists in Amlyze.                     |
+|                             | Operation with given OperationExtId does not exist in Amlyze.                     |
+| Requester Issues            | Requester is mandatory.                                                           |
+| OperationDateTime Issues    | OperationDateTime is mandatory.                                                   |
+| Description Issues          | Description is mandatory.                                                         |
+| CommunicationNumber Issues  | CommunicationNumber is mandatory.                                                 |
+|                             | CommunicationNumber was already used in Amlyze.                                   |
+| SourceOfRiskLevel Issues    | SourceOfRiskLevel is mandatory; allowed values: IMPORT / EVALUATE.                |
+|                             | Problem with SourceOfRiskLevel.                                                   |
+| Country Issues              | SourceCountry is mandatory; check country classifier codes for allowed values.   |
+|                             | DestinationCountry is mandatory; check country classifier codes for allowed values.|
+|                             | Invalid MerchantCountryCode.                                                      |
+| Amount Issues               | Amount is mandatory and must be greater than 0.                                  |
+|                             | Despite currency = EUR, AmountInEur differs from Amount.                          |
+|                             | AmountInEur is mandatory and must be greater than 0.                             |
+|                             | EuroExchangeRate is mandatory and must be greater than 0 (when currency != EUR). |
+| OperationType Issues        | OperationType is mandatory.                                                       |
+|                             | Problem with OperationType.                                                        |
+|                             | OperationType is not defined in Amlyze. Check Operation type classifier for available values. |
+| OperationStatus Issues      | OperationStatus is mandatory for IMPORT operation. Possible values: REJECTED / EXECUTED. |
+|                             | OperationStatus must be empty for EVALUATE operation.                             |
+| FinancialFlowDirection Issues| For not INTERNAL operation financialFlowDirection value can't be 'NULL'.         |
+|                             | Invalid FinancialFlowDirection. Your institution DEBTOR found for INCOMING operation. |
+|                             | Invalid FinancialFlowDirection. Your institution CREDITOR found for OUTGOING operation. |
+| General Issues              | ListOperationParty is mandatory and can't be empty.                              |
+|                             | Problem with OperationParties.                                                   |
+|                             | Invalid operation party count. Range: min 1 max 4.                                |
+|                             | No operation party account related to your institution BIC, or Customer.          |
+|                             | OperationParties must contain CREDITOR.                                           |
+|                             | OperationParties must contain DEBTOR.                                             |
+|                             | Invalid count of your institution operation parties for [operationType].           |
+| Specific Roles and Types    | entityType mismatch in operationParty[i]. Amlyze customer has a different entity type to operation one. |
+|                             | For INCOMING operation your's customer party role must be CREDITOR.              |
+|                             | For OUTGOING operation your's customer party role must be DEBTOR.                |
+|                             | For card_refund subtype, creditor must be your customer.                         |
+|                             | For 'PIS' operation only creditor can be provided.                               |
+|                             | Operation party title or firstName or lastName or cardHolderName is mandatory.  |
+|                             | AccountNumber or CardNumber is mandatory for card operation.                     |
+| RiskManagementCategory Issues| RiskManagementCategory is mandatory.                                            |
+|                             | RiskManagementCategory does not exist in Amlyze.                                 |
+|                             | RiskManagementCategory does not support Operation.                               |
+| Account Issues              | Account registered to your institution, Account found in Amlyze, but customer not found in Amlyze. |
+| EntityType Issues           | EntityType is mandatory, values: INDIVIDUAL, ORGANIZATION, UNKNOWN.             |
+| PartyRole Issues            | PartyRole is mandatory, possible values: DEBTOR, CREDITOR, ULTIMATE_DEBTOR, ULTIMATE_CREDITOR. |
+| Country Values              | The value for the country in the party is not within the allowed values specified by the country classifier. |
+| Tenant and Business Unit Issues | Tenant header [tenant code] is mandatory.                                    |
+|                             | Business unit is mandatory.                                                      |
+|                             | Tenant [tenantCode] business unit [businessUnitCode] does not exist.             |
