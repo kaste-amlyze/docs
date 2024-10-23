@@ -3,19 +3,12 @@ title: 'INTERNAL operation import - with transaction monitoring'
 icon: 'arrow-right'
 ---
 
----
-title: 'CASH TRANSFER OUTGOING operation import - with transaction monitoring'
-icon: 'arrow-right'
----
-
 <Note>
-Just so you know, further examples and descriptions apply only to CASH TRANSFER OUTGOING operation imports with transaction monitoring.
+Just so you know, further examples and descriptions apply only to INTERNAL operation imports with transaction monitoring.
 </Note>
 
 This section provides information how to submit operation (transaction) details to our database and is focused to those operations which require to perform transaction monitoring.
 It includes examples of API requests with mandatory and optional fields, a comprehensive list of all available fields, common responses and error descriptions.
-
-CASH TRANSFER OUTGOING operation is a transfer of funds by cash payment.
 
 **HTTP Method:**  `POST`
 
@@ -27,37 +20,42 @@ CASH TRANSFER OUTGOING operation is a transfer of funds by cash payment.
 
 ## API requests examples
 
-<Expandable title="Mandatory fields example | CASH TRANSFER OUTGOING operation import - with transaction monitoring">
+<Expandable title="Mandatory fields example | INTERNAL operation import - with transaction monitoring">
 <ResponseField>
   ```json
 {
-    "communicationNumber": "ComNr_0011",
-    "requester": "Kauno kredito unija",
-    "riskManagementCategory": "OP_DEFAULT",
+    "communicationNumber": "Test_ComNr_INTERNAL_05",
+    "requester": "Company Name Amlyze",
+
     "sourceOfRiskLevel": "EVALUATE",
-    "operationType": "CASH_TRANSFER",
-    "financialFlowDirection": "OUTGOING",
-    "operationExtId": "OP20231114T12",
-    "operationDateTime": "2023-11-15T15:09:33+02:00",
-    "amount": 998,
+    "riskLevel": "HIGH",
+
+    "riskManagementCategory": "OP_TRANSFER",
+    "operationType": "INTERNAL",
+
+    "operationExtId": "Op_05_INTERNAL_ULTIMATES_TEST",
+    "financialFlowDirection": "NULL",
+
+    "operationDateTime": "2023-09-22T15:09:33+02:00",
     "currency": "EUR",
-    "description": "Transfer of funds by cash payment",
+    "amount": 200,
+    "description": "invoice '123456'",
     "listOperationParty": [
         {
-            "partyRole": "DEBTOR",
-            "accountNumber": "IND20231113T18099asa",
-            "bic": "BICXX33",
-            "entityType": "INDIVIDUAL",
-            "firstName": "Jose",
-            "lastName": "Rodriguez"
+          "partyRole": "DEBTOR",
+          "accountNumber": "LT9208800274335945522",
+          "bic": "AmlyzeXX22",
+          "entityType": "INDIVIDUAL",
+          "firstName" : "Tomas",
+	        "lastName" : "Garcia"
         },
         {
-            "partyRole": "CREDITOR",
-            "accountNumber": "LV6630800200000018155",
-            "bic": "BICXX22",
-            "entityType": "INDIVIDUAL",
-            "firstName": "Luka",
-            "lastName": "Deliono"
+          "partyRole": "CREDITOR",
+          "accountNumber": "LT9208800274335945500",
+          "bic": "AmlyzeXX22",
+          "entityType": "INDIVIDUAL",
+          "firstName" : "Tomas",
+	        "lastName" : "Garcia"
         }
     ]
 }
@@ -65,45 +63,49 @@ CASH TRANSFER OUTGOING operation is a transfer of funds by cash payment.
 </ResponseField>
 </Expandable>
 
-<Expandable title="Mandatory fields example | CASH TRANSFER OUTGOING operation import - with transaction monitoring and screening">
+<Expandable title="Mandatory fields example | INTERNAL operation import - with transaction monitoring and screening">
 <ResponseField>
   ```json
 {
-    "communicationNumber": "ComNr_0011",
-    "requester": "Kauno kredito unija",
-    "riskManagementCategory": "OP_DEFAULT",
-    "sourceOfRiskLevel": "EVALUATE",
-    "operationType": "CASH_TRANSFER",
-    "financialFlowDirection": "OUTGOING",
+    "communicationNumber": "Test_ComNr_INTERNAL_05",
+    "requester": "Company Name Amlyze",
 
-        "initializeScreeningProcesses": [
+    "sourceOfRiskLevel": "EVALUATE",
+    "riskLevel": "HIGH",
+
+    "initializeScreeningProcesses": [
          "SANCTIONS",
          "PEP",
          "ADVERSE_MEDIA",
          "INTERNAL_LIST"
     ],
 
-    "operationExtId": "OP20231114T12",
-    "operationDateTime": "2023-11-15T15:09:33+02:00",
-    "amount": 998,
+    "riskManagementCategory": "OP_TRANSFER",
+    "operationType": "INTERNAL",
+
+    "operationExtId": "Op_05_INTERNAL_ULTIMATES_TEST",
+    "financialFlowDirection": "NULL",
+
+    "operationDateTime": "2023-09-22T15:09:33+02:00",
     "currency": "EUR",
-    "description": "Transfer of funds by cash payment",
+    "amount": 200,
+    "description": "invoice '123456'",
     "listOperationParty": [
         {
-            "partyRole": "DEBTOR",
-            "accountNumber": "IND20231113T18099asa",
-            "bic": "BICXX33",
-            "entityType": "INDIVIDUAL",
-            "firstName": "Jose",
-            "lastName": "Rodriguez"
+          "partyRole": "DEBTOR",
+          "accountNumber": "LT9208800274335945522",
+          "bic": "AmlyzeXX22",
+          "entityType": "INDIVIDUAL",
+          "firstName" : "Tomas",
+	        "lastName" : "Garcia"
         },
         {
-            "partyRole": "CREDITOR",
-            "accountNumber": "LV6630800200000018155",
-            "bic": "BICXX22",
-            "entityType": "INDIVIDUAL",
-            "firstName": "Luka",
-            "lastName": "Deliono"
+          "partyRole": "CREDITOR",
+          "accountNumber": "LT9208800274335945500",
+          "bic": "AmlyzeXX22",
+          "entityType": "INDIVIDUAL",
+          "firstName" : "Tomas",
+	        "lastName" : "Garcia"
         }
     ]
 }
@@ -111,59 +113,66 @@ CASH TRANSFER OUTGOING operation is a transfer of funds by cash payment.
 </ResponseField>
 </Expandable>
 
-<Expandable title="All fields example | CASH TRANSFER OUTGOING operation import - with transaction monitoring">
+<Expandable title="All fields example | INTERNAL operation import - with transaction monitoring">
 <ResponseField>
   ```json
 {
-    "communicationNumber": "ComNr_0011",
-    "requester": "Kauno kredito unija",
-    "riskManagementCategory": "OP_DEFAULT",
-
-    "initializeScreeningProcesses": [
-    "SANCTIONS",
-    "ADVERSE_MEDIA",
-    "PEP",
-    "INTERNAL_LIST"
-    ],
+    "communicationNumber": "Test_ComNr_INTERNAL_03",
+    "requester": "Company Name Amlyze",
+    "businessUnit": "Unit C",
 
     "sourceOfRiskLevel": "EVALUATE",
-    "businessUnit": "Unit A",
-    "operationType": "CASH_TRANSFER",
-    "financialFlowDirection": "OUTGOING",
-    "operationExtId": "OP20231114T12",
-    "operationDateTime": "2023-11-15T15:09:33+02:00",
-    "amount": 998,
-    "currency": "EUR",
-    "amountInEuro": 1140.41,
-    "euroExchangeRate": 1.14,
-    "riskLevel": "LOW",
+    "riskLevel": "HIGH",
+    
+    "riskManagementCategory": "OP_TRANSFER",
+    "operationType": "INTERNAL",
+
+    "operationExtId": "Op_03_INTERNAL_TEST",
+    "financialFlowDirection": "NULL",
+ 
+    "initializeScreeningProcesses": [
+        "SANCTIONS",
+        "PEP",
+        "ADVERSE_MEDIA",
+        "INTERNAL_LIST"
+    ],
+
+    "operationDateTime": "2023-09-22T15:09:33+02:00",
     "sourceCountry": "LT",
     "destinationCountry": "LT",
-    "description": "Transfer of funds by cash payment",
+    "currency": "GBP",
+    "amount": 123,
+    "euroExchangeRate": 1.16,
+    "amountInEuro": 143,
+    "description": "invoice '123458'",
+    "ipAddress": "555.222.4545.144",
+    "ipAddressCountry": "LT",
     "listOperationParty": [
-        {
+         {
             "partyRole": "DEBTOR",
-            "accountNumber": "IND20231113T180927",
-            "bic": "BICXX22",
+            "accountNumber": "LT9208800274335945522",
             "currency": "EUR",
-            "bankTitle": "MyBank",
+            "bic": "AmlyzeXX22",
+            "bankTitle": "TBC",
             "entityType": "INDIVIDUAL",
-            "firstName": "Geli",
-            "lastName": "Deliono"
+            "firstName" : "Tomas",
+	        "lastName" : "Garcia"
         },
         {
             "partyRole": "CREDITOR",
-            "accountNumber": "IND20231113T180927",
-            "entityType": "INDIVIDUAL",
-            "bic": "BICXX33",
-            "firstName": "Geli",
-            "lastName": "Deliono"
+            "accountNumber": "LT9208800274335945555",
+            "currency": "EUR",
+            "bic": "AmlyzeXX22",
+            "bankTitle": "TBC",
+            "entityType": "ORGANIZATION",
+           	"title" : "LTD 'VivaElementus'"
         }
     ]
 }
 ```
 </ResponseField>
 </Expandable>
+
 
 ## Fields
 
@@ -196,7 +205,7 @@ _Example:_ `LOW`
 <ResponseField name="riskManagementCategory" type="string from classifier list" required>
 Code of risk management category of the object. Value must be from a classifier list personalized to your company.
 
-_Example:_ `OP_TRANSFER`
+_Example:_ `OP_DEFAULT`
 
 <Expandable title="Path to extract classifier values">
 **HTTP Method:**  `GET`
@@ -209,7 +218,7 @@ _Example:_ `OP_TRANSFER`
 <ResponseField name="operationType" type="string" required>
 Notifies about which kind of operation type was performed.
 
-_Value:_ `CASH_TRANSFER`
+_Value:_ `INTERNAL`
 </ResponseField>
 
 <ResponseField name="businessUnit" type="string from classifier list">
@@ -230,13 +239,13 @@ _Example:_ `BUSINESS_UNIT_NAME`
 <ResponseField name="operationExtId" type="string" required>
 External identifier of operation.
 
-_Example:_ `Op_01_CASH_TRANSFER_TEST`
+_Example:_ `Op_01_INTERNAL_TEST`
 </ResponseField>
 
 <ResponseField name="financialFlowDirection" type="string" required>
 Refers to the movement of money between entities or accounts.
 
-_Value:_ `OUTGOING`
+_Value:_ `NULL`
 </ResponseField>
 
 <ResponseField name="initializeScreeningProcesses" type="list[]">
