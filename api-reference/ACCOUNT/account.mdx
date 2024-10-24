@@ -21,14 +21,15 @@ It includes examples of API requests with mandatory and optional fields, a compr
 <ResponseField>
   ```json
 {
- "communicationNumber": "Test_ComNr000",
-  "requester": "Company Name Amlyze",
-  "businessEntityExtId": "IND_A1_TEST",
-  "accountExtId": "ACC_001",
-  "accountNumber": "LI9208800274335945522",
-  "accountStatus": "ACTIVE",
-  "currencyCode": "EUR",
-  "openingDate": "2023-09-05T08:07:34.605Z"
+    "communicationNumber": "Test_ComNr000",
+    "requester": "Company Name Amlyze",
+
+    "businessEntityExtId": "IND_A1_TEST",
+    "accountExtId": "ACC_001",
+    "accountNumber": "LI9208800274335945522",
+    "accountStatus": "ACTIVE",
+    "currencyCode": "EUR",
+    "openingDate": "2023-09-05T08:07:34.605Z"
 }
   ```
 </ResponseField>
@@ -38,21 +39,22 @@ It includes examples of API requests with mandatory and optional fields, a compr
 <ResponseField>
   ```json
 {
- "communicationNumber": "Test_ComNr000",
-  "requester": "Company Name Amlyze",
-  "businessEntityExtId": "IND_A1_TEST",
-  "businessUnit": "Unit A"
-  "accountExtId": "ACC_001",
-  "accountNumber": "LI9208800274335945522",
-  "accountStatus": "CLOSED",
-  "currencyCode": "EUR",
-  "openingDate": "2023-09-05T08:07:34.605Z",
-  "bic": "AmlyzeXX22",
-  "isOtherFinInstAccount": true,
-  "bankTitle": "MyBank",
-  "accountPurpose": "PURPOSE_INVEST",
-  "accountType": "ORG_B2B",
-  "closingDate": "2022-12-11T12:10:11+02:00"
+    "communicationNumber": "Test_ComNr000",
+    "requester": "Company Name Amlyze",
+    "businessUnit": "Unit A",
+
+    "businessEntityExtId": "IND_A1_TEST",
+    "accountExtId": "ACC_001",
+    "accountNumber": "LI9208800274335945522",
+    "accountStatus": "CLOSED",
+    "currencyCode": "EUR",
+    "openingDate": "2023-09-05T08:07:34.605Z",
+    "bic": "AmlyzeXX22",
+    "isOtherFinInstAccount": true,
+    "bankTitle": "MyBank",
+    "accountPurpose": "PURPOSE_INVEST",
+    "accountType": "ORG_B2B",
+    "closingDate": "2022-12-11T12:10:11+02:00" // if  "accountStatus": "SUSPENDED", instead of "closingDate" field, "suspensionReason" field could be provided. e.g. "suspensionReason":"Security breach investigation in progress."
 }
   ```
 </ResponseField>
@@ -72,12 +74,6 @@ Name of the system requesting web service.
 _Example:_ `Amlyze` _(name of your company)_
 </ResponseField>
 
-<ResponseField name="businessEntityExtId" type="string" required>
-External business entity indicator. Refers to the same value used for the `customerExtId`, which helps to identify external business entity. This identifier corresponds to the client's identifier in the financial institution.
-
-_Example:_ `IND_A1_TEST`
-</ResponseField>
-
 <ResponseField name="businessUnit" type="string from classifier list">
 ❗Mandatory field for clients utilizing a multi-organizational solution. Omit this parameter unless instructed about it.
 
@@ -91,6 +87,12 @@ _Example:_ `BUSINESS_UNIT_NAME`
 **Path:** `{{baseUrl}}`/classifier/businessUnit
 </Expandable>
 
+</ResponseField>
+
+<ResponseField name="businessEntityExtId" type="string" required>
+External business entity indicator. Refers to the same value used for the `customerExtId`, which helps to identify external business entity. This identifier corresponds to the client's identifier in the financial institution.
+
+_Example:_ `IND_A1_TEST`
 </ResponseField>
 
 <ResponseField name="accountExtId" type="string" required>
