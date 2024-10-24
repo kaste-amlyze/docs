@@ -40,23 +40,24 @@ It includes examples of API requests with mandatory and optional fields, a compr
 <ResponseField>
   ```json
 {
-  "communicationNumber" : "Test_ComNr_002mHzZZ",
+    "communicationNumber" : "Test_ComNr_002mHzZZ",
 	"requester" : "Company Name Amlyze",
 	
 	"sourceOfRiskLevel" : "EVALUATE",
-
-  "initializeScreeningProcesses": [
-      "SANCTIONS",
-      "INTERNAL_LIST"
-  ],
-
 	"riskManagementCategory": "IND",
 	"entityType" : "INDIVIDUAL",
 	"customerExtId" : "IND_IMPORT_B1_TEST",
 	"applicationDate": "2023-10-01",
 	"firstName" : "Lukas",
 	"lastName" : "Garcia",
-	"citizenshipCountry" : "LV"
+	"citizenshipCountry" : "LV",
+
+    "initializeScreeningProcesses": [
+        "SANCTIONS",
+        "PEP",
+        "ADVERSE_MEDIA",
+        "INTERNAL_LIST"
+    ]
 }
   ```
 </ResponseField>
@@ -68,13 +69,11 @@ It includes examples of API requests with mandatory and optional fields, a compr
 {
 	"communicationNumber" : "Test_ComNr_002mHzZZZ",
 	"requester" : "Company Name Amlyze",
+    "businessUnit" : "business unit name",
 
 	"action" : "CREATE",
-
 	"sourceOfRiskLevel" : "EVALUATE",
     "customerStatus" : "CLOSED",
-
-    "businessUnit" : "business unit name"
 
     "initializeScreeningProcesses": [
         "SANCTIONS",
