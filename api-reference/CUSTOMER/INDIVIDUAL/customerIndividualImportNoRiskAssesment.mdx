@@ -117,12 +117,20 @@ It includes examples of API requests with mandatory and optional fields, a compr
           "higherSchoolTitle": "Uni",
           "higherSchoolCountry": "LT"
         },
+        "pension": {
+          "isPensioner": false,
+          "pensionCountry": "LT"
+        },
         "employment": {
           "isUnemployed": false,
           "isSelfEmployed": false,
           "isEmployee": false,
           "employerTitle": "company A",
           "employmentPositionDescription": "Sales intern"
+        },
+        "other": {
+          "isOtherStatus": false,
+          "otherStatusDescription": "None"
         }
       },
 
@@ -240,7 +248,8 @@ It includes examples of API requests with mandatory and optional fields, a compr
         ],
     "listCountryOfTaxPayment": [
             {
-                "country": "LT"
+                "country": "LT",
+                "taxpayerNumber": "4587351"
             }
         ],
     "listAdditionalValues": [
@@ -1119,6 +1128,23 @@ _Example:_ `true`
 <ResponseField name="listIncomeSource" type="list[]">
     <Expandable title="listIncomeSource list[] fields">
     
+        <ResponseField name="incomeSourceType" type="string from classifier list" required>
+            Type of income source.
+            
+            <Expandable title="Path to extract classifier values">
+                **HTTP Method:**  `GET`  
+                **Path:** `{{baseUrl}}/classifier/incomeSourceType`
+            </Expandable>
+            
+            _Example:_ `SALARY`
+        </ResponseField>
+
+        <ResponseField name="incomePercentage" type="integer" required>
+            Percentage of income from the source.
+            
+            _Example:_ `5`
+        </ResponseField>
+
         <ResponseField name="from" type="integer">
             Amount from.
             
@@ -1129,23 +1155,6 @@ _Example:_ `true`
             Amount to.
             
             _Example:_ `1000`
-        </ResponseField>
-    
-        <ResponseField name="incomePercentage" type="integer" required>
-            Percentage of income from the source.
-            
-            _Example:_ `5`
-        </ResponseField>
-    
-        <ResponseField name="incomeSourceType" type="string from classifier list" required>
-            Type of income source.
-            
-            <Expandable title="Path to extract classifier values">
-                **HTTP Method:**  `GET`  
-                **Path:** `{{baseUrl}}/classifier/incomeSourceType`
-            </Expandable>
-            
-            _Example:_ `SALARY`
         </ResponseField>
     
     </Expandable>
@@ -1310,13 +1319,19 @@ _Example:_ `true`
     </Expandable>
 </ResponseField>
 
-<ResponseField name="listAdditionalValue" type="list[]">
+<ResponseField name="listAdditionalValues" type="list[]">
     <Expandable title="listAdditionalValue list[] fields">
     
         <ResponseField name="code" type="string" required>
             Identifier for the additional field. This field is not mandatory if `listAdditionalValue` field is not provided at all.
             
             _Example:_ `related_to_usa`
+        </ResponseField>
+
+        <ResponseField name="description" type="string" required>
+            Human readable description of the field. This field is not mandatory if `listAdditionalValue` field is not provided at all.
+            
+            _Example:_ `Entity has relation to USA`
         </ResponseField>
     
         <ResponseField name="datatype" type="string from enum" required>
@@ -1325,12 +1340,6 @@ _Example:_ `true`
             Enum class values: `STRING`, `INTEGER`, `DECIMAL`, `DATE`, `TIMESTAMP`, `BOOLEAN`
             
             _Example:_ `STRING`
-        </ResponseField>
-    
-        <ResponseField name="description" type="string" required>
-            Human readable description of the field. This field is not mandatory if `listAdditionalValue` field is not provided at all.
-            
-            _Example:_ `Entity has relation to USA`
         </ResponseField>
     
         <ResponseField name="value" type="string" required>
@@ -1511,12 +1520,6 @@ List of addresses. Fields of the list are described in the dropdown below.
 
     <Expandable title="listAddress list[] fields">
     
-        <ResponseField name="addressDetails" type="string">
-            Full address description.
-            
-            _Example:_ `Building B`
-        </ResponseField>
-    
         <ResponseField name="addressType" type="string from classifier list">
             Type of entity address.
             
@@ -1528,11 +1531,11 @@ List of addresses. Fields of the list are described in the dropdown below.
 
             _Example:_ `RESIDENCE`
         </ResponseField>
-    
-        <ResponseField name="city" type="string">
-            City of the given address.
+
+        <ResponseField name="addressDetails" type="string">
+            Full address description.
             
-            _Example:_ `Vilnius`
+            _Example:_ `Building B`
         </ResponseField>
     
         <ResponseField name="country" type="string from classifier list" required>
@@ -1552,6 +1555,12 @@ List of addresses. Fields of the list are described in the dropdown below.
             
             _Example:_ `EU`
         </ResponseField>
+
+        <ResponseField name="city" type="string">
+            City of the given address.
+            
+            _Example:_ `Vilnius`
+        </ResponseField>
     
         <ResponseField name="streetAddress" type="string">
             Street, house, and flat number of the given address.
@@ -1559,16 +1568,16 @@ List of addresses. Fields of the list are described in the dropdown below.
             _Example:_ `Verkių g. 1-9`
         </ResponseField>
     
-        <ResponseField name="useForCorrespondence" type="boolean">
-            Indicator for using the address in correspondence.
-            
-            _Example:_ `true`
-        </ResponseField>
-    
         <ResponseField name="zipCode" type="string">
             Zip code of the address.
             
             _Example:_ `12345`
+        </ResponseField>
+
+        <ResponseField name="useForCorrespondence" type="boolean">
+            Indicator for using the address in correspondence.
+            
+            _Example:_ `true`
         </ResponseField>
 
     </Expandable>
@@ -1579,42 +1588,7 @@ List of related entity documents. Fields of the list are described in the dropdo
 
     <Expandable title="listBusinessEntityDocument list[] fields">
     
-        <ResponseField name="description" type="string">
-            Document description.
             
-            _Example:_ `passport`
-        </ResponseField>
-    
-        <ResponseField name="documentExpiryDate" type="date">
-            The expiry date of the document in question.
-            
-            _Example:_ `2032-01-15`
-        </ResponseField>
-    
-        <ResponseField name="documentIssueAuthority" type="string" required>
-            An authority that issued the document. This field is not mandatory if `listBusinessEntityDocument` field is not provided at all.
-            
-            _Example:_ `Migration office`
-        </ResponseField>
-    
-        <ResponseField name="documentIssueCountry" type="string" required>
-            The country that issued the document. This field is not mandatory if `listBusinessEntityDocument` field is not provided at all.
-            
-            _Example:_ `LT`
-        </ResponseField>
-    
-        <ResponseField name="documentIssueDate" type="date" required>
-            The issue date of the document in question. This field is not mandatory if `listBusinessEntityDocument` field is not provided at all.
-            
-            _Example:_ `2022-01-15`
-        </ResponseField>
-    
-        <ResponseField name="documentNumber" type="string" required>
-            The number of the document in question. This field is not mandatory if `listBusinessEntityDocument` field is not provided at all.
-            
-            _Example:_ `0123456789`
-        </ResponseField>
-    
         <ResponseField name="entityType" type="string" required>
             Entity type describes the client status. This field is not mandatory if `listBusinessEntityDocument` field is not provided at all.
             
@@ -1627,6 +1601,42 @@ List of related entity documents. Fields of the list are described in the dropdo
             Enum class values: `PASSPORT`, `IDENTITYCARD`, `RESIDENCEPERMIT`, `DRIVINGLICENSE`, `REGISTRATIONCERTIFICATE`, `OTHER`
             
             _Example:_ `PASSPORT`
+        </ResponseField>
+
+        <ResponseField name="documentNumber" type="string" required>
+            The number of the document in question. This field is not mandatory if `listBusinessEntityDocument` field is not provided at all.
+            
+            _Example:_ `0123456789`
+        </ResponseField>
+
+        <ResponseField name="documentIssueDate" type="date" required>
+            The issue date of the document in question. This field is not mandatory if `listBusinessEntityDocument` field is not provided at all.
+            
+            _Example:_ `2022-01-15`
+        </ResponseField>
+
+        <ResponseField name="documentExpiryDate" type="date">
+            The expiry date of the document in question.
+            
+            _Example:_ `2032-01-15`
+        </ResponseField>
+
+        <ResponseField name="documentIssueCountry" type="string" required>
+            The country that issued the document. This field is not mandatory if `listBusinessEntityDocument` field is not provided at all.
+            
+            _Example:_ `LT`
+        </ResponseField>
+
+        <ResponseField name="documentIssueAuthority" type="string" required>
+            An authority that issued the document. This field is not mandatory if `listBusinessEntityDocument` field is not provided at all.
+            
+            _Example:_ `Migration office`
+        </ResponseField>
+
+        <ResponseField name="description" type="string">
+            Document description.
+            
+            _Example:_ `passport`
         </ResponseField>
 
     </Expandable>
@@ -1744,6 +1754,12 @@ Additional information about customer. Fields of the list are described in the d
             
             _Example:_ `related_to_usa`
         </ResponseField>
+
+        <ResponseField name="description" type="string" required>
+            Human readable description of the field. This field is not mandatory if `listAdditionalValue` field is not provided at all.
+            
+            _Example:_ `Entity has relation to USA`
+        </ResponseField>
     
         <ResponseField name="datatype" type="string from enum" required>
             Type of provided value. This field is not mandatory if `listAdditionalValue` field is not provided at all.
@@ -1751,12 +1767,6 @@ Additional information about customer. Fields of the list are described in the d
             Enum class values: `STRING`, `INTEGER`, `DECIMAL`, `DATE`, `TIMESTAMP`, `BOOLEAN`
             
             _Example:_ `STRING`
-        </ResponseField>
-    
-        <ResponseField name="description" type="string" required>
-            Human readable description of the field. This field is not mandatory if `listAdditionalValue` field is not provided at all.
-            
-            _Example:_ `Entity has relation to USA`
         </ResponseField>
     
         <ResponseField name="value" type="string" required>
