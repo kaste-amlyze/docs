@@ -24,7 +24,6 @@ It includes examples of API requests with mandatory and optional fields, a compr
 	"requester": "Company Name Amlyze",
 
 	"sourceOfRiskLevel": "EVALUATE",
-
 	"riskManagementCategory": "ORG",
 	"entityType": "ORGANIZATION",
 	"customerExtId": "ORG_IMPORT_B1_TEST",
@@ -45,12 +44,6 @@ It includes examples of API requests with mandatory and optional fields, a compr
 	"requester": "Company Name Amlyze",
 
 	"sourceOfRiskLevel": "EVALUATE",
-
-      "initializeScreeningProcesses": [
-      "SANCTIONS",
-      "INTERNAL_LIST"
-    ],
-
 	"riskManagementCategory": "ORG",
 	"entityType": "ORGANIZATION",
 	"customerExtId": "ORG_IMPORT_B1_TEST",
@@ -58,6 +51,13 @@ It includes examples of API requests with mandatory and optional fields, a compr
 	"title": "LTD 'VivaElementus'",
 	"registrationCountry": "LV",
 	"legalForm": "LTD"
+
+    "initializeScreeningProcesses": [
+        "SANCTIONS",
+        "ADVERSE_MEDIA",
+        "PEP",
+        "INTERNAL_LIST"
+    ]
 }
   ```
 </ResponseField>
@@ -265,8 +265,8 @@ It includes examples of API requests with mandatory and optional fields, a compr
 			"share" : 10,
 			"votePercentage" : 10,
 			"activityDescription" : "Financial activity",
-            "regionOfActivityDescription" : "Eastern Europe",
-            "nationalCode" : "554555447884557",
+          "regionOfActivityDescription" : "Eastern Europe",
+          "nationalCode" : "554555447884557",
 			"country" : "LT",
 			"registrationCountry" : "LT",
 			"isPEP" : true,

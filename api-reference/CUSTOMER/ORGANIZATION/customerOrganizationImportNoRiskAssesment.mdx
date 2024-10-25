@@ -26,7 +26,6 @@ It includes examples of API requests with mandatory and optional fields, a compr
 	"sourceOfRiskLevel": "IMPORT",
     "riskLevel": "HIGH",
 	"customerStatus": "ACTIVE",
-
 	"riskManagementCategory": "ORG",
 	"entityType": "ORGANIZATION",
 	"customerExtId": "ORG_IMPORT_B1_TEST",
@@ -49,19 +48,20 @@ It includes examples of API requests with mandatory and optional fields, a compr
 	"sourceOfRiskLevel": "IMPORT",
     "riskLevel": "HIGH",
 	"customerStatus": "ACTIVE",
-
-      "initializeScreeningProcesses": [
-      "SANCTIONS",
-      "INTERNAL_LIST"
-    ],
-
 	"riskManagementCategory": "ORG",
 	"entityType": "ORGANIZATION",
 	"customerExtId": "ORG_IMPORT_B1_TEST",
 	"applicationDate": "2024-04-08T10:45:00.000+02:00",
 	"title": "LTD 'VivaElementus'",
 	"registrationCountry": "LV",
-	"legalForm": "LTD"
+	"legalForm": "LTD",
+
+    "initializeScreeningProcesses": [
+      "SANCTIONS",
+      "ADVERSE_MEDIA",
+      "PEP",
+      "INTERNAL_LIST"
+    ],
 }
   ```
 </ResponseField>
@@ -73,21 +73,12 @@ It includes examples of API requests with mandatory and optional fields, a compr
 {
     "communicationNumber": "Test_ComNr_003ZZZD",
     "requester": "Company Name Amlyze",
+    "businessUnit" : "unit A",
 
 	"action": "UPDATE",
-
     "sourceOfRiskLevel": "IMPORT",
     "riskLevel": "HIGH",
     "customerStatus": "CLOSED",
-
-
-	"initializeScreeningProcesses": [
-        "SANCTIONS",
-        "PEP",
-        "INTERNAL_LIST"
-    ],
-
-    "businessUnit" : "unit A",
     "riskManagementCategory": "ORG",
     "entityType": "ORGANIZATION",
     "customerExtId": "ORG_C1_TEST",
@@ -97,18 +88,23 @@ It includes examples of API requests with mandatory and optional fields, a compr
     "registrationCountry": "LT",
     "legalForm": "LTD",
 
+    "initializeScreeningProcesses": [
+        "SANCTIONS",
+        "ADVERSE_MEDIA",
+        "PEP",
+        "INTERNAL_LIST"
+    ],
+
     "tradingName": "MinorMajor",
     "approvalDate": "2020-01-05",
     "establishmentDate": "2001-02-23",
     "nationalCode": "REG74121101",
     "activityDescription": "Logistics",
     "activityInRestrictedRegionDescription": "Logistics",
-
     "isPEP": false,
     "isSanctioned": false,
     "isInAdverseMedia": true,
     "isInInternalList": true,
-
     "giin": "GIIN123445",
     "lei": "LEI124545",
     "listPurpose": "BLACK",
@@ -271,8 +267,8 @@ It includes examples of API requests with mandatory and optional fields, a compr
 			"share" : 10,
 			"votePercentage" : 10,
 			"activityDescription" : "Financial activity",
-            "regionOfActivityDescription" : "Eastern Europe",
-            "nationalCode" : "554555447884557",
+          "regionOfActivityDescription" : "Eastern Europe",
+          "nationalCode" : "554555447884557",
 			"country" : "LT",
 			"registrationCountry" : "LT",
 			"isPEP" : true,

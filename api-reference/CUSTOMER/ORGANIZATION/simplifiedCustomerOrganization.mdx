@@ -31,6 +31,7 @@ Below are examples of API requests with mandatory and optional fields, a compreh
 {
 	"communicationNumber": "ComNr_000321",
 	"requester": "AMLYZE_SYSTEM",
+
 	"riskManagementCategory": "OCCASIONAL_CUSTOMER",
 	"entityType": "ORGANIZATION",
 	"customerExtId": "ORG20231117550",
@@ -44,20 +45,20 @@ Below are examples of API requests with mandatory and optional fields, a compreh
 <ResponseField>
   ```json
 {
-{
 	"communicationNumber": "ComNr_000321",
 	"requester": "AMLYZE_SYSTEM",
+
 	"riskManagementCategory": "OCCASIONAL_CUSTOMER",
 	"entityType": "ORGANIZATION",
 	"customerExtId": "ORG20231117550",
+	"title": "UAB 'BrotherHood'",
 
-      "initializeScreeningProcesses": [
-      "SANCTIONS",
-      "INTERNAL_LIST"
-    ],
-
-	"title": "UAB 'BrotherHood'"
-}
+    "initializeScreeningProcesses": [
+        "SANCTIONS",
+        "ADVERSE_MEDIA",
+        "PEP",
+        "INTERNAL_LIST"
+    ]
 }
   ```
 </ResponseField>
