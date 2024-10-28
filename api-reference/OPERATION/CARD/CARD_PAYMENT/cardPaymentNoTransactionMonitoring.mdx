@@ -308,8 +308,14 @@ Country of operation's destination.
 _Example:_ `LT`
 </ResponseField>
 
-<ResponseField name="currency" type="string" required>
-Currency code.
+<ResponseField name="currency" type="string from classifier list" required>
+International currency code.
+
+<Expandable title="Path to extract classifier values">
+**HTTP Method:**  `GET`
+
+**Path:** `{{baseUrl}}`/classifier/currency
+</Expandable>
 
 _Value:_ `EUR`
 </ResponseField>
@@ -477,8 +483,14 @@ Unique account identification number used in performing operations.
 _Example:_ `LT038625979279192518`
 </ResponseField>
 
-<ResponseField name="currency" type="string">
-Currency code of operation.
+<ResponseField name="currency" type="string from classifier list" required>
+International currency code.
+
+<Expandable title="Path to extract classifier values">
+**HTTP Method:**  `GET`
+
+**Path:** `{{baseUrl}}`/classifier/currency
+</Expandable>
 
 _Value:_ `EUR`
 </ResponseField>
