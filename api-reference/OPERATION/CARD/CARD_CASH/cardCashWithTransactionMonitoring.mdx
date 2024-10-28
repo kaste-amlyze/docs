@@ -117,11 +117,11 @@ CREDITOR - is an ATM.
 {
     "communicationNumber": "Com_0027",
     "requester": "AMLYZE",
+    "businessUnit": "Unit B",
     
     "operationExtId": "ExtId_0027",
     "operationType": "CARD_CASH",
     "cardOperationSubType": "CARD_CASH_WITHDRAWAL",
-    "businessUnit": "Unit B"
     "riskManagementCategory": "OP_DEFAULT",
     "sourceOfRiskLevel": "EVALUATE",
 
@@ -142,8 +142,8 @@ CREDITOR - is an ATM.
     "amountInEuro": 5000,
     "financialFlowDirection": "OUTGOING",
     "description": "BANKOMAT TBC: Manual Cash Disbursements",
-    "iPAddress": "222.222.222.222",
-    "iPAddressCountry": "LT",
+    "ipAddress": "222.222.222.222",
+    "ipAddressCountry": "LT",
     "terminalExtId": "TerminalExtId_0101",
     "terminalCode": "TerminalCode_0101",
     "merchantExtId": "MerchantExtId_0101",
@@ -163,6 +163,8 @@ CREDITOR - is an ATM.
             "entityType": "INDIVIDUAL",
             "firstName": "Geli",
             "lastName": "Deliono",
+            "address": "Baltų pr. 16, LT-44001, Kauno m. sav.",
+            "country": "LT",
             "cardNumber": "5167945220452179",
             "cardValidTill": "2025-12-01",
             "cardHolderName": "Geli Jr. Deliono"
@@ -196,45 +198,6 @@ Name of the system requesting web service.
 _Example:_ `Amlyze` _(name of your company)_
 </ResponseField>
 
-<ResponseField name="sourceOfRiskLevel" type="string" required>
-The value "EVALUATE" is used for normal business processes - risk assessment will be performed.
-
-_Value:_ `EVALUATE`
-</ResponseField>
-
-<ResponseField name="riskLevel" type="string from enum">
-The risk level of imported operation.
-
-Enum class values: `NONE`,  `LOW`, `MEDIUM`, `HIGH`, `EXTREME`
-
-_Example:_ `LOW`
-</ResponseField>
-
-<ResponseField name="riskManagementCategory" type="string from classifier list" required>
-Code of risk management category of the object. Value must be from a classifier list personalized to your company.
-
-_Example:_ `OP_TRANSFER`
-
-<Expandable title="Path to extract classifier values">
-**HTTP Method:**  `GET`
-
-**Path:** `{{baseUrl}}`/classifier/riskManagementCategory
-</Expandable>
-
-</ResponseField>
-
-<ResponseField name="operationType" type="string" required>
-Notifies about which kind of operation type was performed.
-
-_Value:_ `CARD_CASH`
-</ResponseField>
-
-<ResponseField name="cardOperationSubType" type="string" required>
-Card operation subtype code.
-
-_Example:_ `CARD_CASH_WITHDRAWAL`
-
-</ResponseField>
 
 <ResponseField name="businessUnit" type="string from classifier list">
 ❗Mandatory field for clients utilizing a multi-organizational solution. Omit this parameter unless instructed about it.
@@ -257,12 +220,36 @@ External identifier of operation.
 _Example:_ `Op_01_SEPA_TEST`
 </ResponseField>
 
-<ResponseField name="financialFlowDirection" type="string from enum" required>
-Refers to the movement of money between entities or accounts.
+<ResponseField name="operationType" type="string" required>
+Notifies about which kind of operation type was performed.
 
-Enum class values: `INCOMING`,  `OUTGOING`
+_Value:_ `CARD_CASH`
+</ResponseField>
 
-_Example:_ `INCOMING`
+<ResponseField name="cardOperationSubType" type="string" required>
+Card operation subtype code.
+
+_Example:_ `CARD_CASH_WITHDRAWAL`
+
+</ResponseField>
+
+<ResponseField name="riskManagementCategory" type="string from classifier list" required>
+Code of risk management category of the object. Value must be from a classifier list personalized to your company.
+
+_Example:_ `OP_TRANSFER`
+
+<Expandable title="Path to extract classifier values">
+**HTTP Method:**  `GET`
+
+**Path:** `{{baseUrl}}`/classifier/riskManagementCategory
+</Expandable>
+
+</ResponseField>
+
+<ResponseField name="sourceOfRiskLevel" type="string" required>
+The value "EVALUATE" is used for normal business processes - risk assessment will be performed.
+
+_Value:_ `EVALUATE`
 </ResponseField>
 
 <ResponseField name="initializeScreeningProcesses" type="list[]">
@@ -282,10 +269,42 @@ Defines which lists to check during screening process. Strings of the list are n
 _Example:_ `PEP, ADVERSE_MEDIA`
 </ResponseField>
 
+<ResponseField name="riskLevel" type="string from enum">
+The risk level of imported operation.
+
+Enum class values: `NONE`,  `LOW`, `MEDIUM`, `HIGH`, `EXTREME`
+
+_Example:_ `LOW`
+</ResponseField>
+
 <ResponseField name="operationDateTime" type="date" required>
 The operation date and time show when the operation proceeded.
 
 _Example:_ `2024-08-16T13:00:00Z`
+</ResponseField>
+
+<ResponseField name="sourceCountry" type="string from classifier list">
+Country rom where the operation was initiated.
+
+<Expandable title="Path to extract classifier values">
+**HTTP Method:**  `GET`
+
+**Path:** `{{baseUrl}}`/classifier/country
+</Expandable>
+
+_Example:_ `LT`
+</ResponseField>
+
+<ResponseField name="destinationCountry" type="string from classifier list">
+Country of operation's destination.
+
+<Expandable title="Path to extract classifier values">
+**HTTP Method:**  `GET`
+
+**Path:** `{{baseUrl}}`/classifier/country
+</Expandable>
+
+_Example:_ `LT`
 </ResponseField>
 
 <ResponseField name="currency" type="string" required>
@@ -319,34 +338,19 @@ _Example:_ `1499`
 
 </ResponseField>
 
+<ResponseField name="financialFlowDirection" type="string from enum" required>
+Refers to the movement of money between entities or accounts.
+
+Enum class values: `INCOMING`,  `OUTGOING`
+
+_Example:_ `INCOMING`
+</ResponseField>
+
+
 <ResponseField name="description" type="string" required>
 The purpose of payment is saved under description.
 
 _Example:_ `Invoice '02'`
-</ResponseField>
-
-<ResponseField name="sourceCountry" type="string from classifier list">
-Country rom where the operation was initiated.
-
-<Expandable title="Path to extract classifier values">
-**HTTP Method:**  `GET`
-
-**Path:** `{{baseUrl}}`/classifier/country
-</Expandable>
-
-_Example:_ `LT`
-</ResponseField>
-
-<ResponseField name="destinationCountry" type="string from classifier list">
-Country of operation's destination.
-
-<Expandable title="Path to extract classifier values">
-**HTTP Method:**  `GET`
-
-**Path:** `{{baseUrl}}`/classifier/country
-</Expandable>
-
-_Example:_ `LT`
 </ResponseField>
 
 <ResponseField name="ipAddress" type="string">
@@ -367,10 +371,40 @@ Country of an IP address of the operation.
 _Example:_ `LT`
 </ResponseField>
 
+<ResponseField name="terminalExtId" type="string">
+External identifier of the terminal.
+
+_Example:_ `t_extid_145`
+</ResponseField>
+
+<ResponseField name="terminalCode" type="string">
+External code of terminal.
+
+_Example:_ `57455`
+</ResponseField>
+
+<ResponseField name="merchantExtId" type="string">
+External identifier of the seller-mediator.
+
+_Example:_ `External_0112`
+</ResponseField>
+
 <ResponseField name="merchantCode" type="string">
 External identifier of the seller-mediator.
 
 _Example:_ `5541`
+</ResponseField>
+
+<ResponseField name="merchantDescription" type="string">
+Seller-mediator description.
+
+_Example:_ `Ecommerce merchants`
+</ResponseField>
+
+<ResponseField name="merchantName" type="string">
+Name of the seller-mediator.
+
+_Example:_ `Costco`
 </ResponseField>
 
 <ResponseField name="merchantCountryCode" type="string from classifier list">
@@ -385,46 +419,16 @@ Seller-mediator country code.
 _Example:_ `ES`
 </ResponseField>
 
-<ResponseField name="merchantDescription" type="string">
-Seller-mediator description.
-
-_Example:_ `Ecommerce merchants`
-</ResponseField>
-
-<ResponseField name="merchantExtId" type="string">
-External identifier of the seller-mediator.
-
-_Example:_ `External_0112`
-</ResponseField>
-
-<ResponseField name="merchantName" type="string">
-Name of the seller-mediator.
-
-_Example:_ `Costco`
-</ResponseField>
-
-<ResponseField name="salesPointCode" type="string">
-External code of the sales point.
-
-_Example:_ `54574`
-</ResponseField>
-
 <ResponseField name="salesPointExtId" type="string">
 External identifier of the sales point.
 
 _Example:_ `S_extid_0145`
 </ResponseField>
 
-<ResponseField name="terminalCode" type="string">
-External code of terminal.
+<ResponseField name="salesPointCode" type="string">
+External code of the sales point.
 
-_Example:_ `57455`
-</ResponseField>
-
-<ResponseField name="terminalExtId" type="string">
-External identifier of the terminal.
-
-_Example:_ `t_extid_145`
+_Example:_ `54574`
 </ResponseField>
 
 <ResponseField name="listOperationParty" type="list[]" required>
@@ -533,12 +537,6 @@ _Example:_ `DE`
 </Expandable>
 </ResponseField>
 
-<ResponseField name="cardHolderName" type="string">
-Name written on the card.
-
-_Example:_ `Eduardo Rodrigues`
-</ResponseField>
-
 <ResponseField name="cardNumber" type="string">
 Card number written on the card.
 
@@ -549,6 +547,12 @@ _Example:_ `4720582145647937`
 Card date of expiration written on the card.
 
 _Example:_ `2025-06-07`
+</ResponseField>
+
+<ResponseField name="cardHolderName" type="string">
+Name written on the card.
+
+_Example:_ `Eduardo Rodrigues`
 </ResponseField>
 
 ## List of possible responses
