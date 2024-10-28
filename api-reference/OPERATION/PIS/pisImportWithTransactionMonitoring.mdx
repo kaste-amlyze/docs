@@ -406,3 +406,35 @@ _Example:_ `Moller`
 
 </Expandable>
 </ResponseField>
+
+## List of possible responses
+
+This part lists common responses after the submission of the request.
+
+```json
+200 OK
+  "resultType": "REQUEST_ACCEPTED"
+
+
+400 Bad Request
+    "resultType": "REQUEST_REJECTED",
+    "errorCode": "O001",
+    "errorDescription": "CommunicationNumber already used in amlyze"
+
+
+404 Not Found
+    "timestamp": "2024-05-26T16:49:50.237+00:00",
+    "status": 404,
+    "error": "Not Found",
+    "path": "/amlyze-ws-rest/opeation" --> mistake inside the endpoint
+
+
+500 Internal Server Error
+  "resultType": "REQUEST_REJECTED"
+  "status": 500,
+  "error": "Internal Server Error"
+```
+
+## List of possible errors
+
+This part lists the possible errors that can occur when making a bad request to the API. A bad request is a request that somehow does not follow the API specifications.
