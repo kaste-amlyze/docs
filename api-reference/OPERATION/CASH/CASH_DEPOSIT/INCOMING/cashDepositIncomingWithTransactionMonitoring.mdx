@@ -35,14 +35,15 @@ CREDITOR is the receiver
 {
     "communicationNumber": "ComNr_0011",
     "requester": "Kauno kredito unija",
+
+    "operationExtId": "OP20231114T12",
+    "operationType": "CASH",
     "riskManagementCategory": "OP_DEFAULT",
     "sourceOfRiskLevel": "EVALUATE",
-    "operationType": "CASH",
-    "financialFlowDirection": "INCOMING",
-    "operationExtId": "OP20231114T12",
     "operationDateTime": "2023-11-15T15:09:33+02:00",
-    "amount": 998,
+    "financialFlowDirection": "INCOMING",
     "currency": "EUR",
+    "amount": 998,
     "description": "Depositing money into the account",
     "listOperationParty": [
         {
@@ -72,12 +73,11 @@ CREDITOR is the receiver
 {
     "communicationNumber": "ComNr_0011",
     "requester": "Kauno kredito unija",
+
+    "operationExtId": "OP20231114T12",
+    "operationType": "CASH",
     "riskManagementCategory": "OP_DEFAULT",
     "sourceOfRiskLevel": "EVALUATE",
-    "operationType": "CASH",
-    "financialFlowDirection": "INCOMING",
-    "operationExtId": "OP20231114T12",
-    "operationDateTime": "2023-11-15T15:09:33+02:00",
 
     "initializeScreeningProcesses": [
          "SANCTIONS",
@@ -86,8 +86,10 @@ CREDITOR is the receiver
          "INTERNAL_LIST"
     ],
 
-    "amount": 998,
+    "operationDateTime": "2023-11-15T15:09:33+02:00",
+    "financialFlowDirection": "INCOMING",
     "currency": "EUR",
+    "amount": 998,
     "description": "Depositing money into the account",
     "listOperationParty": [
         {
@@ -117,13 +119,12 @@ CREDITOR is the receiver
 {
     "communicationNumber": "ComNr_0011",
     "requester": "Kauno kredito unija",
-    "riskManagementCategory": "OP_DEFAULT",
     "businessUnit": "BUSINESS_UNIT_NAME",
-    "sourceOfRiskLevel": "EVALUATE",
-    "operationType": "CASH",
-    "financialFlowDirection": "INCOMING",
+
     "operationExtId": "OP20231114T12",
-    "operationDateTime": "2023-11-15T15:09:33+02:00",
+    "operationType": "CASH",
+    "riskManagementCategory": "OP_DEFAULT",
+    "sourceOfRiskLevel": "EVALUATE",
 
     "initializeScreeningProcesses": [
          "SANCTIONS",
@@ -132,8 +133,11 @@ CREDITOR is the receiver
          "INTERNAL_LIST"
     ],
 
-    "amount": 998,
+    "operationDateTime": "2023-11-15T15:09:33+02:00",
+    "riskLevel": "LOW",
+    "financialFlowDirection": "INCOMING",
     "currency": "GBP",
+    "amount": 998,
     "amountInEuro": 1140.41,
     "euroExchangeRate": 1.14,
     "description": "Depositing money into the account",
@@ -155,7 +159,9 @@ CREDITOR is the receiver
             "bankTitle": "TBC bank",
             "entityType": "INDIVIDUAL",
             "firstName": "Geli",
-            "lastName": "Deliono"
+            "lastName": "Deliono",
+            "address": "Baltų pr. 16, LT-44001, Kauno m. sav.",
+            "country": "LT"
         }
     ]
 }
@@ -177,39 +183,6 @@ Name of the system requesting web service.
 _Example:_ `Amlyze` _(name of your company)_
 </ResponseField>
 
-<ResponseField name="sourceOfRiskLevel" type="string" required>
-The value "EVALUATE" is used for normal business processes - risk assessment will be performed.
-
-_Value:_ `EVALUATE`
-</ResponseField>
-
-<ResponseField name="riskLevel" type="string from enum">
-The risk level of imported operation.
-
-Enum class values: `NONE`,  `LOW`, `MEDIUM`, `HIGH`, `EXTREME`
-
-_Example:_ `LOW`
-</ResponseField>
-
-<ResponseField name="riskManagementCategory" type="string from classifier list" required>
-Code of risk management category of the object. Value must be from a classifier list personalized to your company.
-
-_Example:_ `OP_TRANSFER`
-
-<Expandable title="Path to extract classifier values">
-**HTTP Method:**  `GET`
-
-**Path:** `{{baseUrl}}`/classifier/riskManagementCategory
-</Expandable>
-
-</ResponseField>
-
-<ResponseField name="operationType" type="string" required>
-Notifies about which kind of operation type was performed.
-
-_Value:_ `CASH`
-</ResponseField>
-
 <ResponseField name="businessUnit" type="string from classifier list">
 ❗Mandatory field for clients utilizing a multi-organizational solution. Omit this parameter unless instructed about it.
 
@@ -228,13 +201,30 @@ _Example:_ `BUSINESS_UNIT_NAME`
 <ResponseField name="operationExtId" type="string" required>
 External identifier of operation.
 
-_Example:_ `Op_01_SEPA_TEST`
+_Example:_ `Op_01_CASH_DEPOSIT_TEST`
 </ResponseField>
 
-<ResponseField name="financialFlowDirection" type="string" required>
-Refers to the movement of money between entities or accounts.
+<ResponseField name="operationType" type="string" required>
+Notifies about which kind of operation type was performed.
 
-_Value:_ `INCOMING`
+_Value:_ `CASH`
+</ResponseField>
+
+<ResponseField name="riskManagementCategory" type="string from classifier list" required>
+Code of risk management category of the object. Value must be from a classifier list personalized to your company.
+
+_Example:_ `OP_TRANSFER`
+
+<Expandable title="Path to extract classifier values">
+**HTTP Method:**  `GET`
+
+**Path:** `{{baseUrl}}`/classifier/riskManagementCategory
+</Expandable>
+
+<ResponseField name="sourceOfRiskLevel" type="string" required>
+The value "EVALUATE" is used for normal business processes - risk assessment will be performed.
+
+_Value:_ `EVALUATE`
 </ResponseField>
 
 <ResponseField name="initializeScreeningProcesses" type="list[]">
@@ -258,6 +248,22 @@ _Example:_ `PEP, ADVERSE_MEDIA`
 The operation date and time show when the operation proceeded.
 
 _Example:_ `2024-08-16T13:00:00Z`
+</ResponseField>
+
+<ResponseField name="riskLevel" type="string from enum">
+The risk level of imported operation.
+
+Enum class values: `NONE`,  `LOW`, `MEDIUM`, `HIGH`, `EXTREME`
+
+_Example:_ `LOW`
+</ResponseField>
+
+</ResponseField>
+
+<ResponseField name="financialFlowDirection" type="string" required>
+Refers to the movement of money between entities or accounts.
+
+_Value:_ `INCOMING`
 </ResponseField>
 
 <ResponseField name="currency" type="string from classifier list" required>
