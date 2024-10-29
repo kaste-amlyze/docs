@@ -28,14 +28,15 @@ CASH TRANSFER OUTGOING operation is a transfer of funds by cash payment.
 {
     "communicationNumber": "ComNr_0011",
     "requester": "Kauno kredito unija",
+
+    "operationExtId": "OP20231114T12",
+    "operationType": "CASH_TRANSFER",
     "riskManagementCategory": "OP_DEFAULT",
     "sourceOfRiskLevel": "EVALUATE",
-    "operationType": "CASH_TRANSFER",
-    "financialFlowDirection": "OUTGOING",
-    "operationExtId": "OP20231114T12",
     "operationDateTime": "2023-11-15T15:09:33+02:00",
-    "amount": 998,
+    "financialFlowDirection": "OUTGOING",
     "currency": "EUR",
+    "amount": 998,
     "description": "Transfer of funds by cash payment",
     "listOperationParty": [
         {
@@ -66,22 +67,23 @@ CASH TRANSFER OUTGOING operation is a transfer of funds by cash payment.
 {
     "communicationNumber": "ComNr_0011",
     "requester": "Kauno kredito unija",
+
+    "operationExtId": "OP20231114T12",
+    "operationType": "CASH_TRANSFER",
     "riskManagementCategory": "OP_DEFAULT",
     "sourceOfRiskLevel": "EVALUATE",
-    "operationType": "CASH_TRANSFER",
-    "financialFlowDirection": "OUTGOING",
 
-        "initializeScreeningProcesses": [
+    "initializeScreeningProcesses": [
          "SANCTIONS",
          "PEP",
          "ADVERSE_MEDIA",
          "INTERNAL_LIST"
     ],
 
-    "operationExtId": "OP20231114T12",
     "operationDateTime": "2023-11-15T15:09:33+02:00",
-    "amount": 998,
+    "financialFlowDirection": "OUTGOING",
     "currency": "EUR",
+    "amount": 998,
     "description": "Transfer of funds by cash payment",
     "listOperationParty": [
         {
@@ -112,29 +114,32 @@ CASH TRANSFER OUTGOING operation is a transfer of funds by cash payment.
 {
     "communicationNumber": "ComNr_0011",
     "requester": "Kauno kredito unija",
+    "businessUnit": "Unit A",
+
+    "operationExtId": "OP20231114T12",
+    "operationType": "CASH_TRANSFER",
     "riskManagementCategory": "OP_DEFAULT",
+    "sourceOfRiskLevel": "EVALUATE",
 
     "initializeScreeningProcesses": [
-    "SANCTIONS",
-    "ADVERSE_MEDIA",
-    "PEP",
-    "INTERNAL_LIST"
+        "SANCTIONS",
+        "ADVERSE_MEDIA",
+        "PEP",
+        "INTERNAL_LIST"
     ],
 
-    "sourceOfRiskLevel": "EVALUATE",
-    "businessUnit": "Unit A",
-    "operationType": "CASH_TRANSFER",
-    "financialFlowDirection": "OUTGOING",
-    "operationExtId": "OP20231114T12",
     "operationDateTime": "2023-11-15T15:09:33+02:00",
-    "amount": 998,
+    "riskLevel": "LOW",
+    "financialFlowDirection": "OUTGOING",
     "currency": "EUR",
+    "amount": 998,
     "amountInEuro": 1140.41,
     "euroExchangeRate": 1.14,
-    "riskLevel": "LOW",
     "sourceCountry": "LT",
     "destinationCountry": "LT",
     "description": "Transfer of funds by cash payment",
+    "ipAddress": "222.222.222.222",
+    "ipAddressCountry": "LT",
     "listOperationParty": [
         {
             "partyRole": "DEBTOR",
@@ -144,7 +149,9 @@ CASH TRANSFER OUTGOING operation is a transfer of funds by cash payment.
             "bankTitle": "MyBank",
             "entityType": "INDIVIDUAL",
             "firstName": "Geli",
-            "lastName": "Deliono"
+            "lastName": "Deliono",
+            "address": "Baltų pr. 16, LT-44001, Kauno m. sav.",
+            "country": "LT"
         },
         {
             "partyRole": "CREDITOR",
@@ -174,39 +181,6 @@ Name of the system requesting web service.
 _Example:_ `Amlyze` _(name of your company)_
 </ResponseField>
 
-<ResponseField name="sourceOfRiskLevel" type="string" required>
-The value "EVALUATE" is used for normal business processes - risk assessment will be performed.
-
-_Value:_ `EVALUATE`
-</ResponseField>
-
-<ResponseField name="riskLevel" type="string from enum">
-The risk level of imported operation.
-
-Enum class values: `NONE`,  `LOW`, `MEDIUM`, `HIGH`, `EXTREME`
-
-_Example:_ `LOW`
-</ResponseField>
-
-<ResponseField name="riskManagementCategory" type="string from classifier list" required>
-Code of risk management category of the object. Value must be from a classifier list personalized to your company.
-
-_Example:_ `OP_TRANSFER`
-
-<Expandable title="Path to extract classifier values">
-**HTTP Method:**  `GET`
-
-**Path:** `{{baseUrl}}`/classifier/riskManagementCategory
-</Expandable>
-
-</ResponseField>
-
-<ResponseField name="operationType" type="string" required>
-Notifies about which kind of operation type was performed.
-
-_Value:_ `CASH_TRANSFER`
-</ResponseField>
-
 <ResponseField name="businessUnit" type="string from classifier list">
 ❗Mandatory field for clients utilizing a multi-organizational solution. Omit this parameter unless instructed about it.
 
@@ -228,10 +202,29 @@ External identifier of operation.
 _Example:_ `Op_01_CASH_TRANSFER_TEST`
 </ResponseField>
 
-<ResponseField name="financialFlowDirection" type="string" required>
-Refers to the movement of money between entities or accounts.
+<ResponseField name="operationType" type="string" required>
+Notifies about which kind of operation type was performed.
 
-_Value:_ `OUTGOING`
+_Value:_ `CASH_TRANSFER`
+</ResponseField>
+
+<ResponseField name="riskManagementCategory" type="string from classifier list" required>
+Code of risk management category of the object. Value must be from a classifier list personalized to your company.
+
+_Example:_ `OP_TRANSFER`
+
+<Expandable title="Path to extract classifier values">
+**HTTP Method:**  `GET`
+
+**Path:** `{{baseUrl}}`/classifier/riskManagementCategory
+</Expandable>
+
+</ResponseField>
+
+<ResponseField name="sourceOfRiskLevel" type="string" required>
+The value "EVALUATE" is used for normal business processes - risk assessment will be performed.
+
+_Value:_ `EVALUATE`
 </ResponseField>
 
 <ResponseField name="initializeScreeningProcesses" type="list[]">
@@ -255,6 +248,20 @@ _Example:_ `PEP, ADVERSE_MEDIA`
 The operation date and time show when the operation proceeded.
 
 _Example:_ `2024-08-16T13:00:00Z`
+</ResponseField>
+
+<ResponseField name="riskLevel" type="string from enum">
+The risk level of imported operation.
+
+Enum class values: `NONE`,  `LOW`, `MEDIUM`, `HIGH`, `EXTREME`
+
+_Example:_ `LOW`
+</ResponseField>
+
+<ResponseField name="financialFlowDirection" type="string" required>
+Refers to the movement of money between entities or accounts.
+
+_Value:_ `OUTGOING`
 </ResponseField>
 
 <ResponseField name="currency" type="string from classifier list" required>
@@ -294,12 +301,6 @@ _Example:_ `1499`
 
 </ResponseField>
 
-<ResponseField name="description" type="string" required>
-The purpose of payment is saved under description.
-
-_Example:_ `Transfer of funds by cash payment.`
-</ResponseField>
-
 <ResponseField name="sourceCountry" type="string from classifier list">
 Country rom where the operation was initiated.
 
@@ -322,6 +323,12 @@ Country of operation's destination.
 </Expandable>
 
 _Example:_ `LT`
+</ResponseField>
+
+<ResponseField name="description" type="string" required>
+The purpose of payment is saved under description.
+
+_Example:_ `Transfer of funds by cash payment.`
 </ResponseField>
 
 <ResponseField name="ipAddress" type="string">
@@ -367,6 +374,14 @@ Unique account identification number used in performing operations.
 _Example:_ `LT038625979279192518`
 </ResponseField>
 
+<ResponseField name="bic" type="string" required>
+❗Mandatory only for your customer. Not mandatory for counterparties. 
+
+Bank identifier code for account number.
+
+_Example:_ `BICXX22`
+</ResponseField>
+
 <ResponseField name="currency" type="string from classifier list" required>
 International currency code.
 
@@ -377,14 +392,6 @@ International currency code.
 </Expandable>
 
 _Value:_ `EUR`
-</ResponseField>
-
-<ResponseField name="bic" type="string" required>
-❗Mandatory only for your customer. Not mandatory for counterparties. 
-
-Bank identifier code for account number.
-
-_Example:_ `BICXX22`
 </ResponseField>
 
 <ResponseField name="bankTitle" type="string">
