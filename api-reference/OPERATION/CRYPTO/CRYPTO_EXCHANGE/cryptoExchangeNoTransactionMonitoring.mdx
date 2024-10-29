@@ -26,15 +26,16 @@ It includes examples of API requests with mandatory and optional fields, a compr
 {
     "communicationNumber": "Com_458",
     "requester": "financial_institution",
+
     "operationExtId": "ExtId_7478",
     "operationType": "CRYPTO_EXCHANGE",
     "riskManagementCategory": "OP_DEFAULT",
     "sourceOfRiskLevel": "IMPORT",
-    "operationStatus":"EXECUTED",
     "operationDateTime": "2023-09-22T15:09:33+02:00",
+    "operationStatus":"EXECUTED",
+    "financialFlowDirection": "INCOMING",
     "currency": "EUR",
     "amount": 760,
-    "financialFlowDirection": "INCOMING",
     "description": "invoice 'LT523461'",
     "listOperationParty": [
         {
@@ -64,15 +65,11 @@ It includes examples of API requests with mandatory and optional fields, a compr
 {
     "communicationNumber": "Com_458",
     "requester": "financial_institution",
+
     "operationExtId": "ExtId_7478",
     "operationType": "CRYPTO_EXCHANGE",
     "riskManagementCategory": "OP_DEFAULT",
     "sourceOfRiskLevel": "IMPORT",
-    "operationStatus":"EXECUTED",
-    "operationDateTime": "2023-09-22T15:09:33+02:00",
-    "currency": "EUR",
-    "amount": 760,
-    "financialFlowDirection": "INCOMING",
 
     "initializeScreeningProcesses": [
          "SANCTIONS",
@@ -81,6 +78,11 @@ It includes examples of API requests with mandatory and optional fields, a compr
          "INTERNAL_LIST"
     ],
 
+    "operationDateTime": "2023-09-22T15:09:33+02:00",
+    "operationStatus":"EXECUTED",
+    "financialFlowDirection": "INCOMING",
+    "currency": "EUR",
+    "amount": 760,
     "description": "invoice 'LT523461'",
     "listOperationParty": [
         {
@@ -110,45 +112,50 @@ It includes examples of API requests with mandatory and optional fields, a compr
 {
     "communicationNumber": "ComNr_0029",
     "requester": "financial_institution",
+    "businessUnit": "unit A",
+
     "operationExtId": "Op_0029",
     "operationType": "CRYPTO_EXCHANGE",
-    "businessUnit": "unit A",
     "riskManagementCategory": "OP_DEFAULT",
+    "sourceOfRiskLevel": "IMPORT",
+
     "initializeScreeningProcesses": [
         "SANCTIONS",
         "PEP",
         "ADVERSE_MEDIA",
         "INTERNAL_LIST"
     ],
-    "sourceOfRiskLevel": "IMPORT",
+
+    "operationDateTime": "2023-09-22T15:09:33+02:00",
     "operationStatus":"EXECUTED",
     "riskLevel": "EXTREME",
-    "operationDateTime": "2023-09-22T15:09:33+02:00",
-    "sourceCountry": "LT",
-    "destinationCountry": "LV",
+    "financialFlowDirection": "INCOMING",
     "currency": "ETH",
     "amount": 14.5,
     "euroExchangeRate": 100,
     "amountInEuro": 1450,
-    "financialFlowDirection": "INCOMING",
+    "sourceCountry": "LT",
+    "destinationCountry": "LV",
     "description": "crypto invoice '123487'",
     "ipAddress": "555.222.4545.144",
     "ipAddressCountry": "LT",
     "listOperationParty": [
          {
-              "partyRole": "DEBTOR",
+            "partyRole": "DEBTOR",
             "accountNumber": "ZZ55ZZ3fDd7197B6777b55b8ebc1BfE7ZZZ",
-            "currency": "BTC",
             "bic": "BICXX22",
+            "currency": "BTC",
             "bankTitle": "TBC",
             "entityType": "ORGANIZATION",
-            "title": "RyptoKrypto"
+            "title": "RyptoKrypto",
+            "address": "Baltų pr. 16, LT-44001, Kauno m. sav.",
+            "country": "LT"
         },
         {
            "partyRole": "CREDITOR",
             "accountNumber": "aaaz00145C9aa785aaz0C3fDd7197B6777b55b8ebc1BfE758fC7",
-            "currency": "ETH_222",
             "bic": "KRYPXX",
+            "currency": "ETH_222",
             "bankTitle": "TBC",
             "entityType": "ORGANIZATION",
             "title": "RyptoKrypto"
@@ -173,47 +180,6 @@ Name of the system requesting web service.
 _Example:_ `Amlyze` _(name of your company)_
 </ResponseField>
 
-<ResponseField name="sourceOfRiskLevel" type="string" required>
-The value `IMPORT` is to be used for migration purposes only – the transaction be imported without risk assessment.
-
-_Value:_ `IMPORT`
-</ResponseField>
-
-<ResponseField name="operationStatus" type="string from enum" required>
-Operation result either it was successfully executed, or the operation was rejected.
-
-Enum class values: `EXECUTED`,  `REJECTED`
-
-_Example:_ `EXECUTED`
-</ResponseField>
-
-<ResponseField name="riskLevel" type="string from enum">
-The risk level of imported operation.
-
-Enum class values: `NONE`,  `LOW`, `MEDIUM`, `HIGH`, `EXTREME`
-
-_Example:_ `LOW`
-</ResponseField>
-
-<ResponseField name="riskManagementCategory" type="string from classifier list" required>
-Code of risk management category of the object. Value must be from a classifier list personalized to your company.
-
-_Example:_ `OP_TRANSFER`
-
-<Expandable title="Path to extract classifier values">
-**HTTP Method:**  `GET`
-
-**Path:** `{{baseUrl}}`/classifier/riskManagementCategory
-</Expandable>
-
-</ResponseField>
-
-<ResponseField name="operationType" type="string" required>
-Notifies about which kind of operation type was performed.
-
-_Value:_ `CRYPTO_EXCHANGE`
-</ResponseField>
-
 <ResponseField name="businessUnit" type="string from classifier list">
 ❗Mandatory field for clients utilizing a multi-organizational solution. Omit this parameter unless instructed about it.
 
@@ -235,15 +201,29 @@ External identifier of operation.
 _Example:_ `Op_01_CRYPTO_EXCHANGE_TEST`
 </ResponseField>
 
-<ResponseField name="financialFlowDirection" type="string from enum" required>
-Refers to the movement of money between entities or accounts.
+<ResponseField name="operationType" type="string" required>
+Notifies about which kind of operation type was performed.
 
-Enum class values: `INCOMING`,  `OUTGOING`, `NULL`
+_Value:_ `CRYPTO_EXCHANGE`
+</ResponseField>
 
-Direction `INCOMING`, your customer is `CREDITOR`,
-direction `OUTGOING`, your customer is `DEBTOR`.
+<ResponseField name="riskManagementCategory" type="string from classifier list" required>
+Code of risk management category of the object. Value must be from a classifier list personalized to your company.
 
-_Example:_ `INCOMING`
+_Example:_ `OP_TRANSFER`
+
+<Expandable title="Path to extract classifier values">
+**HTTP Method:**  `GET`
+
+**Path:** `{{baseUrl}}`/classifier/riskManagementCategory
+</Expandable>
+
+</ResponseField>
+
+<ResponseField name="sourceOfRiskLevel" type="string" required>
+The value `IMPORT` is to be used for migration purposes only – the transaction be imported without risk assessment.
+
+_Value:_ `IMPORT`
 </ResponseField>
 
 <ResponseField name="initializeScreeningProcesses" type="list[]">
@@ -267,6 +247,33 @@ _Example:_ `PEP, ADVERSE_MEDIA`
 The operation date and time show when the operation proceeded.
 
 _Example:_ `2024-08-16T13:00:00Z`
+</ResponseField>
+
+<ResponseField name="operationStatus" type="string from enum" required>
+Operation result either it was successfully executed, or the operation was rejected.
+
+Enum class values: `EXECUTED`,  `REJECTED`
+
+_Example:_ `EXECUTED`
+</ResponseField>
+
+<ResponseField name="riskLevel" type="string from enum">
+The risk level of imported operation.
+
+Enum class values: `NONE`,  `LOW`, `MEDIUM`, `HIGH`, `EXTREME`
+
+_Example:_ `LOW`
+</ResponseField>
+
+<ResponseField name="financialFlowDirection" type="string from enum" required>
+Refers to the movement of money between entities or accounts.
+
+Enum class values: `INCOMING`,  `OUTGOING`, `NULL`
+
+Direction `INCOMING`, your customer is `CREDITOR`,
+direction `OUTGOING`, your customer is `DEBTOR`.
+
+_Example:_ `INCOMING`
 </ResponseField>
 
 <ResponseField name="currency" type="string from classifier list" required>
@@ -304,12 +311,6 @@ Amount of money in euro currency.
 
 _Example:_ `1499`
 
-</ResponseField>
-
-<ResponseField name="description" type="string" required>
-The purpose of payment is saved under description.
-
-_Example:_ `Invoice '02'`
 </ResponseField>
 
 <ResponseField name="sourceCountry" type="string from classifier list">
@@ -380,6 +381,14 @@ Unique account identification number used in performing operations.
 _Example:_ `LT038625979279192518`
 </ResponseField>
 
+<ResponseField name="bic" type="string" required>
+❗Mandatory only for your customer. Not mandatory for counterparties. 
+
+Bank identifier code for account number.
+
+_Example:_ `BICXX22`
+</ResponseField>
+
 <ResponseField name="currency" type="string from classifier list" required>
 International currency code.
 
@@ -390,14 +399,6 @@ International currency code.
 </Expandable>
 
 _Value:_ `EUR`
-</ResponseField>
-
-<ResponseField name="bic" type="string" required>
-❗Mandatory only for your customer. Not mandatory for counterparties. 
-
-Bank identifier code for account number.
-
-_Example:_ `BICXX22`
 </ResponseField>
 
 <ResponseField name="bankTitle" type="string">
