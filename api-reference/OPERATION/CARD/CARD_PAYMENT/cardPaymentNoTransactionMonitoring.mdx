@@ -154,8 +154,8 @@ It includes examples of API requests with mandatory and optional fields, a compr
         {
             "partyRole": "DEBTOR",
             "accountNumber": "LT933520036948858623",
-            "currency": "EUR",
             "bic": "BICXX22",
+            "currency": "EUR",
             "bankTitle": "TBC",
             "entityType": "INDIVIDUAL",
             "firstName": "Geli",
@@ -169,8 +169,8 @@ It includes examples of API requests with mandatory and optional fields, a compr
         {
             "partyRole": "CREDITOR",
             "accountNumber": "LT12345678901234567890",
-            "currency": "EUR",
             "bic": "BIC23",
+            "currency": "EUR",
             "bankTitle": "TLC",
             "entityType": "ORGANIZATION",
             "title": "LAMEER",
@@ -483,6 +483,14 @@ Unique account identification number used in performing operations.
 _Example:_ `LT038625979279192518`
 </ResponseField>
 
+<ResponseField name="bic" type="string" required>
+❗Mandatory only for your customer. Not mandatory for counterparties. 
+
+Bank identifier code for account number.
+
+_Example:_ `BICXX22`
+</ResponseField>
+
 <ResponseField name="currency" type="string from classifier list" required>
 International currency code.
 
@@ -493,14 +501,6 @@ International currency code.
 </Expandable>
 
 _Value:_ `EUR`
-</ResponseField>
-
-<ResponseField name="bic" type="string" required>
-❗Mandatory only for your customer. Not mandatory for counterparties. 
-
-Bank identifier code for account number.
-
-_Example:_ `BICXX22`
 </ResponseField>
 
 <ResponseField name="bankTitle" type="string">
