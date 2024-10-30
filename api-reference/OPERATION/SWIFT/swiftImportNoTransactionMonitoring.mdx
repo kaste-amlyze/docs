@@ -202,48 +202,7 @@ _Example:_ `ComNr_01_TEST`
 <ResponseField name="requester" type="string" required>
 Name of the system requesting web service.
 
-_Example:_ `Amlyze` _(name of your company)_
-</ResponseField>
-
-<ResponseField name="sourceOfRiskLevel" type="string" required>
-The value `IMPORT` is to be used for migration purposes only – the customer and it's questionnaire will be imported without risk assessment.
-
-_Value:_ `IMPORT`
-</ResponseField>
-
-<ResponseField name="operationStatus" type="string from enum" required>
-Operation result either it was successfully executed, or the operation was rejected.
-
-Enum class values: `EXECUTED`,  `REJECTED`
-
-_Example:_ `EXECUTED`
-</ResponseField>
-
-<ResponseField name="riskLevel" type="string from enum">
-The risk level of imported operation.
-
-Enum class values: `NONE`,  `LOW`, `MEDIUM`, `HIGH`, `EXTREME`
-
-_Example:_ `LOW`
-</ResponseField>
-
-<ResponseField name="riskManagementCategory" type="string from classifier list" required>
-Code of risk management category of the object. Value must be from a classifier list personalized to your company.
-
-_Example:_ `OP_TRANSFER`
-
-<Expandable title="Path to extract classifier values">
-**HTTP Method:**  `GET`
-
-**Path:** `{{baseUrl}}`/classifier/riskManagementCategory
-</Expandable>
-
-</ResponseField>
-
-<ResponseField name="operationType" type="string" required>
-Notifies about which kind of operation type was performed
-
-_Value:_ `SWIFT`
+_Example:_ `Amlyze`
 </ResponseField>
 
 <ResponseField name="businessUnit" type="string from classifier list">
@@ -267,12 +226,29 @@ External identifier of operation.
 _Example:_ `Op_01_SWIFT_TEST`
 </ResponseField>
 
-<ResponseField name="financialFlowDirection" type="string from enum" required>
-Refers to the movement of money between entities or accounts.
+<ResponseField name="operationType" type="string" required>
+Notifies about which kind of operation type was performed
 
-Enum class values: `INCOMING`,  `OUTGOING`
+_Value:_ `SWIFT`
+</ResponseField>
 
-_Example:_ `INCOMING`
+<ResponseField name="riskManagementCategory" type="string from classifier list" required>
+Code of risk management category of the object. Value must be from a classifier list personalized to your company.
+
+_Example:_ `OP_TRANSFER`
+
+<Expandable title="Path to extract classifier values">
+**HTTP Method:**  `GET`
+
+**Path:** `{{baseUrl}}`/classifier/riskManagementCategory
+</Expandable>
+
+</ResponseField>
+
+<ResponseField name="sourceOfRiskLevel" type="string" required>
+The value `IMPORT` is to be used for migration purposes only – the customer and it's questionnaire will be imported without risk assessment.
+
+_Value:_ `IMPORT`
 </ResponseField>
 
 <ResponseField name="initializeScreeningProcesses" type="list[]">
@@ -296,6 +272,30 @@ _Example:_ `PEP, ADVERSE_MEDIA`
 The operation date and time show when the operation proceeded.
 
 _Example:_ `2024-08-16T13:00:00Z`
+</ResponseField>
+
+<ResponseField name="operationStatus" type="string from enum" required>
+Operation result either it was successfully executed, or the operation was rejected.
+
+Enum class values: `EXECUTED`,  `REJECTED`
+
+_Example:_ `EXECUTED`
+</ResponseField>
+
+<ResponseField name="riskLevel" type="string from enum">
+The risk level of imported operation.
+
+Enum class values: `NONE`,  `LOW`, `MEDIUM`, `HIGH`, `EXTREME`
+
+_Example:_ `LOW`
+</ResponseField>
+
+<ResponseField name="financialFlowDirection" type="string from enum" required>
+Refers to the movement of money between entities or accounts.
+
+Enum class values: `INCOMING`,  `OUTGOING`
+
+_Example:_ `INCOMING`
 </ResponseField>
 
 <ResponseField name="currency" type="string from classifier list" required>
@@ -334,12 +334,6 @@ _Example:_ `1499`
 
 </ResponseField>
 
-<ResponseField name="description" type="string" required>
-The purpose of payment is saved under description.
-
-_Example:_ `Invoice '02'`
-</ResponseField>
-
 <ResponseField name="sourceCountry" type="string from classifier list">
 Country from where the operation was initiated.
 
@@ -362,6 +356,12 @@ Country of operation's destination.
 </Expandable>
 
 _Example:_ `LT`
+</ResponseField>
+
+<ResponseField name="description" type="string" required>
+The purpose of payment is saved under description.
+
+_Example:_ `Invoice '02'`
 </ResponseField>
 
 <ResponseField name="ipAddress" type="string">
@@ -408,6 +408,14 @@ Unique account identification number used in performing operations.
 _Example:_ `LT038625979279192518`
 </ResponseField>
 
+<ResponseField name="bic" type="string" required>
+❗Mandatory only for your customer. Not mandatory for counterparties. 
+
+Bank identifier code for account number.
+
+_Example:_ `BICXX22`
+</ResponseField>
+
 <ResponseField name="currency" type="string from classifier list" required>
 International currency code.
 
@@ -418,14 +426,6 @@ International currency code.
 </Expandable>
 
 _Value:_ `EUR`
-</ResponseField>
-
-<ResponseField name="bic" type="string" required>
-❗Mandatory only for your customer. Not mandatory for counterparties. 
-
-Bank identifier code for account number.
-
-_Example:_ `BICXX22`
 </ResponseField>
 
 <ResponseField name="bankTitle" type="string">
