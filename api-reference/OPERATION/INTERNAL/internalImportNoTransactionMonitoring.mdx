@@ -371,7 +371,7 @@ The role of the party in ongoing operation. At least one operation party account
 
 Only one operation can be imported per API request which means only one `CREDITOR` and one `DEBTOR` could be provided.
 
-**Enum class values:** `DEBTOR`,  `CREDITOR`, `ULTIMATE_DEBTOR`, `ULTIMATE_CREDITOR`
+**Enum class values:** `DEBTOR`,  `CREDITOR`
 
 If `financialFlowDirection` is `OUTGOING` your customer is `DEBTOR`.
 
@@ -379,8 +379,6 @@ _Example:_ `CREDITOR`
 </ResponseField>
 
 <ResponseField name="accountNumber" type="string" required>
-❗Not mandatory if  `partyRole` is `ULTIMATE_DEBTOR` or `ULTIMATE_CREDITOR`.
-
 Unique account identification number used in performing operations.
 
 _Example:_ `LT038625979279192518`
@@ -441,14 +439,6 @@ _Example:_ `Rodriguez`
 Identifies a party (`INDIVIDUAL`, `ORGANIZATION` or `UNKNOWN`) without requiring `firstName` or `lastName`.
 
 _Example:_ `Moller`
-</ResponseField>
-
-<ResponseField name="identifier" type="string">
-❗Mandatory only when "partyRole" = "ULTIMATE_" and no more elements are provided for that party.
-
-Unique identification number (e.g., personal ID, company VAT code) to distinguish the payer and the transaction. Can be used for customer, counterparty and ultimateparty.
-
-_Example:_ `50007153359`
 </ResponseField>
 
 <ResponseField name="address" type="string">

@@ -353,14 +353,12 @@ The role of the party in ongoing operation. At least one operation party account
 
 Only one operation can be imported per API request which means only one `CREDITOR` could be provided.
 
-**Enum class values:** `CREDITOR`, `ULTIMATE_CREDITOR`
+**Enum class values:** `CREDITOR`, `DEBTOR`
 
 _Example:_ `CREDITOR`
 </ResponseField>
 
 <ResponseField name="accountNumber" type="string" required>
-❗Not mandatory if  `partyRole` is `ULTIMATE_DEBTOR` or `ULTIMATE_CREDITOR`.
-
 Unique account identification number used in performing operations.
 
 _Example:_ `LT038625979279192518`
