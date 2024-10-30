@@ -27,16 +27,13 @@ It includes examples of API requests with mandatory and optional fields, a compr
     "communicationNumber": "Test_ComNr_INTERNAL_05",
     "requester": "Company Name Amlyze",
 
-    "sourceOfRiskLevel": "EVALUATE",
-    "riskLevel": "HIGH",
-
-    "riskManagementCategory": "OP_TRANSFER",
-    "operationType": "INTERNAL",
-
     "operationExtId": "Op_05_INTERNAL_ULTIMATES_TEST",
-    "financialFlowDirection": "NULL",
-
+    "operationType": "INTERNAL",
+    "riskManagementCategory": "OP_TRANSFER",
+    "sourceOfRiskLevel": "EVALUATE",
     "operationDateTime": "2023-09-22T15:09:33+02:00",
+    "riskLevel": "HIGH",
+    "financialFlowDirection": "NULL",
     "currency": "EUR",
     "amount": 200,
     "description": "invoice '123456'",
@@ -70,8 +67,10 @@ It includes examples of API requests with mandatory and optional fields, a compr
     "communicationNumber": "Test_ComNr_INTERNAL_05",
     "requester": "Company Name Amlyze",
 
+    "operationExtId": "Op_05_INTERNAL_ULTIMATES_TEST",
+    "operationType": "INTERNAL",
+    "riskManagementCategory": "OP_TRANSFER",
     "sourceOfRiskLevel": "EVALUATE",
-    "riskLevel": "HIGH",
 
     "initializeScreeningProcesses": [
          "SANCTIONS",
@@ -80,13 +79,9 @@ It includes examples of API requests with mandatory and optional fields, a compr
          "INTERNAL_LIST"
     ],
 
-    "riskManagementCategory": "OP_TRANSFER",
-    "operationType": "INTERNAL",
-
-    "operationExtId": "Op_05_INTERNAL_ULTIMATES_TEST",
-    "financialFlowDirection": "NULL",
-
     "operationDateTime": "2023-09-22T15:09:33+02:00",
+    "riskLevel": "HIGH",
+    "financialFlowDirection": "NULL",
     "currency": "EUR",
     "amount": 200,
     "description": "invoice '123456'",
@@ -121,15 +116,11 @@ It includes examples of API requests with mandatory and optional fields, a compr
     "requester": "Company Name Amlyze",
     "businessUnit": "Unit C",
 
-    "sourceOfRiskLevel": "EVALUATE",
-    "riskLevel": "HIGH",
-    
-    "riskManagementCategory": "OP_TRANSFER",
-    "operationType": "INTERNAL",
-
     "operationExtId": "Op_03_INTERNAL_TEST",
-    "financialFlowDirection": "NULL",
- 
+    "operationType": "INTERNAL",
+    "riskManagementCategory": "OP_TRANSFER",
+    "sourceOfRiskLevel": "EVALUATE",
+
     "initializeScreeningProcesses": [
         "SANCTIONS",
         "PEP",
@@ -138,12 +129,14 @@ It includes examples of API requests with mandatory and optional fields, a compr
     ],
 
     "operationDateTime": "2023-09-22T15:09:33+02:00",
-    "sourceCountry": "LT",
-    "destinationCountry": "LT",
+    "riskLevel": "HIGH",
+    "financialFlowDirection": "NULL",
     "currency": "GBP",
     "amount": 123,
     "euroExchangeRate": 1.16,
     "amountInEuro": 143,
+    "sourceCountry": "LT",
+    "destinationCountry": "LT",
     "description": "invoice '123458'",
     "ipAddress": "555.222.4545.144",
     "ipAddressCountry": "LT",
@@ -156,7 +149,9 @@ It includes examples of API requests with mandatory and optional fields, a compr
             "bankTitle": "TBC",
             "entityType": "INDIVIDUAL",
             "firstName" : "Tomas",
-	        "lastName" : "Garcia"
+	          "lastName" : "Garcia",
+            "address": "Baltų pr. 16, LT-44001, Kauno m. sav.",
+            "country": "LT"
         },
         {
             "partyRole": "CREDITOR",
@@ -188,39 +183,6 @@ Name of the system requesting web service.
 _Example:_ `Amlyze`
 </ResponseField>
 
-<ResponseField name="sourceOfRiskLevel" type="string" required>
-The value "EVALUATE" is used for normal business processes - risk assessment will be performed.
-
-_Value:_ `EVALUATE`
-</ResponseField>
-
-<ResponseField name="riskLevel" type="string from enum">
-The risk level of imported operation.
-
-Enum class values: `NONE`,  `LOW`, `MEDIUM`, `HIGH`, `EXTREME`
-
-_Example:_ `LOW`
-</ResponseField>
-
-<ResponseField name="riskManagementCategory" type="string from classifier list" required>
-Code of risk management category of the object. Value must be from a classifier list personalized to your company.
-
-_Example:_ `OP_DEFAULT`
-
-<Expandable title="Path to extract classifier values">
-**HTTP Method:**  `GET`
-
-**Path:** `{{baseUrl}}`/classifier/riskManagementCategory
-</Expandable>
-
-</ResponseField>
-
-<ResponseField name="operationType" type="string" required>
-Notifies about which kind of operation type was performed.
-
-_Value:_ `INTERNAL`
-</ResponseField>
-
 <ResponseField name="businessUnit" type="string from classifier list">
 ❗Mandatory field for clients utilizing a multi-organizational solution. Omit this parameter unless instructed about it.
 
@@ -242,10 +204,29 @@ External identifier of operation.
 _Example:_ `Op_01_INTERNAL_TEST`
 </ResponseField>
 
-<ResponseField name="financialFlowDirection" type="string" required>
-Refers to the movement of money between entities or accounts.
+<ResponseField name="operationType" type="string" required>
+Notifies about which kind of operation type was performed.
 
-_Value:_ `NULL`
+_Value:_ `INTERNAL`
+</ResponseField>
+
+<ResponseField name="riskManagementCategory" type="string from classifier list" required>
+Code of risk management category of the object. Value must be from a classifier list personalized to your company.
+
+_Example:_ `OP_DEFAULT`
+
+<Expandable title="Path to extract classifier values">
+**HTTP Method:**  `GET`
+
+**Path:** `{{baseUrl}}`/classifier/riskManagementCategory
+</Expandable>
+
+</ResponseField>
+
+<ResponseField name="sourceOfRiskLevel" type="string" required>
+The value "EVALUATE" is used for normal business processes - risk assessment will be performed.
+
+_Value:_ `EVALUATE`
 </ResponseField>
 
 <ResponseField name="initializeScreeningProcesses" type="list[]">
@@ -269,6 +250,20 @@ _Example:_ `PEP, ADVERSE_MEDIA`
 The operation date and time show when the operation proceeded.
 
 _Example:_ `2024-08-16T13:00:00Z`
+</ResponseField>
+
+<ResponseField name="riskLevel" type="string from enum">
+The risk level of imported operation.
+
+Enum class values: `NONE`,  `LOW`, `MEDIUM`, `HIGH`, `EXTREME`
+
+_Example:_ `LOW`
+</ResponseField>
+
+<ResponseField name="financialFlowDirection" type="string" required>
+Refers to the movement of money between entities or accounts.
+
+_Value:_ `NULL`
 </ResponseField>
 
 <ResponseField name="currency" type="string from classifier list" required>
@@ -308,12 +303,6 @@ _Example:_ `1499`
 
 </ResponseField>
 
-<ResponseField name="description" type="string" required>
-The purpose of payment is saved under description.
-
-_Example:_ `Transfer of funds by cash payment.`
-</ResponseField>
-
 <ResponseField name="sourceCountry" type="string from classifier list">
 Country rom where the operation was initiated.
 
@@ -336,6 +325,12 @@ Country of operation's destination.
 </Expandable>
 
 _Example:_ `LT`
+</ResponseField>
+
+<ResponseField name="description" type="string" required>
+The purpose of payment is saved under description.
+
+_Example:_ `Transfer of funds by cash payment.`
 </ResponseField>
 
 <ResponseField name="ipAddress" type="string">
@@ -381,6 +376,14 @@ Unique account identification number used in performing operations.
 _Example:_ `LT038625979279192518`
 </ResponseField>
 
+<ResponseField name="bic" type="string" required>
+❗Mandatory only for your customer. Not mandatory for counterparties. 
+
+Bank identifier code for account number.
+
+_Example:_ `BICXX22`
+</ResponseField>
+
 <ResponseField name="currency" type="string from classifier list" required>
 International currency code.
 
@@ -391,14 +394,6 @@ International currency code.
 </Expandable>
 
 _Value:_ `EUR`
-</ResponseField>
-
-<ResponseField name="bic" type="string" required>
-❗Mandatory only for your customer. Not mandatory for counterparties. 
-
-Bank identifier code for account number.
-
-_Example:_ `BICXX22`
 </ResponseField>
 
 <ResponseField name="bankTitle" type="string">
