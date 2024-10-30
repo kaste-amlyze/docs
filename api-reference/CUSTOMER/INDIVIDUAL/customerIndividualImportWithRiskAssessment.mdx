@@ -1799,57 +1799,149 @@ This part lists common responses after the submission of the request.
 
 ## List of possible errors
 
-This section lists the possible errors that can occur when making a bad request to the API. A bad request is a request that somehow does not follow the API specifications.
+This section lists the possible errors that can occur when making a bad customer request to the API. A bad request is a request that somehow does not follow the API specifications.
 
-| **Category**                | **Error Message**                                                               |
-|-----------------------------|---------------------------------------------------------------------------------|
-| Action Not Supported        | Action is not supported.                                                        |
-| OperationExtId Issues       | OperationExtId is mandatory.                                                     |
-|                             | Operation with given OperationExtId already exists in Amlyze.                     |
-|                             | Operation with given OperationExtId does not exist in Amlyze.                     |
-| Requester Issues            | Requester is mandatory.                                                           |
-| OperationDateTime Issues    | OperationDateTime is mandatory.                                                   |
-| Description Issues          | Description is mandatory.                                                         |
-| CommunicationNumber Issues  | CommunicationNumber is mandatory.                                                 |
-|                             | CommunicationNumber was already used in Amlyze.                                   |
-| SourceOfRiskLevel Issues    | SourceOfRiskLevel is mandatory; allowed values: IMPORT / EVALUATE.                |
-|                             | Problem with SourceOfRiskLevel.                                                   |
-| Country Issues              | SourceCountry is mandatory; check country classifier codes for allowed values.   |
-|                             | DestinationCountry is mandatory; check country classifier codes for allowed values.|
-|                             | Invalid MerchantCountryCode.                                                      |
-| Amount Issues               | Amount is mandatory and must be greater than 0.                                  |
-|                             | Despite currency = EUR, AmountInEur differs from Amount.                          |
-|                             | AmountInEur is mandatory and must be greater than 0.                             |
-|                             | EuroExchangeRate is mandatory and must be greater than 0 (when currency != EUR). |
-| OperationType Issues        | OperationType is mandatory.                                                       |
-|                             | Problem with OperationType.                                                        |
-|                             | OperationType is not defined in Amlyze. Check Operation type classifier for available values. |
-| OperationStatus Issues      | OperationStatus is mandatory for IMPORT operation. Possible values: REJECTED / EXECUTED. |
-|                             | OperationStatus must be empty for EVALUATE operation.                             |
-| FinancialFlowDirection Issues| For not INTERNAL operation financialFlowDirection value can't be 'NULL'.         |
-|                             | Invalid FinancialFlowDirection. Your institution DEBTOR found for INCOMING operation. |
-|                             | Invalid FinancialFlowDirection. Your institution CREDITOR found for OUTGOING operation. |
-| General Issues              | ListOperationParty is mandatory and can't be empty.                              |
-|                             | Problem with OperationParties.                                                   |
-|                             | Invalid operation party count. Range: min 1 max 4.                                |
-|                             | No operation party account related to your institution BIC, or Customer.          |
-|                             | OperationParties must contain CREDITOR.                                           |
-|                             | OperationParties must contain DEBTOR.                                             |
-|                             | Invalid count of your institution operation parties for [operationType].           |
-| Specific Roles and Types    | entityType mismatch in operationParty[i]. Amlyze customer has a different entity type to operation one. |
-|                             | For INCOMING operation your's customer party role must be CREDITOR.              |
-|                             | For OUTGOING operation your's customer party role must be DEBTOR.                |
-|                             | For card_refund subtype, creditor must be your customer.                         |
-|                             | For 'PIS' operation only creditor can be provided.                               |
-|                             | Operation party title or firstName or lastName or cardHolderName is mandatory.  |
-|                             | AccountNumber or CardNumber is mandatory for card operation.                     |
-| RiskManagementCategory Issues| RiskManagementCategory is mandatory.                                            |
-|                             | RiskManagementCategory does not exist in Amlyze.                                 |
-|                             | RiskManagementCategory does not support Operation.                               |
-| Account Issues              | Account registered to your institution, Account found in Amlyze, but customer not found in Amlyze. |
-| EntityType Issues           | EntityType is mandatory, values: INDIVIDUAL, ORGANIZATION, UNKNOWN.             |
-| PartyRole Issues            | PartyRole is mandatory, possible values: DEBTOR, CREDITOR, ULTIMATE_DEBTOR, ULTIMATE_CREDITOR. |
-| Country Values              | The value for the country in the party is not within the allowed values specified by the country classifier. |
-| Tenant and Business Unit Issues | Tenant header [tenant code] is mandatory.                                    |
-|                             | Business unit is mandatory.                                                      |
-|                             | Tenant [tenantCode] business unit [businessUnitCode] does not exist.             |
+| Error Description                                                                          |
+|-------------------------------------------------------------------------------------------|
+| ActivityType is mandatory                                                                  |
+| ActivityType must be defined in Amlyze                                                   |
+| AddressType is mandatory.                                                                  |
+| AddressType is not defined in Amlyze.                                                    |
+| Country is mandatory and can't be empty                                                   |
+| Country is mandatory and must exist in Amlyze                                            |
+| AdditionalValue.Code is mandatory                                                          |
+| AdditionalValue.Description is mandatory                                                   |
+| AdditionalValue.Value is mandatory                                                         |
+| AdditionalValue.Datatype is mandatory                                                      |
+| Duplicate code in additionalValues                                                         |
+| Bad datatype valueCode:                                                                    |
+| Bad value for  valueCode:                                                                  |
+| Bad value for  (format: 'yyyy-MM-dd') valueCode:                                          |
+| Bad value for  (format: 'yyyy-MM-dd HH:mm:ss.SSSZ') valueCode:                           |
+| Bad value for  (values: true false') valueCode:                                           |
+| EntityType is mandatory. values: INDIVIDUAL, ORGANIZATION                                 |
+| DocumentNumber is mandatory.                                                               |
+| DocumentIssueDate is mandatory.                                                            |
+| DocumentIssueCountry is mandatory and must exist in Amlyze                                |
+| DocumentIssueAuthority is mandatory                                                        |
+| CustomerExtId is mandatory.                                                                |
+| DELETE not yet implemented, contact Amlyze support                                        |
+| Customer already exists                                                                     |
+| Cannot update not existing customer, use Action = CREATE                                   |
+| Requester is mandatory.                                                                     |
+| RiskManagementCategory is mandatory.                                                       |
+| RiskManagementCategory does not exist in Amlyze                                           |
+| Given RiskManagementCategory not supported for Customer                                     |
+| SourceOfRiskLevel is mandatory. Values: IMPORT, EVALUATE                                   |
+| Cannot demote existing customer to Lead riskManagementCategory                               |
+| EntityType is mandatory.                                                                    |
+| When importing, CustomerStatus is mandatory.                                               |
+| When source of risk level IMPORT. 'Lead' risk management category is forbidden              |
+| When source of risk level IMPORT. RiskLevel is mandatory, values: NONE, LOW, MEDIUM, HIGH, EXTREME |
+| When source of risk level EVALUATE. RiskLevel can't be provided                             |
+| ApplicationDate is mandatory                                                                |
+| ClosingDate is mandatory for CLOSED CustomerStatus                                         |
+| ClosingDate can not exist for not CLOSED CustomerStatus                                     |
+| Field not allowed for INDIVIDUAL. Field:                                                   |
+| For INDIVIDUAL type customer                                                               |
+| Field not allowed for ORGANIZATION. Field:                                                 |
+| For ORGANIZATION type customer                                                              |
+| Problem with field for INDIVIDUAL type customer. CitizenshipCountry not found in amlyze    |
+| InitialDepositCurrency not found in amlyze                                                  |
+| BirthCountry not defined in Amlyze                                                          |
+| CitizenshipCountry not defined in Amlyze                                                   |
+| SecondCitizenshipCountry not defined in Amlyze                                             |
+| PermanentResidenceCountry not defined in Amlyze                                             |
+| Problem with field for INDIVIDUAL type customer.                                           |
+| FieldOfActivity.Student.Country is invalid                                                  |
+| PensionCountry is invalid                                                                    |
+| registrationCountry is invalid                                                               |
+| registrationCountry must exist in Amlyze                                                    |
+| LegalForm must exist in Amlyze                                                              |
+| Problem with field for ORGANIZATION type customer.                                          |
+| TurnoverType is mandatory                                                                    |
+| TurnoverType must exist in amlyze                                                           |
+| At least one value must be specified (FROM, TO)                                            |
+| Problem with DeclaredTurnover (index:  ).                                                  |
+| PaymentPurposeType does not exist in Amlyze                                                |
+| TurnoverDirection is invalid                                                                  |
+| Problem with PaymentPurpose (index:  ).                                                    |
+| ServiceType not found in Amlyze                                                             |
+| Problem with OrderedService (index:  ).                                                   |
+| Problem with Customer Contact index =  .                                                   |
+| Problem with Customer BusinessEntityDocument index =  .                                     |
+| Problem with relatedEntity (index:  ).                                                      |
+| Problem with relatedEntities.                                                                |
+| Problem with Address (index:  ).                                                            |
+| screening process is undefined:                                                              |
+| PaymentCountry can't be empty                                                                |
+| PaymentCountry not found in Amlyze                                                           |
+| TurnoverDirection is invalid                                                                  |
+| Problem with PaymentCountry (index:  ).                                                     |
+| IntroductionSource not found in amlyze                                                      |
+| Problem with IntroductionSource (index:  ).                                                |
+| Problem with IncomeSource (index:  ).                                                       |
+| AppealReasonType is mandatory and can't be empty                                             |
+| AppealReasonType is mandatory and must be defined in Amlyze                                 |
+| Problem with ListAppealReason (index:  ).                                                  |
+| Problem with activity (index:  ).                                                           |
+| Problem with RegionOfActivity (index:  ).                                                   |
+| CountryOfTaxPayment can't be empty                                                           |
+| CountryOfTaxPayment not found in Amlyze                                                      |
+| CountryOfTaxPayment (index:  ).                                                             |
+| Problem with CountryOfActivity (index:  ).                                                  |
+| Title is mandatory                                                                           |
+| RegistrationCountry is mandatory                                                              |
+| LegalForm is mandatory                                                                        |
+| FirstName is mandatory                                                                       |
+| LastName is mandatory                                                                        |
+| Bad value for TIMESTAMP (format: 'yyyy-MM-dd HH:mm:ss.SSSZ') valueCode: lastonlinesupport |
+| Field not allowed for INDIVIDUAL. Field: CompanyAssetValue                                  |
+| Problem with field for INDIVIDUAL type customer. CitizenshipCountry not found in amlyze     |
+| When source of risk level IMPORT. 'Lead' risk management category is forbidden              |
+| Field not allowed for ORGANIZATION. Field: LastName                                          |
+| Screening process is undefined: NOT_EXISTS                                                   |
+| Problem with Address (index: 0 ). Country is mandatory and must exist in Amlyze              |
+| Field not allowed for ORGANIZATION. Field: SecondCitizenshipCountry                         |
+| Problem with field for ORGANIZATION type customer. Problem with relatedEntity (index: 0 ). Relation type is mandatory |
+| Problem with PaymentCountry (index: 0 ). PaymentCountry not found in Amlyze                  |
+| Field not allowed for INDIVIDUAL. Field: NumberOfEmployees                                  |
+| Bad value for BOOLEAN (values: true false') valueCode: isvip                                 |
+| ApplicationDate is mandatory                                                                  |
+| CustomerExtId is mandatory                                                                    |
+| Problem with Customer BusinessEntityDocument index = 0 . DocumentIssueCountry is mandatory and must exist in Amlyze |
+| CountryOfTaxPayment (index: 0 ). CountryOfTaxPayment not found in Amlyze                    |
+| RiskManagementCategory does not exist in Amlyze                                              |
+| Field not allowed for INDIVIDUAL. Field: LicenseDescription                                   |
+| Field not allowed for INDIVIDUAL. Field: NumberOfAudits                                      |
+| Field not allowed for ORGANIZATION. Field: FirstName                                          |
+| CountryOfTaxPayment (index: 0 ). CountryOfTaxPayment not found in Amlyze                    |
+| PermanentResidenceCountry not defined in Amlyze                                              |
+| PensionCountry is invalid                                                                      |
+| Field not allowed for INDIVIDUAL. Field: RegionOfActivityDescription                        |
+| BirthCountry not defined in Amlyze                                                            |
+| ClosingDate can not exist for not CLOSED CustomerStatus                                     |
+| ClosingDate is mandatory for CLOSED CustomerStatus                                           |
+| Problem with field for ORGANIZATION type customer. Problem with relatedEntity (index: 0 ). Problem with BusinessEntityDocuments (index: 0 ). EntityType is mandatory. values : INDIVIDUAL, ORGANIZATION |
+| Problem with field for ORGANIZATION type customer. Problem with relatedEntity (index: 0 ). Problem with Contact (index: 0 ). ContactDetails is mandatory |
+| Field not allowed for INDIVIDUAL. Field: Title                                                |
+| Bad value for INTEGER valueCode: number_users                                                |
+| For ORGANIZATION type customer Title is mandatory                                             |
+| EntityType is mandatory                                                                        |
+| Field not allowed for ORGANIZATION. Field: PermanentResidenceCountry                         |
+| Field not allowed for INDIVIDUAL. Field: LegalForm                                           |
+| Field not allowed for INDIVIDUAL. Field: ThirdPartyServicesUsedDescription                   |
+| Field not allowed for ORGANIZATION. Field: BirthCountry                                       |
+| Field not allowed for INDIVIDUAL. Field: GIIN                                                |
+| Problem with field for ORGANIZATION type customer. Problem with relatedEntity (index: 0 ). Relation type is not defined in Amlyze |
+| Cannot update not existing customer, use Action = CREATE                                      |
+| Problem with field for ORGANIZATION type customer. Problem with relatedEntity (index: 0 ). Country not defined in Amlyze |
+| Problem with field for ORGANIZATION type customer. Problem with relatedEntity (index: 0 ). EntityType is mandatory |
+| RegistrationCountry must exist in Amlyze                                                      |
+| Problem with field for ORGANIZATION type customer. Problem with relatedEntity (index: 0 ). Problem with Contact (index: 0 ). ContactType is mandatory. values: MOBILEPHONE, FIXEDPHONE, EMAIL, WEBSITE |
+| Field not allowed for INDIVIDUAL. Field: EstablishmentDate                                   |
+| Field not allowed for INDIVIDUAL. Field: PeriodsOfAuditsInYears                             |
+| Problem with field for ORGANIZATION type customer. Problem with relatedEntity (index: 1 ). bad value for BOOLEAN (values: true false') valueCode: is_related_to_Lithuania |
+| Field not allowed for INDIVIDUAL. Field: OrganizationalStructureDescription                  |
+| RiskManagementCategory is mandatory                                                            |
+| Problem with field for ORGANIZATION type customer.

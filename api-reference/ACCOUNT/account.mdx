@@ -222,4 +222,28 @@ This part lists common responses after the submission of the request.
 
 ## List of possible errors
 
-This section lists the possible errors that can occur when making a bad request to the API. A bad request is a request that somehow does not follow the API specifications.
+This section lists the possible errors that can occur when making a bad account request to the API. A bad request is a request that somehow does not follow the API specifications.
+
+| **Error Description**                                                                                                     |
+|---------------------------------------------------------------------------------------------------------------------------|
+| AccountExtId is mandatory                                                                                                 |
+| AccountNumber is mandatory                                                                                                |
+| BusinessEntityExtId is mandatory                                                                                          |
+| BusinessEntity with given extId does not exist in Amlyze                                                                  |
+| Cannot register account for lead customer                                                                                 |
+| Currency does not exist in Amlyze                                                                                         |
+| Account already linked with other customer                                                                                |
+| When using external account, BIC is mandatory                                                                             |
+| Given BIC does not belong to your institution                                                                             |
+| OpeningDate is mandatory                                                                                                  |
+| Invalid Account status, allowed values: ACTIVE, SUSPENDED, CLOSED                                                         |
+| Given AccountType does not exist in Amlyze                                                                                |
+| CLOSED account requires closingDate                                                                                       |
+| Non-closed account cannot have a closing date                                                                             |
+| CommunicationNumber is mandatory                                                                                          |
+| Requester is mandatory                                                                                                    |
+| CommunicationNumber already used in Amlyze                                                                                |
+| Tenant header is mandatory                                                                                                |
+| Business unit is mandatory                                                                                                |
+| Tenant business unit does not exist                                                                                       |
+

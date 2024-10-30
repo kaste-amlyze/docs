@@ -448,4 +448,46 @@ This part lists common responses after the submission of the request.
 
 ## List of possible errors
 
-This part lists the possible errors that can occur when making a bad request to the API. A bad request is a request that somehow does not follow the API specifications.
+This section lists the possible errors that can occur when making a bad operation request to the API. A bad request is a request that somehow does not follow the API specifications.
+
+| **Error Description**                                                                                                            |
+|-------------------------------------------------------------------------------------------------------------------------------|
+| DestinationCountry is mandatory, check country classifier codes for allowed values.                                             |
+| Amount is mandatory and must be greater than 0.                                                                                 |
+| Despite currency = EUR, AmountInEur differs from Amount.                                                                        |
+| AmountInEur is mandatory and must be greater than 0.                                                                            |
+| EuroExchangeRate is mandatory and must be greater than 0.                                                                       |
+| For non-INTERNAL operation, financialFlowDirection value cannot be 'NULL'.                                                      |
+| Description is mandatory.                                                                                                       |
+| Invalid MerchantCountryCode.                                                                                                    |
+| RiskManagementCategory is mandatory.                                                                                            |
+| RiskManagementCategory does not exist in Amlyze.                                                                                |
+| RiskManagementCategory does not support Operation.                                                                              |
+| Account registered to your institution; Account found in Amlyze, but customer not found in Amlyze.                              |
+| entityType mismatch in operationParty[" + i + "]: Amlyze customer has different entity type to operation one.                  |
+| For INCOMING operation, your customer party role must be CREDITOR.                                                              |
+| For OUTGOING operation, your customer party role must be DEBTOR.                                                                |
+| operationType " + operationType.getCode() + " is not defined in Amlyze. Check Operation type classifier for available values.  |
+| Problem with operation party (index: " + i + ").                                                                                |
+| Invalid FinancialFlowDirection: Your institution DEBTOR found for INCOMING operation.                                           |
+| Invalid FinancialFlowDirection: Your institution CREDITOR found for OUTGOING operation.                                         |
+| OperationParties must contain CREDITOR.                                                                                         |
+| OperationParties must contain DEBTOR.                                                                                           |
+| Invalid operation party count. Range: min 1, max 4.                                                                             |
+| Invalid count of operation parties for " + operationType.getCode() + " operationType.                                          |
+| For 'PIS' operation, only creditor can be provided.                                                                             |
+| No operation party account related to your institution BIC, or Customer.                                                        |
+| Invalid count of your institution operation parties for " + operationType.getCode() + " operationType.                          |
+| Tenant header '" + securityOwnerService.getHeaderTenantCode() + "' is mandatory.                                                |
+| Business unit is mandatory.                                                                                                     |
+| Tenant '" + tenantCode + "' business unit '"+ businessUnitCode +"' does not exist.                                              |
+| CommunicationNumber is mandatory.                                                                                               |
+| Requester is mandatory.                                                                                                         |
+| SourceOfRiskLevel is mandatory, allowed values: IMPORT / EVALUATE.                                                              |
+| OperationExtId is mandatory.                                                                                                    |
+| OperationType is mandatory.                                                                                                     |
+| Problem with OperationType (INVALID): INVALID is not defined in Amlyze. Check Operation type classifier for available values.   |
+| Currency is mandatory, check Currency classifier codes for allowed values.                                                      |
+| SourceCountry is mandatory, check country classifier codes for allowed values.                                                  |
+| Problem with OperationType (SEPA): Problem with OperationParties. No operation party account related to your institution BIC or Customer. |
+| Problem with OperationType (SEPA): Invalid count of your institution operation parties for SEPA operationType.                 |
