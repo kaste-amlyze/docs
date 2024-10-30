@@ -129,13 +129,24 @@ It includes examples of API requests with mandatory and optional fields, a compr
     "listOperationParty": [
          {
             "partyRole": "CREDITOR",
-            "accountNumber": "LI9208800274335945522",
+            "accountNumber": "LT9208800274335945522",
             "bic": "AmlyzeXX22",
             "currency": "EUR",
+            "bankTitle": "TBC",
             "entityType": "INDIVIDUAL",
-           	"firstName" : "Tomas",
-	        "lastName" : "Garcia"
-        }       
+            "firstName" : "Tomas",
+	          "lastName" : "Garcia",
+            "address": "Baltų pr. 16, LT-44001, Kauno m. sav."
+        },
+        {
+            "partyRole": "DEBTOR",
+            "accountNumber": "LT9208800274335945555",
+            "bic": "AmlyzeXX22",
+            "currency": "EUR",
+            "bankTitle": "TBC",
+            "entityType": "ORGANIZATION",
+           	"title" : "LTD 'VivaElementus'"
+        }     
     ]
 }
 ```
@@ -402,6 +413,12 @@ _Example:_ `Rodriguez`
 Identifies a party (`INDIVIDUAL`, `ORGANIZATION` or `UNKNOWN`) without requiring `firstName` or `lastName`.
 
 _Example:_ `Moller`
+</ResponseField>
+
+<ResponseField name="address" type="string">
+Party's nformation including street address, city, and possibly other relevant details.
+
+_Example:_ `Verkių g. 7-8, Vilnius`
 </ResponseField>
 
 </Expandable>
