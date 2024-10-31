@@ -1,3 +1,85 @@
 ---
-title: 'Operation Reconcilation'
+title: 'Operation Reconcilation Service'
 ---
+
+<p>
+Here are the details how to return all registered operations for a given timeframe.
+</p>
+
+## Integration and details
+
+`GET https://[host]:[port]/api/integration-services/v1/operations-reconciliation?registeredFrom={registeredFromDate}&registeredTill={registeredTillDate}`
+
+### Request
+
+<ResponseField name="registeredFrom" type="date" required>
+Timestamp Format: ISO 8601 yyyy-MM-dd’T’HH:mm:ss.SSSX.
+
+_Example:_ `2024-08-16T13:00:00.605Z`
+</ResponseField>
+
+<ResponseField name="registeredTill" type="date">
+Timestamp Format: ISO 8601 yyyy-MM-dd’T’HH:mm:ss.SSSX.
+
+_Example:_ `2024-08-20T13:00:00.605Z`
+</ResponseField>
+
+## Response
+
+Two options for responses - either operations[] or errors[].
+
+## Operation
+
+<ResponseField name="ExtId" type="string">
+External identifier of operation.
+
+</ResponseField>
+
+
+<ResponseField name="businessUnit" type="string">
+
+Business unit to which operation belongs to.
+
+</ResponseField>
+
+### Response example
+
+```json
+{
+  "operations": [
+    {
+      "extId": "testingqwe",
+      "businessUnit": "businessUnit1"
+    },
+    {
+      "extId": "testingqweqwe",
+      "businessUnit": "businessUnit2"
+    }
+  ]
+}
+```
+
+## Error Message
+
+<ResponseField name="code" type="string">
+Error code.
+</ResponseField>
+
+
+<ResponseField name="description" type="string">
+Error description.
+
+</ResponseField>
+
+### Response example
+
+```json
+{
+  "errors": [
+    {
+      "code": "BAD_REQUEST",
+      "description": "RegisteredFrom must be before registeredTill"
+    }
+  ]
+}
+```
