@@ -1,3 +1,91 @@
 ---
 title: 'Screening Events'
 ---
+
+## Envelope
+
+<ResponseField name="type" type="string">
+Unique event type. Check documentation below to see available types.
+
+_Example:_ `app.amlyze.customer.riskmanagement.kyc_scoring.completed`
+</ResponseField>
+
+<ResponseField name="source" type="string">
+Event source - request ID (communication number).
+
+_Example:_ `893af30c-7dda-44b2-bf98-476da6ca4326`
+</ResponseField>
+
+<ResponseField name="subject" type="string">
+Event subject represents a resource external id.
+
+_Example:_ `extId`
+</ResponseField>
+
+<ResponseField name="data" type="object">
+Event response. Differs on the event type.
+</ResponseField>
+
+## Customer Sanctions Screening
+> ### app.amlyze.customer.screening.sanctions.pending
+> The event is fired when a human decision is needed.
+
+<ResponseField name="externalId" type="string">
+Customer external id.
+
+_Example:_ 
+```json
+{
+    "externalId": "bb2274b1-6804-41f3-9e6f-81b9eb6700e3"
+}
+```
+</ResponseField>
+
+> ### app.amlyze.customer.screening.sanctions.completed
+> The event is always fired on screening finished with resolution
+
+<ResponseField name="sanctioned" type="boolean">
+Customer sanctioned or not.
+When a screening match is not found then this value is empty because there is no decision.
+</ResponseField>
+
+<ResponseField name="externalId" type="string">
+Customer external id.
+</ResponseField>
+
+<ResponseField name="screeningMatch" type="boolean">
+An indication that the screening process found any matches
+</ResponseField>
+
+_Examples:_ 
+```json
+{
+    "externalId": "bb2274b1-6804-41f3-9e6f-81b9eb6700e3",
+    "screeningMatch": false
+}
+```
+```json
+{
+    "sanctioned": true,
+    "externalId": "bb2274b1-6804-41f3-9e6f-81b9eb6700e3",
+    "screeningMatch": true
+}
+```
+
+## Customer politically exposed person screening
+> ### app.amlyze.customer.screening.pep.pending
+> The event is fired when a human decision is needed
+
+<ResponseField name="externalId" type="string">
+Customer external id.
+
+_Example:_ 
+```json
+{
+    "externalId": "bb2274b1-6804-41f3-9e6f-81b9eb6700e3"
+}
+```
+</ResponseField>
+
+> ### app.amlyze.customer.screening.pep.completed
+> The event is always fired on screening finished with resolution
