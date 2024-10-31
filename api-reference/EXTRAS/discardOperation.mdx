@@ -1,3 +1,53 @@
 ---
-title: 'Disacard Operation'
+title: 'Discard Operation Service'
 ---
+
+<p>
+Here are the details how to move operation to archive that operation would not be included in retro monitoring processes.
+</p>
+
+## Integration and details
+
+`DELETE https://[host]:[port]/api/integration-services/v1/discard-operations?extId={operationExtId}&businessUnit={businessUnit}`
+
+<ResponseField name="operationExtId" type="string" required>
+External identifier of operation.
+
+</ResponseField>
+
+
+<ResponseField name="businessUnit" type="string">
+
+Business unit to which operation belongs to.
+
+</ResponseField>
+
+### Response
+
+```json
+200 OK
+```
+
+### ErrorMessage
+
+<ResponseField name="code" type="string">
+Error code.
+</ResponseField>
+
+
+<ResponseField name="description" type="string">
+Error description.
+
+</ResponseField>
+
+## Response example
+
+```json
+{
+  "errors": [
+    {
+      "code": "BAD_REQUEST",
+      "description": "Business unit is required"
+    }
+  ]
+}
