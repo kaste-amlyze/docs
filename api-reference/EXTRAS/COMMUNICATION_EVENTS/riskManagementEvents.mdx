@@ -1,3 +1,194 @@
 ---
 title: 'Risk Management Events'
 ---
+
+## Envelope
+
+<ResponseField name="type" type="string">
+Unique event type. Check documentation below to see available types.
+
+_Example:_ `app.amlyze.customer.riskmanagement.kyc_scoring.completed`
+</ResponseField>
+
+<ResponseField name="source" type="string">
+Event source - request ID (communication number).
+
+_Example:_ `893af30c-7dda-44b2-bf98-476da6ca4326`
+</ResponseField>
+
+<ResponseField name="subject" type="string">
+Event subject represents a resource external id.
+
+_Example:_ `extId`
+</ResponseField>
+
+<ResponseField name="data" type="object">
+Event response. Differs on the event type.
+</ResponseField>
+
+## Customer KYC Events
+> ### app.amlyze.customer.riskmanagement.kyc_scoring.pending
+> The event is fired when a human decision is needed.
+
+<ResponseField name="initialRiskLevel" type="string from enum">
+The initial risk level is shown based on the evaluation given result.
+
+Enum class values: `NONE`,  `LOW`, `MEDIUM`, `HIGH`, `EXTREME`
+
+_Example:_ 
+```json
+{ 
+    "initialRiskLevel": "LOW" 
+}
+```
+</ResponseField>
+
+> ### app.amlyze.customer.riskmanagement.kyc_scoring.waiting_for_approval_date
+> This event is sent when configuration is set to wait for customer approval date
+
+<ResponseField name="initialRiskLevel" type="string from enum">
+The initial risk level is shown based on the evaluation given result.
+
+Enum class values: `NONE`,  `LOW`, `MEDIUM`, `HIGH`, `EXTREME`
+</ResponseField>
+
+<ResponseField name="finalRiskLevel" type="string from enum">
+The final risk level.
+
+Enum class values: `NONE`,  `LOW`, `MEDIUM`, `HIGH`, `EXTREME`
+</ResponseField>
+
+<ResponseField name="decisionType" type="string from enum">
+Decision type.
+
+Enum class values: `ACCEPTED`,  `REJECTED`
+</ResponseField>
+
+<ResponseField name="decisionGroundCode" type="string from classifier list">
+Description which indicates the selected decision for resolving a case.
+Return only if a human decision was needed.
+
+<Expandable title="Path to extract classifier values">
+**HTTP Method:**  `GET`
+
+**Path:** `{{baseUrl}}`/classifier/decisionGround
+</Expandable>
+
+_Example:_ 
+```json
+{
+  "initialRiskLevel": "LOW",
+   "finalRiskLevel": "LOW",
+   "decisionType": "ACCEPTED",
+   "decisionGroundCode": "01"
+}
+```
+</ResponseField>
+
+> ### app.amlyze.customer.riskmanagement.kyc_scoring.completed
+> The event is fired always on completion by a human decision/automatically resolved
+
+<ResponseField name="initialRiskLevel" type="string from enum">
+The initial risk level is shown based on the evaluation given result.
+
+Enum class values: `NONE`,  `LOW`, `MEDIUM`, `HIGH`, `EXTREME`
+</ResponseField>
+
+<ResponseField name="finalRiskLevel" type="string from enum">
+The final risk level.
+
+Enum class values: `NONE`,  `LOW`, `MEDIUM`, `HIGH`, `EXTREME`
+</ResponseField>
+
+<ResponseField name="decisionType" type="string from enum">
+Decision type.
+
+Enum class values: `ACCEPTED`,  `REJECTED`
+</ResponseField>
+
+<ResponseField name="decisionGroundCode" type="string from classifier list">
+Description which indicates the selected decision for resolving a case.
+Return only if a human decision was needed.
+
+<Expandable title="Path to extract classifier values">
+**HTTP Method:**  `GET`
+
+**Path:** `{{baseUrl}}`/classifier/decisionGround
+</Expandable>
+
+<ResponseField name="approvedAt" type="date">
+Approval date.
+Set first time in the system
+</ResponseField>
+
+_Example:_ 
+```json
+{
+  "initialRiskLevel": "LOW",
+   "finalRiskLevel": "LOW",
+   "decisionType": "ACCEPTED",
+   "decisionGroundCode": "01",
+   "approvedAt": "2018-04-05T17:31:00Z"
+}
+```
+</ResponseField>
+
+## Operation Real-time Monitoring events
+
+> ### app.amlyze.operation.riskmanagement.operation_realtime.pending
+> The event is fired when a human decision is needed
+
+<ResponseField name="initialRiskLevel" type="string from enum">
+The initial risk level is shown based on the evaluation given result.
+
+Enum class values: `NONE`,  `LOW`, `MEDIUM`, `HIGH`, `EXTREME`
+
+_Example:_ 
+```json
+{ 
+    "initialRiskLevel": "LOW" 
+}
+```
+</ResponseField>
+
+> ### app.amlyze.operation.riskmanagement.operation_realtime.completed
+> The event is fired always on completion by a human decision/automatically resolved.
+
+<ResponseField name="initialRiskLevel" type="string from enum">
+The initial risk level is shown based on the evaluation given result.
+
+Enum class values: `NONE`,  `LOW`, `MEDIUM`, `HIGH`, `EXTREME`
+</ResponseField>
+
+<ResponseField name="finalRiskLevel" type="string from enum">
+The final risk level.
+
+Enum class values: `NONE`,  `LOW`, `MEDIUM`, `HIGH`, `EXTREME`
+</ResponseField>
+
+<ResponseField name="decisionType" type="string from enum">
+Decision type.
+
+Enum class values: `ACCEPTED`,  `REJECTED`
+</ResponseField>
+
+<ResponseField name="decisionGroundCode" type="string from classifier list">
+Description which indicates the selected decision for resolving a case.
+Return only if a human decision was needed.
+
+<Expandable title="Path to extract classifier values">
+**HTTP Method:**  `GET`
+
+**Path:** `{{baseUrl}}`/classifier/decisionGround
+</Expandable>
+
+_Example:_ 
+```json
+{
+    "initialRiskLevel": "LOW",
+    "finalRiskLevel": "LOW",
+    "decisionType": "ACCEPTED",
+    "decisionGroundCode": "01"
+}
+```
+</ResponseField>
