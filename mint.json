@@ -185,7 +185,10 @@
             {
               "group": "WEBHOOKS",
               "pages": [
-                "api-reference/EXTRAS/WEBHOOKS/test"
+                "api-reference/EXTRAS/WEBHOOKS/introduction",
+                "api-reference/EXTRAS/WEBHOOKS/customerUpdateWebhooks",
+                "api-reference/EXTRAS/WEBHOOKS/riskManagementWebhooks",
+                "api-reference/EXTRAS/WEBHOOKS/screeningWebhooks"
               ]
             },
             "api-reference/EXTRAS/discardOperation",
