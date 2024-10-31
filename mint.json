@@ -177,7 +177,9 @@
             {
               "group": "COMMUNICATION EVENTS",
               "pages": [
-                "api-reference/EXTRAS/COMMUNICATION_EVENTS/test"
+                "api-reference/EXTRAS/COMMUNICATION_EVENTS/introduction",
+                "api-reference/EXTRAS/COMMUNICATION_EVENTS/riskManagementEvents",
+                "api-reference/EXTRAS/COMMUNICATION_EVENTS/screeningEvents"
               ]
             },
             {
