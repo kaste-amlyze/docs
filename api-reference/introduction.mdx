@@ -7,9 +7,11 @@ description: 'API documentation description'
 
 Workflow
 
-An existing customer or operation that took place in the past → IMPORT
+CUSTOMER IMPORT -> ACCOUNT IMPORT -> OPERATION IMPORT
 
-Creating a new customer or operation → EVALUATE
+An existing customer or operation that took place in the past → IMPORT (no risk assesment/ no transaction monitoring)
+
+Creating a new customer or operation → EVALUATE (performing risk assesment/ transaction monitoring)
 
 Double check the fields that are used in individually configured rules set and make sure those fields are provided with the request, because they may be not mandatory to successfuly send the request but without them some rules may not be working.
 
