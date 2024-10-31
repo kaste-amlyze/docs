@@ -18,62 +18,20 @@ With communication events, you gain unprecedented control over your communicatio
 
 `GET https://[host]:[port]/api/integration-services/v1/communications-events/{communicationNumber}`
 
-### Request Response
+## Response
 
-<table>
-	<thead>
-		<tr>
-			<td><b>Field</b></td>
-			<td><b>Type</b></td>
-			<td><b>Description</b></td>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td><b>events</b></td>
-			<td><a href="#EventData">EventData[]</a></td>
-			<td>Events data.</td>
-		</tr>
-		<tr>
-			<td><b>errors</b></td>
-			<td><a href="#ErrorMessage">ErrorMessage[]</a></td>
-			<td>Name of the system requesting web service</td>
-		</tr>
-</tbody>
-</table>
+Two options for responses - either events[] or errors[].
 
-### ErrorMessage
-
-<table>
-	<thead>
-		<tr>
-			<td><b>Field</b></td>
-			<td><b>Type</b></td>
-			<td><b>Description</b></td>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td><b>code</b></td>
-			<td>String</td>
-			<td>Error code</td>
-		</tr>
-		<tr>
-			<td><b>description</b></td>
-			<td>String</td>
-			<td>Error description</td>
-		</tr>
-</tbody>
-</table>
+## Event
 
 ### EventData
 
-> Check related pages for events envelopes and events payload details.
+> Check related folder pages for events envelopes and events payload details.
 
-* [Risk management events](riskManagementEvents.mdx)
-* [Screening event](screeningEvents.mdx)
+* Risk management events
+* Screening events
 
-## Example
+### Response example
 
 ```json
 {
@@ -89,7 +47,26 @@ With communication events, you gain unprecedented control over your communicatio
         "approvedAt": "2023-06-11T21:00:00.000Z"
       }
     }
-  ],
+  ]
+}
+```
+
+## Error Message
+
+<ResponseField name="code" type="string">
+Error code.
+</ResponseField>
+
+
+<ResponseField name="description" type="string">
+Error description.
+
+</ResponseField>
+
+### Response example
+
+```json
+{
   "errors": [
     {
         "code": "INTERNAL_SERVER_ERROR",
@@ -101,3 +78,4 @@ With communication events, you gain unprecedented control over your communicatio
     }
   ]
 }
+```
