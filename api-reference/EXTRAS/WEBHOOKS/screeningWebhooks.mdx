@@ -1,3 +1,1070 @@
 ---
 title: 'Screening Webhooks'
 ---
+
+## Envelope
+
+<ResponseField name="type" type="string">
+Unique event type. Check documentation below to see available types.
+
+_Example:_ `app.amlyze.customer.riskmanagement.kyc_scoring.completed`
+</ResponseField>
+
+<ResponseField name="specversion" type="string">
+[Cloud Events](https://cloudevents.io/) Specification version that is being used.
+
+_Example:_ `1.0`
+</ResponseField>
+
+<ResponseField name="source" type="URI-reference">
+[RFC 3986 - Uniform Recource Identifier (URI)](https://datatracker.ietf.org/doc/html/rfc3986#section-4.1)
+
+Event source.
+
+_Example:_ `customer`
+</ResponseField>
+
+<ResponseField name="subject" type="string">
+Event subject represents a resource external id.
+
+_Example:_ `82deaa92-d559-40bd-96b7-053341a08e28`
+</ResponseField>
+
+<ResponseField name="id" type="string">
+Unique event ID.
+
+_Example:_ `0412a5ca-3be7-46b7-87de-38366397602e`
+</ResponseField>
+
+<ResponseField name="time" type="date">
+Event time.
+
+_Example:_ `2019-12-13T12:01:02.694Z`
+</ResponseField>
+
+<ResponseField name="datacontenttype" type="string">
+Data content type
+
+_Example:_ `application/json`
+</ResponseField>
+
+<ResponseField name="data" type="object">
+Event response. Differs on the event type.
+</ResponseField>
+
+## Customer sanctions screening
+
+> ### app.amlyze.customer.screening.sanctions.pending
+> The event is fired when a human decision is needed
+
+<ResponseField name="externalId" type="string">
+Customer external id.
+
+_Example:_ 
+```json
+{
+    "externalId": "bb2274b1-6804-41f3-9e6f-81b9eb6700e3"
+}
+```
+</ResponseField>
+
+> ### app.amlyze.customer.screening.sanctions.completed
+> The event is always fired on screening finished with resolution
+
+<ResponseField name="sanctioned" type="boolean">
+Customer sanctioned or not.
+When a screening match is not found then this value is empty because there is no decision.
+</ResponseField>
+
+<ResponseField name="externalId" type="string">
+Customer external id.
+</ResponseField>
+
+<ResponseField name="screeningMatch" type="boolean">
+An indication that the screening process found any matches
+</ResponseField>
+
+_Examples:_ 
+```json
+{
+    "externalId": "bb2274b1-6804-41f3-9e6f-81b9eb6700e3",
+    "screeningMatch": false
+}
+```
+```json
+{
+    "sanctioned": false,
+    "externalId": "bb2274b1-6804-41f3-9e6f-81b9eb6700e3",
+    "screeningMatch": true
+}
+```
+```json
+{
+    "sanctioned": true,
+    "externalId": "bb2274b1-6804-41f3-9e6f-81b9eb6700e3",
+    "screeningMatch": true
+}
+```
+
+## Customer politically exposed person screening
+
+> ### app.amlyze.customer.screening.pep.pending
+> The event is fired when a human decision is needed
+
+<ResponseField name="externalId" type="string">
+Customer external id.
+
+_Example:_ 
+```json
+{
+    "externalId": "bb2274b1-6804-41f3-9e6f-81b9eb6700e3"
+}
+```
+</ResponseField>
+
+> ### app.amlyze.customer.screening.pep.completed
+> The event is always fired on screening finished with resolution
+
+<ResponseField name="pep" type="boolean">
+The customer is or is not a politically exposed person.
+When a screening match is not found then this value is empty because there is no decision.
+</ResponseField>
+
+<ResponseField name="externalId" type="string">
+Customer external id.
+</ResponseField>
+
+<ResponseField name="screeningMatch" type="boolean">
+An indication that the screening process found any matches
+</ResponseField>
+
+_Examples:_ 
+```json
+{
+    "externalId": "bb2274b1-6804-41f3-9e6f-81b9eb6700e3",
+    "screeningMatch": false
+}
+```
+```json
+{
+    "pep": false,
+    "externalId": "bb2274b1-6804-41f3-9e6f-81b9eb6700e3",
+    "screeningMatch": true
+}
+```
+```json
+{
+    "pep": true,
+    "externalId": "bb2274b1-6804-41f3-9e6f-81b9eb6700e3",
+    "screeningMatch": true
+}
+```
+
+## Customer adverse media screening
+
+> ### app.amlyze.customer.screening.adverse_media.pending
+> The event is fired when a human decision is needed
+
+<ResponseField name="externalId" type="string">
+Customer external id.
+
+_Example:_ 
+```json
+{
+    "externalId": "bb2274b1-6804-41f3-9e6f-81b9eb6700e3"
+}
+```
+</ResponseField>
+
+> ### app.amlyze.customer.screening.adverse_media.completed
+> The event is always fired on screening finished with resolution
+
+<ResponseField name="inAdverseMedia" type="boolean">
+Customer found in adverse media or not.
+When a screening match is not found then this value is empty because there is no decision.
+</ResponseField>
+
+<ResponseField name="externalId" type="string">
+Customer external id.
+</ResponseField>
+
+<ResponseField name="screeningMatch" type="boolean">
+An indication that the screening process found any matches
+</ResponseField>
+
+_Examples:_ 
+```json
+{
+    "externalId": "bb2274b1-6804-41f3-9e6f-81b9eb6700e3",
+    "screeningMatch": false
+}
+```
+```json
+{
+    "inAdverseMedia": false,
+    "externalId": "bb2274b1-6804-41f3-9e6f-81b9eb6700e3",
+    "screeningMatch": true
+}
+```
+```json
+{
+    "inAdverseMedia": true,
+    "externalId": "bb2274b1-6804-41f3-9e6f-81b9eb6700e3",
+    "screeningMatch": true
+}
+```
+
+## Customer internal list screening
+
+> ### app.amlyze.customer.screening.internal_list.pending
+> The event is fired when a human decision is needed
+
+<ResponseField name="externalId" type="string">
+Customer external id.
+
+_Example:_ 
+```json
+{
+    "externalId": "bb2274b1-6804-41f3-9e6f-81b9eb6700e3"
+}
+```
+</ResponseField>
+
+> ### app.amlyze.customer.screening.internal_list.completed
+> The event is always fired on screening finished with resolution
+
+<ResponseField name="inInternalList" type="boolean">
+Customer found in adverse media or not.
+When a screening match is not found then this value is empty because there is no decision.
+</ResponseField>
+
+<ResponseField name="externalId" type="string">
+Customer external id.
+</ResponseField>
+
+<ResponseField name="screeningMatch" type="boolean">
+An indication that the screening process found any matches
+</ResponseField>
+
+_Examples:_ 
+```json
+{
+    "externalId": "bb2274b1-6804-41f3-9e6f-81b9eb6700e3",
+    "screeningMatch": false
+}
+```
+```json
+{
+    "inInternalList": false,
+    "externalId": "bb2274b1-6804-41f3-9e6f-81b9eb6700e3",
+    "screeningMatch": true
+}
+```
+```json
+{
+    "inInternalList": true,
+    "externalId": "bb2274b1-6804-41f3-9e6f-81b9eb6700e3",
+    "screeningMatch": true
+}
+```
+
+## Related entity sanctions screening
+
+> ### app.amlyze.related_entity.screening.sanctions.pending
+> The event is fired when a human decision is needed
+
+<ResponseField name="customerExternalId" type="string">
+External id of customer, to which related entity is related.
+</ResponseField>
+
+<ResponseField name="externalId" type="string">
+Related entity external id.
+</ResponseField>
+
+<ResponseField name="birthDate" type="date">
+Related entity birth date. Applicable when `entityType` is `INDIVIDUAL`.
+</ResponseField>
+
+<ResponseField name="establishmentDate" type="date">
+Related entity establishment date. Applicable when `entityType` is `ORGANIZATION`.
+</ResponseField>
+
+<ResponseField name="type" type="string from enum">
+Related entity type.
+
+Enum class values: `INDIVIDUAL`,  `ORGANIZATION`, `UNKNOWN`
+</ResponseField>
+
+<ResponseField name="firstName" type="string">
+Related entity first name. Applicable when `entityType` is `INDIVIDUAL`.
+</ResponseField>
+
+<ResponseField name="lastName" type="string">
+Related entity last name. Applicable when `entityType` is `INDIVIDUAL`.
+</ResponseField>
+
+<ResponseField name="title" type="string">
+Related entity title.
+</ResponseField>
+
+<ResponseField name="nationalCode" type="string">
+Related entity national code.
+</ResponseField>
+
+<ResponseField name="relationCode" type="string from classifier list">
+Related entity relation type.
+
+<Expandable title="Path to extract classifier values">
+**HTTP Method:**  `GET`
+
+**Path:** `{{baseUrl}}`/classifier/relationType
+</Expandable>
+</ResponseField>
+
+<ResponseField name="countryCode" type="string from classifier list">
+For Individual related entity:
+Citizenship country.
+For Organization related entity:
+Registration country.
+
+<Expandable title="Path to extract classifier values">
+**HTTP Method:**  `GET`
+
+**Path:** `{{baseUrl}}`/classifier/country
+</Expandable>
+</ResponseField>
+
+_Example:_
+
+```json
+{
+  "customerExternalId": "bb2274b1-6804-41f3-9e6f-81b9eb6700e3",
+  "externalId": "bb2274b1-6804-41f3-9e6f-81b9eb6700o6",
+  "birthDate": "1981-08-06",
+  "type": "INDIVIDUAL",
+  "firstName": "John",
+  "lastName": "Doe",
+  "nationalCode": "32108068863",
+  "relationCode": "OWNER",
+  "countryCode": "LT"
+}
+```
+
+> ### app.amlyze.related_entity.screening.sanctions.completed
+> The event is always fired on screening finished with resolution
+
+
+<ResponseField name="sanctioned" type="boolean">
+Related entity sanctioned or not.
+When a screening match is not found then this value is empty because there is no decision.
+</ResponseField>
+
+<ResponseField name="customerExternalId" type="string">
+External id of customer, to which related entity is related.
+</ResponseField>
+
+<ResponseField name="externalId" type="string">
+Related entity external id.
+</ResponseField>
+
+<ResponseField name="birthDate" type="date">
+Related entity birth date. Applicable when `entityType` is `INDIVIDUAL`.
+</ResponseField>
+
+<ResponseField name="establishmentDate" type="date">
+Related entity establishment date. Applicable when `entityType` is `ORGANIZATION`.
+</ResponseField>
+
+<ResponseField name="type" type="string from enum">
+Related entity type.
+
+Enum class values: `INDIVIDUAL`,  `ORGANIZATION`, `UNKNOWN`
+</ResponseField>
+
+<ResponseField name="firstName" type="string">
+Related entity first name. Applicable when `entityType` is `INDIVIDUAL`.
+</ResponseField>
+
+<ResponseField name="lastName" type="string">
+Related entity last name. Applicable when `entityType` is `INDIVIDUAL`.
+</ResponseField>
+
+<ResponseField name="title" type="string">
+Related entity title.
+</ResponseField>
+
+<ResponseField name="nationalCode" type="string">
+Related entity national code.
+</ResponseField>
+
+<ResponseField name="relationCode" type="string from classifier list">
+Related entity relation type.
+
+<Expandable title="Path to extract classifier values">
+**HTTP Method:**  `GET`
+
+**Path:** `{{baseUrl}}`/classifier/relationType
+</Expandable>
+</ResponseField>
+
+<ResponseField name="countryCode" type="string from classifier list">
+For Individual related entity:
+Citizenship country.
+For Organization related entity:
+Registration country.
+
+<Expandable title="Path to extract classifier values">
+**HTTP Method:**  `GET`
+
+**Path:** `{{baseUrl}}`/classifier/country
+</Expandable>
+</ResponseField>
+
+<ResponseField name="screeningMatch" type="boolean">
+An indication that the screening process found any matches.
+</ResponseField>
+
+_Examples:_
+
+```json
+{
+  "customerExternalId": "bb2274b1-6804-41f3-9e6f-81b9eb6700e3",
+  "externalId": "bb2274b1-6804-41f3-9e6f-81b9eb6700o6",
+  "birthDate": "1981-08-06",
+  "type": "INDIVIDUAL",
+  "firstName": "John",
+  "lastName": "Doe",
+  "nationalCode": "32108068863",
+  "relationCode": "OWNER",
+  "countryCode": "LT",
+  "screeningMatch": false
+}
+```
+```json
+{
+  "sanctioned": false,
+  "customerExternalId": "bb2274b1-6804-41f3-9e6f-81b9eb6700e3",
+  "type": "INDIVIDUAL",
+  "firstName": "John",
+  "lastName": "Doe",
+  "title": "John Doe",
+  "nationalCode": "32108068863",
+  "relationCode": "OWNER",
+  "countryCode": "LT",
+  "screeningMatch": true
+}
+```
+```json
+{
+  "sanctioned": true,
+  "customerExternalId": "bb2274b1-6804-41f3-9e6f-81b9eb6700e3",
+  "type": "INDIVIDUAL",
+  "firstName": "John",
+  "lastName": "Doe",
+  "title": "John Doe",
+  "nationalCode": "32108068863",
+  "relationCode": "OWNER",
+  "countryCode": "LT",
+  "screeningMatch": true
+}
+```
+
+## Realted entity politically exposed person screening
+
+> ### app.amlyze.related_entity.screening.pep.pending
+> The event is fired when a human decision is needed
+
+<ResponseField name="customerExternalId" type="string">
+External id of customer, to which related entity is related.
+</ResponseField>
+
+<ResponseField name="externalId" type="string">
+Related entity external id.
+</ResponseField>
+
+<ResponseField name="birthDate" type="date">
+Related entity birth date. Applicable when `entityType` is `INDIVIDUAL`.
+</ResponseField>
+
+<ResponseField name="establishmentDate" type="date">
+Related entity establishment date. Applicable when `entityType` is `ORGANIZATION`.
+</ResponseField>
+
+<ResponseField name="type" type="string from enum">
+Related entity type.
+
+Enum class values: `INDIVIDUAL`,  `ORGANIZATION`, `UNKNOWN`
+</ResponseField>
+
+<ResponseField name="firstName" type="string">
+Related entity first name. Applicable when `entityType` is `INDIVIDUAL`.
+</ResponseField>
+
+<ResponseField name="lastName" type="string">
+Related entity last name. Applicable when `entityType` is `INDIVIDUAL`.
+</ResponseField>
+
+<ResponseField name="title" type="string">
+Related entity title.
+</ResponseField>
+
+<ResponseField name="nationalCode" type="string">
+Related entity national code.
+</ResponseField>
+
+<ResponseField name="relationCode" type="string from classifier list">
+Related entity relation type.
+
+<Expandable title="Path to extract classifier values">
+**HTTP Method:**  `GET`
+
+**Path:** `{{baseUrl}}`/classifier/relationType
+</Expandable>
+</ResponseField>
+
+<ResponseField name="countryCode" type="string from classifier list">
+For Individual related entity:
+Citizenship country.
+For Organization related entity:
+Registration country.
+
+<Expandable title="Path to extract classifier values">
+**HTTP Method:**  `GET`
+
+**Path:** `{{baseUrl}}`/classifier/country
+</Expandable>
+</ResponseField>
+
+_Example:_
+
+```json
+{
+  "customerExternalId": "bb2274b1-6804-41f3-9e6f-81b9eb6700e3",
+  "externalId": "bb2274b1-6804-41f3-9e6f-81b9eb6700o6",
+  "birthDate": "1981-08-06",
+  "type": "INDIVIDUAL",
+  "firstName": "John",
+  "lastName": "Doe",
+  "nationalCode": "32108068863",
+  "relationCode": "OWNER",
+  "countryCode": "LT"
+}
+```
+
+> ### app.amlyze.related_entity.screening.pep.completed
+> The event is always fired on screening finished with resolution
+
+<ResponseField name="pep" type="boolean">
+Related entity pep or not.
+When a screening match is not found then this value is empty because there is no decision.
+</ResponseField>
+
+<ResponseField name="customerExternalId" type="string">
+External id of customer, to which related entity is related.
+</ResponseField>
+
+<ResponseField name="externalId" type="string">
+Related entity external id.
+</ResponseField>
+
+<ResponseField name="birthDate" type="date">
+Related entity birth date. Applicable when `entityType` is `INDIVIDUAL`.
+</ResponseField>
+
+<ResponseField name="establishmentDate" type="date">
+Related entity establishment date. Applicable when `entityType` is `ORGANIZATION`.
+</ResponseField>
+
+<ResponseField name="type" type="string from enum">
+Related entity type.
+
+Enum class values: `INDIVIDUAL`,  `ORGANIZATION`, `UNKNOWN`
+</ResponseField>
+
+<ResponseField name="firstName" type="string">
+Related entity first name. Applicable when `entityType` is `INDIVIDUAL`.
+</ResponseField>
+
+<ResponseField name="lastName" type="string">
+Related entity last name. Applicable when `entityType` is `INDIVIDUAL`.
+</ResponseField>
+
+<ResponseField name="title" type="string">
+Related entity title.
+</ResponseField>
+
+<ResponseField name="nationalCode" type="string">
+Related entity national code.
+</ResponseField>
+
+<ResponseField name="relationCode" type="string from classifier list">
+Related entity relation type.
+
+<Expandable title="Path to extract classifier values">
+**HTTP Method:**  `GET`
+
+**Path:** `{{baseUrl}}`/classifier/relationType
+</Expandable>
+</ResponseField>
+
+<ResponseField name="countryCode" type="string from classifier list">
+For Individual related entity:
+Citizenship country.
+For Organization related entity:
+Registration country.
+
+<Expandable title="Path to extract classifier values">
+**HTTP Method:**  `GET`
+
+**Path:** `{{baseUrl}}`/classifier/country
+</Expandable>
+</ResponseField>
+
+<ResponseField name="screeningMatch" type="boolean">
+An indication that the screening process found any matches.
+</ResponseField>
+
+_Examples:_
+
+```json
+{
+  "customerExternalId": "bb2274b1-6804-41f3-9e6f-81b9eb6700e3",
+  "externalId": "bb2274b1-6804-41f3-9e6f-81b9eb6700o6",
+  "birthDate": "1981-08-06",
+  "type": "INDIVIDUAL",
+  "firstName": "John",
+  "lastName": "Doe",
+  "nationalCode": "32108068863",
+  "relationCode": "OWNER",
+  "countryCode": "LT",
+  "screeningMatch": false
+}
+```
+```json
+{
+  "pep": false,
+  "customerExternalId": "bb2274b1-6804-41f3-9e6f-81b9eb6700e3",
+  "type": "INDIVIDUAL",
+  "firstName": "John",
+  "lastName": "Doe",
+  "title": "John Doe",
+  "nationalCode": "32108068863",
+  "relationCode": "OWNER",
+  "countryCode": "LT",
+  "screeningMatch": true
+}
+```
+```json
+{
+  "pep": true,
+  "customerExternalId": "bb2274b1-6804-41f3-9e6f-81b9eb6700e3",
+  "type": "INDIVIDUAL",
+  "firstName": "John",
+  "lastName": "Doe",
+  "title": "John Doe",
+  "nationalCode": "32108068863",
+  "relationCode": "OWNER",
+  "countryCode": "LT",
+  "screeningMatch": true
+}
+```
+
+## Related entity adverse media screening
+
+> ### app.amlyze.related_entity.screening.adverse_media.pending
+> The event is fired when a human decision is needed
+
+<ResponseField name="customerExternalId" type="string">
+External id of customer, to which related entity is related.
+</ResponseField>
+
+<ResponseField name="externalId" type="string">
+Related entity external id.
+</ResponseField>
+
+<ResponseField name="birthDate" type="date">
+Related entity birth date. Applicable when `entityType` is `INDIVIDUAL`.
+</ResponseField>
+
+<ResponseField name="establishmentDate" type="date">
+Related entity establishment date. Applicable when `entityType` is `ORGANIZATION`.
+</ResponseField>
+
+<ResponseField name="type" type="string from enum">
+Related entity type.
+
+Enum class values: `INDIVIDUAL`,  `ORGANIZATION`, `UNKNOWN`
+</ResponseField>
+
+<ResponseField name="firstName" type="string">
+Related entity first name. Applicable when `entityType` is `INDIVIDUAL`.
+</ResponseField>
+
+<ResponseField name="lastName" type="string">
+Related entity last name. Applicable when `entityType` is `INDIVIDUAL`.
+</ResponseField>
+
+<ResponseField name="title" type="string">
+Related entity title.
+</ResponseField>
+
+<ResponseField name="nationalCode" type="string">
+Related entity national code.
+</ResponseField>
+
+<ResponseField name="relationCode" type="string from classifier list">
+Related entity relation type.
+
+<Expandable title="Path to extract classifier values">
+**HTTP Method:**  `GET`
+
+**Path:** `{{baseUrl}}`/classifier/relationType
+</Expandable>
+</ResponseField>
+
+<ResponseField name="countryCode" type="string from classifier list">
+For Individual related entity:
+Citizenship country.
+For Organization related entity:
+Registration country.
+
+<Expandable title="Path to extract classifier values">
+**HTTP Method:**  `GET`
+
+**Path:** `{{baseUrl}}`/classifier/country
+</Expandable>
+</ResponseField>
+
+_Example:_
+
+```json
+{
+  "customerExternalId": "bb2274b1-6804-41f3-9e6f-81b9eb6700e3",
+  "externalId": "bb2274b1-6804-41f3-9e6f-81b9eb6700o6",
+  "birthDate": "1981-08-06",
+  "type": "INDIVIDUAL",
+  "firstName": "John",
+  "lastName": "Doe",
+  "nationalCode": "32108068863",
+  "relationCode": "OWNER",
+  "countryCode": "LT"
+}
+```
+
+> ### app.amlyze.related_entity.screening.adverse_media.completed
+> The event is always fired on screening finished with resolution
+
+<ResponseField name="inAdverseMedia" type="boolean">
+Related entity in adverse media or not.
+When a screening match is not found then this value is empty because there is no decision.
+</ResponseField>
+
+<ResponseField name="customerExternalId" type="string">
+External id of customer, to which related entity is related.
+</ResponseField>
+
+<ResponseField name="externalId" type="string">
+Related entity external id.
+</ResponseField>
+
+<ResponseField name="birthDate" type="date">
+Related entity birth date. Applicable when `entityType` is `INDIVIDUAL`.
+</ResponseField>
+
+<ResponseField name="establishmentDate" type="date">
+Related entity establishment date. Applicable when `entityType` is `ORGANIZATION`.
+</ResponseField>
+
+<ResponseField name="type" type="string from enum">
+Related entity type.
+
+Enum class values: `INDIVIDUAL`,  `ORGANIZATION`, `UNKNOWN`
+</ResponseField>
+
+<ResponseField name="firstName" type="string">
+Related entity first name. Applicable when `entityType` is `INDIVIDUAL`.
+</ResponseField>
+
+<ResponseField name="lastName" type="string">
+Related entity last name. Applicable when `entityType` is `INDIVIDUAL`.
+</ResponseField>
+
+<ResponseField name="title" type="string">
+Related entity title.
+</ResponseField>
+
+<ResponseField name="nationalCode" type="string">
+Related entity national code.
+</ResponseField>
+
+<ResponseField name="relationCode" type="string from classifier list">
+Related entity relation type.
+
+<Expandable title="Path to extract classifier values">
+**HTTP Method:**  `GET`
+
+**Path:** `{{baseUrl}}`/classifier/relationType
+</Expandable>
+</ResponseField>
+
+<ResponseField name="countryCode" type="string from classifier list">
+For Individual related entity:
+Citizenship country.
+For Organization related entity:
+Registration country.
+
+<Expandable title="Path to extract classifier values">
+**HTTP Method:**  `GET`
+
+**Path:** `{{baseUrl}}`/classifier/country
+</Expandable>
+</ResponseField>
+
+<ResponseField name="screeningMatch" type="boolean">
+An indication that the screening process found any matches.
+</ResponseField>
+
+_Examples:_
+
+```json
+{
+  "customerExternalId": "bb2274b1-6804-41f3-9e6f-81b9eb6700e3",
+  "externalId": "bb2274b1-6804-41f3-9e6f-81b9eb6700o6",
+  "birthDate": "1981-08-06",
+  "type": "INDIVIDUAL",
+  "firstName": "John",
+  "lastName": "Doe",
+  "nationalCode": "32108068863",
+  "relationCode": "OWNER",
+  "countryCode": "LT",
+  "screeningMatch": false
+}
+```
+```json
+{
+  "inAdverseMedia": false,
+  "customerExternalId": "bb2274b1-6804-41f3-9e6f-81b9eb6700e3",
+  "type": "INDIVIDUAL",
+  "firstName": "John",
+  "lastName": "Doe",
+  "title": "John Doe",
+  "nationalCode": "32108068863",
+  "relationCode": "OWNER",
+  "countryCode": "LT",
+  "screeningMatch": true
+}
+```
+```json
+{
+  "inAdverseMedia": true,
+  "customerExternalId": "bb2274b1-6804-41f3-9e6f-81b9eb6700e3",
+  "type": "INDIVIDUAL",
+  "firstName": "John",
+  "lastName": "Doe",
+  "title": "John Doe",
+  "nationalCode": "32108068863",
+  "relationCode": "OWNER",
+  "countryCode": "LT",
+  "screeningMatch": true
+}
+```
+
+## Related entity internal list screening
+
+> ### app.amlyze.related_entity.screening.internal_list.pending
+> The event is fired when a human decision is needed
+
+<ResponseField name="customerExternalId" type="string">
+External id of customer, to which related entity is related.
+</ResponseField>
+
+<ResponseField name="externalId" type="string">
+Related entity external id.
+</ResponseField>
+
+<ResponseField name="birthDate" type="date">
+Related entity birth date. Applicable when `entityType` is `INDIVIDUAL`.
+</ResponseField>
+
+<ResponseField name="establishmentDate" type="date">
+Related entity establishment date. Applicable when `entityType` is `ORGANIZATION`.
+</ResponseField>
+
+<ResponseField name="type" type="string from enum">
+Related entity type.
+
+Enum class values: `INDIVIDUAL`,  `ORGANIZATION`, `UNKNOWN`
+</ResponseField>
+
+<ResponseField name="firstName" type="string">
+Related entity first name. Applicable when `entityType` is `INDIVIDUAL`.
+</ResponseField>
+
+<ResponseField name="lastName" type="string">
+Related entity last name. Applicable when `entityType` is `INDIVIDUAL`.
+</ResponseField>
+
+<ResponseField name="title" type="string">
+Related entity title.
+</ResponseField>
+
+<ResponseField name="nationalCode" type="string">
+Related entity national code.
+</ResponseField>
+
+<ResponseField name="relationCode" type="string from classifier list">
+Related entity relation type.
+
+<Expandable title="Path to extract classifier values">
+**HTTP Method:**  `GET`
+
+**Path:** `{{baseUrl}}`/classifier/relationType
+</Expandable>
+</ResponseField>
+
+<ResponseField name="countryCode" type="string from classifier list">
+For Individual related entity:
+Citizenship country.
+For Organization related entity:
+Registration country.
+
+<Expandable title="Path to extract classifier values">
+**HTTP Method:**  `GET`
+
+**Path:** `{{baseUrl}}`/classifier/country
+</Expandable>
+</ResponseField>
+
+_Example:_
+
+```json
+{
+  "customerExternalId": "bb2274b1-6804-41f3-9e6f-81b9eb6700e3",
+  "externalId": "bb2274b1-6804-41f3-9e6f-81b9eb6700o6",
+  "birthDate": "1981-08-06",
+  "type": "INDIVIDUAL",
+  "firstName": "John",
+  "lastName": "Doe",
+  "nationalCode": "32108068863",
+  "relationCode": "OWNER",
+  "countryCode": "LT"
+}
+```
+
+> ### app.amlyze.related_entity.screening.internal_list.completed
+> The event is always fired on screening finished with resolution
+
+<ResponseField name="inInternalList" type="boolean">
+Related entity in internal list or not.
+When a screening match is not found then this value is empty because there is no decision.
+</ResponseField>
+
+<ResponseField name="customerExternalId" type="string">
+External id of customer, to which related entity is related.
+</ResponseField>
+
+<ResponseField name="externalId" type="string">
+Related entity external id.
+</ResponseField>
+
+<ResponseField name="birthDate" type="date">
+Related entity birth date. Applicable when `entityType` is `INDIVIDUAL`.
+</ResponseField>
+
+<ResponseField name="establishmentDate" type="date">
+Related entity establishment date. Applicable when `entityType` is `ORGANIZATION`.
+</ResponseField>
+
+<ResponseField name="type" type="string from enum">
+Related entity type.
+
+Enum class values: `INDIVIDUAL`,  `ORGANIZATION`, `UNKNOWN`
+</ResponseField>
+
+<ResponseField name="firstName" type="string">
+Related entity first name. Applicable when `entityType` is `INDIVIDUAL`.
+</ResponseField>
+
+<ResponseField name="lastName" type="string">
+Related entity last name. Applicable when `entityType` is `INDIVIDUAL`.
+</ResponseField>
+
+<ResponseField name="title" type="string">
+Related entity title.
+</ResponseField>
+
+<ResponseField name="nationalCode" type="string">
+Related entity national code.
+</ResponseField>
+
+<ResponseField name="relationCode" type="string from classifier list">
+Related entity relation type.
+
+<Expandable title="Path to extract classifier values">
+**HTTP Method:**  `GET`
+
+**Path:** `{{baseUrl}}`/classifier/relationType
+</Expandable>
+</ResponseField>
+
+<ResponseField name="countryCode" type="string from classifier list">
+For Individual related entity:
+Citizenship country.
+For Organization related entity:
+Registration country.
+
+<Expandable title="Path to extract classifier values">
+**HTTP Method:**  `GET`
+
+**Path:** `{{baseUrl}}`/classifier/country
+</Expandable>
+</ResponseField>
+
+<ResponseField name="screeningMatch" type="boolean">
+An indication that the screening process found any matches.
+</ResponseField>
+
+_Examples:_
+
+```json
+{
+  "customerExternalId": "bb2274b1-6804-41f3-9e6f-81b9eb6700e3",
+  "externalId": "bb2274b1-6804-41f3-9e6f-81b9eb6700o6",
+  "birthDate": "1981-08-06",
+  "type": "INDIVIDUAL",
+  "firstName": "John",
+  "lastName": "Doe",
+  "nationalCode": "32108068863",
+  "relationCode": "OWNER",
+  "countryCode": "LT",
+  "screeningMatch": false
+}
+```
+```json
+{
+  "inInternalList": false,
+  "customerExternalId": "bb2274b1-6804-41f3-9e6f-81b9eb6700e3",
+  "type": "INDIVIDUAL",
+  "firstName": "John",
+  "lastName": "Doe",
+  "title": "John Doe",
+  "nationalCode": "32108068863",
+  "relationCode": "OWNER",
+  "countryCode": "LT",
+  "screeningMatch": true
+}
+```
+```json
+{
+  "inInternalList": true,
+  "customerExternalId": "bb2274b1-6804-41f3-9e6f-81b9eb6700e3",
+  "type": "INDIVIDUAL",
+  "firstName": "John",
+  "lastName": "Doe",
+  "title": "John Doe",
+  "nationalCode": "32108068863",
+  "relationCode": "OWNER",
+  "countryCode": "LT",
+  "screeningMatch": true
+}
+```
