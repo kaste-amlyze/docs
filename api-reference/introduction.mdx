@@ -1,18 +1,138 @@
 ---
 title: 'Introduction'
-description: 'API documentation description'
+description: 'AMLYZE API documentation description'
 ---
 
 ## Welcome
 
-Workflow
+AMLYZE is SaaS that, through integration, will help you with:
 
-CUSTOMER IMPORT -> ACCOUNT IMPORT -> OPERATION IMPORT
+* Risk Assessment on new and existing clients;
+* Transaction monitoring and analysis of suspicious financial transactions;
+* Screening (Sanctions, PEPs, Adverse media);
 
-An existing customer or operation that took place in the past → IMPORT (no risk assesment/ no transaction monitoring)
+## Workflow
 
-Creating a new customer or operation → EVALUATE (performing risk assesment/ transaction monitoring)
+1. CUSTOMER IMPORT -> 2. ACCOUNT IMPORT -> 3. OPERATION IMPORT
 
-Double check the fields that are used in individually configured rules set and make sure those fields are provided with the request, because they may be not mandatory to successfuly send the request but without them some rules may not be working.
+> - An existing customer or operation that took place in the past → IMPORT (no risk assesment/ no transaction monitoring)
+> - Creating a new customer or operation → EVALUATE (performing risk assesment/ transaction monitoring)
 
-If during EVALUATE, case was generated → Human decision is required
+❗ Double check the fields that are used in individually configured rules set and make sure those fields are provided with the request, because they may be not mandatory to successfuly send the request but without them some rules may not be working.
+
+> If during EVALUATE, case was generated → Human decision is required
+
+## Documentation structure
+
+---
+> #### CUSTOMER
+##### _INDIVIDUAL_
+- Customer import - Individual no risk assessment
+- Customer import - Individual with risk assessment
+- Simplified customer import - Individual
+
+##### _ORGANIZATION_
+- Customer import - Organization no risk assessment
+- Customer import - Organization with risk assessment
+- Customer import - Organization Simplified
+
+---
+
+> #### ACCOUNT
+
+---
+
+> #### OPERATION
+
+##### _SEPA_
+- SEPA operation import - no transaction monitoring
+- SEPA operation import - with transaction monitoring
+
+--
+
+##### _SWIFT_
+- SWIFT operation import - no transaction monitoring
+- SWIFT operation import - with transaction monitoring
+
+--
+
+##### _CARD_
+
+###### CARD CASH
+- CARD-CASH operation import - no transaction monitoring
+
+###### CARD PAYMENT
+- CARD-PAYMENT operation import - no transaction monitoring
+- CARD-PAYMENT operation import - with transaction monitoring
+
+--
+
+##### _CASH_
+
+##### CASH DEPOSIT
+
+##### INCOMING
+- CASH DEPOSIT INCOMING operation import - no transaction monitoring
+- CASH DEPOSIT INCOMING operation import - with transaction monitoring
+
+##### OUTGOING
+- CASH DEPOSIT OUTGOING operation import - no transaction monitoring
+- CASH DEPOSIT OUTGOING operation import - with transaction monitoring
+
+##### CASH TRANSFER
+
+##### OUTGOING
+- CASH TRANSFER OUTGOING operation import - no transaction monitoring
+- CASH TRANSFER OUTGOING operation import - with transaction monitoring
+
+--
+
+##### _PIS_
+- PIS operation import - no transaction monitoring
+- PIS operation import - with transaction monitoring
+
+--
+
+##### _INTERNAL_
+- INTERNAL operation import - no transaction monitoring
+- INTERNAL operation import - with transaction monitoring
+
+--
+
+##### _CRYPTO_
+
+##### CRYPTO PAYMENT
+- CRYPTO operation import - no transaction monitoring
+- CRYPTO operation import - with transaction monitoring
+
+##### CRYPTO EXCHANGE
+- CRYPTO EXCHANGE operation import - no transaction monitoring
+- CRYPTO EXCHANGE operation import - with transaction monitoring
+
+--
+
+##### _FASTER PAYMENTS_
+- FASTER PAYMENTS operation import - no transaction monitoring
+- FASTER PAYMENTS operation import - with transaction monitoring
+
+---
+
+> #### EXTRAS
+
+##### _Classifiers_
+##### _WEBHOOKS_
+
+- Customer Update Webhooks
+- Risk Management Webhooks
+- Screening Webhooks
+
+##### COMMUNICATION EVENTS
+
+- Risk Management Events
+- Screening Events
+- Discard Operation Service
+- Operation Reconciliation Service
+
+
+
+
