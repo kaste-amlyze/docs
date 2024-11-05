@@ -1,3 +1,173 @@
 ---
 title: 'Risk Management Webhooks'
 ---
+
+## Envelope
+
+<ResponseField name="type" type="string">
+Unique event type. Check documentation below to see available types.
+
+_Example:_ `app.amlyze.customer.riskmanagement.kyc_scoring.completed`
+</ResponseField>
+
+<ResponseField name="specversion" type="string">
+[Cloud Events](https://cloudevents.io/) Specification version that is being used.
+
+_Example:_ `1.0`
+</ResponseField>
+
+<ResponseField name="source" type="URI-reference">
+[RFC 3986 - Uniform Recource Identifier (URI)](https://datatracker.ietf.org/doc/html/rfc3986#section-4.1)
+
+Event source.
+
+_Example:_ `customer`
+</ResponseField>
+
+<ResponseField name="subject" type="string">
+Event subject represents a resource external id.
+
+_Example:_ `82deaa92-d559-40bd-96b7-053341a08e28`
+</ResponseField>
+
+<ResponseField name="id" type="string">
+Unique event ID.
+
+_Example:_ `0412a5ca-3be7-46b7-87de-38366397602e`
+</ResponseField>
+
+<ResponseField name="time" type="date">
+Event time.
+
+_Example:_ `2019-12-13T12:01:02.694Z`
+</ResponseField>
+
+<ResponseField name="datacontenttype" type="string">
+Data content type
+
+_Example:_ `application/json`
+</ResponseField>
+
+<ResponseField name="data" type="object">
+Event response. Differs on the event type.
+</ResponseField>
+
+## Customer KYC ecents
+
+> ### app.amlyze.customer.riskmanagement.kyc_scoring.pending
+> The event is fired when a human decision is needed
+
+<ResponseField name="initialRiskLevel" type="string from enum">
+The initial risk level is shown based on the evaluation given result.
+
+Enum class values: `NONE`,  `LOW`, `MEDIUM`, `HIGH`, `EXTREME`
+
+_Example:_ 
+```json
+{ 
+    "initialRiskLevel": "LOW" 
+}
+```
+</ResponseField>
+
+> ### app.amlyze.customer.riskmanagement.kyc_scoring.waiting_for_approval_date
+> This event is sent when configuration is set to wait for customer approval date
+
+<ResponseField name="initialRiskLevel" type="string from enum">
+The initial risk level is shown based on the evaluation given result.
+
+Enum class values: `NONE`,  `LOW`, `MEDIUM`, `HIGH`, `EXTREME`
+</ResponseField>
+
+<ResponseField name="finalRiskLevel" type="string from enum">
+The final risk level.
+
+Enum class values: `NONE`,  `LOW`, `MEDIUM`, `HIGH`, `EXTREME`
+</ResponseField>
+
+<ResponseField name="decisionType" type="string from enum">
+Decision type.
+
+Enum class values: `ACCEPTED`,  `REJECTED`
+</ResponseField>
+
+<ResponseField name="decisionGroundCode" type="string from classifier list">
+Description which indicates the selected decision for resolving a case.
+Return only if a human decision was needed.
+
+<Expandable title="Path to extract classifier values">
+**HTTP Method:**  `GET`
+
+**Path:** `{{baseUrl}}`/classifier/decisionGround
+</Expandable>
+
+_Example:_ 
+```json
+{
+   "initialRiskLevel": "LOW",
+   "finalRiskLevel": "LOW",
+   "decisionType": "ACCEPTED",
+   "decisionGroundCode": "01"
+}
+```
+</ResponseField>
+
+> ### app.amlyze.customer.riskmanagement.kyc_scoring.completed
+> The event is fired always on completion by a human decision/automatically resolved
+
+<ResponseField name="initialRiskLevel" type="string from enum">
+The initial risk level is shown based on the evaluation given result.
+
+Enum class values: `NONE`,  `LOW`, `MEDIUM`, `HIGH`, `EXTREME`
+</ResponseField>
+
+<ResponseField name="finalRiskLevel" type="string from enum">
+The final risk level.
+
+Enum class values: `NONE`,  `LOW`, `MEDIUM`, `HIGH`, `EXTREME`
+</ResponseField>
+
+<ResponseField name="decisionType" type="string from enum">
+Decision type.
+
+Enum class values: `ACCEPTED`,  `REJECTED`
+</ResponseField>
+
+<ResponseField name="decisionGroundCode" type="string from classifier list">
+Description which indicates the selected decision for resolving a case.
+Return only if a human decision was needed.
+
+<Expandable title="Path to extract classifier values">
+**HTTP Method:**  `GET`
+
+**Path:** `{{baseUrl}}`/classifier/decisionGround
+</Expandable>
+
+<ResponseField name="approvedAt" type="date">
+Approval date.
+Set first time in the system
+</ResponseField>
+
+_Example:_ 
+```json
+{
+   "initialRiskLevel": "LOW",
+   "finalRiskLevel": "LOW",
+   "decisionType": "ACCEPTED",
+   "decisionGroundCode": "01",
+   "approvedAt": "2018-04-05T17:31:00Z"
+}
+```
+</ResponseField>
+
+> ###
+>
+
+> ###
+>
+
+> ###
+>
+
+> ###
+>
