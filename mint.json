@@ -188,7 +188,15 @@
                 "api-reference/EXTRAS/WEBHOOKS/introduction",
                 "api-reference/EXTRAS/WEBHOOKS/customerUpdateWebhooks",
                 "api-reference/EXTRAS/WEBHOOKS/riskManagementWebhooks",
-                "api-reference/EXTRAS/WEBHOOKS/screeningWebhooks"
+                "api-reference/EXTRAS/WEBHOOKS/screeningWebhooks",
+                {
+                  "group": "COMMUNICATION EVENTS",
+                  "pages": [
+                    "api-reference/EXTRAS/WEBHOOKS/COMMUNICATION_EVENTS/introduction",
+                    "api-reference/EXTRAS/WEBHOOKS/COMMUNICATION_EVENTS/riskManagementEvents",
+                    "api-reference/EXTRAS/WEBHOOKS/COMMUNICATION_EVENTS/screeningEvents"
+                  ]
+                }
               ]
             },
             "api-reference/EXTRAS/discardOperation",
